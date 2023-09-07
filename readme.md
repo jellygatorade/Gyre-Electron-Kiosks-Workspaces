@@ -16,7 +16,7 @@ This project uses [npm workspaces](https://docs.npmjs.com/cli/v9/using-npm/works
 
 6. If `tailwindcss` is desired in the new workspace, `npx tailwindcss init` to create `tailwind.config.js`. See [Tailwind Installation](https://tailwindcss.com/docs/installation) guide for details.
 
-## Within each workspace
+## Development within each workspace
 
 Develop with Tailwind  
 `npx tailwindcss -i ./src/style/tailwind-input.css -o ./src/style/tailwind-compiled.css --watch`
