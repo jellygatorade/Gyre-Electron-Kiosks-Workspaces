@@ -1,12 +1,8 @@
-# Todo documentation
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+# Video Kiosks Workspaces
 
 This project uses [npm workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true) to create a monorepo of separate Electron projects that all utilize the same dependencies.
 
 ## How to add a new workspace
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 1. Create a new project folder within the `workspaces` directory.
 2. In the monorepo root `package.json`, add path to the new workspace directory in the `"workspaces"` array.
@@ -15,11 +11,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 5. Once the workspace's `main.js` is ready (`workspaces/<workspace>/src/main.js`), develop using `npm start` and run a test build with `npm run make`.
 6. If `tailwindcss` is desired in the new workspace, `npx tailwindcss init` to create `tailwind.config.js`.
 
-### Within each workspace
+## Within each workspace
 
-Develop with Tailwind
+Develop with Tailwind  
 `npx tailwindcss -i ./src/style/tailwind-input.css -o ./src/style/tailwind-compiled.css --watch`
 
-Develop and build with Electron
-`npm start`
+Develop and build with Electron  
+`npm start`  
 `npm run make`
