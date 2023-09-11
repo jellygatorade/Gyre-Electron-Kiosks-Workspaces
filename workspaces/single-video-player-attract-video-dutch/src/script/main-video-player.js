@@ -3,7 +3,7 @@ import { domVars } from "./dom.js";
 import { interactionEvents } from "./interaction-events.js";
 import { attractView } from "./attract-view.js";
 import { fadeBetweenViews } from "./fade-between-views.js";
-import { removeIdleTimer, setupIdleTimer } from "./idle-timer-home.js";
+import { idleTimer } from "./idle-timer-tier-1.js";
 
 const mainVideoPlayer = {
   // Video path is defined in "./apply-content-ui.js"
@@ -95,7 +95,7 @@ const mainVideoPlayer = {
     this.videoIntervalId = setInterval(this.updateScrubBar, 25);
     domVars.playPauseBtnIcon.classList.add("fa-pause");
     domVars.playPauseBtnIcon.classList.remove("fa-play");
-    removeIdleTimer();
+    idleTimer.remove();
   },
 
   pause: function () {
@@ -103,7 +103,7 @@ const mainVideoPlayer = {
     clearInterval(this.videoIntervalId);
     domVars.playPauseBtnIcon.classList.add("fa-play");
     domVars.playPauseBtnIcon.classList.remove("fa-pause");
-    setupIdleTimer();
+    idleTimer.setup();
   },
 
   // holds reference to a setInterval ID that runs updateScrubBar
@@ -130,7 +130,7 @@ const mainVideoPlayer = {
   pageReset: function () {
     domVars.mainVideoPlayer.pause();
 
-    removeIdleTimer();
+    idleTimer.remove();
 
     fadeBetweenViews(domVars.mainVideoView, domVars.attractView);
 
