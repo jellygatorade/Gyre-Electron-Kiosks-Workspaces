@@ -7,7 +7,7 @@
 // https://stackoverflow.com/questions/667555/how-to-detect-idle-time-in-javascript
 
 // Define timeout functions for auto navigation back home on idle
-const idleTimeoutInMiliseconds = 90000;
+const idleTimeoutInMiliseconds = 90 * 1000;
 let idleTimeoutId;
 
 function startIdleTimer() {
