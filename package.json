@@ -4,7 +4,8 @@
   "description": "Monorepo project for video touch kiosks sharing Node.js dependencies. Projects are separated using npm workspaces feature.",
   "workspaces": [
     "./workspaces/single-video-player-attract-video",
-    "./workspaces/single-video-player-attract-video-dutch"
+    "./workspaces/single-video-player-attract-video-dutch",
+    "./workspaces/video-kiosk-audubon"
   ],
   "author": "Kevin Kane",
   "license": "ISC",

@@ -1,0 +1,78 @@
+{
+  "attract_video_path": "./assets/video/20220928-Digital Label Attract Screen-Audubon-02-1080p.mp4",
+  "en": {
+    "attract": {
+      "title": "Reckoning with Audubon",
+      "touch_to_begin": "TOUCH TO BEGIN"
+    },
+    "main": {
+      "title": "Reckoning with Audubon",
+      "subheading": "Select one of the videos below to discover ornithologist Drew Lanham’s perspective on John James Audubon.",
+      "toggle_lang_btn": "Español",
+      "videos": [
+        {
+          "id": "drew-lanham",
+          "video_path": "./assets/video/20220622-audubon-drew_lanham-who_is_drew_lanham-01-tc-720p (Original).mp4",
+          "still_path": "./assets/img/WHo is drew -1 .png",
+          "title": "Who Is Drew Lanham?",
+          "description": "Meet ornithologist Drew Lanham. Listen as he discusses his love for birds and why they are important to him."
+        },
+        {
+          "id": "tracking-history",
+          "video_path": "./assets/video/20220622-audubon-drew_lanham-arcing_history-01-tc-720p (Original).mp4",
+          "still_path": "./assets/img/tracking-history-2.png",
+          "title": "Symbols of Freedom",
+          "description": "Hear ornithologist Drew Lanham share his views on birds as symbols of freedom and the notion of freedom in John James Audubon's time. Lanham talks about how learning about birds can help us connect the past to the present."
+        },
+        {
+          "id": "modern-context",
+          "video_path": "./assets/video/20220622-audubon-drew_lanham-giving_modern_context_to_a_historical_figure-01-tc-720p.mp4 (Original).mp4",
+          "still_path": "./assets/img/giving-modern-context-16-9-crop.png",
+          "title": "A Historical Figure in a Modern Context",
+          "description": "Listen to Drew Lanham describe Audubon and his “readymade appearance,” during the artist’s lifetime and ever since. Lanham discusses what inspired him to write “tweets” in the gallery."
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "[Back to main]"
+    }
+  },
+  "es": {
+    "is_available": false,
+    "attract": {
+      "title": "!¿Audubon?",
+      "touch_to_begin": "!TOCA PARA COMENZAR"
+    },
+    "main": {
+      "title": "!¿Audubon?",
+      "subheading": "!¿Audubon? Seleccione uno de los videos a continuación para conocer su importancia para el arte en las Américas.",
+      "toggle_lang_btn": "English",
+      "videos": [
+        {
+          "id": "drew-lanham",
+          "video_path": "./assets/video/SenegaleseFashion.mp4",
+          "still_path": "./assets/img/WHo is drew -1 .png",
+          "title": "!¿Quién es Drew Lanham?",
+          "description": "!Conoce al ornitólogo Drew Lanham. Escuche mientras habla sobre su amor por las aves y por qué son importantes para él."
+        },
+        {
+          "id": "tracking-history",
+          "video_path": "./assets/video/Speed Stick.mp4",
+          "still_path": "./assets/img/Connecting History 14.png",
+          "title": "!Historial de seguimiento",
+          "description": "!Escuche al ornitólogo Drew Lanham compartir sus puntos de vista sobre John James Audubon. Lanham habla sobre cómo aprender sobre las aves puede ayudarnos a conectar el pasado con el presente y quizás ver a las aves como símbolos de libertad."
+        },
+        {
+          "id": "modern-context",
+          "video_path": "",
+          "still_path": "./assets/img/Giving modern context 1.png",
+          "title": "!Contexto moderno para una figura histórica",
+          "description": "!Escuche a Drew Lanham describir a Audubon y su \"apariencia prefabricada\", durante la vida del artista y desde entonces. Lanham habla sobre lo que lo inspiró a escribir \"tweets\" en la galería."
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "UNOFFICIAL - [Volver al menú principal]"
+    }
+  }
+}

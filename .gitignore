@@ -1,5 +1,8 @@
 /notes
+/workspaces/**/src/assets/*
 /workspaces/**/src/common/assets
+
+!/workspaces/**/src/assets/content.json 
 
 # Below is from github/gitignore/Node.gitignore 
 # https://github.com/github/gitignore/blob/main/Node.gitignore
