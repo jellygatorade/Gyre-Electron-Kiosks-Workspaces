@@ -1,3 +1,5 @@
+*.jpg
+
 /notes
 /workspaces/**/src/assets/*
 /workspaces/**/src/common/assets

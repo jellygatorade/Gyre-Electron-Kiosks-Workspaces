@@ -55,6 +55,16 @@ const createWindow = () => {
     window.webContents.reload();
   });
 
+  // Register
+  globalShortcut.register("Control+1", () => {
+    window.loadFile(path.join(__dirname, "/index.html"));
+  });
+
+  // Register
+  globalShortcut.register("Control+2", () => {
+    window.loadFile(path.join(__dirname, "turning-test/index.html"));
+  });
+
   // Register escape key to quit the app
   globalShortcut.register("ESC", function () {
     app.quit();

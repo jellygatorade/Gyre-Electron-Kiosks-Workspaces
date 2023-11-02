@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <!-- <link rel="stylesheet" type="text/css" href="./reset.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="./fade-in.css" /> -->
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="controls-overlay">
+      <div class="controls-margin">
+        <button id="prev-btn">Prev</button>
+        <button id="next-btn">Next</button>
+      </div>
+    </div>
+
+    <div class="view-margin">
+      <div class="flex-vertical">
+        <div class="flex-horizontal">
+          <div class="flipbook" id="flipbook-element">
+            <div class="page">
+              <img src="./pages/01.jpg" draggable="false" alt="" />
+            </div>
+            <div class="page">
+              <img src="./pages/02.jpg" draggable="false" alt="" />
+            </div>
+            <div class="page">
+              <img src="./pages/03.jpg" draggable="false" alt="" />
+            </div>
+            <div class="page">
+              <img src="./pages/04.jpg" draggable="false" alt="" />
+            </div>
+            <div class="page">
+              <img src="./pages/05.jpg" draggable="false" alt="" />
+            </div>
+            <div class="page">
+              <img src="./pages/06.jpg" draggable="false" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./scripts/jquery-1.7.2.min.js"></script>
+    <!-- <script type="text/javascript" src="../jquery-3.6.0.min.js"></script> -->
+    <script type="text/javascript" src="./scripts/turn.min.js"></script>
+    <script type="text/javascript" src="./turn-script.js"></script>
+  </body>
+</html>
