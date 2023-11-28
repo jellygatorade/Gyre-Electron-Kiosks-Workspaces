@@ -15,7 +15,7 @@ $(book).turn({
   width: pageScale * pageWidth * 2,
   height: pageScale * pageHeight,
   display: "double",
-  page: 1, // start open
+  page: 2, // start open
 });
 
 $(prevBtn).on("click", prevBtnOnClick);
@@ -33,3 +33,21 @@ function nextBtnOnClick() {
 /**
  *
  */
+
+// console.log($("book").turn("pages")); // ??
+const length = $(book).children().length;
+// const length = $("book").turn("pages");  // ??
+console.log(length);
+
+$(book).bind("start", function (e, data, c) {
+  // console.log(data);
+  if (data.next == 1 || data.next == length - 2) {
+    e.preventDefault();
+  }
+});
+$(book).bind("turning", function (e, page, c) {
+  console.log(page);
+  if (page == 1 || page == length - 2) {
+    e.preventDefault();
+  }
+});

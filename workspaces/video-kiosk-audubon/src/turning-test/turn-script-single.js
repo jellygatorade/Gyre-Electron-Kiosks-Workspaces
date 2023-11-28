@@ -12,11 +12,12 @@ const pageScale = 1.25;
 $(book).turn({
   acceleration: true,
   autoCenter: false,
-  width: pageScale * pageWidth * 2,
+  width: pageScale * pageWidth,
   height: pageScale * pageHeight,
-  display: "double",
-  page: 1, // start open
+  display: "single",
 });
+
+// $(book).turn("display", "single");
 
 $(prevBtn).on("click", prevBtnOnClick);
 
@@ -29,7 +30,3 @@ function prevBtnOnClick() {
 function nextBtnOnClick() {
   $(book).turn("next");
 }
-
-/**
- *
- */
