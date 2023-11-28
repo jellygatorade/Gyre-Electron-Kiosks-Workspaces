@@ -31,23 +31,19 @@ function nextBtnOnClick() {
 }
 
 /**
- *
+ * Disallow page turning to first and last pages
  */
 
-// console.log($("book").turn("pages")); // ??
-const length = $(book).children().length;
-// const length = $("book").turn("pages");  // ??
-console.log(length);
+const length = $(book).turn("pages");
 
 $(book).bind("start", function (e, data, c) {
-  // console.log(data);
-  if (data.next == 1 || data.next == length - 2) {
+  if (data.next == 1 || data.next == length) {
     e.preventDefault();
   }
 });
+
 $(book).bind("turning", function (e, page, c) {
-  console.log(page);
-  if (page == 1 || page == length - 2) {
+  if (page == 1 || page == length) {
     e.preventDefault();
   }
 });

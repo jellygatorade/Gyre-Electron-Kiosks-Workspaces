@@ -15,7 +15,7 @@ $(book).turn({
   width: pageScale * pageWidth * 2,
   height: pageScale * pageHeight,
   display: "double",
-  page: 1, // start open
+  page: 1,
 });
 
 $(prevBtn).on("click", prevBtnOnClick);
