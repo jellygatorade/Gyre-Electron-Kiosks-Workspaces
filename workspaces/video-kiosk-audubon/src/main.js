@@ -73,7 +73,7 @@ const createWindow = () => {
 
 // Start chromium with --touch-events flag
 // Necessary for use with turn.js which checks for ontouchstart event
-app.commandLine.appendSwitch("touch-events");
+// app.commandLine.appendSwitch("touch-events");
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
