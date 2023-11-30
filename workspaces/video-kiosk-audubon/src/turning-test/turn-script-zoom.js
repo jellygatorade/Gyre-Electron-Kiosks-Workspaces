@@ -41,6 +41,10 @@ function nextBtnOnClick() {
  * Following
  * How to get zoom working with turn.js
  * https://stackoverflow.com/questions/17607337/how-to-get-zoom-working-with-turn-js
+ *
+ * See also
+ * http://www.turnjs.com/samples/magazine/
+ * https://github.com/blasten/turn.js/issues/603
  */
 
 /**
