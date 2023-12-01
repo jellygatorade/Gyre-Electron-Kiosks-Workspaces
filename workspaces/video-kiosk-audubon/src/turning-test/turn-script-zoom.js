@@ -16,11 +16,12 @@ const pageScale = 1.0;
 
 $(book).turn({
   acceleration: true,
-  autoCenter: false,
+  autoCenter: true,
   width: pageScale * pageWidth * 2,
   height: pageScale * pageHeight,
-  display: "double",
-  page: 1,
+  // gradients: false,
+  // display: "double",
+  // page: 1,
 });
 
 $(prevBtn).on("click", prevBtnOnClick);
@@ -53,13 +54,26 @@ function nextBtnOnClick() {
 
 const zoomContainer = document.getElementById("zoom-container");
 
-zoomContainer.style.left = pageScale * pageWidth + "px";
-zoomContainer.style.top = (pageScale * pageHeight) / 2 + "px";
+// zoomContainer.style.left = pageScale * pageWidth + "px";
+// zoomContainer.style.top = (pageScale * pageHeight) / 2 + "px";
+// zoomContainer.style.width = pageScale * pageWidth * 2 + "px";
+// zoomContainer.style.height = pageScale * pageHeight + "px";
+
+// book.style.left = -1 * pageScale * pageWidth + "px";
+// book.style.top = (-1 * pageScale * pageHeight) / 2 + "px";
+// book.style.width = pageScale * pageWidth * 2 + "px";
+// book.style.height = pageScale * pageHeight + "px";
+
+// zoomContainer.style.left = pageScale * pageWidth + "px";
+// zoomContainer.style.top = (pageScale * pageHeight) / 2 + "px";
+// zoomContainer.style.left = "0px";
+// zoomContainer.style.top = "0px";
 zoomContainer.style.width = pageScale * pageWidth * 2 + "px";
 zoomContainer.style.height = pageScale * pageHeight + "px";
 
 book.style.left = -1 * pageScale * pageWidth + "px";
 book.style.top = (-1 * pageScale * pageHeight) / 2 + "px";
+book.style.position = "relative";
 book.style.width = pageScale * pageWidth * 2 + "px";
 book.style.height = pageScale * pageHeight + "px";
 
@@ -73,10 +87,16 @@ function resizeViewport() {
     height = $(window).height();
   // options = $('.magazine').turn('options');
 
+  // zoomContainer.style.position = "relative";
+  // zoomContainer.style.left = "100px";
+  // zoomContainer.style.top = "100px";
+
   $(zoomViewport)
     .css({
       width: width,
       height: height,
+      // width: width - 200,
+      // height: height - 200,
     })
     .zoom("resize");
 }
@@ -90,32 +110,28 @@ $(zoomInBtn).on("click", zoomInBtnOnClick);
 
 $(zoomOutBtn).on("click", zoomOutBtnOnClick);
 
-function zoomInBtnOnClick() {
+function zoomInBtnOnClick(event) {
   var pos = {
-    x: book.offsetWidth / 2,
-    y: book.offsetHeight / 2,
+    x: book.clientWidth / 2,
+    y: book.clientHeight / 2,
   };
-  // console.log(pos);
+
   $(zoomViewport).zoom("zoomIn", pos);
+  // $(zoomViewport).zoom("zoomIn", event);
 }
 
 function zoomOutBtnOnClick() {
-  var pos = {
-    x: book.offsetWidth / 2,
-    y: book.offsetHeight / 2,
-  };
-  // console.log(pos);
-  $(zoomViewport).zoom("zoomOut", pos);
+  $(zoomViewport).zoom("zoomOut");
 }
 
-$(book).click(function (e) {
-  var pos = {
-    x: e.offset().left,
-    y: e.offset().top,
-  };
-  console.log(pos);
-  // $(zoomViewport).zoom("zoomIn", pos);
-});
+// $(book).click(function (e) {
+//   var pos = {
+//     x: e.offset().left,
+//     y: e.offset().top,
+//   };
+//   console.log(pos);
+//   // $(zoomViewport).zoom("zoomIn", pos);
+// });
 
 // $(book).click(function (e) {
 //   var pos = {
