@@ -55,11 +55,12 @@ body {
   height: 100%;
   width: 100%;
 
-  -webkit-transition: margin-left 0.5s;
+  /* -webkit-transition: margin-left 0.5s; */
   /* -moz-transition: margin-left 0.5s;
   -ms-transition: margin-left 0.5s;
-  -o-transition: margin-left 0.5s;
-  transition: margin-left 0.5s; */
+  -o-transition: margin-left 0.5s; */
+  transition: margin-left 0.5s;
+  /* transition: margin-left 0.1s; */
 
   /* -webkit-touch-callout: none;
   -webkit-user-select: none;
