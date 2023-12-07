@@ -372,6 +372,7 @@
           //   left: flip[0].getBoundingClientRect().left,
           //   top: flip[0].getBoundingClientRect().top,
           // };
+          // console.log(flip[0]);
 
           data.axis = point2D(
             flipOffset.left - thisOffset.left,

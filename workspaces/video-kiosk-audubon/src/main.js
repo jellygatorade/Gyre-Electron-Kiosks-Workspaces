@@ -65,6 +65,13 @@ const createWindow = () => {
     window.loadFile(path.join(__dirname, "turning-test/index.html"));
   });
 
+  // Register
+  globalShortcut.register("Control+3", () => {
+    window.loadFile(
+      path.join(__dirname, "turnjs4/samples/magazine/index.html")
+    );
+  });
+
   // Register escape key to quit the app
   globalShortcut.register("ESC", function () {
     app.quit();
