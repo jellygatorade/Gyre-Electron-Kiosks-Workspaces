@@ -3,6 +3,7 @@
 /notes
 /workspaces/**/src/assets/*
 /workspaces/**/src/common/assets
+/workspaces/**/src/turnjs4
 
 !/workspaces/**/src/assets/content.json 
 

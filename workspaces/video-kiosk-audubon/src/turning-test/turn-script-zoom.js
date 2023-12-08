@@ -12,22 +12,21 @@ const zoomViewport = document.getElementById("zoom-viewport");
 
 const pageWidth = firstPageImg.naturalWidth;
 const pageHeight = firstPageImg.naturalHeight;
-console.log(pageWidth, pageWidth * 2, pageHeight);
 const pageScale = 1.0;
 
+/**
+ * Turn.js
+ */
+
 $(book).turn({
-  // acceleration: true,
   autoCenter: true,
-  width: 1152,
-  height: 752,
-  // pages: 6,
-
-  // width: pageScale * pageWidth * 2,
-  // height: pageScale * pageHeight,
-
-  // gradients: false,
+  width: pageScale * pageWidth * 2,
+  height: pageScale * pageHeight,
+  // acceleration: true,
   // display: "double",
+  // gradients: false,
   // page: 1,
+  // pages: 6,
 });
 
 $(prevBtn).on("click", prevBtnOnClick);
@@ -73,20 +72,21 @@ $(zoomViewport).zoom({
   flipbook: $(book),
   max: 2,
   duration: 500,
+  inclination: 500,
   when: {
-    // zoomIn: function () {
-    //   console.log(book);
-    //   // resizeViewport();
-    //   // writeOffsetLeft();
-    //   // setInterval(writeOffsetLeft, 5);
-    // },
     tap: function (event) {
-      // if ($(this).zoom("value") == 1) {
-      //   $(book).removeClass("animated").addClass("zoom-in");
-      //   //$(this).zoom("zoomIn", event);
-      // } else {
-      //   //$(this).zoom("zoomOut");
-      // }
+      if ($(this).zoom("value") == 1) {
+        $(book).removeClass("animated");
+
+        let tap = {
+          x: event.clientX,
+          y: event.clientY,
+        };
+
+        $(this).zoom("zoomIn", tap);
+      } else {
+        $(this).zoom("zoomOut");
+      }
     },
 
     resize: function () {},
@@ -99,15 +99,9 @@ $(zoomViewport).zoom({
       setTimeout(function () {
         $(book).addClass("animated");
       }, 0);
-      // $(book).addClass("animated");
-      // resizeViewport();
     },
   },
 });
-
-// function writeOffsetLeft() {
-//   console.log(book.getBoundingClientRect().left);
-// }
 
 function resizeViewport() {
   var width = $(window).width(),
@@ -137,48 +131,17 @@ $(zoomInBtn).on("click", zoomInBtnOnClick);
 
 $(zoomOutBtn).on("click", zoomOutBtnOnClick);
 
-// $(book).on("click", bookOnClick);
-
 function zoomInBtnOnClick() {
   $(book).removeClass("animated");
 
-  var center = {
-    x: book.clientWidth / 2,
+  let center = {
+    x: book.clientWidth / 4,
     y: book.clientHeight / 2,
   };
 
   $(zoomViewport).zoom("zoomIn", center);
 }
 
-function bookOnClick(event) {
-  var click = {
-    x: event.clientX,
-    y: event.clientY,
-  };
-
-  console.log(click);
-
-  $(zoomViewport).zoom("zoomIn", click);
-}
-
 function zoomOutBtnOnClick() {
   $(zoomViewport).zoom("zoomOut");
 }
-
-// $(book).click(function (e) {
-//   var pos = {
-//     x: e.offset().left,
-//     y: e.offset().top,
-//   };
-//   console.log(pos);
-//   // $(zoomViewport).zoom("zoomIn", pos);
-// });
-
-// $(book).click(function (e) {
-//   var pos = {
-//     x: e.pageX - $(this).offset().left,
-//     y: e.pageY - $(this).offset().top,
-//   };
-//   console.log(pos);
-//   $(zoomViewport).zoom("zoomIn", pos);
-// });
