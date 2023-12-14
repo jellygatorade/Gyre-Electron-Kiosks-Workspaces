@@ -21,6 +21,7 @@
     "tailwindcss": "^3.3.3"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "electron-squirrel-startup": "^1.0.0"
   }
 }
