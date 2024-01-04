@@ -87,3 +87,10 @@ body {
   /* user-select: none;
   margin: 0; */
 }
+
+/* Backside page image for display: "single" */
+.page {
+  background-image: url("./pages/01.jpg");
+  /* background-color: black; */
+  background-repeat: no-repeat;
+}

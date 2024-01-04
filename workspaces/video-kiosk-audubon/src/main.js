@@ -61,18 +61,32 @@ const createWindow = () => {
     window.webContents.reload();
   });
 
-  // Register
+  // Register shortcut - to home
   globalShortcut.register("Control+1", () => {
     window.loadFile(path.join(__dirname, "/index.html"));
   });
 
-  // Register
+  // Register shortcut
   globalShortcut.register("Control+2", () => {
-    window.loadFile(path.join(__dirname, "turning-test/index.html"));
+    window.loadFile(
+      path.join(__dirname, "turning-test/index-double-covers.html")
+    );
   });
 
-  // Register
+  // Register shortcut
   globalShortcut.register("Control+3", () => {
+    window.loadFile(
+      path.join(__dirname, "turning-test/index-double-spread-only.html")
+    );
+  });
+
+  // Register shortcut
+  globalShortcut.register("Control+4", () => {
+    window.loadFile(path.join(__dirname, "turning-test/index-single.html"));
+  });
+
+  // Register shortcut
+  globalShortcut.register("Control+5", () => {
     window.loadFile(
       path.join(__dirname, "turnjs4/samples/magazine/index.html")
     );

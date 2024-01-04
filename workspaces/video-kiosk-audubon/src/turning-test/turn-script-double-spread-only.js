@@ -8,25 +8,17 @@ const book = document.getElementById("book");
 const firstPage = document.getElementsByClassName("page")[0];
 const firstPageImg = firstPage.getElementsByTagName("img")[0];
 
-const zoomViewport = document.getElementById("zoom-viewport");
-
 const pageWidth = firstPageImg.naturalWidth;
 const pageHeight = firstPageImg.naturalHeight;
 const pageScale = 1.0;
 
-/**
- * Turn.js
- */
-
 $(book).turn({
-  autoCenter: true,
+  // acceleration: true,
+  // autoCenter: false,
   width: pageScale * pageWidth * 2,
   height: pageScale * pageHeight,
-  // acceleration: true,
-  // display: "double",
-  // gradients: false,
-  // page: 1,
-  // pages: 6,
+  display: "double",
+  page: 2, // start open
 });
 
 $(prevBtn).on("click", prevBtnOnClick);
@@ -40,6 +32,24 @@ function prevBtnOnClick() {
 function nextBtnOnClick() {
   $(book).turn("next");
 }
+
+/**
+ * Disallow page turning to first and last pages
+ */
+
+const length = $(book).turn("pages");
+
+$(book).bind("start", function (e, data, c) {
+  if (data.next == 1 || data.next == length) {
+    e.preventDefault();
+  }
+});
+
+$(book).bind("turning", function (e, page, c) {
+  if (page == 1 || page == length) {
+    e.preventDefault();
+  }
+});
 
 /**
  * Zoom
@@ -57,6 +67,7 @@ function nextBtnOnClick() {
  * Zoom Setup
  */
 
+const zoomViewport = document.getElementById("zoom-viewport");
 const zoomContainer = document.getElementById("zoom-container");
 
 zoomContainer.style.width = pageScale * pageWidth * 2 + "px";
