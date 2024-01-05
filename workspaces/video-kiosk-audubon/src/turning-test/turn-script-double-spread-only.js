@@ -5,12 +5,12 @@ const zoomInBtn = document.getElementById("zoom-in-btn");
 const zoomOutBtn = document.getElementById("zoom-out-btn");
 
 const book = document.getElementById("book");
-const firstPage = document.getElementsByClassName("page")[0];
+const firstPage = document.getElementsByClassName("page")[2];
 const firstPageImg = firstPage.getElementsByTagName("img")[0];
 
 const pageWidth = firstPageImg.naturalWidth;
 const pageHeight = firstPageImg.naturalHeight;
-const pageScale = 1.0;
+const pageScale = 0.5;
 
 $(book).turn({
   // acceleration: true,
