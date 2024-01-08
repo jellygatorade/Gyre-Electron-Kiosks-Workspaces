@@ -10,10 +10,8 @@ const {
 
 const path = require("path");
 
-// Use dotenv package, ../.env file
-// https://www.npmjs.com/package/dotenv
-require("dotenv").config();
-const environment = process.env.NODE_ENV || "development";
+// Handle .env variables
+require("./main-modules/handle-node-env.js");
 
 // Enable live reload for all the files inside your project directory for Electron too
 // https://ourcodeworld.com/articles/read/524/how-to-use-live-reload-in-your-electron-project
@@ -97,17 +95,6 @@ const createWindow = () => {
     app.quit();
   });
 };
-
-// Start chromium with --touch-events flag
-// Necessary for use with turn.js which checks for ontouchstart event
-// App should be launched in production like:
-// $ NODE_ENV=production node app.js
-console.log(environment);
-if (environment !== "development") prepareProd();
-
-function prepareProd() {
-  app.commandLine.appendSwitch("touch-events");
-}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
