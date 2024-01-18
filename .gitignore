@@ -5,7 +5,7 @@
 /workspaces/**/src/common/assets
 /workspaces/**/src/turnjs4
 
-!/workspaces/**/src/assets/content.json 
+!/workspaces/**/src/assets/content*
 
 # Below is from github/gitignore/Node.gitignore 
 # https://github.com/github/gitignore/blob/main/Node.gitignore
