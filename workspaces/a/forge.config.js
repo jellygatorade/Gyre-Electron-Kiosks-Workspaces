@@ -39,16 +39,18 @@ module.exports = {
       arch
     ) => {
       // install dotenv package workaround
-      // electron-forge is not compatible with shared node_modules in npm workspaces
+      // electron-forge is not compatible(?) with shared node_modules in npm workspaces
 
-      console.log("This is the packageAfterCopy hook!");
+      console.log("Running packageAfterCopy hook");
+
       const src = path.join(__dirname, "src");
-      const dst = buildPath;
+      const dist = buildPath;
 
-      console.log(`${dst}`);
+      console.log(`buildPath is ${dist}`);
 
-      // child_process.execSync(`cd ${dst}`, { stdio: [0, 1, 2] });
-      // child_process.execSync("npm install dotenv", { stdio: [0, 1, 2] });
+      child_process.execSync(`cd ${dist} && npm install --omit=dev`, {
+        stdio: [0, 1, 2],
+      });
     },
   },
   plugins: [
