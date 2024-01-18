@@ -5,7 +5,7 @@
   "workspaces": [
     "./workspaces/single-video-player-attract-video",
     "./workspaces/single-video-player-attract-video-dutch",
-    "./workspaces/video-kiosk-audubon"
+    "./workspaces/a"
   ],
   "author": "Kevin Kane",
   "license": "ISC",
