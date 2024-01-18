@@ -1,31 +1,10 @@
 // Modules to control application life and create native browser window
-const {
-  app,
-  BrowserWindow,
-  Menu,
-  ipcMain,
-  globalShortcut,
-  screen,
-} = require("electron");
+const { app, BrowserWindow, Menu, globalShortcut } = require("electron");
 
 const path = require("path");
 
 // Handle .env variables
 require("./main-modules/handle-node-env.js");
-
-// Enable live reload for all the files inside your project directory for Electron too
-// https://ourcodeworld.com/articles/read/524/how-to-use-live-reload-in-your-electron-project
-require("electron-reload")(__dirname, {
-  // Note that the path to electron may vary according to the main file
-  // Here we go up several levels to find the electron package folder
-  electron: require(path.join(
-    __dirname,
-    "..",
-    "..",
-    "..",
-    "node_modules/electron"
-  )),
-});
 
 let window;
 const createWindow = () => {
