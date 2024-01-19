@@ -4,6 +4,7 @@ const path = require("path");
 // Use dotenv package, ../.env file
 // https://www.npmjs.com/package/dotenv
 require("dotenv").config();
+// console.log(process.env);
 const environment = process.env.NODE_ENV || "production";
 
 // Start chromium with --touch-events flag
