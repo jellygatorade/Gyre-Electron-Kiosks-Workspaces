@@ -1,11 +1,11 @@
 *.jpg
 
 /notes
-/workspaces/**/src/assets/*
-/workspaces/**/src/common/assets
-/workspaces/**/src/turnjs4
+/wkspcs/**/src/assets/*
+/wkspcs/**/src/common/assets
+/wkspcs/**/src/turnjs4
 
-!/workspaces/**/src/assets/content*
+!/wkspcs/**/src/assets/content*
 
 # Below is from github/gitignore/Node.gitignore 
 # https://github.com/github/gitignore/blob/main/Node.gitignore
