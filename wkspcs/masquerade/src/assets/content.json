@@ -1,0 +1,76 @@
+{
+  "attract_video_path": "./assets/video/masquerade/attract.mp4",
+  "en": {
+    "attract": {
+      "title": "Three Masquerade Films",
+      "touch_to_begin": "TOUCH TO BEGIN"
+    },
+    "main": {
+      "title": "Three Masquerade Films",
+      "subheading": "Masquerade performances include masks or ensembles covering the head, face, or entire body. In addition to the individuals wearing masks, the dynamic, multisensory performance also includes musicians, spiritual practitioners, libations, and the audience.",
+      "toggle_lang_btn": "Español",
+      "videos": [
+        {
+          "id": "1",
+          "video_path": "./assets/video/masquerade/1-ofurumo.mp4",
+          "still_path": "./assets/img/masquerade/1-ofurumo.jpg",
+          "title": "<i>Ijo Water Spirit Masquerade (Ofurumo)</i>",
+          "location": "Ondewari, Bayelsa State, Nigeria",
+          "date": "1992",
+          "credit": "© 1992 Dr. Martha Anderson",
+          "description": "On the central platform to your right is a sawfish mask, which embodies one type of water spirit. The first film shows additional Ijo water spirits, including a shark and mullet. The spirits arrive by boat, and an elaborate reenactment of fishing expeditions takes place. Additionally, the masquerade performers drink medicines and chase spectators, both signs of their power."
+        },
+        {
+          "id": "2",
+          "video_path": "./assets/video/masquerade/2-odun-egungun.mp4",
+          "still_path": "./assets/img/masquerade/2-odun-egungun.jpg",
+          "title": "<i>Ancestor Masquerade Festivals (Odun Egúngún)</i>",
+          "location": "Porto Novo, Benin, and Oyotunji African Village, Sheldon, South Carolina",
+          "date": "2020",
+          "credit": "© 2014 Dr. Henry Drewal, University of Wisconsin; Oyotunji performance courtesy of LEVR Studios",
+          "description": "The second film features egúngún, a manifestation of an ancestor, in the diverse city of Porto Novo. The performers may be from the Yorùbá, Egun, or Adja peoples. This film also shows egúngún performances in South Carolina, where the Oyotunji African Village celebrates ties to Yorùbá traditions, as found in the US, the UK, the Caribbean, and South America."
+        },
+        {
+          "id": "3",
+          "video_path": "./assets/video/masquerade/4-koro.mp4",
+          "still_path": "./assets/img/masquerade/4-koro.jpg",
+          "title": "<i>Leaf Masquerades (Koro) with Entourages</i>",
+          "location": "Tondogosso and Baré, Burkina Faso",
+          "date": "2009 and 2015",
+          "credit": "© 2009 Dr. Lisa Homann, University of North Carolina at Charlotte",
+          "description": "The third masquerade is danced in late spring to call for rain, vital to agricultural communities. Constructed primarily of leaves and reaching fifteen to eighteen feet tall, these Koro ensembles are destroyed after each performance. Many spectators film the proceedings on phones, tablets, and cameras to create their own documentation of these spectacular processions."
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "[Back to main]"
+    }
+  },
+  "es": {
+    "is_available": false,
+    "attract": {
+      "title": "¿?",
+      "touch_to_begin": "TOCA PARA COMENZAR"
+    },
+    "main": {
+      "title": "¿?",
+      "subheading": "¿?",
+      "toggle_lang_btn": "English",
+      "videos": [
+        {
+          "id": "¿?",
+          "video_path": "¿?",
+          "still_path": "¿?",
+          "title": "¿?",
+          "location": "¿?",
+          "date": "¿?",
+          "credit": "¿?",
+          "description": "¿?"
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "![Volver]"
+    }
+  }
+}

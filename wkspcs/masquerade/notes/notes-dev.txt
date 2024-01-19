@@ -1,0 +1,10 @@
+Tailwind
+
+npx tailwindcss -i ./src/style/tailwind-input.css -o ./src/style/tailwind-compiled.css --watch
+
+---
+
+Electron
+
+npm start
+npm run make

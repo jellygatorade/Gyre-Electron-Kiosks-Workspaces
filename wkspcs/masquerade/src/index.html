@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="h-full w-full font-CaseTextRegular text-base">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" type="text/css" href="./style/fade-in.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./style/tailwind-compiled.css"
+    />
+    <link rel="stylesheet" type="text/css" href="./assets/fa/all.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./style/input-type-range.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./style/webkit-scrollbar.css"
+    />
+  </head>
+
+  <body
+    class="h-full w-full overflow-hidden p-16 bg-black text-white font-CaseTextRegular"
+  >
+    <!-- Fade Between Views Overlay -->
+    <div
+      id="fade-between-views-overlay"
+      class="z-[5000] absolute top-0 left-0 h-full w-full bg-black invisible opacity-0 transition-all duration-300"
+    ></div>
+
+    <!-- Attract View -->
+    <div
+      id="attract-view"
+      class="z-[300] absolute top-0 left-0 h-full w-full bg-black visible opacity-100 transition-all duration-300"
+    >
+      <!-- Video player -->
+      <video id="attract-video" class="z-[350] absolute min-h-full"></video>
+
+      <!-- Overlay (for touch detection) -->
+      <div id="attract-overlay" class="z-[500] relative h-full w-full">
+        <!-- Touch to begin - to match Sean's Digital Labels -->
+        <div
+          class="absolute bottom-0 left-0 p-[2.25rem] z-[600] text-xl text-shadow-black-3px"
+        >
+          <h1 class="text-6xl font-CaseTextMedium pb-[0.25rem]">
+            <span lang="en" id="en-attract-title"> Title </span>
+            <span lang="es" id="es-attract-title"> Title </span>
+          </h1>
+          <h2 class="tracking-[0.25rem]">
+            <span lang="en" id="en-attract-touch-to-begin">
+              Touch to begin
+            </span>
+            <span lang="es" id="es-attract-touch-to-begin">
+              Touch to begin
+            </span>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Home View -->
+    <div
+      id="home-view"
+      class="flex flex-col h-full z-[200] relative top-0 left-0"
+    >
+      <!-- Home View Header -->
+      <div class="grow-0">
+        <header>
+          <div class="flex justify-between items-center pb-3">
+            <h1
+              lang="en"
+              id="en-home-view-title"
+              class="font-CaseTextMedium text-2xl tracking-wide"
+              >en-home-view-title</h1
+            >
+            <h1
+              lang="es"
+              id="es-home-view-title"
+              class="font-CaseTextMedium text-2xl tracking-wide"
+              >es-home-view-title</h1
+            >
+            <button
+              id="toggle-lang-button"
+              class="border border-white rounded-full px-[1rem] pt-[0.2rem] pb-[0.125rem] max-h-[2rem] font-CaseTextLight text-base tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+            >
+              toggle-lang-button
+            </button>
+          </div>
+          <h2
+            lang="en"
+            id="en-home-view-subheading"
+            class="py-2 font-CaseTextLight text-base tracking-wide"
+          ></h2>
+          <h2
+            lang="es"
+            id="es-home-view-subheading"
+            class="py-2 font-CaseTextLight text-base tracking-wide"
+          ></h2>
+        </header>
+      </div>
+
+      <div class="grow overflow-y-auto webkit-scrollbar">
+        <div
+          id="home-view-video-card-flexbox"
+          class="pt-2 flex flex-col justify-start items-start"
+        >
+          <!-- Video Card Prototype (for cloning) -->
+          <div
+            id="video-card-prototype"
+            class="js-video-ui-container [ hidden max-w-full ]"
+          >
+            <button
+              lang="en"
+              id="en-video-card-prototype"
+              class="en-js-video-ui-btn [ group text-left h-[200px] my-3 ]"
+            >
+              <div class="flex flex-row justify-start items-start gap-6">
+                <div
+                  class="shrink-0 aspect-video w-[356px] h-[200px] overflow-hidden"
+                >
+                  <!-- img src relative path is from index.html -->
+                  <img
+                    src=""
+                    class="en-js-video-ui-img [ object-cover h-full w-full ]"
+                  />
+                </div>
+                <div
+                  class="group-hover:text-orange-ncma transition-all duration-300 pr-6"
+                >
+                  <h3
+                    class="en-js-video-ui-title [ font-CaseTextMedium text-xl tracking-wide ]"
+                  >
+                    Title
+                  </h3>
+                  <p
+                    class="en-js-video-ui-location [ font-CaseTextLight text-xs tracking-wide ]"
+                    >Location</p
+                  >
+                  <p
+                    class="en-js-video-ui-date [ pb-2 font-CaseTextLight text-xs tracking-wide ]"
+                    >Date</p
+                  >
+                  <p
+                    class="en-js-video-ui-credit [ pb-3 font-CaseTextLight text-[0.65rem] tracking-wide ]"
+                    >Credit</p
+                  >
+                  <p
+                    class="en-js-video-ui-description [ font-CaseTextLight text-sm tracking-wide ]"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+              </div>
+            </button>
+
+            <button
+              lang="es"
+              id="es-video-card-prototype"
+              class="es-js-video-ui-btn [ group text-left h-[200px] my-3 ]"
+            >
+              <div class="flex flex-row justify-start items-start gap-6">
+                <div
+                  class="shrink-0 aspect-video w-[356px] h-[200px] overflow-hidden"
+                >
+                  <!-- img src relative path is from index.html -->
+                  <img
+                    src=""
+                    class="es-js-video-ui-img [ object-cover h-full w-full ]"
+                  />
+                </div>
+                <div
+                  class="group-hover:text-orange-ncma transition-all duration-300 pr-6"
+                >
+                  <h3
+                    class="es-js-video-ui-title [ font-CaseTextMedium text-xl tracking-wide ]"
+                  >
+                    Title
+                  </h3>
+                  <p
+                    class="es-js-video-ui-location [ font-CaseTextLight text-xs tracking-wide ]"
+                    >Location</p
+                  >
+                  <p
+                    class="es-js-video-ui-date [ pb-2 font-CaseTextLight text-xs tracking-wide ]"
+                    >Date</p
+                  >
+                  <p
+                    class="es-js-video-ui-credit [ pb-3 font-CaseTextLight text-[0.65rem] tracking-wide ]"
+                    >Credit</p
+                  >
+                  <p
+                    class="es-js-video-ui-description [ font-CaseTextLight text-sm tracking-wide ]"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Player View -->
+    <div
+      id="video-player-view"
+      class="z-[100] bg-black absolute top-0 left-0 h-full w-full invisible opacity-0 transition-all duration-300"
+    >
+      <div
+        id="video-player-controls"
+        class="z-[290] relative h-full text-white transition-all duration-300 opacity-100 visible"
+      >
+        <button
+          type="button"
+          id="video-player-return-home-btn"
+          class="absolute top-[40px] right-[40px] font-CaseTextLight italic tracking-wide text-shadow-black-3px hover:text-orange-ncma transition-all duration-300"
+        >
+          <span lang="en" id="en-video-player-return-home-btn-txt"></span>
+          <span lang="es" id="es-video-player-return-home-btn-txt"></span>
+        </button>
+        <div
+          id="video-player-playback-controls"
+          class="absolute bottom-0 w-full flex flex-row justify-center align-center"
+        >
+          <button
+            type="button"
+            id="video-player-play-pause-btn"
+            class="m-[20px] text-shadow-black-3px hover:text-orange-ncma transition-all duration-300"
+          >
+            <i
+              id="video-player-play-pause-btn-icon"
+              class="fas fa-play text-[48px]"
+            >
+            </i>
+          </button>
+          <input type="range" id="video-player-seek-bar" value="0" step="any" />
+        </div>
+      </div>
+      <video
+        id="video-player-video"
+        class="z-[250] absolute top-0 left-0 min-h-full min-w-full"
+      >
+        <!-- src property to be replaced by js -->
+        <source id="videoSource" src="" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="./script/fade-in.js"></script>
+    <script type="module" src="./script/script.js"></script>
+  </body>
+</html>

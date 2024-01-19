@@ -1,0 +1,10 @@
+add strings
+- Location
+- Date
+- Credit (copyright)
+
+What size screen is it going on? 46"
+24" to 46" - text scaling ratio
+
+x try copying digital-labels-2023 node modules and using that
+- ask Eugene if 192.168.50.210 is assigned
