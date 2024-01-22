@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <!-- <link rel="stylesheet" type="text/css" href="./reset.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="./fade-in.css" /> -->
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="controls-overlay">
+      <div class="controls-margin">
+        <button id="prev-btn">Prev</button>
+        <button id="next-btn">Next</button>
+      </div>
+      <div class="controls-margin">
+        <button id="zoom-out-btn">Zoom -</button>
+        <button id="zoom-in-btn">Zoom +</button>
+      </div>
+    </div>
+
+    <!-- <div class="view-margin">
+      <div class="flex-vertical">
+        <div class="flex-horizontal"> </div>
+      </div>
+    </div> -->
+
+    <div id="zoom-viewport">
+      <div class="zoom-container" id="zoom-container">
+        <div class="flipbook animated" id="book">
+          <div class="page">
+            <img src="./pages/01.jpg" draggable="false" alt="" />
+          </div>
+          <div class="page">
+            <img src="./pages/lanham/01a.jpg" draggable="false" alt="" />
+          </div>
+          <div class="page">
+            <img src="./pages/lanham/01b.jpg" draggable="false" alt="" />
+          </div>
+          <div class="page">
+            <img src="./pages/lanham/02a.jpg" draggable="false" alt="" />
+          </div>
+          <div class="page">
+            <img src="./pages/lanham/02b.jpg" draggable="false" alt="" />
+          </div>
+          <div class="page">
+            <img src="./pages/lanham/03a.jpg" draggable="false" alt="" />
+          </div>
+          <div class="page">
+            <img src="./pages/lanham/03b.jpg" draggable="false" alt="" />
+          </div>
+          <div class="page">
+            <img src="./pages/lanham/04a.jpg" draggable="false" alt="" />
+          </div>
+          <div class="page">
+            <img src="./pages/lanham/04b.jpg" draggable="false" alt="" />
+          </div>
+          <div class="page">
+            <img src="./pages/06.jpg" draggable="false" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CDN Scripts -->
+
+    <!-- <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.7.2.js"
+    ></script> -->
+    <!-- <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.js"
+    ></script> -->
+
+    <!-- <script
+      type="text/javascript"
+      src="http://www.turnjs.com/lib/turn.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://www.turnjs.com/lib/zoom.min.js"
+    ></script> -->
+
+    <!-- Local Scripts -->
+
+    <script type="text/javascript" src="./scripts/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="./scripts/turn.min.js"></script>
+    <script type="text/javascript" src="./scripts/zoom.min.js"></script>
+
+    <script
+      type="text/javascript"
+      src="./turn-script-double-spread-only.js"
+    ></script>
+  </body>
+</html>

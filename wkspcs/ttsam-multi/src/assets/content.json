@@ -1,0 +1,56 @@
+{
+  "attract_video_path": "./assets/video/chocolate.mp4",
+  "en": {
+    "attract": {
+      "title": "Place of Being: Artist Spotlight",
+      "touch_to_begin": "TOUCH TO BEGIN"
+    },
+    "main": {
+      "title": "Place of Being: Artist Spotlight",
+      "subheading": "Lorem ipsum dolor sit amet.",
+      "toggle_lang_btn": "Español",
+      "videos": [
+        {
+          "id": "senora-lynch",
+          "video_path": "./assets/video/concert.mp4",
+          "still_path": "./assets/img/concert.png",
+          "title": "Senora Lynch",
+          "description": "Learn more about Senora Lynch and how she incorporates nature and animals into her ceramic vessels. You can see Lynch working in her home studio."
+        },
+        {
+          "id": "anita-fields",
+          "video_path": "./assets/video/chocolate.mp4",
+          "still_path": "./assets/img/chocolate.png",
+          "title": "Anita Fields",
+          "description": "Listen to Anita Fields talk about her Osage identity and how it inspired the wedding coat on view."
+        },
+        {
+          "id": "kelly-church",
+          "video_path": "./assets/video/chocolate.mp4",
+          "still_path": "./assets/img/chocolate.png",
+          "title": "Kelly Church",
+          "description": "Kelly Church shows us how black ash is woven together to create her beautiful egg-shaped baskets."
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "[Back to main]"
+    }
+  },
+  "es": {
+    "is_available": false,
+    "attract": {
+      "title": "!¿Place of Being: Artist Spotlight?",
+      "touch_to_begin": "!TOCA PARA COMENZAR"
+    },
+    "main": {
+      "title": "!¿Place of Being: Artist Spotlight?",
+      "subheading": "!¿Lorem ipsum dolor sit amet.?",
+      "toggle_lang_btn": "English",
+      "videos": []
+    },
+    "video_player": {
+      "back_to_main": "UNOFFICIAL - [Volver al menú principal]"
+    }
+  }
+}

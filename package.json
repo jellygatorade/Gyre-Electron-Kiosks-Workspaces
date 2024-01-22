@@ -5,7 +5,10 @@
   "workspaces": [
     "./wkspcs/single-player",
     "./wkspcs/single-player-dutch",
-    "./wkspcs/audubon"
+    "./wkspcs/audubon",
+    "./wkspcs/masquerade",
+    "./wkspcs/ttsam-single",
+    "./wkspcs/ttsam-multi"
   ],
   "author": "Kevin Kane",
   "license": "ISC",

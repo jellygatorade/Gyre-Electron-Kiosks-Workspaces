@@ -1,0 +1,14 @@
+{
+  "attract_video_path": "./common/assets/video/concert.mp4",
+  "main_video_path": "./common/assets/video/chocolate.mp4",
+  "en": {
+    "attract": {
+      "title_1": "Encoded Commentary: Artist Spotlight",
+      "title_2": "Virgil Ortiz",
+      "touch_to_begin": "TOUCH TO BEGIN"
+    },
+    "main_video": {
+      "return_home": "[Back to home]"
+    }
+  }
+}
