@@ -1020,20 +1020,15 @@ video {
 
 .hover\:border-orange-ncma:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(235 51 0 / var(--tw-border-opacity));
+  border-color: rgb(224 89 42 / var(--tw-border-opacity));
 }
 
 .hover\:text-orange-ncma:hover {
   --tw-text-opacity: 1;
-  color: rgb(235 51 0 / var(--tw-text-opacity));
+  color: rgb(224 89 42 / var(--tw-text-opacity));
 }
 
 .group:hover .group-hover\:text-orange-ncma {
   --tw-text-opacity: 1;
-  color: rgb(235 51 0 / var(--tw-text-opacity));
-}
-
-.group:hover .group-hover\:text-blue-500 {
-  --tw-text-opacity: 1;
-  color: rgb(59 130 246 / var(--tw-text-opacity));
+  color: rgb(224 89 42 / var(--tw-text-opacity));
 }
