@@ -94,6 +94,8 @@ function createVideoDataArray(data) {
     // https://stackoverflow.com/questions/24909371/move-item-in-array-to-last-position
     //
     // Don't bother if data.es.main.videos is empty because content order would be reshuffled
+    //
+    // To do, change to sorting algothirm used in masquerade
     for (let i = 0; i < videoDataArray.length; i++) {
       if (!videoDataArray[i].en || !videoDataArray[i].es) {
         videoDataArray.push(videoDataArray.splice(i, 1)[0]);
