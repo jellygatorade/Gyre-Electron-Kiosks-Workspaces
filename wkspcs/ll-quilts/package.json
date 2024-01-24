@@ -1,0 +1,29 @@
+{
+  "name": "layered-legacies",
+  "version": "1.0.0",
+  "description": "Lorem ipsum dolor sit amet.",
+  "main": "./src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron --inspect=5858 .",
+    "debug": "echo \"replace start script 'electron .' with 'electron --inspect=5858 .'\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "Kevin Kane",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.1.1",
+    "@electron-forge/maker-deb": "^6.1.1",
+    "@electron-forge/maker-rpm": "^6.1.1",
+    "@electron-forge/maker-squirrel": "^6.1.1",
+    "@electron-forge/maker-zip": "^6.1.1",
+    "electron": "^24.1.3",
+    "tailwindcss": "^3.3.2",
+    "electron-reload": "^2.0.0-alpha.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}

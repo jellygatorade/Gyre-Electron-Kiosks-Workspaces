@@ -1,0 +1,85 @@
+{
+  "attract_video_path": "./assets/video/concert.mp4",
+  "en": {
+    "attract": {
+      "title": "Discovering Legacies",
+      "touch_to_begin": "TOUCH TO BEGIN"
+    },
+    "main": {
+      "title": "Discovering Legacies",
+      "subheading": "Select from any of the videos below to learn more about the stories stitched into the quilts in this exhibition. In addition you can hear from local contemporary quilters and artists.",
+      "toggle_lang_btn": "Español",
+      "videos": [
+        {
+          "id": "1",
+          "video_path": "./assets/video/chocolate.mp4",
+          "still_path": "./assets/img/chocolate.png",
+          "title": "Welcome to Layered Legacies",
+          "description": "Listen to staff from MESDA and the NCMA discuss the meaning of this exhibition and why quilting is an important art form with a layered history."
+        },
+        {
+          "id": "2",
+          "video_path": "./assets/video/concert.mp4",
+          "still_path": "./assets/img/concert.png",
+          "title": "Who is MESDA?",
+          "description": "The Museum of Early Southern Decorative Arts is our partner is putting together this exhibition. Take a look at this museum and learn more about it."
+        },
+        {
+          "id": "3",
+          "video_path": "./assets/video/concert.mp4",
+          "still_path": "./assets/img/concert.png",
+          "title": "The Ridley Quilt",
+          "description": "Listen to Julia Ridley Smith talk about uncovering her family history through her family quilt. This quilt is on view in the gallery behind you."
+        },
+        {
+          "id": "4",
+          "video_path": "./assets/video/concert.mp4",
+          "still_path": "./assets/img/concert.png",
+          "title": "Meet Aliayh Bonnette",
+          "description": "Aliyah Bonnette is a local multimedia artist. Using a variety of materials, she creates painted quilts. Listen to how she talks about her contemporary quilting styles, and catch her in action in the Community Threads gallery."
+        },
+        {
+          "id": "5",
+          "video_path": "./assets/video/concert.mp4",
+          "still_path": "./assets/img/concert.png",
+          "title": "Meet Patrizia Ferreira",
+          "description": "Patrizia Ferreira is a fiber artist whose work incorporates thread, yarn, fabric remnants, and single-use plastics. Deeply concerned with the state of our environment, her artworks are meant to create awareness of the devastating effects of our excessive consumption. Watch her at work in the Community Threads gallery."
+        },
+        {
+          "id": "6",
+          "video_path": "./assets/video/concert.mp4",
+          "still_path": "./assets/img/concert.png",
+          "title": "Meet Michelle Wilkie",
+          "description": "Michelle Wilkie is a self-taught textile artist who makes modern quilts. She sees quilting as a means of storytelling, capturing her experiences and connection to community, like the women who have come before her. She’ll be creating art live in the Community Threads gallery."
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "[Back to main]"
+    }
+  },
+  "es": {
+    "is_available": false,
+    "attract": {
+      "title": "¿?",
+      "touch_to_begin": "TOCA PARA COMENZAR"
+    },
+    "main": {
+      "title": "¿?",
+      "subheading": "¿?",
+      "toggle_lang_btn": "English",
+      "videos": [
+        {
+          "id": "¿?",
+          "video_path": "¿?",
+          "still_path": "¿?",
+          "title": "¿?",
+          "description": "¿?"
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "![Volver]"
+    }
+  }
+}

@@ -8,7 +8,8 @@
     "./wkspcs/audubon",
     "./wkspcs/masquerade",
     "./wkspcs/ttsam-single",
-    "./wkspcs/ttsam-multi"
+    "./wkspcs/ttsam-multi",
+    "./wkspcs/ll-quilts"
   ],
   "author": "Kevin Kane",
   "license": "ISC",
