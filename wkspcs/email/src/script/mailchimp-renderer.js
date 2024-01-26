@@ -12,6 +12,10 @@ function getListsBtnOnClick() {
   window.electron.email.getLists();
 }
 
+function getMemberBtnOnClick() {
+  window.electron.email.getMember();
+}
+
 function submitEmailBtnOnClick(event) {
   event.preventDefault();
 
@@ -37,11 +41,13 @@ const mailchimpRenderer = {
   init: function () {
     const pingBtn = document.getElementById("ping-btn");
     const getListsBtn = document.getElementById("get-lists-btn");
+    const getMemberBtn = document.getElementById("get-member-btn");
     const submitEmailBtn = document.getElementById("submit-email-btn");
     const submitEmailForm = document.getElementById("submit-email-form");
 
     pingBtn.addEventListener("click", pingBtnOnClick);
     getListsBtn.addEventListener("click", getListsBtnOnClick);
+    getMemberBtn.addEventListener("click", getMemberBtnOnClick);
     submitEmailBtn.addEventListener(
       "click",
       submitEmailBtnOnClick,

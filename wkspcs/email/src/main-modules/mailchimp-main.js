@@ -2,6 +2,8 @@ const ipcMain = require("electron").ipcMain;
 const path = require("node:path");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 
+const crypto = require("crypto");
+
 // initialize ----------------------------------------
 
 require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
@@ -23,6 +25,19 @@ async function getLists() {
   console.log(response);
 }
 
+async function getMember() {
+  let subscriber_hash = crypto
+    .createHash("md5")
+    .update("kkane@ncartmuseum.org")
+    .digest("hex");
+
+  const response = await mailchimp.lists.getListMember(
+    "b554281be5", // NC Museum of Art Email List
+    subscriber_hash
+  );
+  console.log(response);
+}
+
 async function submit(formJSON) {
   console.log("do something with");
   console.log(formJSON);
@@ -36,6 +51,10 @@ ipcMain.handle("pingMailchimp", async (event) => {
 
 ipcMain.handle("getListsMailchimp", async (event) => {
   await getLists();
+});
+
+ipcMain.handle("getMemberMailchimp", async (event) => {
+  await getMember();
 });
 
 ipcMain.on("submitMailchimp", async (event, formJSON) => {
