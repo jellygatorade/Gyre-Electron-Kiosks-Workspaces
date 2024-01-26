@@ -17,8 +17,7 @@ contextBridge.exposeInMainWorld("electron", {
   email: {
     ping: () => ipcRenderer.invoke("pingMailchimp"),
     getLists: () => ipcRenderer.invoke("getListsMailchimp"),
-    // send: (data) => ipcRenderer.invoke("saveDataCSV", data),
-
+    submit: (formJSON) => ipcRenderer.send("submitMailchimp", formJSON),
     /**
      * Accept a callback function to be run when main process sends win.webContents.send("mailchimpResponse")
      *    ipcRenderer - src/mailchimp.js

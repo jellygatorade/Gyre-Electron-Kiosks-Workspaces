@@ -23,7 +23,12 @@ async function getLists() {
   console.log(response);
 }
 
-// ipc interfaces ------------------------------------
+async function submit(formJSON) {
+  console.log("do something with");
+  console.log(formJSON);
+}
+
+// ipc listeners -------------------------------------
 
 ipcMain.handle("pingMailchimp", async (event) => {
   await ping();
@@ -31,6 +36,10 @@ ipcMain.handle("pingMailchimp", async (event) => {
 
 ipcMain.handle("getListsMailchimp", async (event) => {
   await getLists();
+});
+
+ipcMain.on("submitMailchimp", async (event, formJSON) => {
+  await submit(formJSON);
 });
 
 // Next
