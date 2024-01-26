@@ -15,6 +15,9 @@ require("electron-reload")(__dirname, {
   )),
 });
 
+// Setup Mailchimp
+require("./main-modules/mailchimp-main.js");
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({

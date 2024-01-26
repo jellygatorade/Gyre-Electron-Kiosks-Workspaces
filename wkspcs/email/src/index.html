@@ -8,7 +8,7 @@
       content="default-src 'self'; script-src 'self'"
     />
     <title>Hello World!</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style/style.css" />
   </head>
   <body>
     <h1>Hello World!</h1>
@@ -16,7 +16,10 @@
     <span id="chrome-version"></span>, and Electron
     <span id="electron-version"></span>.
     <div class="controls">
-      <button>Send Request</button>
+      <button id="ping-btn">Ping</button
+      ><button id="get-lists-btn">Get audience lists</button>
     </div>
   </body>
+
+  <script type="module" src="./script/script.js"></script>
 </html>
