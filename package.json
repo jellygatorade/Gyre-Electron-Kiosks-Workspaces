@@ -9,7 +9,8 @@
     "./wkspcs/masquerade",
     "./wkspcs/ttsam-single",
     "./wkspcs/ttsam-multi",
-    "./wkspcs/ll-quilts"
+    "./wkspcs/ll-quilts",
+    "./wkspcs/emailing"
   ],
   "author": "Kevin Kane",
   "license": "ISC",
