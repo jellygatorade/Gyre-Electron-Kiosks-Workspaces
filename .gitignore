@@ -1,6 +1,7 @@
 *.jpg
 
 /notes
+/wkspcs/**/notes
 /wkspcs/**/src/assets/*
 /wkspcs/**/src/common/assets
 /wkspcs/**/src/turnjs4

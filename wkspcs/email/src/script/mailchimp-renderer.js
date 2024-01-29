@@ -22,6 +22,22 @@ function getMemberBtnOnClick(event) {
   window.electron.email.getMember(limitedFormJSON);
 }
 
+function addFileBtnOnClick(event) {
+  event.preventDefault();
+
+  const formJSON = getFormJson(event);
+
+  // would validate form here
+
+  const modifiedFormJSON = {
+    file_path: formJSON?.file?.path,
+  };
+
+  console.log(modifiedFormJSON);
+
+  window.electron.email.addFile(modifiedFormJSON);
+}
+
 function submitEmailBtnOnClick(event) {
   event.preventDefault();
 
@@ -60,11 +76,13 @@ const mailchimpRenderer = {
     const pingBtn = document.getElementById("ping-btn");
     const getListsBtn = document.getElementById("get-lists-btn");
     const getMemberBtn = document.getElementById("get-member-btn");
+    const addFileBtn = document.getElementById("add-file-btn");
     const submitEmailBtn = document.getElementById("submit-email-btn");
 
     pingBtn.addEventListener("click", pingBtnOnClick);
     getListsBtn.addEventListener("click", getListsBtnOnClick);
     getMemberBtn.addEventListener("click", getMemberBtnOnClick);
+    addFileBtn.addEventListener("click", addFileBtnOnClick);
     submitEmailBtn.addEventListener("click", submitEmailBtnOnClick);
 
     logElectronInterfaces();
