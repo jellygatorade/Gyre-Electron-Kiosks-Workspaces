@@ -1,7 +1,3 @@
-function logElectronInterfaces() {
-  console.log(window.electron);
-}
-
 // event listeners -------------------------------------
 
 function pingBtnOnClick() {
@@ -12,17 +8,24 @@ function getListsBtnOnClick() {
   window.electron.email.getLists();
 }
 
-function getMemberBtnOnClick() {
-  window.electron.email.getMember();
+function getMemberBtnOnClick(event) {
+  event.preventDefault();
+
+  const formJSON = getFormJson(event);
+
+  // would validate form here
+
+  const limitedFormJSON = {
+    member_email: formJSON.member_email,
+  };
+
+  window.electron.email.getMember(limitedFormJSON);
 }
 
 function submitEmailBtnOnClick(event) {
   event.preventDefault();
 
-  const form = event.currentTarget.parentElement;
-  const submitter = event.currentTarget;
-  const formData = new FormData(form, submitter);
-  const formJSON = Object.fromEntries(formData.entries());
+  const formJSON = getFormJson(event);
 
   // would validate form here
 
@@ -35,6 +38,21 @@ function submitEmailBtnOnClick(event) {
   window.electron.email.submit(limitedFormJSON);
 }
 
+// helper functions ----------------------------------
+
+function logElectronInterfaces() {
+  console.log(window.electron);
+}
+
+function getFormJson(event) {
+  const form = event.currentTarget.form;
+  const submitter = event.currentTarget;
+  const formData = new FormData(form, submitter);
+  const formJSON = Object.fromEntries(formData.entries());
+
+  return formJSON;
+}
+
 // module object -------------------------------------
 
 const mailchimpRenderer = {
@@ -43,16 +61,11 @@ const mailchimpRenderer = {
     const getListsBtn = document.getElementById("get-lists-btn");
     const getMemberBtn = document.getElementById("get-member-btn");
     const submitEmailBtn = document.getElementById("submit-email-btn");
-    const submitEmailForm = document.getElementById("submit-email-form");
 
     pingBtn.addEventListener("click", pingBtnOnClick);
     getListsBtn.addEventListener("click", getListsBtnOnClick);
     getMemberBtn.addEventListener("click", getMemberBtnOnClick);
-    submitEmailBtn.addEventListener(
-      "click",
-      submitEmailBtnOnClick,
-      submitEmailForm
-    );
+    submitEmailBtn.addEventListener("click", submitEmailBtnOnClick);
 
     logElectronInterfaces();
   },

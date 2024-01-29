@@ -25,10 +25,12 @@ async function getLists() {
   console.log(response);
 }
 
-async function getMember() {
+async function getMember(formJSON) {
+  const member_email = formJSON.member_email;
+
   let subscriber_hash = crypto
     .createHash("md5")
-    .update("kkane@ncartmuseum.org")
+    .update(member_email) // email string
     .digest("hex");
 
   const response = await mailchimp.lists.getListMember(
@@ -53,11 +55,12 @@ ipcMain.handle("getListsMailchimp", async (event) => {
   await getLists();
 });
 
-ipcMain.handle("getMemberMailchimp", async (event) => {
-  await getMember();
+ipcMain.handle("getMemberMailchimp", async (event, formJSON) => {
+  await getMember(formJSON);
+  console.log("got the member!");
 });
 
-ipcMain.on("submitMailchimp", async (event, formJSON) => {
+ipcMain.handle("submitMailchimp", async (event, formJSON) => {
   await submit(formJSON);
 });
 
