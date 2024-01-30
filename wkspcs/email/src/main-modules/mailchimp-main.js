@@ -92,7 +92,7 @@ function getFormattedDate() {
   return formattedDate;
 }
 
-const nanoid = customAlphabet("1234567890abcdef", 6);
+const nanoid = customAlphabet("1234567890abcdef", 6); // returns a function that returns 6 char randomized alphanumeric string
 
 // ipc listeners -------------------------------------
 
