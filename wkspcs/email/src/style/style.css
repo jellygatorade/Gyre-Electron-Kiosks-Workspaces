@@ -11,3 +11,31 @@
 .form-item {
   margin: 4px 0px;
 }
+
+.bg-aliceblue {
+  background-color: aliceblue;
+}
+
+.bg-azure {
+  background-color: azure;
+}
+
+.bg-beige {
+  background-color: beige;
+}
+
+.bg-bisque {
+  background-color: bisque;
+}
+
+.bg-cornsilk {
+  background-color: cornsilk;
+}
+
+.bg-floralwhite {
+  background-color: floralwhite;
+}
+
+.bg-ghostwhite {
+  background-color: ghostwhite;
+}

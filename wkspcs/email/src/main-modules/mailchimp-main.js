@@ -4,6 +4,10 @@ const path = require("node:path");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 const { customAlphabet } = require("nanoid");
 
+// to do
+// get reference to window
+// win.webContents.send("mailchimpResponse");
+
 const crypto = require("crypto");
 
 // initialize ----------------------------------------
@@ -38,9 +42,22 @@ async function getMember(formJSON) {
   console.log(response);
 }
 
-async function addFile(formJSON) {
-  console.log("do something with");
+async function addMember(formJSON) {
+  const member_email = formJSON.member_email;
 
+  // "b554281be5", // NC Museum of Art Email List
+  const list_id = "bf2a61670c"; // Kiosk Integration Test Temp
+
+  // https://mailchimp.com/developer/marketing/api/list-members/add-member-to-list/
+
+  const response = await mailchimp.lists.addListMember(list_id, {
+    email_address: member_email,
+    status: "pending", // "subscribed"
+  });
+  console.log(response);
+}
+
+async function addFile(formJSON) {
   const fileExt = path.extname(formJSON.file_path);
   const fileBase64 = await readFile(formJSON.file_path);
 
@@ -106,6 +123,10 @@ ipcMain.handle("getListsMailchimp", async (event) => {
 
 ipcMain.handle("getMemberMailchimp", async (event, formJSON) => {
   await getMember(formJSON);
+});
+
+ipcMain.handle("addMemberMailchimp", async (event, formJSON) => {
+  await addMember(formJSON);
 });
 
 ipcMain.handle("addFileMailchimp", async (event, formJSON) => {
