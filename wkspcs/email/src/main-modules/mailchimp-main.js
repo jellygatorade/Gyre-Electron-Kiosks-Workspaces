@@ -119,6 +119,37 @@ async function addFile(formJSON) {
 async function submit(formJSON) {
   win.webContents.send("mailchimpResponse", "Main doing something with");
   win.webContents.send("mailchimpResponse", formJSON);
+
+  // 1 - upload the file
+  //     on success
+  //     on fail - error UI (log to file, UI that is viewable with key toggle)
+  //
+  // 2 - query for the member
+  //     if member found - goto 4
+  //     if member is not found - goto 3
+  //     catch other error - error UI
+  //
+  // 3 - add the member
+  //     on success - goto 4
+  //     on fail - error UI
+  //
+  // 4 - check IMAGE merge field on the member
+  //     if present - ?
+  //     if empty - goto 5
+  //
+  // 5 - update merge field on the member with image url
+  //     on success - goto 6
+  //     on fail - error UI
+  //
+  //     (remove tag from member?)
+  // 6 - add tag to the member
+  //     on success - COMPLETE -> email scheduled UI!
+  //     on fail - error UI
+  //
+  // add the member, with file url in merge field IMAGE
+  // --> if member is already present, patch the member with updated file identity in merge fields
+  // remove tag from the member (ensures workflow trigger)
+  // add tag from the member
 }
 
 // ---------------------------------------------------
@@ -192,12 +223,3 @@ ipcMain.handle("addFileMailchimp", async (event, formJSON) => {
 ipcMain.handle("submitMailchimp", async (event, formJSON) => {
   await submit(formJSON);
 });
-
-// Next
-// https://mailchimp.com/developer/marketing/api/list-members/add-member-to-list/
-
-// upload the file
-// add the member, with file identified in merge fields
-// --> if member is already present, patch the member with updated file identity in merge fields
-// remove tag from the member (ensures workflow trigger)
-// add tag from the member
