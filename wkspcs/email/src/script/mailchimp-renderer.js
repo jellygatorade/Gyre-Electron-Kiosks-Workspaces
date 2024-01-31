@@ -1,6 +1,6 @@
 // ipc listener ----------------------------------------
 
-function onMailchimpResponse(msgs) {
+function onMailchimpResponse(msg) {
   console.log(msg);
 }
 
@@ -12,6 +12,10 @@ function pingBtnOnClick() {
 
 function getListsBtnOnClick() {
   window.electron.email.getLists();
+}
+
+function getFileManagerFoldersOnClick() {
+  window.electron.email.getFileManagerFolders();
 }
 
 function getMemberBtnOnClick(event) {
@@ -40,6 +44,21 @@ function addMemberBtnOnClick(event) {
   };
 
   window.electron.email.addMember(limitedFormJSON);
+}
+
+function updateMergeFieldsBtnOnClick(event) {
+  event.preventDefault();
+
+  const formJSON = getFormJson(event);
+
+  // would validate form here
+
+  const limitedFormJSON = {
+    member_email: formJSON.member_email,
+    image_url: formJSON.image_url,
+  };
+
+  window.electron.email.updateMergeFields(limitedFormJSON);
 }
 
 function addFileBtnOnClick(event) {
@@ -95,22 +114,35 @@ const mailchimpRenderer = {
   init: function () {
     const pingBtn = document.getElementById("ping-btn");
     const getListsBtn = document.getElementById("get-lists-btn");
+    const getFileManagerFoldersBtn = document.getElementById(
+      "get-file-manager-folders-btn"
+    );
     const getMemberBtn = document.getElementById("get-member-btn");
     const addMemberBtn = document.getElementById("add-member-btn");
+    const updateMergeFieldsBtn = document.getElementById(
+      "update-merge-fields-btn"
+    );
     const addFileBtn = document.getElementById("add-file-btn");
     const submitEmailBtn = document.getElementById("submit-email-btn");
 
     pingBtn.addEventListener("click", pingBtnOnClick);
     getListsBtn.addEventListener("click", getListsBtnOnClick);
+    getFileManagerFoldersBtn.addEventListener(
+      "click",
+      getFileManagerFoldersOnClick
+    );
     getMemberBtn.addEventListener("click", getMemberBtnOnClick);
     addMemberBtn.addEventListener("click", addMemberBtnOnClick);
+    updateMergeFieldsBtn.addEventListener("click", updateMergeFieldsBtnOnClick);
     addFileBtn.addEventListener("click", addFileBtnOnClick);
     submitEmailBtn.addEventListener("click", submitEmailBtnOnClick);
 
     logElectronInterfaces();
 
-    if (window?.electron?.sharedConsole?.onMailchimpResponse) {
-      window.electron.sharedConsole.onMailchimpResponse(onMailchimpResponse);
+    // listeners for main process ---------------------
+
+    if (window?.electron?.email?.onMailchimpResponse) {
+      window.electron.email.onMailchimpResponse(onMailchimpResponse);
     }
   },
 };

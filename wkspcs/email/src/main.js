@@ -15,47 +15,20 @@ require("electron-reload")(__dirname, {
   )),
 });
 
-// Setup Mailchimp
-require("./main-modules/mailchimp-main.js");
+const appWindow = require("./main-modules/create-window.js");
 
-const createWindow = () => {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    // width: 800,
-    // height: 600,
-    fullscreen: true,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-    },
-  });
+function onAppReady() {
+  appWindow.create(); // creates electron.BrowserWindow and global keyboard shortcuts
 
-  // No application (top bar) menu
-  Menu.setApplicationMenu(null);
-
-  // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, "/index.html"));
-
-  // Register standard "Control+Shift+I" combo to toggle the DevTools on selection window
-  globalShortcut.register("Control+Shift+I", () => {
-    mainWindow.webContents.toggleDevTools();
-  });
-
-  // Register standard "Control+R" combo to reload the page.
-  globalShortcut.register("CommandOrControl+R", () => {
-    mainWindow.webContents.reload();
-  });
-
-  // Register escape key to quit the app
-  globalShortcut.register("ESC", function () {
-    app.quit();
-  });
-};
+  // Setup Mailchimp - depends on appWindow.get()
+  require("./main-modules/mailchimp-main.js");
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow();
+  onAppReady();
 
   app.on("activate", () => {
     // On macOS it's common to re-create a window in the app when the

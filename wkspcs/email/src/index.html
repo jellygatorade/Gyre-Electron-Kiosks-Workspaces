@@ -28,6 +28,12 @@
       <div class="form-item">
         <button id="get-lists-btn">Get audience lists</button>
       </div>
+
+      <div class="form-item">
+        <button id="get-file-manager-folders-btn"
+          >Get file manager folders</button
+        >
+      </div>
     </div>
 
     <div class="controls bg-aliceblue">
@@ -56,6 +62,34 @@
 
         <div class="form-item">
           <button id="add-member-btn" type="submit">Add member</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="controls bg-whitesmoke">
+      <form id="update-merge-fields-form">
+        <h2 class="form-header">Update merge fields on member</h2>
+
+        <div class="form-item">
+          <label for="email">Email:</label>
+          <input
+            type="text"
+            id="merge-fields-member-email"
+            name="member_email"
+          /><br />
+        </div>
+
+        <div class="form-item">
+          <label for="email">Image URL:</label>
+          <input
+            type="text"
+            id="merge-fields-image-url"
+            name="image_url"
+          /><br />
+        </div>
+
+        <div class="form-item">
+          <button id="update-merge-fields-btn" type="submit">Update</button>
         </div>
       </form>
     </div>

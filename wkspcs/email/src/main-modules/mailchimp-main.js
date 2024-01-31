@@ -3,14 +3,14 @@ const fsPromises = require("node:fs/promises");
 const path = require("node:path");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 const { customAlphabet } = require("nanoid");
-
-// to do
-// get reference to window
-// win.webContents.send("mailchimpResponse");
-
 const crypto = require("crypto");
 
+// Get reference to window
+const win = require("./create-window.js").get();
+
+// ---------------------------------------------------
 // initialize ----------------------------------------
+// ---------------------------------------------------
 
 require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
 
@@ -19,16 +19,32 @@ mailchimp.setConfig({
   server: process.env.API_SERVER_NAME,
 });
 
+const mailchimp_ids = {
+  kiosk_list_id: process.env.MAILCHIMP_KIOSK_LIST_ID,
+  ncma_list_id: process.env.MAILCHIMP_NCMA_LIST_ID,
+  folder_id: Number(process.env.MAILCHIMP_FOLDER_ID),
+};
+
+// ---------------------------------------------------
 // implement mailchimp methods -----------------------
+// ---------------------------------------------------
 
 async function ping() {
   const response = await mailchimp.ping.get();
-  console.log(response);
+
+  win.webContents.send("mailchimpResponse", response);
 }
 
 async function getLists() {
   const response = await mailchimp.lists.getAllLists();
-  console.log(response);
+
+  win.webContents.send("mailchimpResponse", response);
+}
+
+async function getFileManagerFolders() {
+  const response = await mailchimp.fileManager.listFolders();
+
+  win.webContents.send("mailchimpResponse", response);
 }
 
 async function getMember(formJSON) {
@@ -36,25 +52,51 @@ async function getMember(formJSON) {
   const subscriber_hash = getMD5string(member_email);
 
   const response = await mailchimp.lists.getListMember(
-    "b554281be5", // NC Museum of Art Email List
+    mailchimp_ids.kiosk_list_id,
     subscriber_hash
   );
-  console.log(response);
+
+  win.webContents.send("mailchimpResponse", response);
 }
 
 async function addMember(formJSON) {
   const member_email = formJSON.member_email;
 
-  // "b554281be5", // NC Museum of Art Email List
-  const list_id = "bf2a61670c"; // Kiosk Integration Test Temp
-
   // https://mailchimp.com/developer/marketing/api/list-members/add-member-to-list/
 
-  const response = await mailchimp.lists.addListMember(list_id, {
-    email_address: member_email,
-    status: "pending", // "subscribed"
-  });
-  console.log(response);
+  const response = await mailchimp.lists.addListMember(
+    mailchimp_ids.kiosk_list_id,
+    {
+      email_address: member_email,
+      status: "subscribed", // "pending"
+    }
+  );
+
+  win.webContents.send("mailchimpResponse", response);
+}
+
+async function updateMergeFields(formJSON) {
+  const member_email = formJSON.member_email;
+  const subscriber_hash = getMD5string(member_email);
+  const image_url = formJSON.image_url;
+
+  // use
+  // https://mailchimp.com/developer/marketing/api/list-members/update-list-member/
+  //
+  // see - for decision to use imageurl
+  // https://mailchimp.com/developer/marketing/docs/merge-fields/#structure
+
+  const response = await mailchimp.lists.updateListMember(
+    mailchimp_ids.kiosk_list_id,
+    subscriber_hash,
+    {
+      merge_fields: {
+        IMAGE: image_url,
+      },
+    }
+  );
+
+  win.webContents.send("mailchimpResponse", response);
 }
 
 async function addFile(formJSON) {
@@ -68,16 +110,20 @@ async function addFile(formJSON) {
   const response = await mailchimp.fileManager.upload({
     name: filename,
     file_data: fileBase64,
+    folder_id: mailchimp_ids.folder_id,
   });
-  console.log(response);
+
+  win.webContents.send("mailchimpResponse", response);
 }
 
 async function submit(formJSON) {
-  console.log("do something with");
-  console.log(formJSON);
+  win.webContents.send("mailchimpResponse", "Main doing something with");
+  win.webContents.send("mailchimpResponse", formJSON);
 }
 
+// ---------------------------------------------------
 // helper functions ----------------------------------
+// ---------------------------------------------------
 
 function getMD5string(string) {
   const hash = crypto
@@ -111,7 +157,9 @@ function getFormattedDate() {
 
 const nanoid = customAlphabet("1234567890abcdef", 6); // returns a function that returns 6 char randomized alphanumeric string
 
+// ---------------------------------------------------
 // ipc listeners -------------------------------------
+// ---------------------------------------------------
 
 ipcMain.handle("pingMailchimp", async (event) => {
   await ping();
@@ -121,12 +169,20 @@ ipcMain.handle("getListsMailchimp", async (event) => {
   await getLists();
 });
 
+ipcMain.handle("getFileManagerFoldersMailchimp", async (event) => {
+  await getFileManagerFolders();
+});
+
 ipcMain.handle("getMemberMailchimp", async (event, formJSON) => {
   await getMember(formJSON);
 });
 
 ipcMain.handle("addMemberMailchimp", async (event, formJSON) => {
   await addMember(formJSON);
+});
+
+ipcMain.handle("updateMergeFieldsMailchimp", async (event, formJSON) => {
+  await updateMergeFields(formJSON);
 });
 
 ipcMain.handle("addFileMailchimp", async (event, formJSON) => {
