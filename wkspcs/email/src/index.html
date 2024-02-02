@@ -94,7 +94,7 @@
       </form>
     </div>
 
-    <div class="controls bg-floralwhite">
+    <div class="controls bg-honeydew">
       <form id="get-member-tags-form">
         <h2 class="form-header">Get member tags</h2>
 
@@ -102,7 +102,7 @@
           <label for="email">Email:</label>
           <input
             type="text"
-            id="get-tags-member-email"
+            id="get-member-tags-email"
             name="member_email"
           /><br />
         </div>
@@ -110,6 +110,54 @@
         <div class="form-item">
           <button id="get-member-tags-btn" type="submit"
             >Get member tags</button
+          >
+        </div>
+      </form>
+    </div>
+
+    <div class="controls bg-lavender">
+      <form id="update-member-tags-form">
+        <h2 class="form-header">Update member tags</h2>
+
+        <div class="form-item">
+          <label for="email">Email:</label>
+          <input
+            type="text"
+            id="update-member-tags-email"
+            name="member_email"
+          /><br />
+        </div>
+
+        <div class="form-item">
+          <label for="tag-name">Tag name:</label>
+          <input
+            type="text"
+            id="update-member-tags-tag-name"
+            name="tag_name"
+          /><br />
+        </div>
+
+        <div class="form-item">
+          <span>Tag status</span>
+          <input
+            type="radio"
+            id="update-member-tags-tag-status"
+            name="tag_status"
+            value="active"
+          />
+          <label for="active">Active</label>
+          <input
+            type="radio"
+            id="update-member-tags-tag-status"
+            name="tag_status"
+            value="inactive"
+          />
+          <label for="inactive">Inactive</label>
+        </div>
+
+        <div class="form-item">
+          <button id="update-member-tags-btn" type="submit"
+            >Update member tags</button
           >
         </div>
       </form>

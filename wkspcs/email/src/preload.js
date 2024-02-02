@@ -25,6 +25,8 @@ contextBridge.exposeInMainWorld("electron", {
       ipcRenderer.invoke("updateMergeFieldsMailchimp", formJSON),
     getMemberTags: (formJSON) =>
       ipcRenderer.invoke("getMemberTagsMailchimp", formJSON),
+    updateMemberTags: (formJSON) =>
+      ipcRenderer.invoke("updateMemberTagsMailchimp", formJSON),
     addFile: (formJSON) => ipcRenderer.invoke("addFileMailchimp", formJSON),
     submit: (formJSON) => ipcRenderer.invoke("submitMailchimp", formJSON),
     /**

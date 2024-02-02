@@ -165,8 +165,45 @@ async function getMemberTags(formJSON) {
   return response;
 }
 
-// to do - updateMemberTags
-// https://mailchimp.com/developer/marketing/api/list-member-tags/
+async function updateMemberTags(formJSON) {
+  const member_email = formJSON.member_email;
+  const subscriber_hash = getMD5string(member_email);
+  const tag_name = formJSON.tag_name;
+  const tag_status = formJSON.tag_status;
+
+  // only allow changes to DispatchEmail tag
+  // trying to keep Mailchimp tags clean
+  if (tag_name !== "DispatchEmail") {
+    win.webContents.send(
+      "mailchimpResponse",
+      "Only updates to 'DispatchEmail' tag are currently allowed."
+    );
+    return;
+  }
+
+  let response = {};
+  try {
+    response = await mailchimp.lists.updateListMemberTags(
+      mailchimp_ids.kiosk_list_id,
+      subscriber_hash,
+      { tags: [{ name: tag_name, status: tag_status }] }
+    );
+    // success response is for updateListMemberTags() is null (http status 204)
+    // https://mailchimp.com/developer/marketing/api/list-member-tags/list-member-tags/
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+    if (!response) {
+      response = {};
+    }
+  } catch (error) {
+    response._status = error.status;
+    handleError(error);
+    return response;
+  }
+
+  response._status = 200;
+  win.webContents.send("mailchimpResponse", response);
+  return response;
+}
 
 async function addFile(formJSON) {
   const fileExt = path.extname(formJSON.file_path);
@@ -352,6 +389,10 @@ ipcMain.handle("addMemberMailchimp", async (event, formJSON) => {
 
 ipcMain.handle("getMemberTagsMailchimp", async (event, formJSON) => {
   await getMemberTags(formJSON);
+});
+
+ipcMain.handle("updateMemberTagsMailchimp", async (event, formJSON) => {
+  await updateMemberTags(formJSON);
 });
 
 ipcMain.handle("updateMergeFieldsMailchimp", async (event, formJSON) => {

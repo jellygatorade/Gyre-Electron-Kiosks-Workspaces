@@ -75,6 +75,22 @@ function getMemberTagsBtnOnClick(event) {
   window.electron.email.getMemberTags(limitedFormJSON);
 }
 
+function updateMemberTagsBtnOnClick(event) {
+  event.preventDefault();
+
+  const formJSON = getFormJson(event);
+
+  // would validate form here
+
+  const limitedFormJSON = {
+    member_email: formJSON.member_email,
+    tag_name: formJSON.tag_name,
+    tag_status: formJSON.tag_status,
+  };
+
+  window.electron.email.updateMemberTags(limitedFormJSON);
+}
+
 function addFileBtnOnClick(event) {
   event.preventDefault();
 
@@ -138,6 +154,9 @@ const mailchimpRenderer = {
       "update-merge-fields-btn"
     );
     const getMemberTagsBtn = document.getElementById("get-member-tags-btn");
+    const updateMemberTagsBtn = document.getElementById(
+      "update-member-tags-btn"
+    );
     const addFileBtn = document.getElementById("add-file-btn");
     const submitEmailBtn = document.getElementById("submit-email-btn");
 
@@ -151,6 +170,7 @@ const mailchimpRenderer = {
     addMemberBtn.addEventListener("click", addMemberBtnOnClick);
     updateMergeFieldsBtn.addEventListener("click", updateMergeFieldsBtnOnClick);
     getMemberTagsBtn.addEventListener("click", getMemberTagsBtnOnClick);
+    updateMemberTagsBtn.addEventListener("click", updateMemberTagsBtnOnClick);
     addFileBtn.addEventListener("click", addFileBtnOnClick);
     submitEmailBtn.addEventListener("click", submitEmailBtnOnClick);
 
