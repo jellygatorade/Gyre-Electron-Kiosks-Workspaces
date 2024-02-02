@@ -246,14 +246,14 @@ async function submit(formJSON) {
   //     on fail - error UI (log to file, UI that is viewable with key toggle)
   //
   // 4 - check IMAGE merge field on the member
-  //     if present - ?
+  //     if present - ? (¿goto 5 and update regardless? skip this step if so)
   //     if empty - goto 5
   //
   // 5 - update merge field on the member with image url
   //     on success - goto 6
   //     on fail - error UI
   //
-  // 6 - remove tag from member
+  // 6 - remove tag from member (JURY OUT ON THIS, CAN WORKFLOW BE USED TO SEND SAME EMAIL MULTIPLE TIMES?)
   //     on success - goto 7
   //     on fail - error UI
   //
