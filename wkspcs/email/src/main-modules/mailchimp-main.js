@@ -30,21 +30,48 @@ const mailchimp_ids = {
 // ---------------------------------------------------
 
 async function ping() {
-  const response = await mailchimp.ping.get();
+  let response = {};
+  try {
+    response = await mailchimp.ping.get();
+  } catch (error) {
+    response._status = error.status;
+    handleError(error);
+    return response;
+  }
 
+  response._status = 200;
   win.webContents.send("mailchimpResponse", response);
+  return response;
 }
 
 async function getLists() {
-  const response = await mailchimp.lists.getAllLists();
+  let response = {};
+  try {
+    response = await mailchimp.lists.getAllLists();
+  } catch (error) {
+    response._status = error.status;
+    handleError(error);
+    return response;
+  }
 
+  response._status = 200;
   win.webContents.send("mailchimpResponse", response);
+  return response;
 }
 
 async function getFileManagerFolders() {
-  const response = await mailchimp.fileManager.listFolders();
+  let response = {};
+  try {
+    response = await mailchimp.fileManager.listFolders();
+  } catch (error) {
+    response._status = error.status;
+    handleError(error);
+    return response;
+  }
 
+  response._status = 200;
   win.webContents.send("mailchimpResponse", response);
+  return response;
 }
 
 async function getMember(formJSON) {
@@ -59,11 +86,11 @@ async function getMember(formJSON) {
     );
   } catch (error) {
     response._status = error.status;
-    response._response = error.response;
     handleError(error);
     return response;
   }
 
+  response._status = 200;
   win.webContents.send("mailchimpResponse", response);
   return response;
 }
@@ -72,16 +99,6 @@ async function addMember(formJSON) {
   const member_email = formJSON.member_email;
 
   // https://mailchimp.com/developer/marketing/api/list-members/add-member-to-list/
-
-  // const response = await mailchimp.lists.addListMember(
-  //   mailchimp_ids.kiosk_list_id,
-  //   {
-  //     email_address: member_email,
-  //     status: "subscribed", // "pending"
-  //   }
-  // );
-
-  // win.webContents.send("mailchimpResponse", response);
 
   let response = {};
   try {
@@ -92,14 +109,13 @@ async function addMember(formJSON) {
         status: "subscribed", // "pending"
       }
     );
-    response._status = 200;
   } catch (error) {
     response._status = error.status;
-    response._response = error.response;
     handleError(error);
     return response;
   }
 
+  response._status = 200;
   win.webContents.send("mailchimpResponse", response);
   return response;
 }
@@ -128,6 +144,30 @@ async function updateMergeFields(formJSON) {
   win.webContents.send("mailchimpResponse", response);
 }
 
+async function getMemberTags(formJSON) {
+  const member_email = formJSON.member_email;
+  const subscriber_hash = getMD5string(member_email);
+
+  let response = {};
+  try {
+    response = await mailchimp.lists.getListMemberTags(
+      mailchimp_ids.kiosk_list_id,
+      subscriber_hash
+    );
+  } catch (error) {
+    response._status = error.status;
+    handleError(error);
+    return response;
+  }
+
+  response._status = 200;
+  win.webContents.send("mailchimpResponse", response);
+  return response;
+}
+
+// to do - updateMemberTags
+// https://mailchimp.com/developer/marketing/api/list-member-tags/
+
 async function addFile(formJSON) {
   const fileExt = path.extname(formJSON.file_path);
   const fileBase64 = await readFile(formJSON.file_path);
@@ -143,14 +183,13 @@ async function addFile(formJSON) {
       file_data: fileBase64,
       folder_id: mailchimp_ids.folder_id,
     });
-    response._status = 200;
   } catch (error) {
     response._status = error.status;
-    response._response = error.response;
     handleError(error);
     return response;
   }
 
+  response._status = 200;
   win.webContents.send("mailchimpResponse", response);
   return response;
 }
@@ -177,8 +216,11 @@ async function submit(formJSON) {
   //     on success - goto 6
   //     on fail - error UI
   //
-  //     (remove tag from member?)
-  // 6 - add tag to the member
+  // 6 - remove tag from member
+  //     on success - goto 7
+  //     on fail - error UI
+  //
+  // 7 - add tag to the member
   //     on success - COMPLETE -> email scheduled UI!
   //     on fail - error UI
   //
@@ -193,7 +235,8 @@ async function submit(formJSON) {
   let response;
 
   await m_launchProcess();
-  console.log("process complete!");
+  console.log("(process complete)");
+  return;
 
   async function m_launchProcess() {
     await m_getMember();
@@ -234,6 +277,8 @@ async function submit(formJSON) {
   async function m_addFile() {
     console.log("(uploading file)");
     // STOPPED HERE
+    // UPDATE MERGE FIELDS - update conventions
+    // CHECK TAG?, REMOVE TAG, ADD TAG
   }
 }
 
@@ -244,6 +289,8 @@ async function submit(formJSON) {
 function handleError(error) {
   // Do something with mailchimp errors
   // Dump to logfile?
+  win.webContents.send("mailchimpResponse", `Mailchimp error: ${error.status}`);
+  win.webContents.send("mailchimpResponse", error.response.body);
   // console.error(error);
 }
 
@@ -301,6 +348,10 @@ ipcMain.handle("getMemberMailchimp", async (event, formJSON) => {
 
 ipcMain.handle("addMemberMailchimp", async (event, formJSON) => {
   await addMember(formJSON);
+});
+
+ipcMain.handle("getMemberTagsMailchimp", async (event, formJSON) => {
+  await getMemberTags(formJSON);
 });
 
 ipcMain.handle("updateMergeFieldsMailchimp", async (event, formJSON) => {
