@@ -51,12 +51,21 @@ async function getMember(formJSON) {
   const member_email = formJSON.member_email;
   const subscriber_hash = getMD5string(member_email);
 
-  const response = await mailchimp.lists.getListMember(
-    mailchimp_ids.kiosk_list_id,
-    subscriber_hash
-  );
+  let response = {};
+  try {
+    response = await mailchimp.lists.getListMember(
+      mailchimp_ids.kiosk_list_id,
+      subscriber_hash
+    );
+  } catch (error) {
+    response._status = error.status;
+    response._response = error.response;
+    handleError(error);
+    return response;
+  }
 
   win.webContents.send("mailchimpResponse", response);
+  return response;
 }
 
 async function addMember(formJSON) {
@@ -64,15 +73,35 @@ async function addMember(formJSON) {
 
   // https://mailchimp.com/developer/marketing/api/list-members/add-member-to-list/
 
-  const response = await mailchimp.lists.addListMember(
-    mailchimp_ids.kiosk_list_id,
-    {
-      email_address: member_email,
-      status: "subscribed", // "pending"
-    }
-  );
+  // const response = await mailchimp.lists.addListMember(
+  //   mailchimp_ids.kiosk_list_id,
+  //   {
+  //     email_address: member_email,
+  //     status: "subscribed", // "pending"
+  //   }
+  // );
+
+  // win.webContents.send("mailchimpResponse", response);
+
+  let response = {};
+  try {
+    response = await mailchimp.lists.addListMember(
+      mailchimp_ids.kiosk_list_id,
+      {
+        email_address: member_email,
+        status: "subscribed", // "pending"
+      }
+    );
+    response._status = 200;
+  } catch (error) {
+    response._status = error.status;
+    response._response = error.response;
+    handleError(error);
+    return response;
+  }
 
   win.webContents.send("mailchimpResponse", response);
+  return response;
 }
 
 async function updateMergeFields(formJSON) {
@@ -107,31 +136,38 @@ async function addFile(formJSON) {
   const uniqueID = nanoid();
   const filename = `WaC_test_${today}_${uniqueID}${fileExt}`;
 
-  const response = await mailchimp.fileManager.upload({
-    name: filename,
-    file_data: fileBase64,
-    folder_id: mailchimp_ids.folder_id,
-  });
+  let response = {};
+  try {
+    response = await mailchimp.fileManager.upload({
+      name: filename,
+      file_data: fileBase64,
+      folder_id: mailchimp_ids.folder_id,
+    });
+    response._status = 200;
+  } catch (error) {
+    response._status = error.status;
+    response._response = error.response;
+    handleError(error);
+    return response;
+  }
 
   win.webContents.send("mailchimpResponse", response);
+  return response;
 }
 
 async function submit(formJSON) {
-  win.webContents.send("mailchimpResponse", "Main doing something with");
-  win.webContents.send("mailchimpResponse", formJSON);
-
-  // 1 - upload the file
-  //     on success
-  //     on fail - error UI (log to file, UI that is viewable with key toggle)
-  //
-  // 2 - query for the member
-  //     if member found - goto 4
-  //     if member is not found - goto 3
+  // 1 - query for the member
+  //     if member found - goto 3
+  //     if member is not found - goto 2
   //     catch other error - error UI
   //
-  // 3 - add the member
-  //     on success - goto 4
+  // 2 - add the member
+  //     on success - goto 3
   //     on fail - error UI
+  //
+  // 3 - upload the file
+  //     on success - store image URL, goto 4
+  //     on fail - error UI (log to file, UI that is viewable with key toggle)
   //
   // 4 - check IMAGE merge field on the member
   //     if present - ?
@@ -150,11 +186,66 @@ async function submit(formJSON) {
   // --> if member is already present, patch the member with updated file identity in merge fields
   // remove tag from the member (ensures workflow trigger)
   // add tag from the member
+
+  // win.webContents.send("mailchimpResponse", "Main doing something with");
+  // win.webContents.send("mailchimpResponse", formJSON);
+
+  let response;
+
+  await m_launchProcess();
+  console.log("process complete!");
+
+  async function m_launchProcess() {
+    await m_getMember();
+  }
+
+  async function m_getMember() {
+    console.log("(getting member)");
+    response = await getMember(formJSON);
+
+    switch (response._status) {
+      case 404:
+        console.log("(member not found)");
+        await m_addMember();
+        break;
+      case 200:
+        console.log("(member found)");
+        await m_addFile();
+        break;
+      default:
+        console.log(`Some other error was encountered: ${response._status}`);
+    }
+  }
+
+  async function m_addMember() {
+    console.log("(adding member)");
+    response = await addMember(formJSON);
+
+    switch (response._status) {
+      case 200:
+        console.log("(member added)");
+        await m_addFile();
+        break;
+      default:
+        console.log(`Some other error was encountered: ${response._status}`);
+    }
+  }
+
+  async function m_addFile() {
+    console.log("(uploading file)");
+    // STOPPED HERE
+  }
 }
 
 // ---------------------------------------------------
 // helper functions ----------------------------------
 // ---------------------------------------------------
+
+function handleError(error) {
+  // Do something with mailchimp errors
+  // Dump to logfile?
+  // console.error(error);
+}
 
 function getMD5string(string) {
   const hash = crypto

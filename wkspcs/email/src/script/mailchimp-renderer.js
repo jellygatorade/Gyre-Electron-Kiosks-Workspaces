@@ -81,13 +81,14 @@ function submitEmailBtnOnClick(event) {
   event.preventDefault();
 
   const formJSON = getFormJson(event);
+  console.log(formJSON);
 
   // would validate form here
 
-  // remove file so don't have to deal with passing through electron right now
   const limitedFormJSON = {
-    user_email: formJSON.user_email,
-    user_name: formJSON.user_name,
+    member_email: formJSON.member_email,
+    member_fname: formJSON.member_fname,
+    file_path: formJSON?.file?.path,
   };
 
   window.electron.email.submit(limitedFormJSON);
