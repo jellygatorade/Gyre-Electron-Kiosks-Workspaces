@@ -394,7 +394,6 @@ async function submit(formJSON) {
     }
   }
 
-  // CHECK TAG?, REMOVE TAG, ADD TAG
   async function m_updateMemberTags() {
     console.log("(updating member tags)");
 
