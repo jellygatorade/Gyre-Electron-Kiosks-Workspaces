@@ -131,17 +131,38 @@ async function updateMergeFields(formJSON) {
   // see - for decision to use imageurl
   // https://mailchimp.com/developer/marketing/docs/merge-fields/#structure
 
-  const response = await mailchimp.lists.updateListMember(
-    mailchimp_ids.kiosk_list_id,
-    subscriber_hash,
-    {
-      merge_fields: {
-        IMAGE: image_url,
-      },
-    }
-  );
+  // const response = await mailchimp.lists.updateListMember(
+  //   mailchimp_ids.kiosk_list_id,
+  //   subscriber_hash,
+  //   {
+  //     merge_fields: {
+  //       IMAGE: image_url,
+  //     },
+  //   }
+  // );
 
+  // win.webContents.send("mailchimpResponse", response);
+
+  let response = {};
+  try {
+    response = await mailchimp.lists.updateListMember(
+      mailchimp_ids.kiosk_list_id,
+      subscriber_hash,
+      {
+        merge_fields: {
+          IMAGE: image_url,
+        },
+      }
+    );
+  } catch (error) {
+    response._status = error.status;
+    handleError(error);
+    return response;
+  }
+
+  response._status = 200;
   win.webContents.send("mailchimpResponse", response);
+  return response;
 }
 
 async function getMemberTags(formJSON) {
@@ -270,6 +291,10 @@ async function submit(formJSON) {
   // win.webContents.send("mailchimpResponse", formJSON);
 
   let response;
+  let image = {
+    full_size_url: null,
+    thumbnail_url: null,
+  };
 
   await m_launchProcess();
   console.log("(process complete)");
@@ -290,7 +315,8 @@ async function submit(formJSON) {
         break;
       case 200:
         console.log("(member found)");
-        await m_addFile();
+        // await m_addFile();
+        await m_getMemberTags();
         break;
       default:
         console.log(`Some other error was encountered: ${response._status}`);
@@ -307,15 +333,84 @@ async function submit(formJSON) {
         await m_addFile();
         break;
       default:
-        console.log(`Some other error was encountered: ${response._status}`);
+        console.log(`An error was encountered: ${response._status}`);
+    }
+  }
+
+  async function m_getMemberTags() {
+    console.log("(checking member tags)");
+    response = await getMemberTags(formJSON);
+
+    switch (response._status) {
+      case 200:
+        console.log("(member tags retrieved)");
+        let hasDispatchTag = response.tags.find(
+          (obj) => obj.name === "DispatchEmail"
+        );
+        hasDispatchTag
+          ? onDispatchTagFound() // notice to wait, or add submission to queue
+          : await onDispatchTagNotFound(); // proceed submission, upload file
+        break;
+      default:
+        console.log(`An error was encountered: ${response._status}`);
+    }
+
+    async function onDispatchTagNotFound() {
+      console.log("(contact is untagged)");
+      await m_addFile();
+    }
+
+    function onDispatchTagFound() {
+      console.log("(contact is tagged)");
     }
   }
 
   async function m_addFile() {
     console.log("(uploading file)");
-    // STOPPED HERE
-    // UPDATE MERGE FIELDS - update conventions
-    // CHECK TAG?, REMOVE TAG, ADD TAG
+    response = await addFile(formJSON);
+
+    switch (response._status) {
+      case 200:
+        console.log("(file uploaded)");
+        formJSON.image_url = response.full_size_url; // store the image url
+        await m_updateMergeFields(); // add image url to contact merge fields
+        break;
+      default:
+        console.log(`An error was encountered: ${response._status}`);
+    }
+  }
+
+  async function m_updateMergeFields() {
+    console.log("(updating merge fields)");
+    response = await updateMergeFields(formJSON);
+
+    switch (response._status) {
+      case 200:
+        console.log("(merge fields updated)");
+        await m_updateMemberTags();
+        break;
+      default:
+        console.log(`An error was encountered: ${response._status}`);
+    }
+  }
+
+  // CHECK TAG?, REMOVE TAG, ADD TAG
+  async function m_updateMemberTags() {
+    console.log("(updating member tags)");
+
+    formJSON.tag_name = "DispatchEmail";
+    formJSON.tag_status = "active";
+
+    response = await updateMemberTags(formJSON);
+
+    switch (response._status) {
+      case 200:
+        console.log("(member tags updated)");
+        // Complete!
+        break;
+      default:
+        console.log(`An error was encountered: ${response._status}`);
+    }
   }
 }
 
