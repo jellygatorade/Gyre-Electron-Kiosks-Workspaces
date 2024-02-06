@@ -127,7 +127,7 @@ function submitEmailBtnOnClick(event) {
 // helper functions ----------------------------------
 
 function logElectronInterfaces() {
-  console.log(window.electron);
+  console.log("Available IPC API: ", window.electron);
 }
 
 function getFormJson(event) {
