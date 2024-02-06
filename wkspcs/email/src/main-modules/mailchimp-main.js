@@ -262,23 +262,19 @@ async function submit(formJSON) {
   //     on success - goto 3
   //     on fail - error UI
   //
-  // 3 - upload the file
-  //     on success - store image URL, goto 4
-  //     on fail - error UI (log to file, UI that is viewable with key toggle)
+  // 3 - check member tags
+  //     !DispatchEmail tag - goto 4
+  //     has DispatchEmail tag - error UI? please wait x minutes?, or add to end of queue?
   //
-  // 4 - check IMAGE merge field on the member
-  //     if present - ? (¿goto 5 and update regardless? skip this step if so)
-  //     if empty - goto 5
+  // 4 - upload the file
+  //     on success - store image URL, goto 5
+  //     on fail - error UI (log to file? or some log UI that is viewable with key toggle?)
   //
   // 5 - update merge field on the member with image url
   //     on success - goto 6
   //     on fail - error UI
   //
-  // 6 - remove tag from member (JURY OUT ON THIS, CAN WORKFLOW BE USED TO SEND SAME EMAIL MULTIPLE TIMES?)
-  //     on success - goto 7
-  //     on fail - error UI
-  //
-  // 7 - add tag to the member
+  // 6 - add tag to the member
   //     on success - COMPLETE -> email scheduled UI!
   //     on fail - error UI
   //
