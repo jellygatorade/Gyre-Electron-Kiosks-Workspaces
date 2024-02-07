@@ -11,6 +11,13 @@
       "toggle_lang_btn": "Español",
       "videos": [
         {
+          "id": "senora-lynch",
+          "video_path": "./assets/video/concert.mp4",
+          "still_path": "./assets/img/concert.png",
+          "title": "Senora Lynch",
+          "description": "Learn more about Senora Lynch and how she incorporates nature and animals into her ceramic vessels. You can see Lynch working in her home studio."
+        },
+        {
           "id": "anita-fields",
           "video_path": "./assets/video/chocolate.mp4",
           "still_path": "./assets/img/anita-fields-small-test.png",
