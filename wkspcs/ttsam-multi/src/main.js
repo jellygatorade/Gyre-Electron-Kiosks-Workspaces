@@ -38,36 +38,17 @@ const createWindow = () => {
     window.webContents.reload();
   });
 
-  // Register shortcut - to home
+  // Register shortcut - home
   globalShortcut.register("Control+1", () => {
     window.loadFile(path.join(__dirname, "/index.html"));
   });
 
   // Register shortcut
-  globalShortcut.register("Control+2", () => {
-    window.loadFile(
-      path.join(__dirname, "turning-test/index-double-covers.html")
-    );
-  });
-
-  // Register shortcut
-  globalShortcut.register("Control+3", () => {
-    window.loadFile(
-      path.join(__dirname, "turning-test/index-double-spread-only.html")
-    );
-  });
-
-  // Register shortcut
-  globalShortcut.register("Control+4", () => {
-    window.loadFile(path.join(__dirname, "turning-test/index-single.html"));
-  });
-
-  // Register shortcut
-  globalShortcut.register("Control+5", () => {
-    window.loadFile(
-      path.join(__dirname, "turnjs4/samples/magazine/index.html")
-    );
-  });
+  // globalShortcut.register("Control+2", () => {
+  //   window.loadFile(
+  //     path.join(__dirname, "some/other/file.html")
+  //   );
+  // });
 
   // Register escape key to quit the app
   globalShortcut.register("ESC", function () {
