@@ -24,10 +24,10 @@ const homeView = document.getElementById("home-view");
 const toggleLangButton = document.getElementById("toggle-lang-button");
 
 const enHomeViewTitle = document.getElementById("en-home-view-title");
-const enHomeViewSubheading = document.getElementById("en-home-view-subheading");
+// const enHomeViewSubheading = document.getElementById("en-home-view-subheading");
 
 const esHomeViewTitle = document.getElementById("es-home-view-title");
-const esHomeViewSubheading = document.getElementById("es-home-view-subheading");
+// const esHomeViewSubheading = document.getElementById("es-home-view-subheading");
 
 //// Home View - Video Cards
 const homeViewVideoCardFlexbox = document.getElementById(
@@ -83,9 +83,9 @@ export {
   homeView,
   toggleLangButton,
   enHomeViewTitle,
-  enHomeViewSubheading,
+  // enHomeViewSubheading,
   esHomeViewTitle,
-  esHomeViewSubheading,
+  // esHomeViewSubheading,
   //// Home View - Video Cards
   homeViewVideoCardFlexbox,
   homeViewVideoCardPrototype,

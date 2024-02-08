@@ -17,10 +17,10 @@ function applyContent(data) {
 
   // Home View
   domVars.enHomeViewTitle.innerHTML = data.en.main.title;
-  domVars.enHomeViewSubheading.innerHTML = data.en.main.subheading;
+  // domVars.enHomeViewSubheading.innerHTML = data.en.main.subheading;
 
   domVars.esHomeViewTitle.innerHTML = data.es.main.title;
-  domVars.esHomeViewSubheading.innerHTML = data.es.main.subheading;
+  // domVars.esHomeViewSubheading.innerHTML = data.es.main.subheading;
 
   //// Home View - Video Cards
   applyVideoCards(data);

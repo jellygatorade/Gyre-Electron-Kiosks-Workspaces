@@ -7,13 +7,13 @@
     },
     "main": {
       "title": "Place of Being: Artist Spotlight",
-      "subheading": "Lorem ipsum dolor sit amet.",
+      "subheading": "",
       "toggle_lang_btn": "Español",
       "videos": [
         {
           "id": "senora-lynch",
           "video_path": "./assets/video/concert.mp4",
-          "still_path": "./assets/img/concert.png",
+          "still_path": "./assets/img/senora-lynch-2.jpg",
           "title": "Senora Lynch",
           "description": "Learn more about Senora Lynch and how she incorporates nature and animals into her ceramic vessels. You can see Lynch working in her home studio."
         },
