@@ -107,6 +107,20 @@ function addFileBtnOnClick(event) {
   window.electron.email.addFile(modifiedFormJSON);
 }
 
+function triggerJourneyStepBtnOnClick(event) {
+  event.preventDefault();
+
+  const formJSON = getFormJson(event);
+
+  // would validate form here
+
+  const limitedFormJSON = {
+    member_email: formJSON.member_email,
+  };
+
+  window.electron.email.triggerJourneyStep(limitedFormJSON);
+}
+
 function submitEmailBtnOnClick(event) {
   event.preventDefault();
 
@@ -143,6 +157,8 @@ function getFormJson(event) {
 
 const mailchimpRenderer = {
   init: function () {
+    // get buttons ------------------------------------
+
     const pingBtn = document.getElementById("ping-btn");
     const getListsBtn = document.getElementById("get-lists-btn");
     const getFileManagerFoldersBtn = document.getElementById(
@@ -158,7 +174,12 @@ const mailchimpRenderer = {
       "update-member-tags-btn"
     );
     const addFileBtn = document.getElementById("add-file-btn");
+    const triggerJourneyStepBtn = document.getElementById(
+      "trigger-journey-step-btn"
+    );
     const submitEmailBtn = document.getElementById("submit-email-btn");
+
+    // add listeners ----------------------------------
 
     pingBtn.addEventListener("click", pingBtnOnClick);
     getListsBtn.addEventListener("click", getListsBtnOnClick);
@@ -172,6 +193,10 @@ const mailchimpRenderer = {
     getMemberTagsBtn.addEventListener("click", getMemberTagsBtnOnClick);
     updateMemberTagsBtn.addEventListener("click", updateMemberTagsBtnOnClick);
     addFileBtn.addEventListener("click", addFileBtnOnClick);
+    triggerJourneyStepBtn.addEventListener(
+      "click",
+      triggerJourneyStepBtnOnClick
+    );
     submitEmailBtn.addEventListener("click", submitEmailBtnOnClick);
 
     logElectronInterfaces();

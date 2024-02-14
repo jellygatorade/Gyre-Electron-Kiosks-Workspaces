@@ -252,6 +252,33 @@ async function addFile(formJSON) {
   return response;
 }
 
+async function triggerJourneyStep(formJSON) {
+  const member_email = formJSON.member_email;
+  const journey_id = 2;
+  const step_id = 78;
+
+  let response = {};
+  try {
+    response = await mailchimp.customerJourneys.trigger(journey_id, step_id, {
+      email_address: member_email,
+    });
+    // success response is for customerJourneys.trigger() is null (http status 204)
+    // https://mailchimp.com/developer/marketing/api/customer-journeys-journeys-steps-actions/customer-journeys-api-trigger-for-a-contact/
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+    if (!response) {
+      response = {};
+    }
+  } catch (error) {
+    response._status = error.status;
+    handleError(error);
+    return response;
+  }
+
+  response._status = 200;
+  win.webContents.send("mailchimpResponse", response);
+  return response;
+}
+
 async function submit(formJSON) {
   // 1 - query for the member
   //     if member found - goto 3
@@ -282,6 +309,10 @@ async function submit(formJSON) {
   // --> if member is already present, patch the member with updated file identity in merge fields
   // remove tag from the member (ensures workflow trigger)
   // add tag from the member
+
+  //
+  //
+  // 6alt - trigger endpoint journey
 
   // win.webContents.send("mailchimpResponse", "Main doing something with");
   // win.webContents.send("mailchimpResponse", formJSON);
@@ -479,6 +510,10 @@ ipcMain.handle("addMemberMailchimp", async (event, formJSON) => {
 
 ipcMain.handle("getMemberTagsMailchimp", async (event, formJSON) => {
   await getMemberTags(formJSON);
+});
+
+ipcMain.handle("triggerJourneyStepMailchimp", async (event, formJSON) => {
+  await triggerJourneyStep(formJSON);
 });
 
 ipcMain.handle("updateMemberTagsMailchimp", async (event, formJSON) => {

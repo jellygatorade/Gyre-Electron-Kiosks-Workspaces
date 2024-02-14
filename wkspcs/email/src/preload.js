@@ -28,6 +28,8 @@ contextBridge.exposeInMainWorld("electron", {
     updateMemberTags: (formJSON) =>
       ipcRenderer.invoke("updateMemberTagsMailchimp", formJSON),
     addFile: (formJSON) => ipcRenderer.invoke("addFileMailchimp", formJSON),
+    triggerJourneyStep: (formJSON) =>
+      ipcRenderer.invoke("triggerJourneyStepMailchimp", formJSON),
     submit: (formJSON) => ipcRenderer.invoke("submitMailchimp", formJSON),
     /**
      * Accept a callback function to be run when main process sends win.webContents.send("mailchimpResponse")
