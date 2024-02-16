@@ -351,6 +351,26 @@ async function v2_submit(formJSON) {
     }
   }
 
+  // TO DO
+  // ADD MEMBER
+
+  // MONITOR ACTIVE TIMEDQUEUES
+  // DESTROY TIMEDQUEUES THAT ARE MARKED DONE ... in timedQueue._next() ?
+
+  // async function m_addMember() {
+  //   console.log("(adding member)");
+  //   response = await addMember(formJSON);
+
+  //   switch (response._status) {
+  //     case 200:
+  //       console.log("(member added)");
+  //       await v2_upload();
+  //       break;
+  //     default:
+  //       console.log(`An error was encountered: ${response._status}`);
+  //   }
+  // }
+
   async function m_checkLastUpdated(last_changed) {
     const tooSoonForMailchimp = isWithinLastMinutes(last_changed, 15);
     if (tooSoonForMailchimp) {
@@ -359,26 +379,27 @@ async function v2_submit(formJSON) {
       createUpdateSubmissionQueue(formJSON);
     } else {
       // send it!
-      // await v2_upload(formJSON);
+      await v2_upload(formJSON);
     }
   }
 
   function createUpdateSubmissionQueue(formJSON) {
     const instance_id = formJSON.member_email;
     const instance = timedQueues.getInstance(instance_id);
-    const delay_time = 1000 * 20; // 20 seconds
-
-    // delay time needs to be extended to 20 minutes
-    //test1 needs to be replaced with v2_upload
+    const delay_time = 1000 * 60 * 20; // 20 minutes
 
     if (!instance) {
       console.log(`(Creating timed queue for - ${instance_id})`);
       timedQueues.createInstance(instance_id);
-      timedQueues.getInstance(instance_id).add(test1, delay_time, [formJSON]);
+      timedQueues
+        .getInstance(instance_id)
+        .add(v2_upload, delay_time, [formJSON]);
       timedQueues.getInstance(instance_id).start();
     } else {
       console.log(`(Found queue for - ${instance_id})`);
-      timedQueues.getInstance(instance_id).add(test1, delay_time, [formJSON]);
+      timedQueues
+        .getInstance(instance_id)
+        .add(v2_upload, delay_time, [formJSON]);
       if (timedQueues.getInstance(instance_id).done) {
         timedQueues.getInstance(instance_id).start();
       }
@@ -713,5 +734,5 @@ ipcMain.handle("addFileMailchimp", async (event, formJSON) => {
 });
 
 ipcMain.handle("submitMailchimp", async (event, formJSON) => {
-  await submit_version_2(formJSON);
+  await v2_submit(formJSON);
 });
