@@ -18,6 +18,10 @@ function getFileManagerFoldersOnClick() {
   window.electron.email.getFileManagerFolders();
 }
 
+function logActiveQueuesBtnOnClick() {
+  window.electron.email.logActiveQueues();
+}
+
 function getMemberBtnOnClick(event) {
   event.preventDefault();
 
@@ -164,6 +168,7 @@ const mailchimpRenderer = {
     const getFileManagerFoldersBtn = document.getElementById(
       "get-file-manager-folders-btn"
     );
+    const logActiveQueuesBtn = document.getElementById("log-active-queues-btn");
     const getMemberBtn = document.getElementById("get-member-btn");
     const addMemberBtn = document.getElementById("add-member-btn");
     const updateMergeFieldsBtn = document.getElementById(
@@ -187,6 +192,7 @@ const mailchimpRenderer = {
       "click",
       getFileManagerFoldersOnClick
     );
+    logActiveQueuesBtn.addEventListener("click", logActiveQueuesBtnOnClick);
     getMemberBtn.addEventListener("click", getMemberBtnOnClick);
     addMemberBtn.addEventListener("click", addMemberBtnOnClick);
     updateMergeFieldsBtn.addEventListener("click", updateMergeFieldsBtnOnClick);

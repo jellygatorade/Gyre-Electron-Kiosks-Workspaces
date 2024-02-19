@@ -90,6 +90,7 @@ class timedQueue {
       this.timeoutId = setTimeout(this.next, this.task.time); // schedule task execution
     } else {
       this.done = true;
+      timedQueues.destroyInstance(this.id); // remove instances reference from static timedQueues
     }
   }
 

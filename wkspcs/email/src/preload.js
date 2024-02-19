@@ -19,6 +19,7 @@ contextBridge.exposeInMainWorld("electron", {
     getLists: () => ipcRenderer.invoke("getListsMailchimp"),
     getFileManagerFolders: () =>
       ipcRenderer.invoke("getFileManagerFoldersMailchimp"),
+    logActiveQueues: () => ipcRenderer.invoke("logActiveQueuesMailchimp"),
     getMember: (formJSON) => ipcRenderer.invoke("getMemberMailchimp", formJSON),
     addMember: (formJSON) => ipcRenderer.invoke("addMemberMailchimp", formJSON),
     updateMergeFields: (formJSON) =>

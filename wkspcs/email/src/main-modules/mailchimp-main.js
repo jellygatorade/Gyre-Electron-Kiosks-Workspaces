@@ -9,6 +9,17 @@ const crypto = require("crypto");
 const win = require("./create-window.js").get();
 
 const timedQueues = require("./timed-delay-queue.js");
+const { log } = require("node:console");
+
+// ---------------------------------------------------
+// debug ---------------------------------------------
+// ---------------------------------------------------
+
+// function logToMain() {
+//   console.log("test logging");
+// }
+
+// setInterval(logToMain, 1000);
 
 // ---------------------------------------------------
 // initialize ----------------------------------------
@@ -31,19 +42,6 @@ function test1(formJSON) {
   console.log("(timed delay func)");
   console.log(formJSON);
 }
-// function test2(str1, str2) {
-//   console.log(str1, str2);
-// }
-
-// timedQueues.createInstance("module");
-// timedQueues.getInstance("module").add(test1, 1000, ["one", "two"]);
-// timedQueues.getInstance("module").add(test1, 1000, ["one", "two"]);
-// timedQueues.getInstance("module").add(test1, 3000);
-// timedQueues.getInstance("module").add(test2, 500, ["something"]);
-
-// timedQueues.getInstance("module").start();
-
-// setTimeout(timedQueues.destroyInstance, 5000, "module");
 
 // ---------------------------------------------------
 // implement mailchimp methods -----------------------
@@ -386,6 +384,7 @@ async function v2_submit(formJSON) {
   function createUpdateSubmissionQueue(formJSON) {
     const instance_id = formJSON.member_email;
     const instance = timedQueues.getInstance(instance_id);
+    // const delay_time = 1000 * 10; // 10 seconds
     const delay_time = 1000 * 60 * 20; // 20 minutes
 
     if (!instance) {
@@ -636,6 +635,10 @@ async function submit(formJSON) {
 // helper functions ----------------------------------
 // ---------------------------------------------------
 
+function logActiveQueues() {
+  console.log(timedQueues.instances);
+}
+
 function handleError(error) {
   // Do something with mailchimp errors
   // Dump to logfile?
@@ -703,6 +706,10 @@ ipcMain.handle("getListsMailchimp", async (event) => {
 
 ipcMain.handle("getFileManagerFoldersMailchimp", async (event) => {
   await getFileManagerFolders();
+});
+
+ipcMain.handle("logActiveQueuesMailchimp", (event) => {
+  logActiveQueues();
 });
 
 ipcMain.handle("getMemberMailchimp", async (event, formJSON) => {
