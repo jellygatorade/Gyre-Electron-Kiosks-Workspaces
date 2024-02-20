@@ -9,6 +9,7 @@
     "./wkspcs/masquerade",
     "./wkspcs/ttsam-single",
     "./wkspcs/ttsam-multi",
+    "./wkspcs/ttsam-virgil-ortiz",
     "./wkspcs/ll-quilts",
     "./wkspcs/email"
   ],
