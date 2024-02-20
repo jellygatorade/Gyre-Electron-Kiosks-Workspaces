@@ -370,12 +370,13 @@ async function v2_submit(formJSON) {
   // }
 
   async function m_checkLastUpdated(last_changed) {
-    const tooSoonForMailchimp = isWithinLastMinutes(last_changed, 15);
+    const tooSoonForMailchimp = isWithinLastMinutes(last_changed, 20);
     if (tooSoonForMailchimp) {
       // too soon!
       // CREATE queue for that address or ADD to queue for that address
       createUpdateSubmissionQueue(formJSON);
     } else {
+      // enough time has passed since last_changed
       // send it!
       await v2_upload(formJSON);
     }
