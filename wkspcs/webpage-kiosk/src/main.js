@@ -2,7 +2,7 @@
 const { app, BrowserWindow } = require("electron");
 
 // Handle ENV requirements
-// require("./main-modules/handle-config.js");
+require("./main-modules/handle-config.js");
 
 const appWindow = require("./main-modules/create-window.js");
 
