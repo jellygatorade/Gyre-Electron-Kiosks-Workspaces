@@ -5,6 +5,7 @@
 /wkspcs/**/src/assets/*
 /wkspcs/**/src/common/assets
 /wkspcs/**/src/turnjs4
+/wkspcs/**/src/config.js
 
 !/wkspcs/**/src/assets/content*
 
