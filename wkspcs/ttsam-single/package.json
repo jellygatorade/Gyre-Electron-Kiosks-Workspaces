@@ -1,5 +1,5 @@
 {
-  "name": "ttsam-single-player",
+  "name": "@wkspcs/ttsam-single-player",
   "version": "1.0.0",
   "description": "Lorem ipsum dolor sit amet.",
   "main": "./src/main.js",

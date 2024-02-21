@@ -1,5 +1,5 @@
 {
-  "name": "ttsam-virgil-ortiz",
+  "name": "@wkspcs/ttsam-virgil-ortiz",
   "version": "1.0.0",
   "description": "Lorem ipsum dolor sit amet.",
   "main": "./src/main.js",
