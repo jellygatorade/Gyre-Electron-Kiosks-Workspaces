@@ -32,18 +32,21 @@ function prepareProd() {
 function prepareDev() {
   console.log("initializing for development");
 
-  // Enable live reload for all the files inside your project directory for Electron too
-  // https://ourcodeworld.com/articles/read/524/how-to-use-live-reload-in-your-electron-project
-  require("electron-reload")(__dirname, {
-    // Note that the path to electron may vary according to the main file
-    // Here we go up several levels to find the electron package folder
-    electron: require(path.join(
-      __dirname,
-      "..",
-      "..",
-      "..",
-      "..",
-      "node_modules/electron"
-    )),
-  });
+  // Enable live reload
+  require("electron-reload")(
+    // paths: a file, directory or glob pattern to watch ...seems to accept a single path, or array of paths
+    [__dirname, path.join(__dirname, "..")],
+    // options, see https://www.npmjs.com/package/electron-reload
+    {
+      // Provide path to electron package folder from this directory
+      electron: require(path.join(
+        __dirname,
+        "..",
+        "..",
+        "..",
+        "..",
+        "node_modules/electron"
+      )),
+    }
+  );
 }
