@@ -12,7 +12,8 @@
     "./wkspcs/ttsam-virgil-ortiz",
     "./wkspcs/ll-quilts",
     "./wkspcs/webpage-kiosk",
-    "./wkspcs/email"
+    "./wkspcs/email",
+    "./wkspcs/env-vars"
   ],
   "author": "Kevin Kane",
   "license": "ISC",
