@@ -14,22 +14,22 @@
           "id": "senora-lynch",
           "video_path": "./assets/video/senora-lynch.mp4",
           "still_path": "./assets/img/senora-lynch-1.jpg",
-          "title": "Senora Lynch",
+          "title": "Senora Lynch (Haliwa-Saponi)",
           "description": "Learn more about Senora Lynch and how she incorporates nature and animals into her ceramic vessels. You can see Lynch working in her home studio."
         },
         {
           "id": "anita-fields",
           "video_path": "./assets/video/anita-fields.mp4",
           "still_path": "./assets/img/anita-fields-small-test.png",
-          "title": "Anita Fields",
+          "title": "Anita Fields (Osage Nation and Muscogee Creek Nation)",
           "description": "Listen to Anita Fields talk about her Osage identity and how it inspired the wedding coat on view."
         },
         {
           "id": "kelly-church",
           "video_path": "./assets/video/kelly-church.mp4",
           "still_path": "./assets/img/kelly-church-1.jpg",
-          "title": "Kelly Church",
-          "description": "Kelly Church shows us how black ash is woven together to create her beautiful egg-shaped baskets."
+          "title": "Kelly Church (Ottawa/Pottawatomi/Matchi-be-nash-she-wish)",
+          "description": "Kelly Church shows us how black ash is woven together to create her beautiful baskets."
         }
       ]
     },
