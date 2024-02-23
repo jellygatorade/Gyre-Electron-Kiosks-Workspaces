@@ -9,17 +9,21 @@ function applyContent(data) {
   }
 
   // Attract View
-  domVars.enAttractTitle.innerHTML = data.en.attract.title;
-  domVars.esAttractTitle.innerHTML = data.es.attract.title;
+  domVars.enAttractTitle1.innerHTML = data.en.attract.title_1;
+  domVars.esAttractTitle1.innerHTML = data.es.attract.title_1;
+  domVars.enAttractTitle2.innerHTML = data.en.attract.title_2;
+  domVars.esAttractTitle2.innerHTML = data.es.attract.title_2;
 
   domVars.enAttractTouchToBegin.innerHTML = data.en.attract.touch_to_begin;
   domVars.esAttractTouchToBegin.innerHTML = data.es.attract.touch_to_begin;
 
   // Home View
-  domVars.enHomeViewTitle.innerHTML = data.en.main.title;
+  domVars.enHomeViewTitle1.innerHTML = data.en.main.title_1;
+  domVars.enHomeViewTitle2.innerHTML = data.en.main.title_2;
   // domVars.enHomeViewSubheading.innerHTML = data.en.main.subheading;
 
-  domVars.esHomeViewTitle.innerHTML = data.es.main.title;
+  domVars.esHomeViewTitle1.innerHTML = data.es.main.title_1;
+  domVars.esHomeViewTitle2.innerHTML = data.es.main.title_2;
   // domVars.esHomeViewSubheading.innerHTML = data.es.main.subheading;
 
   //// Home View - Video Cards

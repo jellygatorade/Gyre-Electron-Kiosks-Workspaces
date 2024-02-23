@@ -1,27 +1,29 @@
 {
-  "attract_video_path": "./assets/video/chocolate.mp4",
+  "attract_video_path": "./assets/video/attract.mp4",
   "en": {
     "attract": {
-      "title": "Encoded Commentary: Artist Spotlight",
+      "title_1": "Encoded Commentary: Artist Spotlight",
+      "title_2": "Virgil Ortiz",
       "touch_to_begin": "TOUCH TO BEGIN"
     },
     "main": {
-      "title": "Encoded Commentary: Artist Spotlight",
+      "title_1": "Encoded Commentary: Artist Spotlight",
+      "title_2": "Virgil Ortiz",
       "subheading": "",
       "toggle_lang_btn": "Español",
       "videos": [
         {
           "id": "artist-and-educator",
-          "video_path": "./assets/video/concert.mp4",
-          "still_path": "./assets/img/senora-lynch-2.jpg",
-          "title": "Virgil Ortiz: An Artist and Educator",
+          "video_path": "./assets/video/virgil-ortiz-main.mp4",
+          "still_path": "./assets/img/virgil-ortiz-2.jpg",
+          "title": "An Artist and Educator",
           "description": "Virgil Ortiz wants to use this work to teach others about what he considers the first American revolution: the Pueblo Revolt of 1680. He discusses how his written story “Revolt 1680/2180” reflects and creates the story in his ceramic vessel."
         },
         {
           "id": "characters-of-convergence",
-          "video_path": "./assets/video/chocolate.mp4",
-          "still_path": "./assets/img/anita-fields-small-test.png",
-          "title": "Virgil Ortiz: The Characters of <i>Convergence</i>",
+          "video_path": "./assets/video/virgil-ortiz-secondary.mp4",
+          "still_path": "./assets/img/virgil-ortiz-1.jpg",
+          "title": "The Characters of <i>Convergence</i>",
           "description": "Listen to Ortiz describe each of the figures seen in this vessel."
         }
       ]
@@ -33,11 +35,13 @@
   "es": {
     "is_available": false,
     "attract": {
-      "title": "!¿Place of Being: Artist Spotlight?",
+      "title_1": "!¿Place of Being: Artist Spotlight?",
+      "title_2": "!¿Virgil Ortiz?",
       "touch_to_begin": "!TOCA PARA COMENZAR"
     },
     "main": {
-      "title": "!¿Place of Being: Artist Spotlight?",
+      "title_1": "!¿Place of Being: Artist Spotlight?",
+      "title_2": "!¿Virgil Ortiz?",
       "subheading": "!¿Lorem ipsum dolor sit amet.?",
       "toggle_lang_btn": "English",
       "videos": []

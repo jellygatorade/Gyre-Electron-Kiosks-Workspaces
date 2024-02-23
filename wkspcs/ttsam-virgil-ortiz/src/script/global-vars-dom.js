@@ -8,8 +8,10 @@ const attractView = document.getElementById("attract-view");
 const attractVideo = document.getElementById("attract-video");
 const attractOverlay = document.getElementById("attract-overlay");
 
-const enAttractTitle = document.getElementById("en-attract-title");
-const esAttractTitle = document.getElementById("es-attract-title");
+const enAttractTitle1 = document.getElementById("en-attract-title-1");
+const esAttractTitle1 = document.getElementById("es-attract-title-1");
+const enAttractTitle2 = document.getElementById("en-attract-title-2");
+const esAttractTitle2 = document.getElementById("es-attract-title-2");
 
 const enAttractTouchToBegin = document.getElementById(
   "en-attract-touch-to-begin"
@@ -23,10 +25,12 @@ const esAttractTouchToBegin = document.getElementById(
 const homeView = document.getElementById("home-view");
 const toggleLangButton = document.getElementById("toggle-lang-button");
 
-const enHomeViewTitle = document.getElementById("en-home-view-title");
+const enHomeViewTitle1 = document.getElementById("en-home-view-title-1");
+const enHomeViewTitle2 = document.getElementById("en-home-view-title-2");
 // const enHomeViewSubheading = document.getElementById("en-home-view-subheading");
 
-const esHomeViewTitle = document.getElementById("es-home-view-title");
+const esHomeViewTitle1 = document.getElementById("es-home-view-title-1");
+const esHomeViewTitle2 = document.getElementById("es-home-view-title-2");
 // const esHomeViewSubheading = document.getElementById("es-home-view-subheading");
 
 //// Home View - Video Cards
@@ -75,16 +79,20 @@ export {
   attractView,
   attractVideo,
   attractOverlay,
-  enAttractTitle,
-  esAttractTitle,
+  enAttractTitle1,
+  esAttractTitle1,
+  enAttractTitle2,
+  esAttractTitle2,
   enAttractTouchToBegin,
   esAttractTouchToBegin,
   // Home View
   homeView,
   toggleLangButton,
-  enHomeViewTitle,
+  enHomeViewTitle1,
+  enHomeViewTitle2,
   // enHomeViewSubheading,
-  esHomeViewTitle,
+  esHomeViewTitle1,
+  esHomeViewTitle2,
   // esHomeViewSubheading,
   //// Home View - Video Cards
   homeViewVideoCardFlexbox,
