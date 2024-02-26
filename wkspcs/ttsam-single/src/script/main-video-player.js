@@ -8,8 +8,8 @@ import { idleTimer } from "./idle-timer-tier-1.js";
 const mainVideoPlayer = {
   // Video path is defined in "./apply-content-ui.js"
 
-  // Choose the video player volume // 50%
-  videoPlayerVolume: 0.5,
+  // Choose the video player volume // 100%
+  videoPlayerVolume: 1.0,
 
   init: function () {
     const playVideoFunctions = this.play.bind(this);

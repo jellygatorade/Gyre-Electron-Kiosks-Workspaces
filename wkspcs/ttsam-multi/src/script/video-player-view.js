@@ -16,7 +16,7 @@ import { fadeBetweenViews } from "./fade-between-views.js";
 import { setupIdleTimer, removeIdleTimer } from "./idle-timer-home.js";
 
 // Set the video player volume
-const videoPlayerVolume = 0.5; // 50%
+const videoPlayerVolume = 1.0; // 100%
 
 function playVideo(path) {
   // Remove the idle timeout from idle-timer-home.js
