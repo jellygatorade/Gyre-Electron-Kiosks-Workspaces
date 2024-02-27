@@ -1,85 +1,22 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu, globalShortcut } = require("electron");
+const { app, BrowserWindow } = require("electron");
 
-const path = require("path");
+const configHandler = require("./main-modules/handle-config.js");
+const appWindow = require("./main-modules/create-window.js");
 
-// Handle .env variables
-require("./main-modules/handle-node-env.js");
+configHandler.init(); // Handle env requirements
 
-let window;
-const createWindow = () => {
-  // Create the window
-  window = new BrowserWindow({
-    x: 50,
-    y: 50,
-    fullscreen: true,
-    // width: 800,
-    // height: 600,
-    webPreferences: {
-      nodeIntegration: false, // is default value after Electron v5
-      contextIsolation: true, // protect against prototype pollution
-      enableRemoteModule: false, // turn off remote
-    },
-  });
+function onAppReady() {
+  appWindow.create(); // creates electron.BrowserWindow and global keyboard shortcuts
 
-  // No application (top bar) menu
-  Menu.setApplicationMenu(null);
-
-  // and load the index.html of the app.
-  window.loadFile(path.join(__dirname, "/index.html"));
-
-  // Register standard "Control+Shift+I" combo to toggle the DevTools on selection window
-  globalShortcut.register("Control+Shift+I", () => {
-    window.webContents.toggleDevTools();
-  });
-
-  // Register standard "Control+R" combo to reload the page.
-  globalShortcut.register("CommandOrControl+R", () => {
-    window.webContents.reload();
-  });
-
-  // Register shortcut - to home
-  globalShortcut.register("Control+1", () => {
-    window.loadFile(path.join(__dirname, "/index.html"));
-  });
-
-  // Register shortcut
-  globalShortcut.register("Control+2", () => {
-    window.loadFile(
-      path.join(__dirname, "turning-test/index-double-covers.html")
-    );
-  });
-
-  // Register shortcut
-  globalShortcut.register("Control+3", () => {
-    window.loadFile(
-      path.join(__dirname, "turning-test/index-double-spread-only.html")
-    );
-  });
-
-  // Register shortcut
-  globalShortcut.register("Control+4", () => {
-    window.loadFile(path.join(__dirname, "turning-test/index-single.html"));
-  });
-
-  // Register shortcut
-  globalShortcut.register("Control+5", () => {
-    window.loadFile(
-      path.join(__dirname, "turnjs4/samples/magazine/index.html")
-    );
-  });
-
-  // Register escape key to quit the app
-  globalShortcut.register("ESC", function () {
-    app.quit();
-  });
-};
+  // require modules that depend on appWindow here
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow();
+  onAppReady();
 
   app.on("activate", () => {
     // On macOS it's common to re-create a window in the app when the

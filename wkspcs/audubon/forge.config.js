@@ -30,29 +30,7 @@ module.exports = {
       config: {},
     },
   ],
-  hooks: {
-    packageAfterCopy: async (
-      config,
-      buildPath,
-      electronVersion,
-      platform,
-      arch
-    ) => {
-      // install dotenv package workaround
-      // electron-forge is not compatible(?) with shared node_modules in npm workspaces
-
-      console.log("Running packageAfterCopy hook");
-
-      const src = path.join(__dirname, "src");
-      const dist = buildPath;
-
-      console.log(`buildPath is ${dist}`);
-
-      child_process.execSync(`cd ${dist} && npm install --omit=dev`, {
-        stdio: [0, 1, 2],
-      });
-    },
-  },
+  hooks: {},
   plugins: [
     {
       name: "@electron-forge/plugin-auto-unpack-natives",
