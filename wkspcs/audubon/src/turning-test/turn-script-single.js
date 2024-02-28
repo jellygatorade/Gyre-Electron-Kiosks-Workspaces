@@ -1,3 +1,12 @@
+// import { interactionEvents } from "./interaction-events.js";
+
+// interactionEvents.init();
+// console.log(
+//   interactionEvents.clickEvent,
+//   interactionEvents.pressDownEvent,
+//   interactionEvents.releaseEvent
+// );
+
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 
