@@ -1,3 +1,13 @@
+// To do
+// write a function to get first and last views from pages
+// dynamically populate pages?
+// responsive sizing
+// get corner positions -> create overlay makers
+//
+// footer buttons
+// modal
+// put within larger app, UIViewController
+
 // const prevBtn = document.getElementById("prev-btn");
 // const nextBtn = document.getElementById("next-btn");
 
@@ -81,7 +91,8 @@ $(book).bind("turning", function (e, page, c) {
   }
 });
 
-// disable next/prev buttons on first and last pages
+// disable next/prev buttons on first and last views
+
 function setTurnControls(view) {
   if (compareArrays(view, [2, 3])) prevBtn.disabled = true;
   else prevBtn.disabled = false;
