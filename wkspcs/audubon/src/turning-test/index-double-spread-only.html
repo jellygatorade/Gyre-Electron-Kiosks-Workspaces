@@ -13,25 +13,29 @@
 
   <body>
     <div class="controls-overlay">
-      <div class="controls-margin">
+      <!-- <div class="controls-margin">
         <button id="prev-btn">Prev</button>
         <button id="next-btn">Next</button>
-      </div>
+      </div> -->
       <div class="controls-margin">
         <button id="zoom-out-btn">Zoom -</button>
         <button id="zoom-in-btn">Zoom +</button>
+        <button id="zoom-toggle-btn">Zoom</button>
       </div>
     </div>
 
-    <!-- <div class="view-margin">
-      <div class="flex-vertical">
-        <div class="flex-horizontal"> </div>
-      </div>
-    </div> -->
-
     <div id="zoom-viewport">
-      <div class="zoom-container" id="zoom-container">
-        <div class="flipbook animated" id="book">
+      <div id="zoom-container" class="zoom-container">
+        <div id="book" class="flipbook animated">
+          <!-- Next button -->
+          <div ignore="1">
+            <button id="next-button" class="next-button"></button>
+          </div>
+          <!-- Previous button -->
+          <div ignore="1">
+            <button id="previous-button" class="previous-button"></button>
+          </div>
+          <!-- Pages -->
           <div class="page">
             <img src="./pages/01.jpg" draggable="false" alt="" />
           </div>
@@ -89,10 +93,12 @@
     <!-- Local Scripts -->
 
     <script type="text/javascript" src="./scripts/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="./scripts/turn.js"></script>
-    <script type="text/javascript" src="./scripts/zoom.js"></script>
+    <!-- <script type="text/javascript" src="./scripts/turn.js"></script>
+    <script type="text/javascript" src="./scripts/zoom.js"></script> -->
     <!-- <script type="text/javascript" src="./scripts/turn.min.js"></script>
     <script type="text/javascript" src="./scripts/zoom.min.js"></script> -->
+    <script type="text/javascript" src="../turnjs4/lib/turn.js"></script>
+    <script type="text/javascript" src="../turnjs4/lib/zoom.js"></script>
 
     <script
       type="text/javascript"

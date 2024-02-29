@@ -1,16 +1,29 @@
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
+// const prevBtn = document.getElementById("prev-btn");
+// const nextBtn = document.getElementById("next-btn");
+
+const nextBtn = document.getElementById("next-button");
+const prevBtn = document.getElementById("previous-button");
 
 const zoomInBtn = document.getElementById("zoom-in-btn");
 const zoomOutBtn = document.getElementById("zoom-out-btn");
+const zoomToggleBtn = document.getElementById("zoom-toggle-btn");
 
 const book = document.getElementById("book");
 const firstPage = document.getElementsByClassName("page")[2];
 const firstPageImg = firstPage.getElementsByTagName("img")[0];
 
+const animDuration = 500; // ms
+
+// ---------------------------------------------------------------
+// Turn ----------------------------------------------------------
+// ---------------------------------------------------------------
+
 const pageWidth = firstPageImg.naturalWidth;
 const pageHeight = firstPageImg.naturalHeight;
-const pageScale = 0.5;
+const pageScale = 0.6;
+
+nextBtn.style.height = pageScale * pageHeight + "px";
+prevBtn.style.height = pageScale * pageHeight + "px";
 
 $(book).turn({
   // acceleration: true,
@@ -18,7 +31,26 @@ $(book).turn({
   width: pageScale * pageWidth * 2,
   height: pageScale * pageHeight,
   display: "double",
-  page: 2, // start open
+  page: 2, // initialize open
+  when: {
+    //zooming
+    //pressed
+    //released
+    //start
+    //turning
+    //turned
+    //destroying
+
+    turned: function (event, page, view) {
+      setTurnControls(view);
+
+      // $(this).turn('center');
+
+      if (page === 2 || page === 3) {
+        $(this).turn("peel", "tr");
+      }
+    },
+  },
 });
 
 $(prevBtn).on("click", prevBtnOnClick);
@@ -33,9 +65,7 @@ function nextBtnOnClick() {
   $(book).turn("next");
 }
 
-/**
- * Disallow page turning to first and last pages
- */
+// disallow page turning to first and last pages
 
 const length = $(book).turn("pages");
 
@@ -46,26 +76,33 @@ $(book).bind("start", function (e, data, c) {
 });
 
 $(book).bind("turning", function (e, page, c) {
-  if (page == 1 || page == length) {
+  if (page === 1 || page === length) {
     e.preventDefault();
   }
 });
 
-/**
- * Zoom
- *
- * Following
- * How to get zoom working with turn.js
- * https://stackoverflow.com/questions/17607337/how-to-get-zoom-working-with-turn-js
- *
- * See also
- * http://www.turnjs.com/samples/magazine/
- * https://github.com/blasten/turn.js/issues/603
- */
+// disable next/prev buttons on first and last pages
+function setTurnControls(view) {
+  if (compareArrays(view, [2, 3])) prevBtn.disabled = true;
+  else prevBtn.disabled = false;
 
-/**
- * Zoom Setup
- */
+  if (compareArrays(view, [8, 9])) nextBtn.disabled = true;
+  else nextBtn.disabled = false;
+}
+
+// ---------------------------------------------------------------
+// Zoom
+//
+// Following
+// How to get zoom working with turn.js
+// https://stackoverflow.com/questions/17607337/how-to-get-zoom-working-with-turn-js
+//
+// See also
+// http://www.turnjs.com/samples/magazine/
+// https://github.com/blasten/turn.js/issues/603
+// ---------------------------------------------------------------
+
+// Zoom Setup ----------------------------------------------------
 
 const zoomViewport = document.getElementById("zoom-viewport");
 const zoomContainer = document.getElementById("zoom-container");
@@ -82,50 +119,24 @@ book.style.height = pageScale * pageHeight + "px";
 $(zoomViewport).zoom({
   flipbook: $(book),
   max: 2,
-  duration: 500,
-  inclination: 500,
+  duration: animDuration,
   when: {
-    // tap: function (event) {
-    //   if ($(this).zoom("value") == 1) {
-    //     $(book).removeClass("animated");
+    // tap
+    // doubleTap
+    // resize
+    // zoomIn
+    // zoomOut
+    // swipeLeft
+    // swipeRight
 
-    //     let tap = {
-    //       x: event.clientX,
-    //       y: event.clientY,
-    //     };
-
-    //     $(this).zoom("zoomIn", tap);
-    //   } else {
-    //     $(this).zoom("zoomOut");
-    //   }
-    // },
-
-    // doubleTap: function (event) {
-    //   if ($(this).zoom("value") == 1) {
-    //     $(book).removeClass("animated");
-
-    //     let tap = {
-    //       x: event.clientX,
-    //       y: event.clientY,
-    //     };
-
-    //     $(this).zoom("zoomIn", tap);
-    //   } else {
-    //     $(this).zoom("zoomOut");
-    //   }
-    // },
-
-    resize: function () {},
-
-    zoomIn: function () {
-      // $(".magazine").addClass("zoom-in");
+    zoomIn: function (event) {
       $(book).removeClass("animated").addClass("zoom-in");
     },
 
-    zoomOut: function () {
-      // setTimeout(function () {
-      //   $(book).addClass("animated");
-      // }, 0);
+    zoomOut: function (event) {
+      const view = $(book).turn("view");
+      setTurnControls(view);
+
       setTimeout(function () {
         $(book).addClass("animated").removeClass("zoom-in");
         resizeViewport();
@@ -139,58 +150,95 @@ function resizeViewport() {
     height = $(window).height();
   // options = $('.magazine').turn('options');
 
-  // zoomContainer.style.position = "relative";
-  // zoomContainer.style.left = "100px";
-  // zoomContainer.style.top = "100px";
+  // $(book).removeClass("animated");
 
   $(zoomViewport)
     .css({
       width: width,
       height: height,
-      // width: width - 200,
-      // height: height - 200,
     })
     .zoom("resize");
+
+  // $(book).addClass("animated");
 }
 resizeViewport();
 
-/**
- * Zoom Functions
- */
+// Zoom functions ------------------------------------------------
 
-///////////////// Refactor here
-$(zoomViewport).bind("zoom.doubleTap", zoomTo);
+if ($.isTouch) {
+  console.log("isTouch");
+  $(zoomViewport).bind("zoom.doubleTap", zoomTo);
+} else {
+  console.log("!isTouch");
+  $(zoomViewport).bind("zoom.tap", zoomTo);
+}
+
+$(zoomInBtn).on("click", zoomInBtnOnClick);
+$(zoomOutBtn).on("click", zoomOutBtnOnClick);
+$(zoomToggleBtn).on("click", zoomToggleBtnOnClick);
+
+function zoomInBtnOnClick(event) {
+  if ($(zoomViewport).zoom("value") === 1) {
+    disableTurnControls();
+    $(zoomViewport).zoom("zoomIn");
+    debounce(event.currentTarget);
+  }
+}
+
+function zoomOutBtnOnClick(event) {
+  if ($(zoomViewport).zoom("value") !== 1) {
+    $(zoomViewport).zoom("zoomOut");
+    debounce(event.currentTarget);
+  }
+}
+
+function zoomToggleBtnOnClick(event) {
+  if ($(zoomViewport).zoom("value") === 1) {
+    disableTurnControls();
+    $(zoomViewport).zoom("zoomIn");
+  } else {
+    $(zoomViewport).zoom("zoomOut");
+  }
+
+  debounce(event.currentTarget);
+}
+
+// Helper functions ------------------------------------------------
 
 function zoomTo(event) {
   setTimeout(function () {
-    if ($(zoomViewport).data().regionClicked) {
-      $(zoomViewport).data().regionClicked = false;
+    if ($(zoomViewport).zoom("value") === 1) {
+      disableTurnControls();
+      $(zoomViewport).zoom("zoomIn", event); // passing event zooms to location clicked
     } else {
-      if ($(zoomViewport).zoom("value") == 1) {
-        $(zoomViewport).zoom("zoomIn", event);
-      } else {
-        $(zoomViewport).zoom("zoomOut");
-      }
+      $(zoomViewport).zoom("zoomOut");
     }
   }, 1);
 }
-///////////////////
 
-$(zoomInBtn).on("click", zoomInBtnOnClick);
-
-$(zoomOutBtn).on("click", zoomOutBtnOnClick);
-
-function zoomInBtnOnClick() {
-  // $(book).removeClass("animated");
-
-  let center = {
-    x: book.clientWidth / 4,
-    y: book.clientHeight / 2,
-  };
-
-  $(zoomViewport).zoom("zoomIn", center);
+function disableTurnControls() {
+  prevBtn.disabled = true;
+  nextBtn.disabled = true;
 }
 
-function zoomOutBtnOnClick() {
-  $(zoomViewport).zoom("zoomOut");
+function debounce(btn) {
+  btn.disabled = true;
+  setTimeout(enable, animDuration, btn);
+}
+
+function enable(btn) {
+  btn.disabled = false;
+}
+
+function compareArrays(a, b) {
+  if (a.length !== b.length) return false;
+  else {
+    // Comparing each element of your array
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

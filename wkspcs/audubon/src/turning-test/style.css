@@ -1,6 +1,8 @@
-/* * {
-  box-sizing: border-box;
-} */
+:root {
+  --white: #ffffff;
+  --ncma-orange: #e0592a;
+  --transparent: rgba(0, 0, 0, 0);
+}
 
 html,
 body {
@@ -20,26 +22,6 @@ body {
   padding: 1rem;
 }
 
-/* .view-margin {
-  height: 100%;
-  padding: 4rem;
-}
-
-.flex-horizontal {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-vertical {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
-
 /*
 .zoom-viewport {
 } 
@@ -53,32 +35,54 @@ body {
 }
 
 .flipbook {
-  height: 100%;
-  width: 100%;
-
-  /* -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none; */
-  /* user-select: none; */
-
-  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+  /* height: 100%;
+  width: 100%; */
 }
 
 .animated {
-  -webkit-transition: margin-left 0.5s;
-  -moz-transition: margin-left 0.5s;
-  -ms-transition: margin-left 0.5s;
-  -o-transition: margin-left 0.5s;
   transition: margin-left 0.5s;
 }
 
+.flipbook .next-button,
+.flipbook .previous-button {
+  width: 22px;
+  /* height: 600px; */
+  position: absolute;
+  top: 0;
+  border: 1px solid gray;
+  background-color: var(--transparent);
+  transition: all 0.3s ease-in-out;
+}
+
+.flipbook .next-button:hover,
+.flipbook .previous-button:hover {
+  border: 1px solid var(--ncma-orange);
+}
+
+.flipbook .next-button:disabled,
+.flipbook .previous-button:disabled {
+  border: 1px solid var(--transparent);
+}
+
+.flipbook .next-button {
+  right: -22px;
+  border-radius: 0 15px 15px 0;
+}
+
+.flipbook .previous-button {
+  left: -22px;
+  border-radius: 15px 0 0 15px;
+}
+
 .page {
-  /* background-color: white;
+  user-select: none;
+
+  background-image: url("./pages/01.jpg"); /* Backside page image for display: "single" */
+  /* background-color: black; */
+  /* background-color: white; */
+  /* background-size: 100% 100%; */
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
 }
 
 .page img {
@@ -86,11 +90,4 @@ body {
   height: 100%;
   /* user-select: none;
   margin: 0; */
-}
-
-/* Backside page image for display: "single" */
-.page {
-  background-image: url("./pages/01.jpg");
-  /* background-color: black; */
-  background-repeat: no-repeat;
 }
