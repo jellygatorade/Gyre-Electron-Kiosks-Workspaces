@@ -25,6 +25,11 @@ $(book).turn({
   // gradients: false,
   // page: 1,
   // pages: 6,
+  when: {
+    turned: function () {
+      console.log(`view is ${$(book).turn("view")}`);
+    },
+  },
 });
 
 $(prevBtn).on("click", prevBtnOnClick);

@@ -28,6 +28,14 @@ $(book).turn({
   width: pageScale * pageWidth,
   height: pageScale * pageHeight,
   display: "single",
+  when: {
+    turned: function () {
+      const pages = $(book).turn("pages");
+      const view = $(book).turn("view");
+      console.log(`view is: ${view}, and typeof view is: ${typeof view}`);
+      console.log(pages);
+    },
+  },
 });
 
 $(prevBtn).on("click", prevBtnOnClick);
