@@ -1,5 +1,5 @@
 {
-  "attract_video_path": "./assets/video/concert.mp4",
+  "attract_video_path": "./assets/video/attract.mp4",
   "en": {
     "attract": {
       "title": "Discovering Legacies",
@@ -12,8 +12,8 @@
       "videos": [
         {
           "id": "1",
-          "video_path": "./assets/video/chocolate.mp4",
-          "still_path": "./assets/img/lauren-appelbaum-1.jpg",
+          "video_path": "./assets/video/welcome.mp4",
+          "still_path": "./assets/img/welcome-1.jpg",
           "title": "Welcome to Layered Legacies",
           "description": "Listen to staff from MESDA and the NCMA discuss the meaning of this exhibition and why quilting is an important art form with a layered history."
         },
