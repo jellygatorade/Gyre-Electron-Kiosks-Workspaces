@@ -1,4 +1,4 @@
-import * as domVars from "./global-vars-dom.js";
+import * as domVars from "../global-vars-dom.js";
 import { fadeIn, fadeOut } from "./fade-in-out-elements.js";
 
 function fadeBetweenViews(tofadeout, tofadein) {

@@ -1,8 +1,20 @@
 import { callFetchCreateUI } from "./fetch.js";
-import { attractViewInitFns } from "./attract-view.js";
-import { applyLanguage, setLanguage, lang } from "./language-switcher.js";
+import { attractViewInit } from "./attract-view.js";
+import { mainMenuInit } from "./main-menu-view.js";
+import { watchMenuInit } from "./watch-menu-view.js";
+import { readViewInit } from "./read-view.js";
+import {
+  applyLanguage,
+  setLanguage,
+  lang,
+  langToggle,
+} from "./language-switcher.js";
+import { views } from "./initialize-views.js";
 
-attractViewInitFns();
+attractViewInit();
+mainMenuInit();
+watchMenuInit();
+readViewInit();
 callFetchCreateUI();
 
 // Determine if there was a language previously set
@@ -12,3 +24,9 @@ if (localStorage.getItem("langState")) {
 
 // Apply the language specified in current "langState"
 applyLanguage(lang.langState);
+
+// Set up toggle lang button listeners
+langToggle.init();
+
+// Set up UI macro state management and fade in initial view
+views.init();

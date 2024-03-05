@@ -1,18 +1,7 @@
-import {
-  homeView,
-  videoPlayerView,
-  videoPlayerControls,
-  videoPlayerReturnHomeBtn,
-  videoPlayerPlaybackControls,
-  videoPlayerPlayPauseBtn,
-  videoPlayerPlayPauseBtnIcon,
-  videoPlayerSeekBar,
-  videoPlayerVideo,
-} from "./global-vars-dom.js";
-
-import { fadeIn, fadeOut } from "./fade-in-out-elements.js";
-import { fadeBetweenViews } from "./fade-between-views.js";
-
+import { dom } from "./dom.js";
+import { UIViewController } from "./ui-macro-state/ui-view-controller.js";
+import { animationHandler } from "./ui-macro-state/animation-handler.js";
+import { views } from "./initialize-views.js";
 import { setupIdleTimer, removeIdleTimer } from "./idle-timer-home.js";
 
 // Set the video player volume
@@ -23,19 +12,19 @@ function playVideo(path) {
   removeIdleTimer();
 
   // call HTMLMediaElement.load() method to reset the <video> element to its initial state
-  videoPlayerVideo.load();
+  dom.videoPlayerVideo.load();
 
   // apply the videoPath variable to a source element's src tag within the video element
-  // videoPlayerVideo.insertAdjacentHTML(
+  // dom.videoPlayerVideo.insertAdjacentHTML(
   //   "afterbegin",
   //   '<source id="videoSource" src="' + path + '" type="video/mp4">'
   // );
 
   // apply the videoPath variable to a source element's src tag
-  videoPlayerVideo.firstElementChild.src = path;
+  dom.videoPlayerVideo.firstElementChild.src = path;
 
   // Set video's volume level
-  videoPlayerVideo.volume = videoPlayerVolume;
+  dom.videoPlayerVideo.volume = videoPlayerVolume;
 
   //Define clickEvent variable so that buttons work on 'click' events in desktop browsers and on 'touchstart' events on touchscreens
   var clickEvent = (function () {
@@ -56,33 +45,44 @@ function playVideo(path) {
   })();
 
   //Make the video player view visible
-  fadeBetweenViews(homeView, videoPlayerView);
+  // fadeBetweenViews(dom.homeView, dom.videoPlayerView);
+  UIViewController.setView(views.videoPlayer);
 
   //Define reset function to reset the page to 'home' status
   function pageReset() {
     pauseVideoFunctions();
 
-    fadeBetweenViews(videoPlayerView, homeView);
+    // fadeBetweenViews(dom.videoPlayerView, dom.homeView);
+    UIViewController.setView(views.watchMenu);
 
-    videoPlayerVideo.currentTime = 0;
-    videoPlayerSeekBar.value = 0;
+    dom.videoPlayerVideo.currentTime = 0;
+    dom.videoPlayerSeekBar.value = 0;
 
-    videoPlayerVideo.firstElementChild.src = "";
+    dom.videoPlayerVideo.firstElementChild.src = "";
 
-    fadeOut(videoPlayerReturnHomeBtn);
-    fadeOut(videoPlayerControls);
+    animationHandler.fadeOut(dom.videoPlayerReturnHomeBtn);
+    animationHandler.fadeOut(dom.videoPlayerControls);
 
     // Remove the assigned event listeners
-    videoPlayerView.removeEventListener(
+    dom.videoPlayerView.removeEventListener(
       clickEvent,
       displayControlsUserInteraction
     );
-    videoPlayerPlayPauseBtn.removeEventListener(clickEvent, playPauseBtnAction);
-    videoPlayerVideo.removeEventListener("ended", pageReset);
-    videoPlayerReturnHomeBtn.removeEventListener(clickEvent, pageReset);
-    videoPlayerSeekBar.removeEventListener("input", seekBarInput);
-    videoPlayerSeekBar.removeEventListener(pressDownEvent, pauseVideoFunctions);
-    videoPlayerSeekBar.removeEventListener(releaseEvent, playVideoFunctions);
+    dom.videoPlayerPlayPauseBtn.removeEventListener(
+      clickEvent,
+      playPauseBtnAction
+    );
+    dom.videoPlayerVideo.removeEventListener("ended", pageReset);
+    dom.videoPlayerReturnHomeBtn.removeEventListener(clickEvent, pageReset);
+    dom.videoPlayerSeekBar.removeEventListener("input", seekBarInput);
+    dom.videoPlayerSeekBar.removeEventListener(
+      pressDownEvent,
+      pauseVideoFunctions
+    );
+    dom.videoPlayerSeekBar.removeEventListener(
+      releaseEvent,
+      playVideoFunctions
+    );
 
     // Remove data from videoInterval and timer
     videoInterval = null;
@@ -93,10 +93,10 @@ function playVideo(path) {
   }
 
   //Navigate back to home on video end
-  videoPlayerVideo.addEventListener("ended", pageReset);
+  dom.videoPlayerVideo.addEventListener("ended", pageReset);
 
   //Navigate back to home on returnHome click
-  videoPlayerReturnHomeBtn.addEventListener(clickEvent, pageReset);
+  dom.videoPlayerReturnHomeBtn.addEventListener(clickEvent, pageReset);
 
   //Display controls for 5 seconds on page load then fade
   let timer;
@@ -104,42 +104,45 @@ function playVideo(path) {
 
   function timeFadeOut() {
     timer = setTimeout(function () {
-      fadeOut(videoPlayerControls);
-      fadeOut(videoPlayerReturnHomeBtn);
+      animationHandler.fadeOut(dom.videoPlayerControls);
+      animationHandler.fadeOut(dom.videoPlayerReturnHomeBtn);
       console.log("delayed fade execute");
     }, timeVisible);
   }
 
   timeFadeOut();
 
-  // Display controls on user interaction with videoPlayerView
-  // videoPlayerView equivalent to screenDiv in the original SpeedStick.mp4/Peruvian Vessel HTML5 video app
+  // Display controls on user interaction with dom.videoPlayerView
+  // dom.videoPlayerView equivalent to screenDiv in the original SpeedStick.mp4/Peruvian Vessel HTML5 video app
   // (takes up full viewport and is root node of all video player elements so all events will bubble to it unless stopped)
-  videoPlayerView.addEventListener(clickEvent, displayControlsUserInteraction);
+  dom.videoPlayerView.addEventListener(
+    clickEvent,
+    displayControlsUserInteraction
+  );
 
   function displayControlsUserInteraction(event) {
     //console.log(event.target);
     clearTimeout(timer);
     if (
-      videoPlayerPlaybackControls.contains(event.target) ||
-      videoPlayerReturnHomeBtn.contains(event.target) ||
-      videoPlayerPlayPauseBtn.contains(event.target)
+      dom.videoPlayerPlaybackControls.contains(event.target) ||
+      dom.videoPlayerReturnHomeBtn.contains(event.target) ||
+      dom.videoPlayerPlayPauseBtn.contains(event.target)
     ) {
       timeFadeOut();
       console.log("1");
       // add event.stopPropagation() here?
       //
-      // videoPlayerView equivalent to screenDiv in the original SpeedStick.mp4/Peruvian Vessel HTML5 video app
-    } else if (videoPlayerView.contains(event.target)) {
-      //if (videoPlayerControls.style.visibility == "hidden") {
-      if (videoPlayerControls.classList.contains("invisible")) {
-        fadeIn(videoPlayerControls);
-        fadeIn(videoPlayerReturnHomeBtn);
+      // dom.videoPlayerView equivalent to screenDiv in the original SpeedStick.mp4/Peruvian Vessel HTML5 video app
+    } else if (dom.videoPlayerView.contains(event.target)) {
+      //if (dom.videoPlayerControls.style.visibility == "hidden") {
+      if (dom.videoPlayerControls.classList.contains("invisible")) {
+        animationHandler.fadeIn(dom.videoPlayerControls);
+        animationHandler.fadeIn(dom.videoPlayerReturnHomeBtn);
         timeFadeOut();
         console.log("2");
       } else {
-        fadeOut(videoPlayerControls);
-        fadeOut(videoPlayerReturnHomeBtn);
+        animationHandler.fadeOut(dom.videoPlayerControls);
+        animationHandler.fadeOut(dom.videoPlayerReturnHomeBtn);
         console.log("3");
       }
     }
@@ -148,56 +151,57 @@ function playVideo(path) {
   //define play video functions
   let videoInterval;
   function playVideoFunctions() {
-    videoPlayerVideo.play();
+    dom.videoPlayerVideo.play();
     videoInterval = setInterval(calcVideoProgressAndUpdateSeekBar, 25);
-    videoPlayerPlayPauseBtnIcon.classList.add("fa-pause");
-    videoPlayerPlayPauseBtnIcon.classList.remove("fa-play");
+    dom.videoPlayerPlayPauseBtnIcon.classList.add("fa-pause");
+    dom.videoPlayerPlayPauseBtnIcon.classList.remove("fa-play");
   }
 
   //define pause video functions
   function pauseVideoFunctions() {
-    videoPlayerVideo.pause();
+    dom.videoPlayerVideo.pause();
     clearInterval(videoInterval);
-    videoPlayerPlayPauseBtnIcon.classList.add("fa-play");
-    videoPlayerPlayPauseBtnIcon.classList.remove("fa-pause");
+    dom.videoPlayerPlayPauseBtnIcon.classList.add("fa-play");
+    dom.videoPlayerPlayPauseBtnIcon.classList.remove("fa-pause");
   }
 
   //play and pause functions for playPause button
-  videoPlayerPlayPauseBtn.addEventListener(clickEvent, playPauseBtnAction);
+  dom.videoPlayerPlayPauseBtn.addEventListener(clickEvent, playPauseBtnAction);
 
   function playPauseBtnAction() {
-    if (videoPlayerVideo.paused == true) {
+    if (dom.videoPlayerVideo.paused == true) {
       playVideoFunctions();
-      fadeOut(videoPlayerReturnHomeBtn);
+      animationHandler.fadeOut(dom.videoPlayerReturnHomeBtn);
     } else {
       pauseVideoFunctions();
-      fadeIn(videoPlayerReturnHomeBtn);
+      animationHandler.fadeIn(dom.videoPlayerReturnHomeBtn);
     }
   }
 
   //functions for the seekBar
   function seekBarInput() {
-    var time = videoPlayerVideo.duration * (videoPlayerSeekBar.value / 100);
-    videoPlayerVideo.currentTime = time;
+    var time =
+      dom.videoPlayerVideo.duration * (dom.videoPlayerSeekBar.value / 100);
+    dom.videoPlayerVideo.currentTime = time;
   }
 
-  videoPlayerSeekBar.addEventListener("input", seekBarInput);
+  dom.videoPlayerSeekBar.addEventListener("input", seekBarInput);
 
-  videoPlayerSeekBar.addEventListener(pressDownEvent, pauseVideoFunctions);
+  dom.videoPlayerSeekBar.addEventListener(pressDownEvent, pauseVideoFunctions);
 
-  videoPlayerSeekBar.addEventListener(releaseEvent, playVideoFunctions);
+  dom.videoPlayerSeekBar.addEventListener(releaseEvent, playVideoFunctions);
 
   // seekBar function used with setInterval() during playVideoFunctions()
   function calcVideoProgressAndUpdateSeekBar() {
     var value =
-      (100 / videoPlayerVideo.duration) * videoPlayerVideo.currentTime;
-    videoPlayerSeekBar.value = value;
+      (100 / dom.videoPlayerVideo.duration) * dom.videoPlayerVideo.currentTime;
+    dom.videoPlayerSeekBar.value = value;
   }
 
   // Begin playback
   playVideoFunctions();
-  fadeIn(videoPlayerControls);
-  fadeIn(videoPlayerReturnHomeBtn);
+  animationHandler.fadeIn(dom.videoPlayerControls);
+  animationHandler.fadeIn(dom.videoPlayerReturnHomeBtn);
 }
 
 export { playVideo };

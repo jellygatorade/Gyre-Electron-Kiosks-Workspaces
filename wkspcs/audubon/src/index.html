@@ -26,18 +26,18 @@
   </head>
 
   <body
-    class="h-full w-full overflow-hidden p-16 bg-black text-white font-CaseTextRegular"
+    class="h-full w-full overflow-hidden bg-black text-white font-CaseTextRegular"
   >
     <!-- Fade Between Views Overlay -->
     <div
       id="fade-between-views-overlay"
-      class="z-[5000] absolute top-0 left-0 h-full w-full bg-black invisible opacity-0 transition-all duration-300"
+      class="z-[5000] absolute top-0 left-0 h-full w-full bg-black invisible opacity-0 pointer-events-none transition-all duration-300"
     ></div>
 
     <!-- Attract View -->
     <div
       id="attract-view"
-      class="z-[300] absolute top-0 left-0 h-full w-full bg-black visible opacity-100 transition-all duration-300"
+      class="z-[300] absolute top-0 left-0 h-full w-full bg-black invisible opacity-0 pointer-events-none transition-all duration-300"
     >
       <!-- Video player -->
       <video id="attract-video" class="z-[350] absolute min-h-full"></video>
@@ -64,40 +64,105 @@
       </div>
     </div>
 
-    <!-- Home View -->
+    <!-- Main Menu View -->
     <div
-      id="home-view"
-      class="flex flex-col h-full z-[200] relative top-0 left-0"
+      id="main-menu-view"
+      class="h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300"
     >
-      <!-- Home View Header -->
+      <div>
+        <button
+          id="main-menu-watch-button"
+          class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+        >
+          <span lang="en" id="en-main-menu-watch">en-main-menu-watch</span>
+          <span lang="es" id="es-main-menu-watch">es-main-menu-watch</span>
+        </button>
+        <button
+          id="main-menu-read-button"
+          class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+        >
+          <span lang="en" id="en-main-menu-read">en-main-menu-read</span>
+          <span lang="es" id="es-main-menu-read">es-main-menu-read</span>
+        </button>
+      </div>
+      <div>
+        <button
+          id="main-menu-back-button"
+          class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+          ><i class="fas fa-caret-left"></i>
+          <span lang="en" id="en-main-menu-back">en-main-menu-back</span>
+          <span lang="es" id="es-main-menu-back"
+            >es-main-menu-back</span
+          ></button
+        >
+        <button
+          id="main-menu-toggle-lang-button"
+          class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+        >
+          <span lang="en" id="en-main-menu-toggle-lang"
+            >en-main-menu-toggle-lang</span
+          >
+          <span lang="es" id="es-main-menu-toggle-lang"
+            >es-main-menu-toggle-lang</span
+          >
+        </button>
+      </div>
+      <!-- <button id="main-menu-watch-btn">Back</button> -->
+    </div>
+
+    <!-- Watch Menu View -->
+    <div
+      id="watch-menu-view"
+      class="flex flex-col h-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300"
+    >
+      <!-- Watch Menu Header -->
       <div class="grow-0">
         <header>
           <div class="flex justify-between items-center pb-3">
             <h1
               lang="en"
-              id="en-home-view-title"
+              id="en-watch-menu-title"
               class="font-CaseTextMedium text-3xl tracking-wide"
             ></h1>
             <h1
               lang="es"
-              id="es-home-view-title"
+              id="es-watch-menu-title"
               class="font-CaseTextMedium text-3xl tracking-wide"
             ></h1>
-            <button
-              id="toggle-lang-button"
-              class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
-            >
-              Español
-            </button>
+            <div>
+              <button
+                id="watch-menu-back-button"
+                class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+              >
+                <i class="fas fa-caret-left"></i>
+                <span lang="en" id="en-watch-menu-back"
+                  >en-watch-menu-back</span
+                >
+                <span lang="es" id="es-watch-menu-back"
+                  >es-watch-menu-back</span
+                >
+              </button>
+              <button
+                id="watch-menu-toggle-lang-button"
+                class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+              >
+                <span lang="en" id="en-watch-menu-toggle-lang"
+                  >en-watch-menu-toggle-lang</span
+                >
+                <span lang="es" id="es-watch-menu-toggle-lang"
+                  >es-watch-menu-toggle-lang</span
+                >
+              </button>
+            </div>
           </div>
           <h2
             lang="en"
-            id="en-home-view-subheading"
+            id="en-watch-menu-subheading"
             class="py-2 font-CaseTextLight text-lg tracking-wide"
           ></h2>
           <h2
             lang="es"
-            id="es-home-view-subheading"
+            id="es-watch-menu-subheading"
             class="py-2 font-CaseTextLight text-lg tracking-wide"
           ></h2>
         </header>
@@ -105,7 +170,7 @@
 
       <div class="grow overflow-y-auto webkit-scrollbar">
         <div
-          id="home-view-video-card-flexbox"
+          id="watch-menu-video-card-flexbox"
           class="pt-2 flex flex-col justify-start items-start"
         >
           <!-- Video Card Prototype (for cloning) -->
@@ -190,7 +255,7 @@
     <!-- Video Player View -->
     <div
       id="video-player-view"
-      class="z-[100] bg-black absolute top-0 left-0 h-full w-full invisible opacity-0 transition-all duration-300"
+      class="z-[100] bg-black absolute top-0 left-0 h-full w-full invisible opacity-0 pointer-events-none transition-all duration-300"
     >
       <div
         id="video-player-controls"
@@ -231,8 +296,33 @@
       </video>
     </div>
 
+    <!-- Read View (Turn.js)-->
+    <div
+      id="read-view"
+      class="h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300"
+    >
+      <h1>Turn View</h1>
+      <button
+        id="read-view-back-button"
+        class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+        ><i class="fas fa-caret-left"></i>
+        <span lang="en" id="en-read-view-back">en-read-view-back</span>
+        <span lang="es" id="es-read-view-back">es-read-view-back</span>
+      </button>
+      <button
+        id="read-view-toggle-lang-button"
+        class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+      >
+        <span lang="en" id="en-read-view-toggle-lang"
+          >en-read-view-toggle-lang</span
+        >
+        <span lang="es" id="es-read-view-toggle-lang"
+          >es-read-view-toggle-lang</span
+        >
+      </button>
+    </div>
+
     <!-- Scripts -->
-    <script type="text/javascript" src="./script/fade-in.js"></script>
     <script type="module" src="./script/script.js"></script>
   </body>
 </html>

@@ -1,14 +1,21 @@
 {
   "attract_video_path": "./assets/video/20220928-Digital Label Attract Screen-Audubon-02-1080p.mp4",
   "en": {
+    "general": {
+      "go_back": "Go back",
+      "toggle_lang": "Español"
+    },
     "attract": {
       "title": "Reckoning with Audubon",
       "touch_to_begin": "TOUCH TO BEGIN"
     },
-    "main": {
+    "main_menu": {
+      "watch": "Watch",
+      "read": "Read"
+    },
+    "watch_menu": {
       "title": "Reckoning with Audubon",
       "subheading": "Select one of the videos below to discover ornithologist Drew Lanham’s perspective on John James Audubon.",
-      "toggle_lang_btn": "Español",
       "videos": [
         {
           "id": "drew-lanham",
@@ -28,18 +35,26 @@
     },
     "video_player": {
       "back_to_main": "[Back to main]"
-    }
+    },
+    "read": {}
   },
   "es": {
-    "is_available": false,
+    "is_available": true,
+    "general": {
+      "go_back": "!¿Volver?",
+      "toggle_lang": "English"
+    },
     "attract": {
       "title": "!¿Audubon?",
       "touch_to_begin": "!TOCA PARA COMENZAR"
     },
-    "main": {
+    "main_menu": {
+      "watch": "!¿Mirar?",
+      "read": "!¿Leer?"
+    },
+    "watch_menu": {
       "title": "!¿Audubon?",
       "subheading": "!¿Audubon? Seleccione uno de los videos a continuación para conocer su importancia para el arte en las Américas.",
-      "toggle_lang_btn": "English",
       "videos": [
         {
           "id": "drew-lanham",
@@ -58,7 +73,8 @@
       ]
     },
     "video_player": {
-      "back_to_main": "UNOFFICIAL - [Volver al menú principal]"
-    }
+      "back_to_main": "[!¿Volver al menú principal?]"
+    },
+    "read": {}
   }
 }

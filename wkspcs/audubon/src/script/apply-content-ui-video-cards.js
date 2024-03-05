@@ -1,5 +1,7 @@
-import * as domVars from "./global-vars-dom.js";
+import { dom } from "./dom.js";
 import { playVideo } from "./video-player-view.js";
+
+const domVars = dom;
 
 function applyVideoCards(data) {
   // Create a new array of paired video content per language
@@ -9,14 +11,15 @@ function applyVideoCards(data) {
 
   for (let i = 0; i < videoDataArray.length; i++) {
     console.log(videoDataArray[i]);
-    let newVideoCard = domVars.homeViewVideoCardPrototype.cloneNode();
+    let newVideoCard = domVars.watchMenuVideoCardPrototype.cloneNode();
     newVideoCard.id = `video-card-${i}`;
     newVideoCard.classList.remove("hidden");
 
     console.log(newVideoCard);
 
     if (videoDataArray[i].en) {
-      let newVideoCardEn = domVars.enHomeViewVideoCardPrototype.cloneNode(true);
+      let newVideoCardEn =
+        domVars.enWatchMenuVideoCardPrototype.cloneNode(true);
 
       let newVideoBtnEn = newVideoCardEn;
       let newVideoImgEn = newVideoCardEn.querySelector(".en-js-video-ui-img");
@@ -38,7 +41,8 @@ function applyVideoCards(data) {
     }
 
     if (videoDataArray[i].es) {
-      let newVideoCardEs = domVars.esHomeViewVideoCardPrototype.cloneNode(true);
+      let newVideoCardEs =
+        domVars.esWatchMenuVideoCardPrototype.cloneNode(true);
 
       console.log(newVideoCardEs);
 
@@ -61,7 +65,7 @@ function applyVideoCards(data) {
       newVideoCard.appendChild(newVideoCardEs);
     }
 
-    domVars.homeViewVideoCardFlexbox.appendChild(newVideoCard);
+    domVars.watchMenuVideoCardFlexbox.appendChild(newVideoCard);
   }
 }
 
@@ -71,19 +75,19 @@ function createVideoDataArray(data) {
   // If a match is not found between languages, it will get its own entry in videoDataArray
   let videoDataArray = [];
 
-  for (let i = 0; i < data.en.main.videos.length; i++) {
-    let newObj = { en: data.en.main.videos[i] };
+  for (let i = 0; i < data.en.watch_menu.videos.length; i++) {
+    let newObj = { en: data.en.watch_menu.videos[i] };
     videoDataArray.push(newObj);
   }
 
-  for (let i = 0; i < data.es.main.videos.length; i++) {
+  for (let i = 0; i < data.es.watch_menu.videos.length; i++) {
     let matchedEntry = videoDataArray.find(
-      (element) => element.en.id === data.es.main.videos[i].id
+      (element) => element.en.id === data.es.watch_menu.videos[i].id
     );
     if (matchedEntry) {
-      matchedEntry.es = data.es.main.videos[i];
+      matchedEntry.es = data.es.watch_menu.videos[i];
     } else if (!matchedEntry) {
-      let newObj = { es: data.es.main.videos[i] };
+      let newObj = { es: data.es.watch_menu.videos[i] };
       videoDataArray.push(newObj);
     }
   }

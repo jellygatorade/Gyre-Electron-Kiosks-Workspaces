@@ -1,4 +1,4 @@
-import * as domVars from "./global-vars-dom.js";
+import { dom } from "./dom.js";
 
 // Start in english by default
 let lang = { langState: "en", langSwitch: "es" };
@@ -19,12 +19,6 @@ function setLanguage(choice) {
   }
 }
 
-// Create the language controls on the language toggle button
-domVars.toggleLangButton.addEventListener("click", function () {
-  applyLanguage(lang.langSwitch);
-  //console.log(`Language is now ${lang.langState}`);
-});
-
 function applyLanguage(choice) {
   setLanguage(choice);
 
@@ -35,7 +29,6 @@ function applyLanguage(choice) {
   let esNodeList = document.querySelectorAll('[lang="es"]');
 
   if (choice === "en") {
-    domVars.toggleLangButton.innerText = "Español";
     enNodeList.forEach(function (node) {
       // Fall back on default stylesheet for display
       // This handles the differences between elements that should be "block" and those that should be "inline"
@@ -45,7 +38,6 @@ function applyLanguage(choice) {
       node.style.display = "none";
     });
   } else if (choice === "es") {
-    domVars.toggleLangButton.innerText = "English";
     esNodeList.forEach(function (node) {
       // Fall back on default stylesheet for display
       // This handles the differences between elements that should be "block" and those that should be "inline"
@@ -57,4 +49,21 @@ function applyLanguage(choice) {
   }
 }
 
-export { applyLanguage, setLanguage, lang };
+const langToggle = {
+  init: function () {
+    // Sets up language toggle buttons in the UI
+    this.buttons.forEach((button) => {
+      button.addEventListener("click", function () {
+        applyLanguage(lang.langSwitch);
+      });
+    });
+  },
+
+  buttons: [
+    dom.mainMenuToggleLangBtn,
+    dom.watchMenuToggleLangButton,
+    dom.readViewToggleLangButton,
+  ],
+};
+
+export { applyLanguage, setLanguage, lang, langToggle };

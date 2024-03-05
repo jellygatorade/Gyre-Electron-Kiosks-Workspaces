@@ -1,35 +1,63 @@
-import * as domVars from "./global-vars-dom.js";
+import { dom } from "./dom.js";
 import { applyVideoCards } from "./apply-content-ui-video-cards.js";
 
 function applyContent(data) {
   // Spanish availability
-  // Set domVars.toggleLangButton to "display: none;" if not available
+  // Set language toggle buttons to "display: none;" if not available
   if (!data.es.is_available) {
-    domVars.toggleLangButton.classList.add("hidden");
+    dom.mainMenuToggleLangBtn.classList.add("hidden");
+    dom.watchMenuToggleLangButton.classList.add("hidden");
+    dom.readViewToggleLangButton.classList.add("hidden");
   }
 
   // Attract View
-  domVars.enAttractTitle.innerHTML = data.en.attract.title;
-  domVars.esAttractTitle.innerHTML = data.es.attract.title;
+  dom.enAttractTitle.innerHTML = data.en.attract.title;
+  dom.esAttractTitle.innerHTML = data.es.attract.title;
 
-  domVars.enAttractTouchToBegin.innerHTML = data.en.attract.touch_to_begin;
-  domVars.esAttractTouchToBegin.innerHTML = data.es.attract.touch_to_begin;
+  dom.enAttractTouchToBegin.innerHTML = data.en.attract.touch_to_begin;
+  dom.esAttractTouchToBegin.innerHTML = data.es.attract.touch_to_begin;
 
-  // Home View
-  domVars.enHomeViewTitle.innerHTML = data.en.main.title;
-  domVars.enHomeViewSubheading.innerHTML = data.en.main.subheading;
+  // Main Menu View
+  dom.enMainMenuWatch.innerHTML = data.en.main_menu.watch;
+  dom.esMainMenuWatch.innerHTML = data.es.main_menu.watch;
 
-  domVars.esHomeViewTitle.innerHTML = data.es.main.title;
-  domVars.esHomeViewSubheading.innerHTML = data.es.main.subheading;
+  dom.enMainMenuRead.innerHTML = data.en.main_menu.read;
+  dom.esMainMenuRead.innerHTML = data.es.main_menu.read;
 
-  //// Home View - Video Cards
+  dom.enMainMenuBack.innerHTML = data.en.general.go_back;
+  dom.esMainMenuBack.innerHTML = data.es.general.go_back;
+
+  dom.enMainMenuToggleLang.innerHTML = data.en.general.toggle_lang;
+  dom.esMainMenuToggleLang.innerHTML = data.es.general.toggle_lang;
+
+  // Watch Menu View
+  dom.enWatchMenuTitle.innerHTML = data.en.watch_menu.title;
+  dom.enWatchMenuSubheading.innerHTML = data.en.watch_menu.subheading;
+
+  dom.esWatchMenuTitle.innerHTML = data.es.watch_menu.title;
+  dom.esWatchMenuSubheading.innerHTML = data.es.watch_menu.subheading;
+
+  dom.enWatchMenuBack.innerHTML = data.en.general.go_back;
+  dom.esWatchMenuBack.innerHTML = data.es.general.go_back;
+
+  dom.enWatchMenuToggleLang.innerHTML = data.en.general.toggle_lang;
+  dom.esWatchMenuToggleLang.innerHTML = data.es.general.toggle_lang;
+
+  // Watch Menu View - Video Cards
   applyVideoCards(data);
 
   // Video View
-  domVars.enVideoPlayerReturnHomeBtnTxt.innerHTML =
+  dom.enVideoPlayerReturnHomeBtnTxt.innerHTML =
     data.en.video_player.back_to_main;
-  domVars.esVideoPlayerReturnHomeBtnTxt.innerHTML =
+  dom.esVideoPlayerReturnHomeBtnTxt.innerHTML =
     data.es.video_player.back_to_main;
+
+  // Read View - Turn.js
+  dom.enReadViewBack.innerHTML = data.en.general.go_back;
+  dom.esReadViewBack.innerHTML = data.es.general.go_back;
+
+  dom.enReadViewToggleLang.innerHTML = data.en.general.toggle_lang;
+  dom.esReadViewToggleLang.innerHTML = data.es.general.toggle_lang;
 }
 
 export { applyContent };
