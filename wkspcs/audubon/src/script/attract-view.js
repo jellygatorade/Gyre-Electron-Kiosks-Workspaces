@@ -1,7 +1,7 @@
 import { dom } from "./dom.js";
 import { UIViewController } from "./ui-macro-state/ui-view-controller.js";
 import { views } from "./initialize-views.js";
-import { setupIdleTimer } from "./idle-timer-home.js";
+import { idleTimer } from "./idle-timer/idle-timer-static-class.js";
 
 function removeAttractView() {
   UIViewController.setView(views.mainMenu);
@@ -13,7 +13,7 @@ function removeAttractView() {
   // dom.attractVideo.remove();
 
   // Start the idle timer
-  setupIdleTimer();
+  idleTimer.setup();
 }
 
 function attractViewInit() {

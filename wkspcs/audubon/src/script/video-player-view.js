@@ -2,14 +2,14 @@ import { dom } from "./dom.js";
 import { UIViewController } from "./ui-macro-state/ui-view-controller.js";
 import { animationHandler } from "./ui-macro-state/animation-handler.js";
 import { views } from "./initialize-views.js";
-import { setupIdleTimer, removeIdleTimer } from "./idle-timer-home.js";
+import { idleTimer } from "./idle-timer/idle-timer-static-class.js";
 
 // Set the video player volume
 const videoPlayerVolume = 0.5; // 50%
 
 function playVideo(path) {
-  // Remove the idle timeout from idle-timer-home.js
-  removeIdleTimer();
+  // Remove the idle timeout
+  idleTimer.remove();
 
   // call HTMLMediaElement.load() method to reset the <video> element to its initial state
   dom.videoPlayerVideo.load();
@@ -88,8 +88,8 @@ function playVideo(path) {
     videoInterval = null;
     timer = null;
 
-    // Reinstate the idle timeout from idle-timer-home.js
-    setupIdleTimer();
+    // Reinstate the idle timeout
+    idleTimer.setup();
   }
 
   //Navigate back to home on video end

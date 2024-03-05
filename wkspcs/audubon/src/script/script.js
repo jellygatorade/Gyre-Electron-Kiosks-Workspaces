@@ -3,6 +3,7 @@ import { attractViewInit } from "./attract-view.js";
 import { mainMenuInit } from "./main-menu-view.js";
 import { watchMenuInit } from "./watch-menu-view.js";
 import { readViewInit } from "./read-view.js";
+import { idleTimerInit } from "./idle-timer/idle-timer-setup.js";
 import {
   applyLanguage,
   setLanguage,
@@ -15,6 +16,7 @@ attractViewInit();
 mainMenuInit();
 watchMenuInit();
 readViewInit();
+idleTimerInit();
 callFetchCreateUI();
 
 // Determine if there was a language previously set
