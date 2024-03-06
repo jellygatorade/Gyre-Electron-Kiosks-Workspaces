@@ -2,8 +2,8 @@
 const { app, BrowserWindow, Menu, globalShortcut } = require("electron");
 const path = require("path");
 
-// Handle .env variables
-require("./main-modules/handle-node-env.js");
+const configHandler = require("./main-modules/handle-config.js");
+configHandler.init(); // Handle env requirements
 
 let window;
 const createWindow = () => {
