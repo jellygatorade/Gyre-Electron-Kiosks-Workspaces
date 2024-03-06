@@ -1,4 +1,5 @@
 import { callFetchCreateUI } from "./fetch.js";
+import { timeoutModalInit } from "./timeout-modal.js";
 import { attractViewInit } from "./attract-view.js";
 import { mainMenuInit } from "./main-menu-view.js";
 import { watchMenuInit } from "./watch-menu-view.js";
@@ -12,6 +13,7 @@ import {
 } from "./language-switcher.js";
 import { views } from "./initialize-views.js";
 
+timeoutModalInit();
 attractViewInit();
 mainMenuInit();
 watchMenuInit();

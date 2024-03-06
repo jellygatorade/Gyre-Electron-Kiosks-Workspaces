@@ -3,6 +3,12 @@ import { UIViewController } from "./ui-macro-state/ui-view-controller.js";
 import { views } from "./initialize-views.js";
 import { idleTimer } from "./idle-timer/idle-timer-static-class.js";
 
+function returnToAttractView() {
+  idleTimer.remove();
+  dom.attractVideo.play();
+  UIViewController.setView(views.attract);
+}
+
 function removeAttractView() {
   UIViewController.setView(views.mainMenu);
 
@@ -36,4 +42,4 @@ function createAttractLoop(videopath) {
   dom.attractVideo.play();
 }
 
-export { attractViewInit, createAttractLoop };
+export { attractViewInit, createAttractLoop, returnToAttractView };

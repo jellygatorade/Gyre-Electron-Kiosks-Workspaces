@@ -2,6 +2,7 @@ import { dom } from "./dom.js";
 import { views } from "./initialize-views.js";
 import { UIViewController } from "./ui-macro-state/ui-view-controller.js";
 import { idleTimer } from "./idle-timer/idle-timer-static-class.js";
+import { returnToAttractView } from "./attract-view.js";
 
 function mainMenuInit() {
   dom.mainMenuWatchBtn.addEventListener("click", () => {
@@ -13,12 +14,8 @@ function mainMenuInit() {
   });
 
   dom.mainMenuBackBtn.addEventListener("click", () => {
-    idleTimer.remove();
-    dom.attractVideo.play();
-    UIViewController.setView(views.attract);
+    returnToAttractView();
   });
-
-  // dom.mainMenuToggleLangBtn
 }
 
 export { mainMenuInit };

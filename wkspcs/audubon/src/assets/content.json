@@ -5,6 +5,10 @@
       "go_back": "Go back",
       "toggle_lang": "Español"
     },
+    "timeout_modal": {
+      "still_viewing": "Are you still viewing?",
+      "touch_to_continue": "Tap anywhere to continue."
+    },
     "attract": {
       "title": "Reckoning with Audubon",
       "touch_to_begin": "TOUCH TO BEGIN"
@@ -43,6 +47,10 @@
     "general": {
       "go_back": "!¿Volver?",
       "toggle_lang": "English"
+    },
+    "timeout_modal": {
+      "still_viewing": "¿Todavía estás viendo?",
+      "touch_to_continue": "Toque en cualquier lugar para continuar."
     },
     "attract": {
       "title": "!¿Audubon?",

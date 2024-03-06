@@ -13,6 +13,11 @@ class idleTimer {
   static idleTimeoutInSeconds = 90;
   static countdownAmountInSeconds = 15;
 
+  static onCountdownIteration = null;
+  static onLoadCountdown = null;
+  static onUserInactive = null;
+  // static onCancel = null;
+
   /**************************
    * Private fields
    **************************/
@@ -106,6 +111,11 @@ class idleTimer {
   static #_countdownIterator() {
     console.log(idleTimer.#timeLeft);
 
+    // Update countdown text in UI
+    if (typeof idleTimer.onCountdownIteration === "function") {
+      idleTimer.onCountdownIteration(idleTimer.#timeLeft);
+    }
+
     if (idleTimer.#timeLeft <= 0) {
       clearInterval(idleTimer.#countdownTimerIntervalId);
       //console.log(idleTimer.#timeLeft);
@@ -134,18 +144,27 @@ class idleTimer {
 
   static #_loadIdleTimerTier2() {
     // Fade in a UI countdown modal
-    // Update a UI string with idleTimer.countdownAmountInSeconds
-    //
-    //fadeIn(domVars.timeoutModal);
-    console.log(idleTimer.countdownAmountInSeconds);
-    //domVars.countdownRemaining.innerText = idleTimer.countdownAmountInSeconds;
+    // fadeIn(domVars.timeoutModal);
+    if (typeof idleTimer.onLoadCountdown === "function") {
+      idleTimer.onLoadCountdown();
+    }
 
+    // Update a UI string with idleTimer.countdownAmountInSeconds
+    // //domVars.countdownRemaining.innerText = idleTimer.countdownAmountInSeconds;
+    if (typeof idleTimer.onCountdownIteration === "function") {
+      idleTimer.onCountdownIteration(idleTimer.countdownAmountInSeconds);
+    }
+
+    console.log(idleTimer.countdownAmountInSeconds);
     idleTimer.#timeLeft = idleTimer.countdownAmountInSeconds - 1;
     idleTimer.#_runIdleTimerTier2();
   }
 
   static #_doInactive2() {
-    console.log("Do inactive - tier 2");
+    // console.log("Do inactive - tier 2");
+    if (typeof idleTimer.onUserInactive === "function") {
+      idleTimer.onUserInactive();
+    }
   }
 
   static cancel(event) {

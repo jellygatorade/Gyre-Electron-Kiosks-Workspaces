@@ -10,6 +10,12 @@ function applyContent(data) {
     dom.readViewToggleLangButton.classList.add("hidden");
   }
 
+  // Timeout modal
+  dom.enStillViewing.innerHTML = data.en.timeout_modal.still_viewing;
+  dom.esStillViewing.innerHTML = data.es.timeout_modal.still_viewing;
+  dom.enTouchToContinue.innerHTML = data.en.timeout_modal.touch_to_continue;
+  dom.esTouchToContinue.innerHTML = data.es.timeout_modal.touch_to_continue;
+
   // Attract View
   dom.enAttractTitle.innerHTML = data.en.attract.title;
   dom.esAttractTitle.innerHTML = data.es.attract.title;

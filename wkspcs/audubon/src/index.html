@@ -34,6 +34,54 @@
       class="z-[5000] absolute top-0 left-0 h-full w-full bg-black invisible opacity-0 pointer-events-none transition-all duration-300"
     ></div>
 
+    <!-- Timeout modal -->
+    <div
+      id="timeout-modal"
+      class="h-full w-full absolute top-0 left-0 z-[5000] invisible opacity-100 pointer-events-none transition-all duration-300"
+    >
+      <div
+        id="timeout-modal-overlay"
+        class="h-full w-full absolute top-0 left-0 bg-black opacity-75 z-[5010]"
+      ></div>
+      <div
+        id="timeout-modal-tap-to-continue-overlay"
+        class="h-full w-full absolute top-0 left-0 timeout-modal-continue-btn z-[5050]"
+      ></div>
+      <div class="h-full flex flex-row justify-center items-center z-[5020]">
+        <div class="h-full flex flex-col justify-center items-center">
+          <div
+            class="relative max-h-[400px] max-w-[700px] opacity-100 z-[5020] bg-black border border-white rounded-2xl box-shadow-black-4px"
+          >
+            <div
+              class="w-full h-full flex flex-col flex-nowrap justify-between items-center py-[0.857rem] p-[1.5rem]"
+            >
+              <div
+                class="h-full w-full overflow-y-auto webkit-scrollbar text-xl text-center leading-loose"
+              >
+                <h2>
+                  <span lang="en" id="en-still-viewing">en-still-viewing</span>
+                  <span lang="es" id="es-still-viewing">es-still-viewing</span>
+                </h2>
+                <h2>
+                  <span lang="en" id="en-touch-to-continue"
+                    >en-touch-to-continue</span
+                  >
+                  <span lang="es" id="es-touch-to-continue"
+                    >es-touch-to-continue</span
+                  >
+                </h2>
+                <span
+                  id="timeout-countdown-text"
+                  class="text-4xl leading-normal font-CaseTextRegular"
+                  >timeout-countdown-text</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Attract View -->
     <div
       id="attract-view"

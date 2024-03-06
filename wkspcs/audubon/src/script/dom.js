@@ -4,6 +4,18 @@ const dom = {
     "fade-between-views-overlay"
   ),
 
+  // Timeout Modal
+  timeoutModal: document.getElementById("timeout-modal"),
+  timeoutModalTapToContinueOverlay: document.getElementById(
+    "timeout-modal-tap-to-continue-overlay"
+  ),
+
+  enStillViewing: document.getElementById("en-still-viewing"),
+  esStillViewing: document.getElementById("es-still-viewing"),
+  enTouchToContinue: document.getElementById("en-touch-to-continue"),
+  esTouchToContinue: document.getElementById("es-touch-to-continue"),
+  timeoutCountdownText: document.getElementById("timeout-countdown-text"),
+
   // Attract View
   attractView: document.getElementById("attract-view"),
   attractVideo: document.getElementById("attract-video"),
@@ -13,7 +25,6 @@ const dom = {
   esAttractTitle: document.getElementById("es-attract-title"),
 
   enAttractTouchToBegin: document.getElementById("en-attract-touch-to-begin"),
-
   esAttractTouchToBegin: document.getElementById("es-attract-touch-to-begin"),
 
   // Main Menu View
@@ -56,7 +67,7 @@ const dom = {
   enWatchMenuToggleLang: document.getElementById("en-watch-menu-toggle-lang"),
   esWatchMenuToggleLang: document.getElementById("es-watch-menu-toggle-lang"),
 
-  //// Home View - Video Cards
+  //// Watch Menu View - Video Cards
   watchMenuVideoCardFlexbox: document.getElementById(
     "watch-menu-video-card-flexbox"
   ),
