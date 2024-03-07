@@ -337,8 +337,7 @@ async function v2_submit(formJSON) {
     switch (response._status) {
       case 404:
         console.log("(member not found)");
-        console.log("(INCOMPLETE EXITING)");
-        // await m_addMember();
+        await m_addMember();
         break;
       case 200:
         console.log("(member found)");
@@ -349,25 +348,19 @@ async function v2_submit(formJSON) {
     }
   }
 
-  // TO DO
-  // ADD MEMBER
+  async function m_addMember() {
+    console.log("(adding member)");
+    response = await addMember(formJSON);
 
-  // MONITOR ACTIVE TIMEDQUEUES
-  // DESTROY TIMEDQUEUES THAT ARE MARKED DONE ... in timedQueue._next() ?
-
-  // async function m_addMember() {
-  //   console.log("(adding member)");
-  //   response = await addMember(formJSON);
-
-  //   switch (response._status) {
-  //     case 200:
-  //       console.log("(member added)");
-  //       await v2_upload();
-  //       break;
-  //     default:
-  //       console.log(`An error was encountered: ${response._status}`);
-  //   }
-  // }
+    switch (response._status) {
+      case 200:
+        console.log("(member added)");
+        await v2_upload();
+        break;
+      default:
+        console.log(`An error was encountered: ${response._status}`);
+    }
+  }
 
   async function m_checkLastUpdated(last_changed) {
     const tooSoonForMailchimp = isWithinLastMinutes(last_changed, 20);
