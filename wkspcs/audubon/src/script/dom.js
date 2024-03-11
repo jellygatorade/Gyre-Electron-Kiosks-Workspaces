@@ -116,6 +116,36 @@ const dom = {
 
   enReadViewToggleLang: document.getElementById("en-read-view-toggle-lang"),
   esReadViewToggleLang: document.getElementById("es-read-view-toggle-lang"),
+
+  // Read View - Turn.js
+  book: {
+    book: document.getElementById("book"),
+    // firstPage
+    // firstPageImg
+    // populated in flipbook-spreads-only.js
+    // firstPage: document.getElementsByClassName("page")[2],
+    // firstPageImg: this.book.firstPage.getElementsByTagName("img")[0],
+
+    // nextBtn: document.getElementById("next-button"),
+    // prevBtn: document.getElementById("previous-button"),
+
+    // zoomInBtn: document.getElementById("zoom-in-btn"),
+    // zoomOutBtn: document.getElementById("zoom-out-btn"),
+    // zoomToggleBtn: document.getElementById("zoom-toggle-btn"),
+
+    swipeTopLeft: document.getElementById("swipe-tl"),
+    swipeTopRight: document.getElementById("swipe-tr"),
+    swipeBottomLeft: document.getElementById("swipe-bl"),
+    swipeBottomRight: document.getElementById("swipe-br"),
+
+    cornerControlsOverlay: document.getElementById("corner-controls-overlay"),
+    controlsToggleBtn: document.getElementById("controls-toggle-btn"),
+
+    zoomViewport: document.getElementById("zoom-viewport"),
+    zoomContainer: document.getElementById("zoom-container"),
+  },
 };
+
+console.log(document.getElementsByClassName("page"));
 
 export { dom };
