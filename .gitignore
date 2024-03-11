@@ -6,6 +6,8 @@
 /wkspcs/**/src/common/assets
 /wkspcs/**/src/turnjs4
 /wkspcs/**/src/config.js
+/wkspcs/**/src/script/lib/turnjs4
+/wkspcs/**/src/script/lib/jquery
 
 !/wkspcs/**/src/assets/content*
 
