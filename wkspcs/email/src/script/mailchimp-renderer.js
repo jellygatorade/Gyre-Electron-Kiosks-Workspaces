@@ -54,12 +54,13 @@ function updateMergeFieldsBtnOnClick(event) {
   event.preventDefault();
 
   const formJSON = getFormJson(event);
-
+  tk;
   // would validate form here
 
   const limitedFormJSON = {
     member_email: formJSON.member_email,
-    image_url: formJSON.image_url,
+    image_url_fullsize: formJSON.image_url_full,
+    image_url_564width: formJSON.image_url_564width,
   };
 
   window.electron.email.updateMergeFields(limitedFormJSON);
@@ -129,15 +130,17 @@ function sendImageBtnOnClick(event) {
   event.preventDefault();
 
   const formJSON = getFormJson(event);
-  console.log(formJSON);
+  // console.log(formJSON);
 
   // would validate form here
 
   const limitedFormJSON = {
     member_email: formJSON.member_email,
-    member_fname: formJSON.member_fname,
-    file_path: formJSON?.file?.path,
+    file_path_fullsize: formJSON?.file_full?.path,
+    file_path_564width: formJSON?.file_564w?.path,
   };
+
+  // console.log(limitedFormJSON);
 
   window.electron.email.sendImage(limitedFormJSON);
 }

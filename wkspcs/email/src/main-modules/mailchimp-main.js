@@ -141,7 +141,8 @@ async function addMember(formJSON) {
 async function updateMergeFields(formJSON) {
   const member_email = formJSON.member_email;
   const subscriber_hash = getMD5string(member_email);
-  const image_url = formJSON.image_url;
+  const image_url_fullsize = formJSON.image_url_fullsize;
+  const image_url_564width = formJSON.image_url_564width;
 
   // use
   // https://mailchimp.com/developer/marketing/api/list-members/update-list-member/
@@ -168,7 +169,8 @@ async function updateMergeFields(formJSON) {
       subscriber_hash,
       {
         merge_fields: {
-          IMAGE: image_url,
+          IMG_FULL: image_url_fullsize,
+          IMG_564W: image_url_564width,
         },
       }
     );
@@ -244,9 +246,14 @@ async function updateMemberTags(formJSON) {
   return response;
 }
 
-async function addFile(formJSON) {
-  const fileExt = path.extname(formJSON.file_path);
-  const fileBase64 = await readFile(formJSON.file_path);
+async function addFile(formJSON, file_path_key) {
+  if (!file_path_key) {
+    console.log("No file path key given, returning.");
+    return;
+  }
+
+  const fileExt = path.extname(formJSON[file_path_key]);
+  const fileBase64 = await readFile(formJSON[file_path_key]);
 
   const today = getFormattedDate();
   const uniqueID = nanoid();
@@ -420,17 +427,32 @@ async function v2_upload(formJSON) {
   return;
 
   async function m_launchProcess() {
-    await m_addFile();
+    await m_addFileFullsize();
   }
 
-  async function m_addFile() {
-    console.log("(uploading file)");
-    response = await addFile(formJSON);
+  async function m_addFileFullsize() {
+    console.log("(uploading fullsize image)");
+    response = await addFile(formJSON, "file_path_fullsize");
 
     switch (response._status) {
       case 200:
-        console.log("(file uploaded)");
-        formJSON.image_url = response.full_size_url; // store the image url
+        console.log("(fullsize image uploaded)");
+        formJSON.image_url_fullsize = response.full_size_url; // store the image url
+        await m_addFile564Width(); // add image url to contact merge fields
+        break;
+      default:
+        console.log(`An error was encountered: ${response._status}`);
+    }
+  }
+
+  async function m_addFile564Width() {
+    console.log("(uploading 564px width image)");
+    response = await addFile(formJSON, "file_path_564width");
+
+    switch (response._status) {
+      case 200:
+        console.log("(564px width image uploaded)");
+        formJSON.image_url_564width = response.full_size_url; // store the image url
         await m_updateMergeFields(); // add image url to contact merge fields
         break;
       default:
@@ -527,7 +549,6 @@ async function submit(formJSON) {
         break;
       case 200:
         console.log("(member found)");
-        // await m_addFile();
         await m_getMemberTags();
         break;
       default:
@@ -579,7 +600,7 @@ async function submit(formJSON) {
 
   async function m_addFile() {
     console.log("(uploading file)");
-    response = await addFile(formJSON);
+    response = await addFile(formJSON, "file_path");
 
     switch (response._status) {
       case 200:
@@ -731,7 +752,7 @@ ipcMain.handle("updateMergeFieldsMailchimp", async (event, formJSON) => {
 });
 
 ipcMain.handle("addFileMailchimp", async (event, formJSON) => {
-  await addFile(formJSON);
+  await addFile(formJSON, "file_path");
 });
 
 ipcMain.handle("sendImageMailchimp", async (event, formJSON) => {

@@ -85,11 +85,20 @@
         </div>
 
         <div class="form-item">
-          <label for="email">Image URL:</label>
+          <label for="image_url_full">Image URL (fullsize):</label>
           <input
             type="text"
             id="merge-fields-image-url"
-            name="image_url"
+            name="image_url_full"
+          /><br />
+        </div>
+
+        <div class="form-item">
+          <label for="image_url_564width">Image URL (564px width):</label>
+          <input
+            type="text"
+            id="merge-fields-image-url"
+            name="image_url_564width"
           /><br />
         </div>
 
@@ -212,8 +221,13 @@
         </div>
 
         <div class="form-item">
-          <label for="file">Image:</label>
-          <input type="file" id="send-image-file" name="file" /><br />
+          <label for="file_full">Image (fullsize):</label>
+          <input type="file" id="send-image-file-full" name="file_full" /><br />
+        </div>
+
+        <div class="form-item">
+          <label for="file_564w">Image (564px width):</label>
+          <input type="file" id="send-image-file-564w" name="file_564w" /><br />
         </div>
 
         <div class="form-item">
