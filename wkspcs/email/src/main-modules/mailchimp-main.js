@@ -304,7 +304,11 @@ async function triggerJourneyStep(formJSON) {
   return response;
 }
 
-async function v2_submit(formJSON) {
+// ---------------------------------------------------
+// combine mailchimp methods into one workflow -------
+// ---------------------------------------------------
+
+async function v2_sendImages(formJSON) {
   // Using triggerJourneyStep instead of tag
   // and using queues
   //
@@ -378,7 +382,7 @@ async function v2_submit(formJSON) {
     } else {
       // enough time has passed since last_changed
       // send it!
-      await v2_upload(formJSON);
+      await v2_uploadImages(formJSON);
     }
   }
 
@@ -407,7 +411,7 @@ async function v2_submit(formJSON) {
   }
 }
 
-async function v2_upload(formJSON) {
+async function v2_uploadImages(formJSON) {
   // 4 - upload the file
   //     on success - store image URL, goto 5
   //     on fail - error UI (log to file? or some log UI that is viewable with key toggle?)
@@ -482,162 +486,6 @@ async function v2_upload(formJSON) {
     switch (response._status) {
       case 200:
         console.log("(journey step triggered)");
-        // Complete!
-        break;
-      default:
-        console.log(`An error was encountered: ${response._status}`);
-    }
-  }
-}
-
-async function submit(formJSON) {
-  // 1 - query for the member
-  //     if member found - goto 3
-  //     if member is not found - goto 2
-  //     catch other error - error UI
-  //
-  // 2 - add the member
-  //     on success - goto 3
-  //     on fail - error UI
-  //
-  // 3 - check member tags
-  //     !DispatchEmail tag - goto 4
-  //     has DispatchEmail tag - error UI? please wait x minutes?, or add to end of queue?
-  //
-  // 4 - upload the file
-  //     on success - store image URL, goto 5
-  //     on fail - error UI (log to file? or some log UI that is viewable with key toggle?)
-  //
-  // 5 - update merge field on the member with image url
-  //     on success - goto 6
-  //     on fail - error UI
-  //
-  // 6 - add tag to the member
-  //     on success - COMPLETE -> email scheduled UI!
-  //     on fail - error UI
-  //
-  // add the member, with file url in merge field IMAGE
-  // --> if member is already present, patch the member with updated file identity in merge fields
-  // remove tag from the member (ensures workflow trigger)
-  // add tag from the member
-
-  //
-  //
-  // 6alt - trigger endpoint journey
-
-  // win.webContents.send("mailchimpResponse", "Main doing something with");
-  // win.webContents.send("mailchimpResponse", formJSON);
-
-  let response;
-
-  await m_launchProcess();
-  console.log("(process complete)");
-  return;
-
-  async function m_launchProcess() {
-    await m_getMember();
-  }
-
-  async function m_getMember() {
-    console.log("(getting member)");
-    response = await getMember(formJSON);
-
-    switch (response._status) {
-      case 404:
-        console.log("(member not found)");
-        await m_addMember();
-        break;
-      case 200:
-        console.log("(member found)");
-        await m_getMemberTags();
-        break;
-      default:
-        console.log(`Some other error was encountered: ${response._status}`);
-    }
-  }
-
-  async function m_addMember() {
-    console.log("(adding member)");
-    response = await addMember(formJSON);
-
-    switch (response._status) {
-      case 200:
-        console.log("(member added)");
-        await m_addFile();
-        break;
-      default:
-        console.log(`An error was encountered: ${response._status}`);
-    }
-  }
-
-  async function m_getMemberTags() {
-    console.log("(checking member tags)");
-    response = await getMemberTags(formJSON);
-
-    switch (response._status) {
-      case 200:
-        console.log("(member tags retrieved)");
-        let hasDispatchTag = response.tags.find(
-          (obj) => obj.name === "DispatchEmail"
-        );
-        hasDispatchTag
-          ? onDispatchTagFound() // notice to wait, or add submission to queue
-          : await onDispatchTagNotFound(); // proceed submission, upload file
-        break;
-      default:
-        console.log(`An error was encountered: ${response._status}`);
-    }
-
-    async function onDispatchTagNotFound() {
-      console.log("(contact is untagged)");
-      await m_addFile();
-    }
-
-    function onDispatchTagFound() {
-      console.log("(contact is tagged)");
-    }
-  }
-
-  async function m_addFile() {
-    console.log("(uploading file)");
-    response = await addFile(formJSON, "file_path");
-
-    switch (response._status) {
-      case 200:
-        console.log("(file uploaded)");
-        formJSON.image_url = response.full_size_url; // store the image url
-        await m_updateMergeFields(); // add image url to contact merge fields
-        break;
-      default:
-        console.log(`An error was encountered: ${response._status}`);
-    }
-  }
-
-  async function m_updateMergeFields() {
-    console.log("(updating merge fields)");
-    response = await updateMergeFields(formJSON);
-
-    switch (response._status) {
-      case 200:
-        console.log("(merge fields updated)");
-        await m_updateMemberTags();
-        break;
-      default:
-        console.log(`An error was encountered: ${response._status}`);
-    }
-  }
-
-  async function m_updateMemberTags() {
-    console.log("(updating member tags)");
-
-    formJSON.tag_name = "DispatchEmail";
-    formJSON.tag_status = "active";
-
-    response = await updateMemberTags(formJSON);
-
-    switch (response._status) {
-      case 200:
-        console.log("(member tags updated)");
         // Complete!
         break;
       default:
@@ -756,5 +604,5 @@ ipcMain.handle("addFileMailchimp", async (event, formJSON) => {
 });
 
 ipcMain.handle("sendImageMailchimp", async (event, formJSON) => {
-  await v2_submit(formJSON);
+  await v2_sendImages(formJSON);
 });
