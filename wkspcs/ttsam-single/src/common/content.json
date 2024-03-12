@@ -1,10 +1,10 @@
 {
-  "attract_video_path": "./common/assets/video/steven-paul-judd-uncaptioned.mp4",
-  "main_video_path": "./common/assets/video/steven-paul-judd-uncaptioned.mp4",
+  "attract_video_path": "./common/assets/video/attract.mp4",
+  "main_video_path": "./common/assets/video/steven-paul-judd.mp4",
   "en": {
     "attract": {
       "title_1": "Revival and Evolution: Artist Spotlight",
-      "title_2": "Steven Paul Judd (Kiowa/Choctaw)",
+      "title_2": "Steven Paul Judd <span class='font-CaseTextLight'>(Kiowa/Choctaw)<span>",
       "touch_to_begin": "TOUCH TO BEGIN"
     },
     "main_video": {
