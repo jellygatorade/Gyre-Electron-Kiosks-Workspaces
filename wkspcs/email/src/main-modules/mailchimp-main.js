@@ -734,6 +734,6 @@ ipcMain.handle("addFileMailchimp", async (event, formJSON) => {
   await addFile(formJSON);
 });
 
-ipcMain.handle("submitMailchimp", async (event, formJSON) => {
+ipcMain.handle("sendImageMailchimp", async (event, formJSON) => {
   await v2_submit(formJSON);
 });

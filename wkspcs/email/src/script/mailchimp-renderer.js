@@ -125,7 +125,7 @@ function triggerJourneyStepBtnOnClick(event) {
   window.electron.email.triggerJourneyStep(limitedFormJSON);
 }
 
-function submitEmailBtnOnClick(event) {
+function sendImageBtnOnClick(event) {
   event.preventDefault();
 
   const formJSON = getFormJson(event);
@@ -139,7 +139,7 @@ function submitEmailBtnOnClick(event) {
     file_path: formJSON?.file?.path,
   };
 
-  window.electron.email.submit(limitedFormJSON);
+  window.electron.email.sendImage(limitedFormJSON);
 }
 
 // helper functions ----------------------------------
@@ -182,7 +182,7 @@ const mailchimpRenderer = {
     const triggerJourneyStepBtn = document.getElementById(
       "trigger-journey-step-btn"
     );
-    const submitEmailBtn = document.getElementById("submit-email-btn");
+    const sendImageBtn = document.getElementById("send-image-btn");
 
     // add listeners ----------------------------------
 
@@ -203,7 +203,7 @@ const mailchimpRenderer = {
       "click",
       triggerJourneyStepBtnOnClick
     );
-    submitEmailBtn.addEventListener("click", submitEmailBtnOnClick);
+    sendImageBtn.addEventListener("click", sendImageBtnOnClick);
 
     logElectronInterfaces();
 
