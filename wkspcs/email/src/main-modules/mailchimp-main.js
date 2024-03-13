@@ -305,8 +305,9 @@ async function triggerJourneyStep(formJSON) {
 // ---------------------------------------------------
 
 async function v2_sendImages(formJSON) {
-  // Using triggerJourneyStep instead of tag
-  // and using queues
+  // Using
+  // triggerJourneyStep (instead of tag)
+  // timed delay queues
   //
   // error handling - ERROR UI
   //                - log error to file
