@@ -138,6 +138,7 @@ async function addMember(formJSON) {
   return response;
 }
 
+// to do - params should accept member email and array of merge fields to update
 async function updateMergeFields(formJSON) {
   const member_email = formJSON.member_email;
   const subscriber_hash = getMD5string(member_email);
@@ -246,14 +247,9 @@ async function updateMemberTags(formJSON) {
   return response;
 }
 
-async function addFile(formJSON, file_path_key) {
-  if (!file_path_key) {
-    console.log("No file path key given, returning.");
-    return;
-  }
-
-  const fileExt = path.extname(formJSON[file_path_key]);
-  const fileBase64 = await readFile(formJSON[file_path_key]);
+async function addFile(file_path) {
+  const fileExt = path.extname(file_path);
+  const fileBase64 = await readFile(file_path);
 
   const today = getFormattedDate();
   const uniqueID = nanoid();
@@ -366,7 +362,7 @@ async function v2_sendImages(formJSON) {
     switch (response._status) {
       case 200:
         console.log("(member added)");
-        await v2_upload();
+        await v2_uploadImages(formJSON);
         break;
       default:
         console.log(`An error was encountered: ${response._status}`);
@@ -436,7 +432,7 @@ async function v2_uploadImages(formJSON) {
 
   async function m_addFileFullsize() {
     console.log("(uploading fullsize image)");
-    response = await addFile(formJSON, "file_path_fullsize");
+    response = await addFile(formJSON.file_path_fullsize);
 
     switch (response._status) {
       case 200:
@@ -451,7 +447,7 @@ async function v2_uploadImages(formJSON) {
 
   async function m_addFile564Width() {
     console.log("(uploading 564px width image)");
-    response = await addFile(formJSON, "file_path_564width");
+    response = await addFile(formJSON.file_path_564width);
 
     switch (response._status) {
       case 200:
