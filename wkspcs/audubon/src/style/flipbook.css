@@ -1,0 +1,117 @@
+:root {
+  --white: #ffffff;
+  --ncma-orange: #e0592a;
+  --transparent: rgba(0, 0, 0, 0);
+  --active-gray: rgba(255, 255, 255, 0.5);
+  --disabled-gray: rgba(255, 255, 255, 0.15);
+  --swipe-controls-solid: rgba(255, 0, 0, 1);
+  --swipe-controls-transparent: rgba(255, 0, 0, 0.75);
+}
+
+/*
+html,
+body {
+  background-color: #000000;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+*/
+
+.controls-overlay {
+  position: absolute;
+  z-index: 2000000;
+  transition: all 0.3s ease-in-out;
+}
+
+.active {
+  opacity: 100;
+  visibility: visible;
+}
+
+.inactive {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.controls-margin {
+  padding: 1rem;
+}
+
+/* .zoom-viewport {} */
+
+.zoom-container {
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+}
+
+.flipbook {
+  /* height: 100%;
+    width: 100%; */
+}
+
+.animated {
+  transition: margin-left 0.5s;
+}
+
+.flipbook .next-button,
+.flipbook .previous-button {
+  width: 22px;
+  /* height: 600px; */
+  position: absolute;
+  top: 0;
+  border: 1px solid var(--active-gray);
+  background-color: var(--transparent);
+  transition: all 0.3s ease-in-out;
+}
+
+.flipbook .next-button:hover,
+.flipbook .previous-button:hover {
+  border: 1px solid var(--ncma-orange);
+}
+
+.flipbook .next-button:disabled,
+.flipbook .previous-button:disabled {
+  border: 1px solid var(--disabled-gray);
+}
+
+.flipbook .next-button {
+  right: -22px;
+  border-radius: 0 15px 15px 0;
+}
+
+.flipbook .previous-button {
+  left: -22px;
+  border-radius: 15px 0 0 15px;
+}
+
+.page {
+  user-select: none;
+
+  background-image: url("../assets/img/flipbook/01a.jpg"); /* Backside page image for display: "single" */
+  /* background-color: black; */
+  /* background-color: white; */
+  /* background-size: 100% 100%; */
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+  background-repeat: no-repeat;
+}
+
+.page img {
+  max-width: 100%;
+  height: 100%;
+  /* user-select: none;
+    margin: 0; */
+}
+
+.swipe-overlay {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 2px solid var(--swipe-controls-solid);
+  background-color: var(--swipe-controls-transparent);
+}

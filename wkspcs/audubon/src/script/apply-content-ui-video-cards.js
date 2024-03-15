@@ -10,12 +10,12 @@ function applyVideoCards(data) {
   let videoDataArray = createVideoDataArray(data);
 
   for (let i = 0; i < videoDataArray.length; i++) {
-    console.log(videoDataArray[i]);
+    // console.log(videoDataArray[i]);
     let newVideoCard = domVars.watchMenuVideoCardPrototype.cloneNode();
     newVideoCard.id = `video-card-${i}`;
     newVideoCard.classList.remove("hidden");
 
-    console.log(newVideoCard);
+    // console.log(newVideoCard);
 
     if (videoDataArray[i].en) {
       let newVideoCardEn =
@@ -44,7 +44,7 @@ function applyVideoCards(data) {
       let newVideoCardEs =
         domVars.esWatchMenuVideoCardPrototype.cloneNode(true);
 
-      console.log(newVideoCardEs);
+      // console.log(newVideoCardEs);
 
       let newVideoBtnEs = newVideoCardEs;
       let newVideoImgEs = newVideoCardEs.querySelector(".es-js-video-ui-img");

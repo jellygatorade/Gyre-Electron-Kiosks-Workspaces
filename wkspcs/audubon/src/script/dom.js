@@ -146,6 +146,4 @@ const dom = {
   },
 };
 
-console.log(document.getElementsByClassName("page"));
-
 export { dom };

@@ -18,6 +18,9 @@ import { dom } from "../dom.js";
 // create init functions that can be composed into one flipbook.init() that can be imported by script.js
 // then fix UI fit
 
+// 3/15
+// fix zoomViewport initial / ongoing sizing in resizeViewport
+
 // const prevBtn = document.getElementById("prev-btn");
 // const nextBtn = document.getElementById("next-btn");
 
@@ -34,11 +37,12 @@ const sizes = {
 const flipbook = {
   init: function () {
     this.initDom();
-    // initTurn();
-    // initZoom();
+    this.initTurn();
+    this.initZoom();
   },
 
   initDom: function () {
+    // console.log(document.getElementsByClassName("page"));
     dom.book.firstPage = document.getElementsByClassName("page")[2];
     dom.book.firstPageImg = dom.book.firstPage.getElementsByTagName("img")[0];
 
@@ -46,12 +50,21 @@ const flipbook = {
     sizes.pageHeight = dom.book.firstPageImg.naturalHeight;
     sizes.pageScale = 0.6;
 
+    console.log(sizes);
+
     // nextBtn.style.height = pageScale * pageHeight + "px";
     // prevBtn.style.height = pageScale * pageHeight + "px";
   },
-};
 
-flipbook.init();
+  initTurn: function () {
+    initTurn1();
+  },
+
+  initZoom: function () {
+    initZoom1();
+    resizeViewport();
+  },
+};
 
 const nextBtn = document.getElementById("next-button");
 const prevBtn = document.getElementById("previous-button");
@@ -70,36 +83,154 @@ const animDuration = 500; // ms
 // Turn ----------------------------------------------------------
 // ---------------------------------------------------------------
 
-$(dom.book.book).turn({
-  // acceleration: true,
-  // autoCenter: false,
-  width: sizes.pageScale * sizes.pageWidth * 2,
-  height: sizes.pageScale * sizes.pageHeight,
-  display: "double",
-  page: 2, // initialize open
-  when: {
-    //zooming
-    //pressed
-    //released
-    //start
-    //turning
-    //turned
-    //destroying
+function initTurn1() {
+  $(dom.book.book).turn({
+    // acceleration: true,
+    // autoCenter: false,
+    width: sizes.pageScale * sizes.pageWidth * 2,
+    height: sizes.pageScale * sizes.pageHeight,
+    display: "double",
+    page: 2, // initialize open
+    when: {
+      //zooming
+      //pressed
+      //released
+      //start
+      //turning
+      //turned
+      //destroying
 
-    turned: function (event, page, view) {
-      setTurnControls(view);
+      turned: function (event, page, view) {
+        setTurnControls(view);
 
-      // $(this).turn('center');
+        // $(this).turn('center');
 
-      const currentView = $(dom.book.book).turn("view");
+        const currentView = $(dom.book.book).turn("view");
 
-      // if turned to first view
-      if (compareArrays(currentView, getFirstView())) {
-        $(this).turn("peel", "tr");
-      }
+        // if turned to first view
+        if (compareArrays(currentView, getFirstView())) {
+          $(this).turn("peel", "tr");
+        }
+      },
     },
-  },
-});
+  });
+
+  // get corners - not accurate until Turn.js has positioned book
+  // does Turn.js give an initialized function ?
+  function getCornerPositions() {
+    const boundingClientRect = dom.book.book.getBoundingClientRect();
+
+    // console.log(book.style.left);
+    // console.log(book.style.top);
+
+    const corners = {
+      tl: { x: boundingClientRect.x, y: boundingClientRect.y },
+      tr: {
+        x: boundingClientRect.x + boundingClientRect.width,
+        y: boundingClientRect.y,
+      },
+      bl: {
+        x: boundingClientRect.x,
+        y: boundingClientRect.y + boundingClientRect.height,
+      },
+      br: {
+        x: boundingClientRect.x + boundingClientRect.width,
+        y: boundingClientRect.y + boundingClientRect.height,
+      },
+    };
+
+    // console.log(boundingClientRect);
+    // console.log(corners);
+    return corners;
+  }
+
+  const swipeTopLeft = document.getElementById("swipe-tl");
+  const swipeTopRight = document.getElementById("swipe-tr");
+  const swipeBottomLeft = document.getElementById("swipe-bl");
+  const swipeBottomRight = document.getElementById("swipe-br");
+
+  function positionOverlayCorners() {
+    const corners = getCornerPositions();
+
+    const width = swipeTopLeft.clientWidth;
+    const height = swipeTopLeft.clientHeight;
+    console.log(width);
+
+    swipeTopLeft.style.left = corners.tl.x - width / 2 + "px";
+    swipeTopLeft.style.top = corners.tl.y - height / 2 + "px";
+
+    swipeTopRight.style.left = corners.tr.x - width / 2 + "px";
+    swipeTopRight.style.top = corners.tr.y - height / 2 + "px";
+
+    swipeBottomLeft.style.left = corners.bl.x - width / 2 + "px";
+    swipeBottomLeft.style.top = corners.bl.y - height / 2 + "px";
+
+    swipeBottomRight.style.left = corners.br.x - width / 2 + "px";
+    swipeBottomRight.style.top = corners.br.y - height / 2 + "px";
+  }
+
+  // getCornerPositions();
+  // setTimeout(getCornerPositions, 1000);
+  // setTimeout(positionOverlayCorners, 1000);
+
+  const cornerControlsOverlay = document.getElementById(
+    "corner-controls-overlay"
+  );
+  const controlsToggleBtn = document.getElementById("controls-toggle-btn");
+  let hidden = true;
+
+  // controlsToggleBtn.addEventListener("click", controlsToggleBtnOnClick);
+
+  function controlsToggleBtnOnClick() {
+    if (hidden) {
+      fadeIn(cornerControlsOverlay);
+    } else {
+      fadeOut(cornerControlsOverlay);
+    }
+
+    hidden = !hidden;
+  }
+
+  function fadeIn(element) {
+    element.classList.remove("inactive");
+    element.classList.add("active");
+  }
+
+  function fadeOut(element) {
+    element.classList.remove("active");
+    element.classList.add("inactive");
+  }
+
+  // prev, next button listners
+
+  $(prevBtn).on("click", prevBtnOnClick);
+
+  $(nextBtn).on("click", nextBtnOnClick);
+
+  function prevBtnOnClick() {
+    $(dom.book.book).turn("previous");
+  }
+
+  function nextBtnOnClick() {
+    $(dom.book.book).turn("next");
+  }
+
+  // disallow page turning to first and last pages
+
+  const length = $(dom.book.book).turn("pages");
+
+  $(dom.book.book).bind("start", function (e, data, c) {
+    if (data.next == 1 || data.next == length) {
+      e.preventDefault();
+    }
+  });
+
+  $(dom.book.book).bind("turning", function (e, page, c) {
+    if (page === 1 || page === length) {
+      e.preventDefault();
+    }
+  });
+}
 
 // get first view and last view
 // defined for case of allowing spreads only
@@ -124,124 +255,7 @@ function getLastView() {
 // console.log(`firstView is ${getFirstView()}`);
 // console.log(`lastView is ${getLastView()}`);
 
-// get corners - not accurate until Turn.js has positioned book
-// does Turn.js give an initialized function ?
-function getCornerPositions() {
-  const boundingClientRect = dom.book.book.getBoundingClientRect();
-
-  // console.log(book.style.left);
-  // console.log(book.style.top);
-
-  const corners = {
-    tl: { x: boundingClientRect.x, y: boundingClientRect.y },
-    tr: {
-      x: boundingClientRect.x + boundingClientRect.width,
-      y: boundingClientRect.y,
-    },
-    bl: {
-      x: boundingClientRect.x,
-      y: boundingClientRect.y + boundingClientRect.height,
-    },
-    br: {
-      x: boundingClientRect.x + boundingClientRect.width,
-      y: boundingClientRect.y + boundingClientRect.height,
-    },
-  };
-
-  // console.log(boundingClientRect);
-  // console.log(corners);
-  return corners;
-}
-
-const swipeTopLeft = document.getElementById("swipe-tl");
-const swipeTopRight = document.getElementById("swipe-tr");
-const swipeBottomLeft = document.getElementById("swipe-bl");
-const swipeBottomRight = document.getElementById("swipe-br");
-
-function positionOverlayCorners() {
-  const corners = getCornerPositions();
-
-  const width = swipeTopLeft.clientWidth;
-  const height = swipeTopLeft.clientHeight;
-  console.log(width);
-
-  swipeTopLeft.style.left = corners.tl.x - width / 2 + "px";
-  swipeTopLeft.style.top = corners.tl.y - height / 2 + "px";
-
-  swipeTopRight.style.left = corners.tr.x - width / 2 + "px";
-  swipeTopRight.style.top = corners.tr.y - height / 2 + "px";
-
-  swipeBottomLeft.style.left = corners.bl.x - width / 2 + "px";
-  swipeBottomLeft.style.top = corners.bl.y - height / 2 + "px";
-
-  swipeBottomRight.style.left = corners.br.x - width / 2 + "px";
-  swipeBottomRight.style.top = corners.br.y - height / 2 + "px";
-}
-
-// getCornerPositions();
-// setTimeout(getCornerPositions, 1000);
-// setTimeout(positionOverlayCorners, 1000);
-
-const cornerControlsOverlay = document.getElementById(
-  "corner-controls-overlay"
-);
-const controlsToggleBtn = document.getElementById("controls-toggle-btn");
-let hidden = true;
-
-// controlsToggleBtn.addEventListener("click", controlsToggleBtnOnClick);
-
-function controlsToggleBtnOnClick() {
-  if (hidden) {
-    fadeIn(cornerControlsOverlay);
-  } else {
-    fadeOut(cornerControlsOverlay);
-  }
-
-  hidden = !hidden;
-}
-
-function fadeIn(element) {
-  element.classList.remove("inactive");
-  element.classList.add("active");
-}
-
-function fadeOut(element) {
-  element.classList.remove("active");
-  element.classList.add("inactive");
-}
-
-// prev, next button listners
-
-$(prevBtn).on("click", prevBtnOnClick);
-
-$(nextBtn).on("click", nextBtnOnClick);
-
-function prevBtnOnClick() {
-  $(dom.book.book).turn("previous");
-}
-
-function nextBtnOnClick() {
-  $(dom.book.book).turn("next");
-}
-
-// disallow page turning to first and last pages
-
-const length = $(dom.book.book).turn("pages");
-
-$(dom.book.book).bind("start", function (e, data, c) {
-  if (data.next == 1 || data.next == length) {
-    e.preventDefault();
-  }
-});
-
-$(dom.book.book).bind("turning", function (e, page, c) {
-  if (page === 1 || page === length) {
-    e.preventDefault();
-  }
-});
-
 // disable next/prev buttons on first and last views
-
 function setTurnControls(view) {
   if (compareArrays(view, getFirstView())) prevBtn.disabled = true;
   else prevBtn.disabled = false;
@@ -264,80 +278,110 @@ function setTurnControls(view) {
 
 // Zoom Setup ----------------------------------------------------
 
-const zoomViewport = document.getElementById("zoom-viewport");
-const zoomContainer = document.getElementById("zoom-container");
+function initZoom1() {
+  // const zoomViewport = document.getElementById("zoom-viewport");
+  // const zoomContainer = document.getElementById("zoom-container");
 
-zoomContainer.style.width = sizes.pageScale * sizes.pageWidth * 2 + "px";
-zoomContainer.style.height = sizes.pageScale * sizes.pageHeight + "px";
+  console.log(dom.book.zoomContainer, dom.book.zoomViewport);
 
-dom.book.book.style.left = -1 * sizes.pageScale * sizes.pageWidth + "px";
-dom.book.book.style.top = (-1 * sizes.pageScale * sizes.pageHeight) / 2 + "px";
-dom.book.book.style.position = "relative";
-dom.book.book.style.width = sizes.pageScale * sizes.pageWidth * 2 + "px";
-dom.book.book.style.height = sizes.pageScale * sizes.pageHeight + "px";
+  dom.book.zoomContainer.style.width =
+    sizes.pageScale * sizes.pageWidth * 2 + "px";
+  dom.book.zoomContainer.style.height =
+    sizes.pageScale * sizes.pageHeight + "px";
 
-$(zoomViewport).zoom({
-  flipbook: $(dom.book.book),
-  max: 2,
-  duration: animDuration,
-  when: {
-    // tap
-    // doubleTap
-    // resize
-    // zoomIn
-    // zoomOut
-    // swipeLeft
-    // swipeRight
+  dom.book.book.style.left = -1 * sizes.pageScale * sizes.pageWidth + "px";
+  dom.book.book.style.top =
+    (-1 * sizes.pageScale * sizes.pageHeight) / 2 + "px";
+  dom.book.book.style.position = "relative";
+  dom.book.book.style.width = sizes.pageScale * sizes.pageWidth * 2 + "px";
+  dom.book.book.style.height = sizes.pageScale * sizes.pageHeight + "px";
 
-    zoomIn: function (event) {
-      $(dom.book.book).removeClass("animated").addClass("zoom-in");
+  $(dom.book.zoomViewport).zoom({
+    flipbook: $(dom.book.book),
+    max: 2,
+    duration: animDuration,
+    when: {
+      // tap
+      // doubleTap
+      // resize
+      // zoomIn
+      // zoomOut
+      // swipeLeft
+      // swipeRight
+
+      zoomIn: function (event) {
+        $(dom.book.book).removeClass("animated").addClass("zoom-in");
+      },
+
+      zoomOut: function (event) {
+        const view = $(dom.book.book).turn("view");
+        setTurnControls(view);
+
+        setTimeout(function () {
+          $(dom.book.book).addClass("animated").removeClass("zoom-in");
+          resizeViewport();
+        }, 0);
+      },
     },
+  });
 
-    zoomOut: function (event) {
-      const view = $(dom.book.book).turn("view");
-      setTurnControls(view);
+  $(window)
+    .resize(function () {
+      resizeViewport();
+    })
+    .bind("orientationchange", function () {
+      resizeViewport();
+    });
 
-      setTimeout(function () {
-        $(dom.book.book).addClass("animated").removeClass("zoom-in");
-        resizeViewport();
-      }, 0);
-    },
-  },
-});
+  // Zoom functions ------------------------------------------------
 
-//
-// Calculate the width and height of a square within another square
-// used within resizeViewport
-function calculateBound(d) {
-  var bound = { width: d.width, height: d.height };
+  if ($.isTouch) {
+    console.log("isTouch");
+    $(dom.book.zoomViewport).bind("zoom.doubleTap", zoomTo);
+  } else {
+    console.log("!isTouch");
+    $(dom.book.zoomViewport).bind("zoom.tap", zoomTo);
+  }
 
-  if (bound.width > d.boundWidth || bound.height > d.boundHeight) {
-    var rel = bound.width / bound.height;
+  $(zoomInBtn).on("click", zoomInBtnOnClick);
+  $(zoomOutBtn).on("click", zoomOutBtnOnClick);
+  $(zoomToggleBtn).on("click", zoomToggleBtnOnClick);
 
-    if (
-      d.boundWidth / rel > d.boundHeight &&
-      d.boundHeight * rel <= d.boundWidth
-    ) {
-      bound.width = Math.round(d.boundHeight * rel);
-      bound.height = d.boundHeight;
-    } else {
-      bound.width = d.boundWidth;
-      bound.height = Math.round(d.boundWidth / rel);
+  function zoomInBtnOnClick(event) {
+    if ($(dom.book.zoomViewport).zoom("value") === 1) {
+      disableTurnControls();
+      $(dom.book.zoomViewport).zoom("zoomIn");
+      debounce(event.currentTarget);
     }
   }
 
-  return bound;
+  function zoomOutBtnOnClick(event) {
+    if ($(dom.book.zoomViewport).zoom("value") !== 1) {
+      $(dom.book.zoomViewport).zoom("zoomOut");
+      debounce(event.currentTarget);
+    }
+  }
+
+  function zoomToggleBtnOnClick(event) {
+    if ($(dom.book.zoomViewport).zoom("value") === 1) {
+      disableTurnControls();
+      $(dom.book.zoomViewport).zoom("zoomIn");
+    } else {
+      $(dom.book.zoomViewport).zoom("zoomOut");
+    }
+
+    debounce(event.currentTarget);
+  }
 }
-//
 
 function resizeViewport() {
   var width = $(window).width(),
-    height = $(window).height();
-  options = $(dom.book.book).turn("options");
+    height = $(window).height(),
+    options = $(dom.book.book).turn("options");
 
   $(dom.book.book).removeClass("animated");
 
-  $(zoomViewport)
+  $(dom.book.zoomViewport)
     .css({
       width: width,
       height: height,
@@ -378,65 +422,41 @@ function resizeViewport() {
 
   $(dom.book.book).addClass("animated");
 }
-// resizeViewport();
 
-$(window)
-  .resize(function () {
-    resizeViewport();
-  })
-  .bind("orientationchange", function () {
-    resizeViewport();
-  });
+//
+// Calculate the width and height of a square within another square
+// used within resizeViewport
+function calculateBound(d) {
+  var bound = { width: d.width, height: d.height };
 
-// Zoom functions ------------------------------------------------
+  if (bound.width > d.boundWidth || bound.height > d.boundHeight) {
+    var rel = bound.width / bound.height;
 
-if ($.isTouch) {
-  console.log("isTouch");
-  $(zoomViewport).bind("zoom.doubleTap", zoomTo);
-} else {
-  console.log("!isTouch");
-  $(zoomViewport).bind("zoom.tap", zoomTo);
-}
-
-$(zoomInBtn).on("click", zoomInBtnOnClick);
-$(zoomOutBtn).on("click", zoomOutBtnOnClick);
-$(zoomToggleBtn).on("click", zoomToggleBtnOnClick);
-
-function zoomInBtnOnClick(event) {
-  if ($(zoomViewport).zoom("value") === 1) {
-    disableTurnControls();
-    $(zoomViewport).zoom("zoomIn");
-    debounce(event.currentTarget);
-  }
-}
-
-function zoomOutBtnOnClick(event) {
-  if ($(zoomViewport).zoom("value") !== 1) {
-    $(zoomViewport).zoom("zoomOut");
-    debounce(event.currentTarget);
-  }
-}
-
-function zoomToggleBtnOnClick(event) {
-  if ($(zoomViewport).zoom("value") === 1) {
-    disableTurnControls();
-    $(zoomViewport).zoom("zoomIn");
-  } else {
-    $(zoomViewport).zoom("zoomOut");
+    if (
+      d.boundWidth / rel > d.boundHeight &&
+      d.boundHeight * rel <= d.boundWidth
+    ) {
+      bound.width = Math.round(d.boundHeight * rel);
+      bound.height = d.boundHeight;
+    } else {
+      bound.width = d.boundWidth;
+      bound.height = Math.round(d.boundWidth / rel);
+    }
   }
 
-  debounce(event.currentTarget);
+  return bound;
 }
+//
 
 // Helper functions ------------------------------------------------
 
 function zoomTo(event) {
   setTimeout(function () {
-    if ($(zoomViewport).zoom("value") === 1) {
+    if ($(dom.book.zoomViewport).zoom("value") === 1) {
       disableTurnControls();
-      $(zoomViewport).zoom("zoomIn", event); // passing event zooms to location clicked
+      $(dom.book.zoomViewport).zoom("zoomIn", event); // passing event zooms to location clicked
     } else {
-      $(zoomViewport).zoom("zoomOut");
+      $(dom.book.zoomViewport).zoom("zoomOut");
     }
   }, 1);
 }
@@ -468,4 +488,5 @@ function compareArrays(a, b) {
   }
 }
 
+flipbook.init();
 // export flipbook;
