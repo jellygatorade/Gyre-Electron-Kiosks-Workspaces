@@ -19,19 +19,22 @@ import { dom } from "../dom.js";
 // then fix UI fit
 
 // 3/15
-// fix zoomViewport initial / ongoing sizing in resizeViewport
-
-// const prevBtn = document.getElementById("prev-btn");
-// const nextBtn = document.getElementById("next-btn");
+// zoomViewport / zoomContainer placement and sizing
 
 // ---------------------------------------------------------------
 // Init ----------------------------------------------------------
 // ---------------------------------------------------------------
 
+const animDuration = 500; // ms
+
 const sizes = {
   pageWidth: null,
   pageHeight: null,
   pageScale: null,
+  bookWidth: null,
+  bookHeight: null,
+  containerWidth: null,
+  containerHeight: null,
 };
 
 const flipbook = {
@@ -48,12 +51,29 @@ const flipbook = {
 
     sizes.pageWidth = dom.book.firstPageImg.naturalWidth;
     sizes.pageHeight = dom.book.firstPageImg.naturalHeight;
-    sizes.pageScale = 0.6;
+    sizes.pageScale = 0.5;
+
+    sizes.bookWidth = sizes.pageScale * sizes.pageWidth * 2;
+    sizes.bookHeight = sizes.pageScale * sizes.pageHeight;
 
     console.log(sizes);
 
-    // nextBtn.style.height = pageScale * pageHeight + "px";
-    // prevBtn.style.height = pageScale * pageHeight + "px";
+    dom.book.zoomContainer.style.width = sizes.bookWidth + "px";
+    dom.book.zoomContainer.style.height = sizes.bookHeight + "px";
+
+    dom.book.book.style.left = -1 * sizes.pageScale * sizes.pageWidth + "px";
+    dom.book.book.style.top =
+      (-1 * sizes.pageScale * sizes.pageHeight) / 2 + "px";
+    dom.book.book.style.position = "relative";
+    dom.book.book.style.width = sizes.bookWidth + "px";
+    dom.book.book.style.height = sizes.bookHeight + "px";
+
+    dom.book.nextBtn.style.height = sizes.bookHeight + "px";
+    dom.book.prevBtn.style.height = sizes.bookHeight + "px";
+
+    sizes.containerWidth = dom.book.bookContainer.getBoundingClientRect().width;
+    sizes.containerHeight =
+      dom.book.bookContainer.getBoundingClientRect().height;
   },
 
   initTurn: function () {
@@ -66,18 +86,12 @@ const flipbook = {
   },
 };
 
-const nextBtn = document.getElementById("next-button");
-const prevBtn = document.getElementById("previous-button");
+// const nextBtn = document.getElementById("next-button");
+// const prevBtn = document.getElementById("previous-button");
 
 const zoomInBtn = document.getElementById("zoom-in-btn");
 const zoomOutBtn = document.getElementById("zoom-out-btn");
 const zoomToggleBtn = document.getElementById("zoom-toggle-btn");
-
-// const book = document.getElementById("book");
-// const firstPage = document.getElementsByClassName("page")[2];
-// const firstPageImg = firstPage.getElementsByTagName("img")[0];
-
-const animDuration = 500; // ms
 
 // ---------------------------------------------------------------
 // Turn ----------------------------------------------------------
@@ -203,9 +217,9 @@ function initTurn1() {
 
   // prev, next button listners
 
-  $(prevBtn).on("click", prevBtnOnClick);
+  $(dom.book.prevBtn).on("click", prevBtnOnClick);
 
-  $(nextBtn).on("click", nextBtnOnClick);
+  $(dom.book.nextBtn).on("click", nextBtnOnClick);
 
   function prevBtnOnClick() {
     $(dom.book.book).turn("previous");
@@ -257,11 +271,11 @@ function getLastView() {
 
 // disable next/prev buttons on first and last views
 function setTurnControls(view) {
-  if (compareArrays(view, getFirstView())) prevBtn.disabled = true;
-  else prevBtn.disabled = false;
+  if (compareArrays(view, getFirstView())) dom.book.prevBtn.disabled = true;
+  else dom.book.prevBtn.disabled = false;
 
-  if (compareArrays(view, getLastView())) nextBtn.disabled = true;
-  else nextBtn.disabled = false;
+  if (compareArrays(view, getLastView())) dom.book.nextBtn.disabled = true;
+  else dom.book.nextBtn.disabled = false;
 }
 
 // ---------------------------------------------------------------
@@ -279,15 +293,12 @@ function setTurnControls(view) {
 // Zoom Setup ----------------------------------------------------
 
 function initZoom1() {
-  // const zoomViewport = document.getElementById("zoom-viewport");
-  // const zoomContainer = document.getElementById("zoom-container");
-
-  console.log(dom.book.zoomContainer, dom.book.zoomViewport);
-
-  dom.book.zoomContainer.style.width =
-    sizes.pageScale * sizes.pageWidth * 2 + "px";
-  dom.book.zoomContainer.style.height =
-    sizes.pageScale * sizes.pageHeight + "px";
+  // dom.book.zoomContainer.style.width =
+  //   sizes.pageScale * sizes.pageWidth * 2 + "px";
+  // dom.book.zoomContainer.style.height =
+  //   sizes.pageScale * sizes.pageHeight + "px";
+  dom.book.zoomContainer.style.width = sizes.containerWidth + "px";
+  dom.book.zoomContainer.style.height = sizes.containerHeight + "px";
 
   dom.book.book.style.left = -1 * sizes.pageScale * sizes.pageWidth + "px";
   dom.book.book.style.top =
@@ -375,9 +386,15 @@ function initZoom1() {
 }
 
 function resizeViewport() {
-  var width = $(window).width(),
-    height = $(window).height(),
-    options = $(dom.book.book).turn("options");
+  // const width = $(window).width();
+  // const height = $(window).height();
+  // THIS NEEDS OWN FUNCTION, USED BY INIT DOM AND HERE
+  sizes.containerWidth = dom.book.bookContainer.getBoundingClientRect().width;
+  sizes.containerHeight = dom.book.bookContainer.getBoundingClientRect().height;
+
+  const width = sizes.containerWidth;
+  const height = sizes.containerHeight;
+  const options = $(dom.book.book).turn("options");
 
   $(dom.book.book).removeClass("animated");
 
@@ -423,7 +440,6 @@ function resizeViewport() {
   $(dom.book.book).addClass("animated");
 }
 
-//
 // Calculate the width and height of a square within another square
 // used within resizeViewport
 function calculateBound(d) {
@@ -446,7 +462,6 @@ function calculateBound(d) {
 
   return bound;
 }
-//
 
 // Helper functions ------------------------------------------------
 
@@ -462,8 +477,8 @@ function zoomTo(event) {
 }
 
 function disableTurnControls() {
-  prevBtn.disabled = true;
-  nextBtn.disabled = true;
+  dom.book.prevBtn.disabled = true;
+  dom.book.nextBtn.disabled = true;
 }
 
 function debounce(btn) {

@@ -119,6 +119,10 @@ const dom = {
 
   // Read View - Turn.js
   book: {
+    beforeBook: document.getElementById("before-book"),
+    bookContainer: document.getElementById("book-container"),
+    afterBook: document.getElementById("after-book"),
+
     book: document.getElementById("book"),
     // firstPage
     // firstPageImg
@@ -126,8 +130,8 @@ const dom = {
     // firstPage: document.getElementsByClassName("page")[2],
     // firstPageImg: this.book.firstPage.getElementsByTagName("img")[0],
 
-    // nextBtn: document.getElementById("next-button"),
-    // prevBtn: document.getElementById("previous-button"),
+    nextBtn: document.getElementById("next-button"),
+    prevBtn: document.getElementById("previous-button"),
 
     // zoomInBtn: document.getElementById("zoom-in-btn"),
     // zoomOutBtn: document.getElementById("zoom-out-btn"),

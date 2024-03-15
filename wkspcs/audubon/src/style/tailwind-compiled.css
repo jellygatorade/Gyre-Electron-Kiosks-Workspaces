@@ -817,20 +817,16 @@ video {
   justify-content: space-between;
 }
 
-.gap-6 {
-  gap: 1.5rem;
-}
-
 .gap-2 {
   gap: 0.5rem;
 }
 
-.gap-1 {
-  gap: 0.25rem;
+.gap-6 {
+  gap: 1.5rem;
 }
 
-.gap-\[0\.3rem\] {
-  gap: 0.3rem;
+.self-end {
+  align-self: flex-end;
 }
 
 .overflow-hidden {
