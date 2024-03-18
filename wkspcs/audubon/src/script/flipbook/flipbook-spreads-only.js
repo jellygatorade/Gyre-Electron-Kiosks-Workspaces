@@ -28,13 +28,19 @@ import { dom } from "../dom.js";
 const animDuration = 500; // ms
 
 const sizes = {
-  pageWidth: null,
-  pageHeight: null,
-  pageScale: null,
-  bookWidth: null,
-  bookHeight: null,
-  containerWidth: null,
-  containerHeight: null,
+  page: {
+    width: null,
+    height: null,
+    scale: null,
+  },
+  book: {
+    width: null,
+    height: null,
+  },
+  container: {
+    width: null,
+    height: null,
+  },
 };
 
 const flipbook = {
@@ -49,30 +55,31 @@ const flipbook = {
     dom.book.firstPage = document.getElementsByClassName("page")[2];
     dom.book.firstPageImg = dom.book.firstPage.getElementsByTagName("img")[0];
 
-    sizes.pageWidth = dom.book.firstPageImg.naturalWidth;
-    sizes.pageHeight = dom.book.firstPageImg.naturalHeight;
-    sizes.pageScale = 0.5;
+    sizes.page.width = dom.book.firstPageImg.naturalWidth;
+    sizes.page.height = dom.book.firstPageImg.naturalHeight;
+    sizes.page.scale = 0.5;
 
-    sizes.bookWidth = sizes.pageScale * sizes.pageWidth * 2;
-    sizes.bookHeight = sizes.pageScale * sizes.pageHeight;
+    sizes.book.width = sizes.page.scale * sizes.page.width * 2;
+    sizes.book.height = sizes.page.scale * sizes.page.height;
 
     console.log(sizes);
 
-    dom.book.zoomContainer.style.width = sizes.bookWidth + "px";
-    dom.book.zoomContainer.style.height = sizes.bookHeight + "px";
+    dom.book.zoomContainer.style.width = sizes.book.width + "px";
+    dom.book.zoomContainer.style.height = sizes.book.height + "px";
 
-    dom.book.book.style.left = -1 * sizes.pageScale * sizes.pageWidth + "px";
+    dom.book.book.style.left = -1 * sizes.page.scale * sizes.page.width + "px";
     dom.book.book.style.top =
-      (-1 * sizes.pageScale * sizes.pageHeight) / 2 + "px";
+      (-1 * sizes.page.scale * sizes.page.height) / 2 + "px";
     dom.book.book.style.position = "relative";
-    dom.book.book.style.width = sizes.bookWidth + "px";
-    dom.book.book.style.height = sizes.bookHeight + "px";
+    dom.book.book.style.width = sizes.book.width + "px";
+    dom.book.book.style.height = sizes.book.height + "px";
 
-    dom.book.nextBtn.style.height = sizes.bookHeight + "px";
-    dom.book.prevBtn.style.height = sizes.bookHeight + "px";
+    dom.book.nextBtn.style.height = sizes.book.height + "px";
+    dom.book.prevBtn.style.height = sizes.book.height + "px";
 
-    sizes.containerWidth = dom.book.bookContainer.getBoundingClientRect().width;
-    sizes.containerHeight =
+    sizes.container.width =
+      dom.book.bookContainer.getBoundingClientRect().width;
+    sizes.container.height =
       dom.book.bookContainer.getBoundingClientRect().height;
   },
 
@@ -101,8 +108,8 @@ function initTurn1() {
   $(dom.book.book).turn({
     // acceleration: true,
     // autoCenter: false,
-    width: sizes.pageScale * sizes.pageWidth * 2,
-    height: sizes.pageScale * sizes.pageHeight,
+    width: sizes.page.scale * sizes.page.width * 2,
+    height: sizes.page.scale * sizes.page.height,
     display: "double",
     page: 2, // initialize open
     when: {
@@ -294,18 +301,18 @@ function setTurnControls(view) {
 
 function initZoom1() {
   // dom.book.zoomContainer.style.width =
-  //   sizes.pageScale * sizes.pageWidth * 2 + "px";
+  //   sizes.page.scale * sizes.page.width * 2 + "px";
   // dom.book.zoomContainer.style.height =
-  //   sizes.pageScale * sizes.pageHeight + "px";
-  dom.book.zoomContainer.style.width = sizes.containerWidth + "px";
-  dom.book.zoomContainer.style.height = sizes.containerHeight + "px";
+  //   sizes.page.scale * sizes.page.height + "px";
+  dom.book.zoomContainer.style.width = sizes.container.width + "px";
+  dom.book.zoomContainer.style.height = sizes.container.height + "px";
 
-  dom.book.book.style.left = -1 * sizes.pageScale * sizes.pageWidth + "px";
+  dom.book.book.style.left = -1 * sizes.page.scale * sizes.page.width + "px";
   dom.book.book.style.top =
-    (-1 * sizes.pageScale * sizes.pageHeight) / 2 + "px";
+    (-1 * sizes.page.scale * sizes.page.height) / 2 + "px";
   dom.book.book.style.position = "relative";
-  dom.book.book.style.width = sizes.pageScale * sizes.pageWidth * 2 + "px";
-  dom.book.book.style.height = sizes.pageScale * sizes.pageHeight + "px";
+  dom.book.book.style.width = sizes.page.scale * sizes.page.width * 2 + "px";
+  dom.book.book.style.height = sizes.page.scale * sizes.page.height + "px";
 
   $(dom.book.zoomViewport).zoom({
     flipbook: $(dom.book.book),
@@ -389,11 +396,12 @@ function resizeViewport() {
   // const width = $(window).width();
   // const height = $(window).height();
   // THIS NEEDS OWN FUNCTION, USED BY INIT DOM AND HERE
-  sizes.containerWidth = dom.book.bookContainer.getBoundingClientRect().width;
-  sizes.containerHeight = dom.book.bookContainer.getBoundingClientRect().height;
+  sizes.container.width = dom.book.bookContainer.getBoundingClientRect().width;
+  sizes.container.height =
+    dom.book.bookContainer.getBoundingClientRect().height;
 
-  const width = sizes.containerWidth;
-  const height = sizes.containerHeight;
+  const width = sizes.container.width;
+  const height = sizes.container.height;
   const options = $(dom.book.book).turn("options");
 
   $(dom.book.book).removeClass("animated");
