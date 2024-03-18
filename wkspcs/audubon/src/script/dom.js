@@ -135,6 +135,7 @@ const dom = {
 
     infoBtn: document.getElementById("read-view-info-button"),
     zoomToggleBtn: document.getElementById("read-view-toggle-zoom-button"),
+    zoomToggleIcon: document.getElementById("read-view-toggle-zoom-icon"),
 
     cornerControlsOverlay: document.getElementById("corner-controls-overlay"),
     swipeTopLeft: document.getElementById("swipe-tl"),

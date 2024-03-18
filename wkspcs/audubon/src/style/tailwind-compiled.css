@@ -572,6 +572,10 @@ video {
   text-shadow: 0px 0px 3px #000000;
 }
 
+.box-shadow-black-3px {
+  box-shadow: 0px 0px 3px #000000;
+}
+
 .pointer-events-none {
   pointer-events: none;
 }
@@ -626,6 +630,10 @@ video {
 
 .top-\[40px\] {
   top: 40px;
+}
+
+.z-\[1000100\] {
+  z-index: 1000100;
 }
 
 .z-\[100\] {
@@ -872,6 +880,14 @@ video {
 .bg-red-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(127 29 29 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-30 {
+  --tw-bg-opacity: 0.3;
+}
+
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
 }
 
 .object-cover {

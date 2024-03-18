@@ -7,10 +7,9 @@ import { dom } from "../dom.js";
 // try out swipeLeft swipeRight zoom events? not sure of intended purpose...just console.log() them
 //
 // make prev/nextBtn and corners overly invisible on zoom
-// zoom out button shows on top of zoomViewport
-// thin magnifying glass icon and toggle minus
+// thin magnifying glass icon
 //
-// user animationHandler over fadeOut/fadeIn
+// use animationHandler over fadeOut/fadeIn
 //
 // en/es title swapping
 // overlay modal + text + corner controls overlay showing
@@ -331,8 +330,6 @@ function initializeZoom() {
     $(dom.book.zoomViewport).bind("zoom.tap", zoomTo);
   }
 
-  // $(zoomInBtn).on("click", zoomInBtnOnClick);
-  // $(zoomOutBtn).on("click", zoomOutBtnOnClick);
   $(dom.book.zoomToggleBtn).on("click", zoomToggleBtnOnClick);
 }
 
@@ -341,6 +338,12 @@ function zoomIn(event) {
     disableTurnControls();
     $(dom.book.zoomViewport).zoom("zoomIn");
     debounce(event.currentTarget);
+
+    $(dom.book.zoomToggleIcon)
+      .removeClass("fa-search-plus")
+      .addClass("fa-search-minus");
+
+    fadeOut(dom.book.cornerControlsOverlay);
   }
 }
 
@@ -348,6 +351,10 @@ function zoomOut(event) {
   if ($(dom.book.zoomViewport).zoom("value") !== 1) {
     $(dom.book.zoomViewport).zoom("zoomOut");
     debounce(event.currentTarget);
+
+    $(dom.book.zoomToggleIcon)
+      .removeClass("fa-search-minus")
+      .addClass("fa-search-plus");
   }
 }
 
@@ -363,8 +370,16 @@ function zoomToggleBtnOnClick(event) {
   if ($(dom.book.zoomViewport).zoom("value") === 1) {
     disableTurnControls();
     $(dom.book.zoomViewport).zoom("zoomIn");
+    $(dom.book.zoomToggleIcon)
+      .removeClass("fa-search-plus")
+      .addClass("fa-search-minus");
+
+    fadeOut(dom.book.cornerControlsOverlay);
   } else {
     $(dom.book.zoomViewport).zoom("zoomOut");
+    $(dom.book.zoomToggleIcon)
+      .removeClass("fa-search-minus")
+      .addClass("fa-search-plus");
   }
 
   debounce(event.currentTarget);
@@ -378,8 +393,6 @@ function resizeViewport() {
   dom.book.zoomViewport.style.left = "0px";
   dom.book.zoomViewport.style.top = "0px";
 
-  // const width = sizes.container.width;
-  // const height = sizes.container.height;
   const options = $(dom.book.book).turn("options");
 
   $(dom.book.book).removeClass("animated");
@@ -458,8 +471,15 @@ function zoomTo(event) {
     if ($(dom.book.zoomViewport).zoom("value") === 1) {
       disableTurnControls();
       $(dom.book.zoomViewport).zoom("zoomIn", event); // passing event zooms to location clicked
+      $(dom.book.zoomToggleIcon)
+        .removeClass("fa-search-plus")
+        .addClass("fa-search-minus");
+      fadeOut(dom.book.cornerControlsOverlay);
     } else {
       $(dom.book.zoomViewport).zoom("zoomOut");
+      $(dom.book.zoomToggleIcon)
+        .removeClass("fa-search-minus")
+        .addClass("fa-search-plus");
     }
   }, 1);
 }
