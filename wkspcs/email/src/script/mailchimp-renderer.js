@@ -54,7 +54,6 @@ function updateMergeFieldsBtnOnClick(event) {
   event.preventDefault();
 
   const formJSON = getFormJson(event);
-  tk;
   // would validate form here
 
   const limitedFormJSON = {
