@@ -133,17 +133,14 @@ const dom = {
     nextBtn: document.getElementById("next-button"),
     prevBtn: document.getElementById("previous-button"),
 
-    // zoomInBtn: document.getElementById("zoom-in-btn"),
-    // zoomOutBtn: document.getElementById("zoom-out-btn"),
-    // zoomToggleBtn: document.getElementById("zoom-toggle-btn"),
+    infoBtn: document.getElementById("read-view-info-button"),
+    zoomToggleBtn: document.getElementById("read-view-toggle-zoom-button"),
 
+    cornerControlsOverlay: document.getElementById("corner-controls-overlay"),
     swipeTopLeft: document.getElementById("swipe-tl"),
     swipeTopRight: document.getElementById("swipe-tr"),
     swipeBottomLeft: document.getElementById("swipe-bl"),
     swipeBottomRight: document.getElementById("swipe-br"),
-
-    cornerControlsOverlay: document.getElementById("corner-controls-overlay"),
-    controlsToggleBtn: document.getElementById("controls-toggle-btn"),
 
     zoomViewport: document.getElementById("zoom-viewport"),
     zoomContainer: document.getElementById("zoom-container"),

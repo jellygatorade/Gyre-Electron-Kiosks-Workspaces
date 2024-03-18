@@ -1,9 +1,8 @@
 import { dom } from "./dom.js";
 import { animationHandler } from "./ui-macro-state/animation-handler.js";
-import { UIViewController } from "./ui-macro-state/ui-view-controller.js";
-import { views } from "./initialize-views.js";
 import { idleTimer } from "./idle-timer/idle-timer-static-class.js";
 import { returnToAttractView } from "./attract-view.js";
+import { flipbook } from "./flipbook/flipbook-spreads-only.js";
 
 function timeoutModalInit() {
   //   dom.readViewBackButton.addEventListener("click", () => {
@@ -21,6 +20,11 @@ function timeoutModalInit() {
   idleTimer.onUserInactive = function () {
     animationHandler.fadeOut(dom.timeoutModal);
     returnToAttractView();
+
+    // once animation is complete
+    setTimeout(() => {
+      flipbook.reset();
+    }, 300);
   };
 
   dom.timeoutModalTapToContinueOverlay.addEventListener("click", (event) => {

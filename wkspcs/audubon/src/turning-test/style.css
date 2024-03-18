@@ -72,11 +72,13 @@ body {
 
 .flipbook .next-button:hover,
 .flipbook .previous-button:hover {
+  color: var(--ncma-orange);
   border: 1px solid var(--ncma-orange);
 }
 
 .flipbook .next-button:disabled,
 .flipbook .previous-button:disabled {
+  color: var(--disabled-gray);
   border: 1px solid var(--disabled-gray);
 }
 

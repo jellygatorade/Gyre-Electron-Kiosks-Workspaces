@@ -359,20 +359,32 @@
       <div class="h-full flex flex-col justify-between">
         <!-- Header -->
         <div id="before-book" class="grow-0">
-          <h1>Turn View</h1>
+          <h1>Read</h1>
+          <h2>Description of reading view</h2>
         </div>
         <!-- Book -->
         <div id="book-container" class="grow">
+          <!-- corner controls overlay -->
+          <div id="corner-controls-overlay" class="controls-overlay inactive">
+            <div id="swipe-tl" class="swipe-overlay"></div>
+            <div id="swipe-tr" class="swipe-overlay"></div>
+            <div id="swipe-bl" class="swipe-overlay"></div>
+            <div id="swipe-br" class="swipe-overlay"></div>
+          </div>
           <div id="zoom-viewport">
             <div id="zoom-container" class="zoom-container">
               <div id="book" class="flipbook animated">
                 <!-- Next button -->
                 <div ignore="1">
-                  <button id="next-button" class="next-button"></button>
+                  <button id="next-button" class="next-button text-lg">
+                    <i class="fas fa-caret-right"></i>
+                  </button>
                 </div>
                 <!-- Previous button -->
                 <div ignore="1">
-                  <button id="previous-button" class="previous-button"></button>
+                  <button id="previous-button" class="previous-button text-lg">
+                    <i class="fas fa-caret-left"></i>
+                  </button>
                 </div>
                 <!-- Pages -->
                 <div class="page">
@@ -469,9 +481,21 @@
               >es-read-view-toggle-lang</span
             >
           </button>
+          <button
+            id="read-view-info-button"
+            class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+          >
+            ?
+            <!-- <i class="fas fa-question"></i> -->
+          </button>
+          <button
+            id="read-view-toggle-zoom-button"
+            class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+          >
+            <i class="fas fa-search-plus"></i>
+          </button>
         </div>
       </div>
-      <div> </div>
     </div>
 
     <!-- Scripts -->
@@ -481,10 +505,6 @@
     ></script>
     <script type="text/javascript" src="./script/lib/turnjs4/turn.js"></script>
     <script type="text/javascript" src="./script/lib/turnjs4/zoom.js"></script>
-    <script
-      type="module"
-      src="./script/flipbook/flipbook-spreads-only.js"
-    ></script>
     <script type="module" src="./script/script.js"></script>
   </body>
 </html>

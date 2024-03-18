@@ -1,25 +1,21 @@
 import { dom } from "../dom.js";
 
 // To do
-// x - write a function to get first and last views from pages
-// x - get corner positions -> create overlay makers
+//
 // dynamically populate pages?
 // responsive sizing - started but still needs responsive zoom
 // try out swipeLeft swipeRight zoom events? not sure of intended purpose...just console.log() them
 //
-// code organizing!
+// make prev/nextBtn and corners overly invisible on zoom
+// zoom out button shows on top of zoomViewport
+// thin magnifying glass icon and toggle minus
 //
-// footer buttons
-// modal
-// put within larger app, UIViewController
-
-// 3/11
-// import important elements via dom.book
-// create init functions that can be composed into one flipbook.init() that can be imported by script.js
-// then fix UI fit
-
-// 3/15
-// zoomViewport / zoomContainer placement and sizing
+// user animationHandler over fadeOut/fadeIn
+//
+// en/es title swapping
+// overlay modal + text + corner controls overlay showing
+//
+// code organizing!
 
 // ---------------------------------------------------------------
 // Init ----------------------------------------------------------
@@ -55,6 +51,8 @@ const flipbook = {
     dom.book.firstPage = document.getElementsByClassName("page")[2];
     dom.book.firstPageImg = dom.book.firstPage.getElementsByTagName("img")[0];
 
+    // Sizes
+
     sizes.page.width = dom.book.firstPageImg.naturalWidth;
     sizes.page.height = dom.book.firstPageImg.naturalHeight;
     sizes.page.scale = 0.5;
@@ -62,10 +60,12 @@ const flipbook = {
     sizes.book.width = sizes.page.scale * sizes.page.width * 2;
     sizes.book.height = sizes.page.scale * sizes.page.height;
 
-    console.log(sizes);
+    sizes.container.width =
+      dom.book.bookContainer.getBoundingClientRect().width;
+    sizes.container.height =
+      dom.book.bookContainer.getBoundingClientRect().height;
 
-    dom.book.zoomContainer.style.width = sizes.book.width + "px";
-    dom.book.zoomContainer.style.height = sizes.book.height + "px";
+    // Turn + Zoom setup
 
     dom.book.book.style.left = -1 * sizes.page.scale * sizes.page.width + "px";
     dom.book.book.style.top =
@@ -77,34 +77,41 @@ const flipbook = {
     dom.book.nextBtn.style.height = sizes.book.height + "px";
     dom.book.prevBtn.style.height = sizes.book.height + "px";
 
-    sizes.container.width =
-      dom.book.bookContainer.getBoundingClientRect().width;
-    sizes.container.height =
-      dom.book.bookContainer.getBoundingClientRect().height;
+    dom.book.zoomContainer.style.width = sizes.book.width + "px";
+    dom.book.zoomContainer.style.height = sizes.book.height + "px";
+
+    dom.book.zoomViewport.style.position = "absolute";
+    dom.book.zoomViewport.style.left = "0px";
+    dom.book.zoomViewport.style.top = "0px";
+
+    // Controls overlay
+
+    dom.book.cornerControlsOverlay.style.position = "absolute";
+    dom.book.cornerControlsOverlay.style.left = "0px";
+    dom.book.cornerControlsOverlay.style.top = "0px";
   },
 
   initTurn: function () {
-    initTurn1();
+    initializeTurnJS();
   },
 
   initZoom: function () {
-    initZoom1();
+    initializeZoom();
     resizeViewport();
   },
+
+  reset: function () {
+    // reset for idle timeout
+    $(dom.book.book).turn("page", 2);
+    $(dom.book.zoomViewport).zoom("zoomOut");
+  },
 };
-
-// const nextBtn = document.getElementById("next-button");
-// const prevBtn = document.getElementById("previous-button");
-
-const zoomInBtn = document.getElementById("zoom-in-btn");
-const zoomOutBtn = document.getElementById("zoom-out-btn");
-const zoomToggleBtn = document.getElementById("zoom-toggle-btn");
 
 // ---------------------------------------------------------------
 // Turn ----------------------------------------------------------
 // ---------------------------------------------------------------
 
-function initTurn1() {
+function initializeTurnJS() {
   $(dom.book.book).turn({
     // acceleration: true,
     // autoCenter: false,
@@ -136,90 +143,18 @@ function initTurn1() {
     },
   });
 
-  // get corners - not accurate until Turn.js has positioned book
-  // does Turn.js give an initialized function ?
-  function getCornerPositions() {
-    const boundingClientRect = dom.book.book.getBoundingClientRect();
-
-    // console.log(book.style.left);
-    // console.log(book.style.top);
-
-    const corners = {
-      tl: { x: boundingClientRect.x, y: boundingClientRect.y },
-      tr: {
-        x: boundingClientRect.x + boundingClientRect.width,
-        y: boundingClientRect.y,
-      },
-      bl: {
-        x: boundingClientRect.x,
-        y: boundingClientRect.y + boundingClientRect.height,
-      },
-      br: {
-        x: boundingClientRect.x + boundingClientRect.width,
-        y: boundingClientRect.y + boundingClientRect.height,
-      },
-    };
-
-    // console.log(boundingClientRect);
-    // console.log(corners);
-    return corners;
-  }
-
-  const swipeTopLeft = document.getElementById("swipe-tl");
-  const swipeTopRight = document.getElementById("swipe-tr");
-  const swipeBottomLeft = document.getElementById("swipe-bl");
-  const swipeBottomRight = document.getElementById("swipe-br");
-
-  function positionOverlayCorners() {
-    const corners = getCornerPositions();
-
-    const width = swipeTopLeft.clientWidth;
-    const height = swipeTopLeft.clientHeight;
-    console.log(width);
-
-    swipeTopLeft.style.left = corners.tl.x - width / 2 + "px";
-    swipeTopLeft.style.top = corners.tl.y - height / 2 + "px";
-
-    swipeTopRight.style.left = corners.tr.x - width / 2 + "px";
-    swipeTopRight.style.top = corners.tr.y - height / 2 + "px";
-
-    swipeBottomLeft.style.left = corners.bl.x - width / 2 + "px";
-    swipeBottomLeft.style.top = corners.bl.y - height / 2 + "px";
-
-    swipeBottomRight.style.left = corners.br.x - width / 2 + "px";
-    swipeBottomRight.style.top = corners.br.y - height / 2 + "px";
-  }
-
-  // getCornerPositions();
-  // setTimeout(getCornerPositions, 1000);
-  // setTimeout(positionOverlayCorners, 1000);
-
-  const cornerControlsOverlay = document.getElementById(
-    "corner-controls-overlay"
-  );
-  const controlsToggleBtn = document.getElementById("controls-toggle-btn");
   let hidden = true;
 
-  // controlsToggleBtn.addEventListener("click", controlsToggleBtnOnClick);
+  dom.book.infoBtn.addEventListener("click", controlsToggleBtnOnClick);
 
   function controlsToggleBtnOnClick() {
     if (hidden) {
-      fadeIn(cornerControlsOverlay);
+      fadeIn(dom.book.cornerControlsOverlay);
     } else {
-      fadeOut(cornerControlsOverlay);
+      fadeOut(dom.book.cornerControlsOverlay);
     }
 
     hidden = !hidden;
-  }
-
-  function fadeIn(element) {
-    element.classList.remove("inactive");
-    element.classList.add("active");
-  }
-
-  function fadeOut(element) {
-    element.classList.remove("active");
-    element.classList.add("inactive");
   }
 
   // prev, next button listners
@@ -273,9 +208,6 @@ function getLastView() {
   }
 }
 
-// console.log(`firstView is ${getFirstView()}`);
-// console.log(`lastView is ${getLastView()}`);
-
 // disable next/prev buttons on first and last views
 function setTurnControls(view) {
   if (compareArrays(view, getFirstView())) dom.book.prevBtn.disabled = true;
@@ -283,6 +215,49 @@ function setTurnControls(view) {
 
   if (compareArrays(view, getLastView())) dom.book.nextBtn.disabled = true;
   else dom.book.nextBtn.disabled = false;
+}
+
+// get corners - not accurate until Turn.js has positioned book
+// run within resizeViewport
+function getCornerPositions() {
+  const boundingClientRect = dom.book.book.getBoundingClientRect();
+
+  const corners = {
+    tl: { x: boundingClientRect.x, y: boundingClientRect.y },
+    tr: {
+      x: boundingClientRect.x + boundingClientRect.width,
+      y: boundingClientRect.y,
+    },
+    bl: {
+      x: boundingClientRect.x,
+      y: boundingClientRect.y + boundingClientRect.height,
+    },
+    br: {
+      x: boundingClientRect.x + boundingClientRect.width,
+      y: boundingClientRect.y + boundingClientRect.height,
+    },
+  };
+
+  return corners;
+}
+
+function positionOverlayCorners() {
+  const corners = getCornerPositions();
+
+  const width = dom.book.swipeTopLeft.clientWidth;
+  const height = dom.book.swipeTopLeft.clientHeight;
+
+  dom.book.swipeTopLeft.style.left = corners.tl.x - width / 2 + "px";
+  dom.book.swipeTopLeft.style.top = corners.tl.y - height / 2 + "px";
+
+  dom.book.swipeTopRight.style.left = corners.tr.x - width / 2 + "px";
+  dom.book.swipeTopRight.style.top = corners.tr.y - height / 2 + "px";
+
+  dom.book.swipeBottomLeft.style.left = corners.bl.x - width / 2 + "px";
+  dom.book.swipeBottomLeft.style.top = corners.bl.y - height / 2 + "px";
+
+  dom.book.swipeBottomRight.style.left = corners.br.x - width / 2 + "px";
+  dom.book.swipeBottomRight.style.top = corners.br.y - height / 2 + "px";
 }
 
 // ---------------------------------------------------------------
@@ -299,24 +274,13 @@ function setTurnControls(view) {
 
 // Zoom Setup ----------------------------------------------------
 
-function initZoom1() {
-  // dom.book.zoomContainer.style.width =
-  //   sizes.page.scale * sizes.page.width * 2 + "px";
-  // dom.book.zoomContainer.style.height =
-  //   sizes.page.scale * sizes.page.height + "px";
-  dom.book.zoomContainer.style.width = sizes.container.width + "px";
-  dom.book.zoomContainer.style.height = sizes.container.height + "px";
-
-  dom.book.book.style.left = -1 * sizes.page.scale * sizes.page.width + "px";
-  dom.book.book.style.top =
-    (-1 * sizes.page.scale * sizes.page.height) / 2 + "px";
-  dom.book.book.style.position = "relative";
-  dom.book.book.style.width = sizes.page.scale * sizes.page.width * 2 + "px";
-  dom.book.book.style.height = sizes.page.scale * sizes.page.height + "px";
+function initializeZoom() {
+  $(dom.book.zoomViewport).addClass("inactive-pointer");
+  $(dom.book.book).addClass("active-pointer");
 
   $(dom.book.zoomViewport).zoom({
     flipbook: $(dom.book.book),
-    max: 2,
+    max: 1 / sizes.page.scale,
     duration: animDuration,
     when: {
       // tap
@@ -329,6 +293,9 @@ function initZoom1() {
 
       zoomIn: function (event) {
         $(dom.book.book).removeClass("animated").addClass("zoom-in");
+        $(dom.book.zoomViewport)
+          .removeClass("inactive-pointer")
+          .addClass("active-pointer");
       },
 
       zoomOut: function (event) {
@@ -337,6 +304,9 @@ function initZoom1() {
 
         setTimeout(function () {
           $(dom.book.book).addClass("animated").removeClass("zoom-in");
+          $(dom.book.zoomViewport)
+            .removeClass("active-pointer")
+            .addClass("inactive-pointer");
           resizeViewport();
         }, 0);
       },
@@ -361,47 +331,55 @@ function initZoom1() {
     $(dom.book.zoomViewport).bind("zoom.tap", zoomTo);
   }
 
-  $(zoomInBtn).on("click", zoomInBtnOnClick);
-  $(zoomOutBtn).on("click", zoomOutBtnOnClick);
-  $(zoomToggleBtn).on("click", zoomToggleBtnOnClick);
+  // $(zoomInBtn).on("click", zoomInBtnOnClick);
+  // $(zoomOutBtn).on("click", zoomOutBtnOnClick);
+  $(dom.book.zoomToggleBtn).on("click", zoomToggleBtnOnClick);
+}
 
-  function zoomInBtnOnClick(event) {
-    if ($(dom.book.zoomViewport).zoom("value") === 1) {
-      disableTurnControls();
-      $(dom.book.zoomViewport).zoom("zoomIn");
-      debounce(event.currentTarget);
-    }
-  }
-
-  function zoomOutBtnOnClick(event) {
-    if ($(dom.book.zoomViewport).zoom("value") !== 1) {
-      $(dom.book.zoomViewport).zoom("zoomOut");
-      debounce(event.currentTarget);
-    }
-  }
-
-  function zoomToggleBtnOnClick(event) {
-    if ($(dom.book.zoomViewport).zoom("value") === 1) {
-      disableTurnControls();
-      $(dom.book.zoomViewport).zoom("zoomIn");
-    } else {
-      $(dom.book.zoomViewport).zoom("zoomOut");
-    }
-
+function zoomIn(event) {
+  if ($(dom.book.zoomViewport).zoom("value") === 1) {
+    disableTurnControls();
+    $(dom.book.zoomViewport).zoom("zoomIn");
     debounce(event.currentTarget);
   }
 }
 
-function resizeViewport() {
-  // const width = $(window).width();
-  // const height = $(window).height();
-  // THIS NEEDS OWN FUNCTION, USED BY INIT DOM AND HERE
-  sizes.container.width = dom.book.bookContainer.getBoundingClientRect().width;
-  sizes.container.height =
-    dom.book.bookContainer.getBoundingClientRect().height;
+function zoomOut(event) {
+  if ($(dom.book.zoomViewport).zoom("value") !== 1) {
+    $(dom.book.zoomViewport).zoom("zoomOut");
+    debounce(event.currentTarget);
+  }
+}
 
-  const width = sizes.container.width;
-  const height = sizes.container.height;
+function zoomInBtnOnClick(event) {
+  zoomIn(event);
+}
+
+function zoomOutBtnOnClick(event) {
+  zoomOut(event);
+}
+
+function zoomToggleBtnOnClick(event) {
+  if ($(dom.book.zoomViewport).zoom("value") === 1) {
+    disableTurnControls();
+    $(dom.book.zoomViewport).zoom("zoomIn");
+  } else {
+    $(dom.book.zoomViewport).zoom("zoomOut");
+  }
+
+  debounce(event.currentTarget);
+}
+
+function resizeViewport() {
+  const width = $(window).width();
+  const height = $(window).height();
+
+  dom.book.zoomViewport.style.position = "absolute";
+  dom.book.zoomViewport.style.left = "0px";
+  dom.book.zoomViewport.style.top = "0px";
+
+  // const width = sizes.container.width;
+  // const height = sizes.container.height;
   const options = $(dom.book.book).turn("options");
 
   $(dom.book.book).removeClass("animated");
@@ -446,6 +424,8 @@ function resizeViewport() {
   }
 
   $(dom.book.book).addClass("animated");
+
+  positionOverlayCorners();
 }
 
 // Calculate the width and height of a square within another square
@@ -498,6 +478,16 @@ function enable(btn) {
   btn.disabled = false;
 }
 
+function fadeIn(element) {
+  element.classList.remove("inactive");
+  element.classList.add("active");
+}
+
+function fadeOut(element) {
+  element.classList.remove("active");
+  element.classList.add("inactive");
+}
+
 function compareArrays(a, b) {
   if (a.length !== b.length) return false;
   else {
@@ -511,5 +501,4 @@ function compareArrays(a, b) {
   }
 }
 
-flipbook.init();
-// export flipbook;
+export { flipbook };
