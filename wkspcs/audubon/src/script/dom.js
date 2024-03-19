@@ -104,47 +104,82 @@ const dom = {
     "es-video-player-return-home-btn-txt"
   ),
 
-  // Read View
-  readView: document.getElementById("read-view"),
-  readViewBackButton: document.getElementById("read-view-back-button"),
-  readViewToggleLangButton: document.getElementById(
-    "read-view-toggle-lang-button"
-  ),
+  // non-localized UI elements - buttons, etc
+  nonlocalized: {
+    timeout_modal: {},
+    attract: {},
+    main_menu: {},
+    watch_menu: {},
+    video_player: {},
 
-  enReadViewBack: document.getElementById("en-read-view-back"),
-  esReadViewBack: document.getElementById("es-read-view-back"),
+    // Read View
+    read_view: {
+      view: document.getElementById("read-view"),
+      backBtn: document.getElementById("read-view-back-button"),
+      toggleLangBtn: document.getElementById("read-view-toggle-lang-button"),
 
-  enReadViewToggleLang: document.getElementById("en-read-view-toggle-lang"),
-  esReadViewToggleLang: document.getElementById("es-read-view-toggle-lang"),
+      // Turn.js
+      turn: {
+        beforeBook: document.getElementById("before-book"),
+        bookContainer: document.getElementById("book-container"),
+        afterBook: document.getElementById("after-book"),
 
-  // Read View - Turn.js
-  book: {
-    beforeBook: document.getElementById("before-book"),
-    bookContainer: document.getElementById("book-container"),
-    afterBook: document.getElementById("after-book"),
+        book: document.getElementById("book"),
+        // firstPage
+        // firstPageImg
+        // populated in flipbook-spreads-only.js
+        // firstPage: document.getElementsByClassName("page")[2],
+        // firstPageImg: this.book.firstPage.getElementsByTagName("img")[0],
 
-    book: document.getElementById("book"),
-    // firstPage
-    // firstPageImg
-    // populated in flipbook-spreads-only.js
-    // firstPage: document.getElementsByClassName("page")[2],
-    // firstPageImg: this.book.firstPage.getElementsByTagName("img")[0],
+        nextBtn: document.getElementById("next-button"),
+        prevBtn: document.getElementById("previous-button"),
 
-    nextBtn: document.getElementById("next-button"),
-    prevBtn: document.getElementById("previous-button"),
+        infoBtn: document.getElementById("read-view-info-button"),
+        zoomToggleBtn: document.getElementById("read-view-toggle-zoom-button"),
+        zoomToggleIcon: document.getElementById("read-view-toggle-zoom-icon"),
 
-    infoBtn: document.getElementById("read-view-info-button"),
-    zoomToggleBtn: document.getElementById("read-view-toggle-zoom-button"),
-    zoomToggleIcon: document.getElementById("read-view-toggle-zoom-icon"),
+        cornerControlsOverlay: document.getElementById(
+          "corner-controls-overlay"
+        ),
+        swipeTopLeft: document.getElementById("swipe-tl"),
+        swipeTopRight: document.getElementById("swipe-tr"),
+        swipeBottomLeft: document.getElementById("swipe-bl"),
+        swipeBottomRight: document.getElementById("swipe-br"),
 
-    cornerControlsOverlay: document.getElementById("corner-controls-overlay"),
-    swipeTopLeft: document.getElementById("swipe-tl"),
-    swipeTopRight: document.getElementById("swipe-tr"),
-    swipeBottomLeft: document.getElementById("swipe-bl"),
-    swipeBottomRight: document.getElementById("swipe-br"),
+        zoomViewport: document.getElementById("zoom-viewport"),
+        zoomContainer: document.getElementById("zoom-container"),
+      },
+    },
+  },
 
-    zoomViewport: document.getElementById("zoom-viewport"),
-    zoomContainer: document.getElementById("zoom-container"),
+  // localized strings matching content.json
+  localized: {
+    en: {
+      timeout_modal: {},
+      attract: {},
+      main_menu: {},
+      watch_menu: {},
+      video_player: {},
+      read_view: {
+        title: document.getElementById("en-read-view-title"),
+        description: document.getElementById("en-read-view-description"),
+        back: document.getElementById("en-read-view-back"),
+        toggleLang: document.getElementById("en-read-view-toggle-lang"),
+      },
+    },
+    es: {
+      timeout_modal: {},
+      attract: {},
+      main_menu: {},
+      watch_menu: {},
+      video_player: {},
+      read_view: {
+        title: document.getElementById("es-read-view-title"),
+        description: document.getElementById("es-read-view-description"),
+        back: document.getElementById("es-read-view-back"),
+        toggleLang: document.getElementById("es-read-view-toggle-lang"),
+      },
+    },
   },
 };
 

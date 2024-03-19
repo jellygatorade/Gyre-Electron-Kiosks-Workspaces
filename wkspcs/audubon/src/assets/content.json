@@ -40,7 +40,10 @@
     "video_player": {
       "back_to_main": "[Back to main]"
     },
-    "read": {}
+    "read_view": {
+      "title": "Who Is Drew Lanham?",
+      "description": "Meet ornithologist Drew Lanham. Listen as he discusses his love for birds and why they are important to him."
+    }
   },
   "es": {
     "is_available": true,
@@ -83,6 +86,9 @@
     "video_player": {
       "back_to_main": "[!¿Volver al menú principal?]"
     },
-    "read": {}
+    "read_view": {
+      "title": "!¿Volver al menú principal?",
+      "description": "!Conoce al ornitólogo Drew Lanham. Escuche mientras habla sobre su amor por las aves y por qué son importantes para él."
+    }
   }
 }

@@ -62,7 +62,7 @@ const langToggle = {
   buttons: [
     dom.mainMenuToggleLangBtn,
     dom.watchMenuToggleLangButton,
-    dom.readViewToggleLangButton,
+    dom.nonlocalized.read_view.toggleLangBtn,
   ],
 };
 

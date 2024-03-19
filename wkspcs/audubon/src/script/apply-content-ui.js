@@ -59,11 +59,19 @@ function applyContent(data) {
     data.es.video_player.back_to_main;
 
   // Read View - Turn.js
-  dom.enReadViewBack.innerHTML = data.en.general.go_back;
-  dom.esReadViewBack.innerHTML = data.es.general.go_back;
+  dom.localized.en.read_view.title.innerHTML = data.en.read_view.title;
+  dom.localized.es.read_view.title.innerHTML = data.es.read_view.title;
 
-  dom.enReadViewToggleLang.innerHTML = data.en.general.toggle_lang;
-  dom.esReadViewToggleLang.innerHTML = data.es.general.toggle_lang;
+  dom.localized.en.read_view.description.innerHTML =
+    data.en.read_view.description;
+  dom.localized.es.read_view.description.innerHTML =
+    data.es.read_view.description;
+
+  dom.localized.en.read_view.back.innerHTML = data.en.general.go_back;
+  dom.localized.es.read_view.back.innerHTML = data.es.general.go_back;
+
+  dom.localized.en.read_view.toggleLang.innerHTML = data.en.general.toggle_lang;
+  dom.localized.es.read_view.toggleLang.innerHTML = data.es.general.toggle_lang;
 }
 
 export { applyContent };
