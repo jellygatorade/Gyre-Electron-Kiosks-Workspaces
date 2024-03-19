@@ -10,7 +10,7 @@ import { dom } from "../dom.js";
 // thin magnifying glass icon
 // use animationHandler over fadeOut/fadeIn ?
 //
-// fix bug where you click on zoom button and then click on book to zoom
+// fix bug where you click on zoom button and then click on book to zoom - basically debounce zooming on the book
 // overlay modal + text + corner controls overlay showing
 //
 // code organizing!
@@ -36,6 +36,10 @@ const sizes = {
   container: {
     width: null,
     height: null,
+    offset: {
+      x: null,
+      y: null,
+    },
   },
 };
 
@@ -60,15 +64,12 @@ const flipbook = {
     sizes.book.width = sizes.page.scale * sizes.page.width * 2;
     sizes.book.height = sizes.page.scale * sizes.page.height;
 
-    sizes.container.width = turnDom.bookContainer.getBoundingClientRect().width;
-    sizes.container.height =
-      turnDom.bookContainer.getBoundingClientRect().height;
+    setTurnContainerSizes();
 
     // Turn + Zoom setup
 
-    turnDom.book.style.left = -1 * sizes.page.scale * sizes.page.width + "px";
-    turnDom.book.style.top =
-      (-1 * sizes.page.scale * sizes.page.height) / 2 + "px";
+    // turnDom.book.style.left = -1 * sizes.page.scale * sizes.page.width + "px";
+    // turnDom.book.style.top = -0.5 * sizes.page.scale * sizes.page.height + "px";
     turnDom.book.style.position = "relative";
     turnDom.book.style.width = sizes.book.width + "px";
     turnDom.book.style.height = sizes.book.height + "px";
@@ -76,6 +77,11 @@ const flipbook = {
     turnDom.nextBtn.style.height = sizes.book.height + "px";
     turnDom.prevBtn.style.height = sizes.book.height + "px";
 
+    // turnDom.zoomContainer.style.position = "relative";
+    turnDom.zoomContainer.style.left =
+      0.5 * sizes.container.width + sizes.container.offset.x + "px"; // horizontal center within container
+    turnDom.zoomContainer.style.top =
+      0.5 * sizes.container.height + sizes.container.offset.y + "px"; // vertical center within container
     turnDom.zoomContainer.style.width = sizes.book.width + "px";
     turnDom.zoomContainer.style.height = sizes.book.height + "px";
 
@@ -315,49 +321,65 @@ function initializeZoom() {
 
   // Zoom functions ------------------------------------------------
 
-  if ($.isTouch) {
-    console.log("isTouch");
-    $(turnDom.zoomViewport).bind("zoom.doubleTap", zoomTo);
-  } else {
-    console.log("!isTouch");
-    $(turnDom.zoomViewport).bind("zoom.tap", zoomTo);
-  }
+  // if ($.isTouch) {
+  //   console.log("isTouch");
+  //   $(turnDom.zoomViewport).bind("zoom.doubleTap", zoomTo);
+  // } else {
+  //   console.log("!isTouch");
+  //   $(turnDom.zoomViewport).bind("zoom.tap", zoomTo);
+  // }
 
+  rebindTapZoom();
   $(turnDom.zoomToggleBtn).on("click", zoomToggleBtnOnClick);
 }
 
-function zoomIn(event) {
-  if ($(turnDom.zoomViewport).zoom("value") === 1) {
-    disableTurnControls();
-    $(turnDom.zoomViewport).zoom("zoomIn");
-    debounce(event.currentTarget);
-
-    $(turnDom.zoomToggleIcon)
-      .removeClass("fa-search-plus")
-      .addClass("fa-search-minus");
-
-    fadeOut(turnDom.cornerControlsOverlay);
+function rebindTapZoom() {
+  // debounce tap zoom to prevent issues with Zoom library if retapped too quickly
+  if ($.isTouch) {
+    $(turnDom.zoomViewport).unbind("zoom.doubleTap", zoomTo);
+    setTimeout(() => {
+      $(turnDom.zoomViewport).bind("zoom.doubleTap", zoomTo);
+    }, animDuration);
+  } else {
+    $(turnDom.zoomViewport).unbind("zoom.tap", zoomTo);
+    setTimeout(() => {
+      $(turnDom.zoomViewport).bind("zoom.tap", zoomTo);
+    }, animDuration);
   }
 }
 
-function zoomOut(event) {
-  if ($(turnDom.zoomViewport).zoom("value") !== 1) {
-    $(turnDom.zoomViewport).zoom("zoomOut");
-    debounce(event.currentTarget);
+// function zoomIn(event) {
+//   if ($(turnDom.zoomViewport).zoom("value") === 1) {
+//     disableTurnControls();
+//     $(turnDom.zoomViewport).zoom("zoomIn");
+//     debounce(event.currentTarget);
 
-    $(turnDom.zoomToggleIcon)
-      .removeClass("fa-search-minus")
-      .addClass("fa-search-plus");
-  }
-}
+//     $(turnDom.zoomToggleIcon)
+//       .removeClass("fa-search-plus")
+//       .addClass("fa-search-minus");
 
-function zoomInBtnOnClick(event) {
-  zoomIn(event);
-}
+//     fadeOut(turnDom.cornerControlsOverlay);
+//   }
+// }
 
-function zoomOutBtnOnClick(event) {
-  zoomOut(event);
-}
+// function zoomOut(event) {
+//   if ($(turnDom.zoomViewport).zoom("value") !== 1) {
+//     $(turnDom.zoomViewport).zoom("zoomOut");
+//     debounce(event.currentTarget);
+
+//     $(turnDom.zoomToggleIcon)
+//       .removeClass("fa-search-minus")
+//       .addClass("fa-search-plus");
+//   }
+// }
+
+// function zoomInBtnOnClick(event) {
+//   zoomIn(event);
+// }
+
+// function zoomOutBtnOnClick(event) {
+//   zoomOut(event);
+// }
 
 function zoomToggleBtnOnClick(event) {
   if ($(turnDom.zoomViewport).zoom("value") === 1) {
@@ -375,6 +397,7 @@ function zoomToggleBtnOnClick(event) {
       .addClass("fa-search-plus");
   }
 
+  rebindTapZoom();
   debounce(event.currentTarget);
 }
 
@@ -385,6 +408,13 @@ function resizeViewport() {
   turnDom.zoomViewport.style.position = "absolute";
   turnDom.zoomViewport.style.left = "0px";
   turnDom.zoomViewport.style.top = "0px";
+
+  setTurnContainerSizes();
+
+  turnDom.zoomContainer.style.left =
+    0.5 * sizes.container.width + sizes.container.offset.x + "px"; // horizontal center within container
+  turnDom.zoomContainer.style.top =
+    0.5 * sizes.container.height + sizes.container.offset.y + "px"; // vertical center within container
 
   const options = $(turnDom.book).turn("options");
 
@@ -456,10 +486,22 @@ function calculateBound(d) {
   return bound;
 }
 
+// Helper functions - UI geometry ----------------------------------
+
+function setTurnContainerSizes() {
+  let containerDOMRect = turnDom.turnContainer.getBoundingClientRect();
+  sizes.container.width = containerDOMRect.width;
+  sizes.container.height = containerDOMRect.height;
+  sizes.container.offset.x = containerDOMRect.x;
+  sizes.container.offset.y = containerDOMRect.y;
+}
+
 // Helper functions ------------------------------------------------
 
 function zoomTo(event) {
   setTimeout(function () {
+    rebindTapZoom(); // debounce zoomViewport tap
+
     if ($(turnDom.zoomViewport).zoom("value") === 1) {
       disableTurnControls();
       $(turnDom.zoomViewport).zoom("zoomIn", event); // passing event zooms to location clicked

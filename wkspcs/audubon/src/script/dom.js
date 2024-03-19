@@ -121,7 +121,7 @@ const dom = {
       // Turn.js
       turn: {
         beforeBook: document.getElementById("before-book"),
-        bookContainer: document.getElementById("book-container"),
+        turnContainer: document.getElementById("turn-container"),
         afterBook: document.getElementById("after-book"),
 
         book: document.getElementById("book"),

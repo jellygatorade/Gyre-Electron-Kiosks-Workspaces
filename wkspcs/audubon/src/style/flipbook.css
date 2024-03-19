@@ -44,9 +44,11 @@ body {
 
 .zoom-container {
   position: absolute;
-  margin: auto;
-  top: 50%;
-  left: 50%;
+  /* margin: auto; */
+  /* These would center within zoom-viewport */
+  /* But I am setting with JavaScript to center within another element */
+  /* top: 50%; */
+  /* left: 50%; */
 }
 
 .flipbook {
