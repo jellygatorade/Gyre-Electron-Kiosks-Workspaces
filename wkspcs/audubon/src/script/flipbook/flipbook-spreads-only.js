@@ -12,6 +12,7 @@ import { dom } from "../dom.js";
 //
 // fix bug where you click on zoom button and then click on book to zoom - basically debounce zooming on the book
 // overlay modal + text + corner controls overlay showing
+// use BEM method to hide prev/next Btn on zoom - https://getbem.com/introduction/
 //
 // code organizing!
 
@@ -109,6 +110,7 @@ const flipbook = {
     // reset for idle timeout
     $(turnDom.book).turn("page", 2);
     $(turnDom.zoomViewport).zoom("zoomOut");
+    fadeOut(turnDom.cornerControlsOverlay);
   },
 };
 
@@ -215,49 +217,6 @@ function setTurnControls(view) {
   else turnDom.nextBtn.disabled = false;
 }
 
-// get corners - not accurate until Turn.js has positioned book
-// run within resizeViewport
-function getCornerPositions() {
-  const boundingClientRect = turnDom.book.getBoundingClientRect();
-
-  const corners = {
-    tl: { x: boundingClientRect.x, y: boundingClientRect.y },
-    tr: {
-      x: boundingClientRect.x + boundingClientRect.width,
-      y: boundingClientRect.y,
-    },
-    bl: {
-      x: boundingClientRect.x,
-      y: boundingClientRect.y + boundingClientRect.height,
-    },
-    br: {
-      x: boundingClientRect.x + boundingClientRect.width,
-      y: boundingClientRect.y + boundingClientRect.height,
-    },
-  };
-
-  return corners;
-}
-
-function positionOverlayCorners() {
-  const corners = getCornerPositions();
-
-  const width = turnDom.swipeTopLeft.clientWidth;
-  const height = turnDom.swipeTopLeft.clientHeight;
-
-  turnDom.swipeTopLeft.style.left = corners.tl.x - width / 2 + "px";
-  turnDom.swipeTopLeft.style.top = corners.tl.y - height / 2 + "px";
-
-  turnDom.swipeTopRight.style.left = corners.tr.x - width / 2 + "px";
-  turnDom.swipeTopRight.style.top = corners.tr.y - height / 2 + "px";
-
-  turnDom.swipeBottomLeft.style.left = corners.bl.x - width / 2 + "px";
-  turnDom.swipeBottomLeft.style.top = corners.bl.y - height / 2 + "px";
-
-  turnDom.swipeBottomRight.style.left = corners.br.x - width / 2 + "px";
-  turnDom.swipeBottomRight.style.top = corners.br.y - height / 2 + "px";
-}
-
 // ---------------------------------------------------------------
 // Zoom
 //
@@ -319,17 +278,14 @@ function initializeZoom() {
       resizeViewport();
     });
 
-  // Zoom functions ------------------------------------------------
+  // Zoom listeners ------------------------------------------------
 
-  // if ($.isTouch) {
-  //   console.log("isTouch");
-  //   $(turnDom.zoomViewport).bind("zoom.doubleTap", zoomTo);
-  // } else {
-  //   console.log("!isTouch");
-  //   $(turnDom.zoomViewport).bind("zoom.tap", zoomTo);
-  // }
+  if ($.isTouch) {
+    $(turnDom.zoomViewport).bind("zoom.doubleTap", zoomTo);
+  } else {
+    $(turnDom.zoomViewport).bind("zoom.tap", zoomTo);
+  }
 
-  rebindTapZoom();
   $(turnDom.zoomToggleBtn).on("click", zoomToggleBtnOnClick);
 }
 
@@ -463,6 +419,59 @@ function resizeViewport() {
   positionOverlayCorners();
 }
 
+// Helper functions - UI geometry ----------------------------------
+
+function setTurnContainerSizes() {
+  let containerDOMRect = turnDom.turnContainer.getBoundingClientRect();
+  sizes.container.width = containerDOMRect.width;
+  sizes.container.height = containerDOMRect.height;
+  sizes.container.offset.x = containerDOMRect.x;
+  sizes.container.offset.y = containerDOMRect.y;
+}
+
+// get corners - not accurate until Turn.js has positioned book
+// run within resizeViewport
+function getCornerPositions() {
+  const boundingClientRect = turnDom.book.getBoundingClientRect();
+
+  const corners = {
+    tl: { x: boundingClientRect.x, y: boundingClientRect.y },
+    tr: {
+      x: boundingClientRect.x + boundingClientRect.width,
+      y: boundingClientRect.y,
+    },
+    bl: {
+      x: boundingClientRect.x,
+      y: boundingClientRect.y + boundingClientRect.height,
+    },
+    br: {
+      x: boundingClientRect.x + boundingClientRect.width,
+      y: boundingClientRect.y + boundingClientRect.height,
+    },
+  };
+
+  return corners;
+}
+
+function positionOverlayCorners() {
+  const corners = getCornerPositions();
+
+  const width = turnDom.swipeTopLeft.clientWidth;
+  const height = turnDom.swipeTopLeft.clientHeight;
+
+  turnDom.swipeTopLeft.style.left = corners.tl.x - width / 2 + "px";
+  turnDom.swipeTopLeft.style.top = corners.tl.y - height / 2 + "px";
+
+  turnDom.swipeTopRight.style.left = corners.tr.x - width / 2 + "px";
+  turnDom.swipeTopRight.style.top = corners.tr.y - height / 2 + "px";
+
+  turnDom.swipeBottomLeft.style.left = corners.bl.x - width / 2 + "px";
+  turnDom.swipeBottomLeft.style.top = corners.bl.y - height / 2 + "px";
+
+  turnDom.swipeBottomRight.style.left = corners.br.x - width / 2 + "px";
+  turnDom.swipeBottomRight.style.top = corners.br.y - height / 2 + "px";
+}
+
 // Calculate the width and height of a square within another square
 // used within resizeViewport
 function calculateBound(d) {
@@ -484,16 +493,6 @@ function calculateBound(d) {
   }
 
   return bound;
-}
-
-// Helper functions - UI geometry ----------------------------------
-
-function setTurnContainerSizes() {
-  let containerDOMRect = turnDom.turnContainer.getBoundingClientRect();
-  sizes.container.width = containerDOMRect.width;
-  sizes.container.height = containerDOMRect.height;
-  sizes.container.offset.x = containerDOMRect.x;
-  sizes.container.offset.y = containerDOMRect.y;
 }
 
 // Helper functions ------------------------------------------------
