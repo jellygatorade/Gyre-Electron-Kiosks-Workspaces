@@ -13,7 +13,7 @@ const views = {
     this.attract = new view(dom.attractView);
     this.mainMenu = new view(dom.mainMenuView);
     this.watchMenu = new view(dom.watchMenuView);
-    this.videoPlayer = new view(dom.videoPlayerView);
+    this.videoPlayer = new view(dom.nonlocalized.video_player.view);
     this.read = new view(dom.nonlocalized.read_view.view);
 
     UIViewController.setView(views.attract);

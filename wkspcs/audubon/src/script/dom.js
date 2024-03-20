@@ -1,19 +1,7 @@
 const dom = {
-  // Fade Between Views Overlay
-  fadeBetweenViewsOverlay: document.getElementById(
-    "fade-between-views-overlay"
-  ),
-
   // Timeout Modal
   timeoutModal: document.getElementById("timeout-modal"),
-  timeoutModalTapToContinueOverlay: document.getElementById(
-    "timeout-modal-tap-to-continue-overlay"
-  ),
-
-  enStillViewing: document.getElementById("en-still-viewing"),
-  esStillViewing: document.getElementById("es-still-viewing"),
-  enTouchToContinue: document.getElementById("en-touch-to-continue"),
-  esTouchToContinue: document.getElementById("es-touch-to-continue"),
+  timeoutModalTapToContinueOverlay: document.getElementById("timeout-modal-tap-to-continue-overlay"),
   timeoutCountdownText: document.getElementById("timeout-countdown-text"),
 
   // Attract View
@@ -21,96 +9,42 @@ const dom = {
   attractVideo: document.getElementById("attract-video"),
   attractOverlay: document.getElementById("attract-overlay"),
 
-  enAttractTitle: document.getElementById("en-attract-title"),
-  esAttractTitle: document.getElementById("es-attract-title"),
-
-  enAttractTouchToBegin: document.getElementById("en-attract-touch-to-begin"),
-  esAttractTouchToBegin: document.getElementById("es-attract-touch-to-begin"),
-
   // Main Menu View
   mainMenuView: document.getElementById("main-menu-view"),
   mainMenuWatchBtn: document.getElementById("main-menu-watch-button"),
   mainMenuReadBtn: document.getElementById("main-menu-read-button"),
   mainMenuBackBtn: document.getElementById("main-menu-back-button"),
-  mainMenuToggleLangBtn: document.getElementById(
-    "main-menu-toggle-lang-button"
-  ),
-
-  enMainMenuWatch: document.getElementById("en-main-menu-watch"),
-  esMainMenuWatch: document.getElementById("es-main-menu-watch"),
-
-  enMainMenuRead: document.getElementById("en-main-menu-read"),
-  esMainMenuRead: document.getElementById("es-main-menu-read"),
-
-  enMainMenuBack: document.getElementById("en-main-menu-back"),
-  esMainMenuBack: document.getElementById("es-main-menu-back"),
-
-  enMainMenuToggleLang: document.getElementById("en-main-menu-toggle-lang"),
-  esMainMenuToggleLang: document.getElementById("es-main-menu-toggle-lang"),
+  mainMenuToggleLangBtn: document.getElementById("main-menu-toggle-lang-button"),
 
   // Watch Menu View
   watchMenuView: document.getElementById("watch-menu-view"),
   watchMenuBackButton: document.getElementById("watch-menu-back-button"),
-  watchMenuToggleLangButton: document.getElementById(
-    "watch-menu-toggle-lang-button"
-  ),
-
-  enWatchMenuTitle: document.getElementById("en-watch-menu-title"),
-  enWatchMenuSubheading: document.getElementById("en-watch-menu-subheading"),
-
-  esWatchMenuTitle: document.getElementById("es-watch-menu-title"),
-  esWatchMenuSubheading: document.getElementById("es-watch-menu-subheading"),
-
-  enWatchMenuBack: document.getElementById("en-watch-menu-back"),
-  esWatchMenuBack: document.getElementById("es-watch-menu-back"),
-
-  enWatchMenuToggleLang: document.getElementById("en-watch-menu-toggle-lang"),
-  esWatchMenuToggleLang: document.getElementById("es-watch-menu-toggle-lang"),
+  watchMenuToggleLangButton: document.getElementById("watch-menu-toggle-lang-button"),
 
   //// Watch Menu View - Video Cards
-  watchMenuVideoCardFlexbox: document.getElementById(
-    "watch-menu-video-card-flexbox"
-  ),
+  watchMenuVideoCardFlexbox: document.getElementById("watch-menu-video-card-flexbox"),
   watchMenuVideoCardPrototype: document.getElementById("video-card-prototype"),
-  enWatchMenuVideoCardPrototype: document.getElementById(
-    "en-video-card-prototype"
-  ),
-  esWatchMenuVideoCardPrototype: document.getElementById(
-    "es-video-card-prototype"
-  ),
 
-  // Video Player View
-  videoPlayerView: document.getElementById("video-player-view"),
-  videoPlayerControls: document.getElementById("video-player-controls"),
-  videoPlayerReturnHomeBtn: document.getElementById(
-    "video-player-return-home-btn"
-  ),
-  videoPlayerPlaybackControls: document.getElementById(
-    "video-player-playback-controls"
-  ),
-  videoPlayerPlayPauseBtn: document.getElementById(
-    "video-player-play-pause-btn"
-  ),
-  videoPlayerPlayPauseBtnIcon: document.getElementById(
-    "video-player-play-pause-btn-icon"
-  ),
-  videoPlayerSeekBar: document.getElementById("video-player-seek-bar"),
-  videoPlayerVideo: document.getElementById("video-player-video"),
-
-  enVideoPlayerReturnHomeBtnTxt: document.getElementById(
-    "en-video-player-return-home-btn-txt"
-  ),
-  esVideoPlayerReturnHomeBtnTxt: document.getElementById(
-    "es-video-player-return-home-btn-txt"
-  ),
-
-  // non-localized UI elements - buttons, etc
+  // non-localized UI elements - views, buttons, etc
   nonlocalized: {
+    // Fade Between Views Overlay
+    fade_between_views_overlay: document.getElementById("fade-between-views-overlay"),
     timeout_modal: {},
     attract: {},
     main_menu: {},
     watch_menu: {},
-    video_player: {},
+
+    // Video Player View
+    video_player: {
+      view: document.getElementById("video-player-view"),
+      controls: document.getElementById("video-player-controls"),
+      return_home_btn: document.getElementById("video-player-return-home-btn"),
+      playback_controls: document.getElementById("video-player-playback-controls"),
+      play_pause_btn: document.getElementById("video-player-play-pause-btn"),
+      play_pause_btn_icon: document.getElementById("video-player-play-pause-btn-icon"),
+      seek_bar: document.getElementById("video-player-seek-bar"),
+      video: document.getElementById("video-player-video"),
+    },
 
     // Read View
     read_view: {
@@ -138,9 +72,7 @@ const dom = {
         zoomToggleBtn: document.getElementById("read-view-toggle-zoom-button"),
         zoomToggleIcon: document.getElementById("read-view-toggle-zoom-icon"),
 
-        cornerControlsOverlay: document.getElementById(
-          "corner-controls-overlay"
-        ),
+        cornerControlsOverlay: document.getElementById("corner-controls-overlay"),
         swipeTopLeft: document.getElementById("swipe-tl"),
         swipeTopRight: document.getElementById("swipe-tr"),
         swipeBottomLeft: document.getElementById("swipe-bl"),
@@ -152,32 +84,80 @@ const dom = {
     },
   },
 
-  // localized strings matching content.json
   localized: {
+    // ui prototypes to be copied
+    prototypes: {
+      en: {
+        video_card: document.getElementById("en-video-card-prototype"),
+      },
+      es: {
+        video_card: document.getElementById("es-video-card-prototype"),
+      },
+    },
+
+    // localized strings matching content.json
     en: {
-      timeout_modal: {},
-      attract: {},
-      main_menu: {},
-      watch_menu: {},
-      video_player: {},
+      timeout_modal: {
+        still_viewing: document.getElementById("en-still-viewing"),
+        touch_to_continue: document.getElementById("en-touch-to-continue"),
+      },
+      attract: {
+        title: document.getElementById("en-attract-title"),
+        touch_to_begin: document.getElementById("en-attract-touch-to-begin"),
+      },
+      main_menu: {
+        title: document.getElementById("en-main-menu-title"),
+        watch: document.getElementById("en-main-menu-watch"),
+        read: document.getElementById("en-main-menu-read"),
+        back: document.getElementById("en-main-menu-back"),
+        toggle_lang: document.getElementById("en-main-menu-toggle-lang"),
+      },
+      watch_menu: {
+        title: document.getElementById("en-watch-menu-title"),
+        subheading: document.getElementById("en-watch-menu-subheading"),
+        back: document.getElementById("en-watch-menu-back"),
+        toggle_lang: document.getElementById("en-watch-menu-toggle-lang"),
+      },
+      video_player: {
+        return_home: document.getElementById("en-video-player-return-home-btn-txt"),
+      },
       read_view: {
         title: document.getElementById("en-read-view-title"),
         description: document.getElementById("en-read-view-description"),
         back: document.getElementById("en-read-view-back"),
-        toggleLang: document.getElementById("en-read-view-toggle-lang"),
+        toggle_lang: document.getElementById("en-read-view-toggle-lang"),
       },
     },
     es: {
-      timeout_modal: {},
-      attract: {},
-      main_menu: {},
-      watch_menu: {},
-      video_player: {},
+      timeout_modal: {
+        still_viewing: document.getElementById("es-still-viewing"),
+        touch_to_continue: document.getElementById("es-touch-to-continue"),
+      },
+      attract: {
+        title: document.getElementById("es-attract-title"),
+        touch_to_begin: document.getElementById("es-attract-touch-to-begin"),
+      },
+      main_menu: {
+        title: document.getElementById("es-main-menu-title"),
+        watch: document.getElementById("es-main-menu-watch"),
+        read: document.getElementById("es-main-menu-read"),
+        back: document.getElementById("es-main-menu-back"),
+        toggle_lang: document.getElementById("es-main-menu-toggle-lang"),
+      },
+      watch_menu: {
+        title: document.getElementById("es-watch-menu-title"),
+        subheading: document.getElementById("es-watch-menu-subheading"),
+        back: document.getElementById("es-watch-menu-back"),
+        toggle_lang: document.getElementById("es-watch-menu-toggle-lang"),
+      },
+      video_player: {
+        return_home: document.getElementById("es-video-player-return-home-btn-txt"),
+      },
       read_view: {
         title: document.getElementById("es-read-view-title"),
         description: document.getElementById("es-read-view-description"),
         back: document.getElementById("es-read-view-back"),
-        toggleLang: document.getElementById("es-read-view-toggle-lang"),
+        toggle_lang: document.getElementById("es-read-view-toggle-lang"),
       },
     },
   },

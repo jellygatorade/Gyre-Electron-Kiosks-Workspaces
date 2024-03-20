@@ -14,6 +14,7 @@
       "touch_to_begin": "TOUCH TO BEGIN"
     },
     "main_menu": {
+      "title": "Reckoning with Audubon",
       "watch": "Watch",
       "read": "Read"
     },
@@ -60,6 +61,7 @@
       "touch_to_begin": "!TOCA PARA COMENZAR"
     },
     "main_menu": {
+      "title": "!¿Audubon?",
       "watch": "!¿Mirar?",
       "read": "!¿Leer?"
     },

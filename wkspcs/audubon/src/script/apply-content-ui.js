@@ -11,67 +11,76 @@ function applyContent(data) {
   }
 
   // Timeout modal
-  dom.enStillViewing.innerHTML = data.en.timeout_modal.still_viewing;
-  dom.esStillViewing.innerHTML = data.es.timeout_modal.still_viewing;
-  dom.enTouchToContinue.innerHTML = data.en.timeout_modal.touch_to_continue;
-  dom.esTouchToContinue.innerHTML = data.es.timeout_modal.touch_to_continue;
+  dom.localized.en.timeout_modal.still_viewing.innerHTML =
+    data.en.timeout_modal.still_viewing;
+  dom.localized.en.timeout_modal.touch_to_continue.innerHTML =
+    data.en.timeout_modal.touch_to_continue;
+
+  dom.localized.es.timeout_modal.still_viewing.innerHTML =
+    data.es.timeout_modal.still_viewing;
+  dom.localized.es.timeout_modal.touch_to_continue.innerHTML =
+    data.es.timeout_modal.touch_to_continue;
 
   // Attract View
-  dom.enAttractTitle.innerHTML = data.en.attract.title;
-  dom.esAttractTitle.innerHTML = data.es.attract.title;
+  dom.localized.en.attract.title.innerHTML = data.en.attract.title;
+  dom.localized.en.attract.touch_to_begin.innerHTML = data.en.attract.title;
 
-  dom.enAttractTouchToBegin.innerHTML = data.en.attract.touch_to_begin;
-  dom.esAttractTouchToBegin.innerHTML = data.es.attract.touch_to_begin;
+  dom.localized.es.attract.title.innerHTML = data.es.attract.title;
+  dom.localized.es.attract.touch_to_begin.innerHTML = data.es.attract.title;
 
   // Main Menu View
-  dom.enMainMenuWatch.innerHTML = data.en.main_menu.watch;
-  dom.esMainMenuWatch.innerHTML = data.es.main_menu.watch;
+  dom.localized.en.main_menu.title.innerHTML = data.en.main_menu.title;
+  dom.localized.en.main_menu.watch.innerHTML = data.en.main_menu.watch;
+  dom.localized.en.main_menu.read.innerHTML = data.en.main_menu.read;
+  dom.localized.en.main_menu.back.innerHTML = data.en.general.go_back;
+  dom.localized.en.main_menu.toggle_lang.innerHTML =
+    data.en.general.toggle_lang;
 
-  dom.enMainMenuRead.innerHTML = data.en.main_menu.read;
-  dom.esMainMenuRead.innerHTML = data.es.main_menu.read;
-
-  dom.enMainMenuBack.innerHTML = data.en.general.go_back;
-  dom.esMainMenuBack.innerHTML = data.es.general.go_back;
-
-  dom.enMainMenuToggleLang.innerHTML = data.en.general.toggle_lang;
-  dom.esMainMenuToggleLang.innerHTML = data.es.general.toggle_lang;
+  dom.localized.es.main_menu.title.innerHTML = data.es.main_menu.title;
+  dom.localized.es.main_menu.watch.innerHTML = data.es.main_menu.watch;
+  dom.localized.es.main_menu.read.innerHTML = data.es.main_menu.read;
+  dom.localized.es.main_menu.back.innerHTML = data.es.general.go_back;
+  dom.localized.es.main_menu.toggle_lang.innerHTML =
+    data.es.general.toggle_lang;
 
   // Watch Menu View
-  dom.enWatchMenuTitle.innerHTML = data.en.watch_menu.title;
-  dom.enWatchMenuSubheading.innerHTML = data.en.watch_menu.subheading;
+  dom.localized.en.watch_menu.title.innerHTML = data.en.watch_menu.title;
+  dom.localized.en.watch_menu.subheading.innerHTML =
+    data.en.watch_menu.subheading;
+  dom.localized.en.watch_menu.back.innerHTML = data.en.general.go_back;
+  dom.localized.en.watch_menu.toggle_lang.innerHTML =
+    data.en.general.toggle_lang;
 
-  dom.esWatchMenuTitle.innerHTML = data.es.watch_menu.title;
-  dom.esWatchMenuSubheading.innerHTML = data.es.watch_menu.subheading;
-
-  dom.enWatchMenuBack.innerHTML = data.en.general.go_back;
-  dom.esWatchMenuBack.innerHTML = data.es.general.go_back;
-
-  dom.enWatchMenuToggleLang.innerHTML = data.en.general.toggle_lang;
-  dom.esWatchMenuToggleLang.innerHTML = data.es.general.toggle_lang;
+  dom.localized.es.watch_menu.title.innerHTML = data.es.watch_menu.title;
+  dom.localized.es.watch_menu.subheading.innerHTML =
+    data.es.watch_menu.subheading;
+  dom.localized.es.watch_menu.back.innerHTML = data.es.general.go_back;
+  dom.localized.es.watch_menu.toggle_lang.innerHTML =
+    data.es.general.toggle_lang;
 
   // Watch Menu View - Video Cards
   applyVideoCards(data);
 
   // Video View
-  dom.enVideoPlayerReturnHomeBtnTxt.innerHTML =
+  dom.localized.en.video_player.return_home.innerHTML =
     data.en.video_player.back_to_main;
-  dom.esVideoPlayerReturnHomeBtnTxt.innerHTML =
+  dom.localized.es.video_player.return_home.innerHTML =
     data.es.video_player.back_to_main;
 
   // Read View - Turn.js
   dom.localized.en.read_view.title.innerHTML = data.en.read_view.title;
-  dom.localized.es.read_view.title.innerHTML = data.es.read_view.title;
-
   dom.localized.en.read_view.description.innerHTML =
     data.en.read_view.description;
+  dom.localized.en.read_view.back.innerHTML = data.en.general.go_back;
+  dom.localized.en.read_view.toggle_lang.innerHTML =
+    data.en.general.toggle_lang;
+
+  dom.localized.es.read_view.title.innerHTML = data.es.read_view.title;
   dom.localized.es.read_view.description.innerHTML =
     data.es.read_view.description;
-
-  dom.localized.en.read_view.back.innerHTML = data.en.general.go_back;
   dom.localized.es.read_view.back.innerHTML = data.es.general.go_back;
-
-  dom.localized.en.read_view.toggleLang.innerHTML = data.en.general.toggle_lang;
-  dom.localized.es.read_view.toggleLang.innerHTML = data.es.general.toggle_lang;
+  dom.localized.es.read_view.toggle_lang.innerHTML =
+    data.es.general.toggle_lang;
 }
 
 export { applyContent };

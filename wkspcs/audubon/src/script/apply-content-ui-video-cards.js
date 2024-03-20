@@ -1,8 +1,6 @@
 import { dom } from "./dom.js";
 import { playVideo } from "./video-player-view.js";
 
-const domVars = dom;
-
 function applyVideoCards(data) {
   // Create a new array of paired video content per language
   // Pairs of video content will be identified by their "id" property (set in content.json)
@@ -11,7 +9,7 @@ function applyVideoCards(data) {
 
   for (let i = 0; i < videoDataArray.length; i++) {
     // console.log(videoDataArray[i]);
-    let newVideoCard = domVars.watchMenuVideoCardPrototype.cloneNode();
+    let newVideoCard = dom.watchMenuVideoCardPrototype.cloneNode();
     newVideoCard.id = `video-card-${i}`;
     newVideoCard.classList.remove("hidden");
 
@@ -19,7 +17,7 @@ function applyVideoCards(data) {
 
     if (videoDataArray[i].en) {
       let newVideoCardEn =
-        domVars.enWatchMenuVideoCardPrototype.cloneNode(true);
+        dom.localized.prototypes.en.video_card.cloneNode(true);
 
       let newVideoBtnEn = newVideoCardEn;
       let newVideoImgEn = newVideoCardEn.querySelector(".en-js-video-ui-img");
@@ -42,7 +40,7 @@ function applyVideoCards(data) {
 
     if (videoDataArray[i].es) {
       let newVideoCardEs =
-        domVars.esWatchMenuVideoCardPrototype.cloneNode(true);
+        dom.localized.prototypes.es.video_card.cloneNode(true);
 
       // console.log(newVideoCardEs);
 
@@ -65,7 +63,7 @@ function applyVideoCards(data) {
       newVideoCard.appendChild(newVideoCardEs);
     }
 
-    domVars.watchMenuVideoCardFlexbox.appendChild(newVideoCard);
+    dom.watchMenuVideoCardFlexbox.appendChild(newVideoCard);
   }
 }
 

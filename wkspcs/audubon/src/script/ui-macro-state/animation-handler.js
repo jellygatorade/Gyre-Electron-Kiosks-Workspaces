@@ -1,7 +1,7 @@
 import { dom } from "../dom.js";
 
 class animationHandler {
-  static overlay = dom.fadeBetweenViewsOverlay;
+  static overlay = dom.nonlocalized.fade_between_views_overlay;
   static duration = 300;
 
   // Code that executes pre/post transition methods on each view usable but commented out
