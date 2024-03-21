@@ -57,28 +57,28 @@ const dom = {
 
       // Turn.js
       turn: {
-        beforeBook: document.getElementById("before-book"),
-        turnContainer: document.getElementById("turn-container"),
-        afterBook: document.getElementById("after-book"),
+        before_book: document.getElementById("before-book"),
+        turn_container: document.getElementById("turn-container"),
+        after_book: document.getElementById("after-book"),
 
         book: document.getElementById("book"),
-        // firstPage, firstPageImg - populated in flipbook-spreads-only.js
+        // first_page, first_page_img - populated in flipbook-spreads-only.js
 
-        nextBtn: document.getElementById("next-button"),
-        prevBtn: document.getElementById("previous-button"),
+        next_btn: document.getElementById("next-button"),
+        prev_btn: document.getElementById("previous-button"),
 
-        infoBtn: document.getElementById("read-view-info-button"),
-        zoomToggleBtn: document.getElementById("read-view-toggle-zoom-button"),
-        zoomToggleIcon: document.getElementById("read-view-toggle-zoom-icon"),
+        info_btn: document.getElementById("read-view-info-button"),
+        zoom_toggle_btn: document.getElementById("read-view-toggle-zoom-button"),
+        zoom_toggle_icon: document.getElementById("read-view-toggle-zoom-icon"),
 
-        cornerControlsOverlay: document.getElementById("corner-controls-overlay"),
-        swipeTopLeft: document.getElementById("swipe-tl"),
-        swipeTopRight: document.getElementById("swipe-tr"),
-        swipeBottomLeft: document.getElementById("swipe-bl"),
-        swipeBottomRight: document.getElementById("swipe-br"),
+        corner_controls_overlay: document.getElementById("corner-controls-overlay"),
+        swipe_top_left: document.getElementById("swipe-tl"),
+        swipe_top_right: document.getElementById("swipe-tr"),
+        swipe_bottom_left: document.getElementById("swipe-bl"),
+        swipe_bottom_right: document.getElementById("swipe-br"),
 
-        zoomViewport: document.getElementById("zoom-viewport"),
-        zoomContainer: document.getElementById("zoom-container"),
+        zoom_viewport: document.getElementById("zoom-viewport"),
+        zoom_container: document.getElementById("zoom-container"),
       },
     },
   },

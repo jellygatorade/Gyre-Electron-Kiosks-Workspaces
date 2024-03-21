@@ -53,13 +53,13 @@ const flipbook = {
 
   initDom: function () {
     // console.log(document.getElementsByClassName("page"));
-    turnDom.firstPage = document.getElementsByClassName("page")[2];
-    turnDom.firstPageImg = turnDom.firstPage.getElementsByTagName("img")[0];
+    turnDom.first_page = document.getElementsByClassName("page")[2];
+    turnDom.first_page_img = turnDom.first_page.getElementsByTagName("img")[0];
 
     // Sizes
 
-    sizes.page.width = turnDom.firstPageImg.naturalWidth;
-    sizes.page.height = turnDom.firstPageImg.naturalHeight;
+    sizes.page.width = turnDom.first_page_img.naturalWidth;
+    sizes.page.height = turnDom.first_page_img.naturalHeight;
     sizes.page.scale = 0.5;
 
     sizes.book.width = sizes.page.scale * sizes.page.width * 2;
@@ -75,26 +75,24 @@ const flipbook = {
     turnDom.book.style.width = sizes.book.width + "px";
     turnDom.book.style.height = sizes.book.height + "px";
 
-    turnDom.nextBtn.style.height = sizes.book.height + "px";
-    turnDom.prevBtn.style.height = sizes.book.height + "px";
+    turnDom.next_btn.style.height = sizes.book.height + "px";
+    turnDom.prev_btn.style.height = sizes.book.height + "px";
 
-    // turnDom.zoomContainer.style.position = "relative";
-    turnDom.zoomContainer.style.left =
-      0.5 * sizes.container.width + sizes.container.offset.x + "px"; // horizontal center within container
-    turnDom.zoomContainer.style.top =
-      0.5 * sizes.container.height + sizes.container.offset.y + "px"; // vertical center within container
-    turnDom.zoomContainer.style.width = sizes.book.width + "px";
-    turnDom.zoomContainer.style.height = sizes.book.height + "px";
+    // turnDom.zoom_container.style.position = "relative";
+    turnDom.zoom_container.style.left = 0.5 * sizes.container.width + sizes.container.offset.x + "px"; // horizontal center within container
+    turnDom.zoom_container.style.top = 0.5 * sizes.container.height + sizes.container.offset.y + "px"; // vertical center within container
+    turnDom.zoom_container.style.width = sizes.book.width + "px";
+    turnDom.zoom_container.style.height = sizes.book.height + "px";
 
-    turnDom.zoomViewport.style.position = "absolute";
-    turnDom.zoomViewport.style.left = "0px";
-    turnDom.zoomViewport.style.top = "0px";
+    turnDom.zoom_viewport.style.position = "absolute";
+    turnDom.zoom_viewport.style.left = "0px";
+    turnDom.zoom_viewport.style.top = "0px";
 
     // Controls overlay
 
-    turnDom.cornerControlsOverlay.style.position = "absolute";
-    turnDom.cornerControlsOverlay.style.left = "0px";
-    turnDom.cornerControlsOverlay.style.top = "0px";
+    turnDom.corner_controls_overlay.style.position = "absolute";
+    turnDom.corner_controls_overlay.style.left = "0px";
+    turnDom.corner_controls_overlay.style.top = "0px";
   },
 
   initTurn: function () {
@@ -109,8 +107,8 @@ const flipbook = {
   reset: function () {
     // reset for idle timeout
     $(turnDom.book).turn("page", 2);
-    $(turnDom.zoomViewport).zoom("zoomOut");
-    fadeOut(turnDom.cornerControlsOverlay);
+    $(turnDom.zoom_viewport).zoom("zoomOut");
+    fadeOut(turnDom.corner_controls_overlay);
   },
 };
 
@@ -147,21 +145,21 @@ function initializeTurnJS() {
     },
   });
 
-  turnDom.infoBtn.addEventListener("click", controlsToggleBtnOnClick);
+  turnDom.info_btn.addEventListener("click", controlsToggleBtnOnClick);
 
   function controlsToggleBtnOnClick() {
-    if (turnDom.cornerControlsOverlay.classList.contains("inactive")) {
-      fadeIn(turnDom.cornerControlsOverlay);
+    if (turnDom.corner_controls_overlay.classList.contains("inactive")) {
+      fadeIn(turnDom.corner_controls_overlay);
     } else {
-      fadeOut(turnDom.cornerControlsOverlay);
+      fadeOut(turnDom.corner_controls_overlay);
     }
   }
 
   // prev, next button listners
 
-  $(turnDom.prevBtn).on("click", prevBtnOnClick);
+  $(turnDom.prev_btn).on("click", prevBtnOnClick);
 
-  $(turnDom.nextBtn).on("click", nextBtnOnClick);
+  $(turnDom.next_btn).on("click", nextBtnOnClick);
 
   function prevBtnOnClick() {
     $(turnDom.book).turn("previous");
@@ -210,11 +208,11 @@ function getLastView() {
 
 // disable next/prev buttons on first and last views
 function setTurnControls(view) {
-  if (compareArrays(view, getFirstView())) turnDom.prevBtn.disabled = true;
-  else turnDom.prevBtn.disabled = false;
+  if (compareArrays(view, getFirstView())) turnDom.prev_btn.disabled = true;
+  else turnDom.prev_btn.disabled = false;
 
-  if (compareArrays(view, getLastView())) turnDom.nextBtn.disabled = true;
-  else turnDom.nextBtn.disabled = false;
+  if (compareArrays(view, getLastView())) turnDom.next_btn.disabled = true;
+  else turnDom.next_btn.disabled = false;
 }
 
 // ---------------------------------------------------------------
@@ -232,10 +230,10 @@ function setTurnControls(view) {
 // Zoom Setup ----------------------------------------------------
 
 function initializeZoom() {
-  $(turnDom.zoomViewport).addClass("inactive-pointer");
+  $(turnDom.zoom_viewport).addClass("inactive-pointer");
   $(turnDom.book).addClass("active-pointer");
 
-  $(turnDom.zoomViewport).zoom({
+  $(turnDom.zoom_viewport).zoom({
     flipbook: $(turnDom.book),
     max: 1 / sizes.page.scale,
     duration: animDuration,
@@ -250,9 +248,7 @@ function initializeZoom() {
 
       zoomIn: function (event) {
         $(turnDom.book).removeClass("animated").addClass("zoom-in");
-        $(turnDom.zoomViewport)
-          .removeClass("inactive-pointer")
-          .addClass("active-pointer");
+        $(turnDom.zoom_viewport).removeClass("inactive-pointer").addClass("active-pointer");
       },
 
       zoomOut: function (event) {
@@ -261,9 +257,7 @@ function initializeZoom() {
 
         setTimeout(function () {
           $(turnDom.book).addClass("animated").removeClass("zoom-in");
-          $(turnDom.zoomViewport)
-            .removeClass("active-pointer")
-            .addClass("inactive-pointer");
+          $(turnDom.zoom_viewport).removeClass("active-pointer").addClass("inactive-pointer");
           resizeViewport();
         }, 0);
       },
@@ -281,49 +275,49 @@ function initializeZoom() {
   // Zoom listeners ------------------------------------------------
 
   if ($.isTouch) {
-    $(turnDom.zoomViewport).bind("zoom.doubleTap", zoomTo);
+    $(turnDom.zoom_viewport).bind("zoom.doubleTap", zoomTo);
   } else {
-    $(turnDom.zoomViewport).bind("zoom.tap", zoomTo);
+    $(turnDom.zoom_viewport).bind("zoom.tap", zoomTo);
   }
 
-  $(turnDom.zoomToggleBtn).on("click", zoomToggleBtnOnClick);
+  $(turnDom.zoom_toggle_btn).on("click", zoomToggleBtnOnClick);
 }
 
 function rebindTapZoom() {
   // debounce tap zoom to prevent issues with Zoom library if retapped too quickly
   if ($.isTouch) {
-    $(turnDom.zoomViewport).unbind("zoom.doubleTap", zoomTo);
+    $(turnDom.zoom_viewport).unbind("zoom.doubleTap", zoomTo);
     setTimeout(() => {
-      $(turnDom.zoomViewport).bind("zoom.doubleTap", zoomTo);
+      $(turnDom.zoom_viewport).bind("zoom.doubleTap", zoomTo);
     }, animDuration);
   } else {
-    $(turnDom.zoomViewport).unbind("zoom.tap", zoomTo);
+    $(turnDom.zoom_viewport).unbind("zoom.tap", zoomTo);
     setTimeout(() => {
-      $(turnDom.zoomViewport).bind("zoom.tap", zoomTo);
+      $(turnDom.zoom_viewport).bind("zoom.tap", zoomTo);
     }, animDuration);
   }
 }
 
 // function zoomIn(event) {
-//   if ($(turnDom.zoomViewport).zoom("value") === 1) {
+//   if ($(turnDom.zoom_viewport).zoom("value") === 1) {
 //     disableTurnControls();
-//     $(turnDom.zoomViewport).zoom("zoomIn");
+//     $(turnDom.zoom_viewport).zoom("zoomIn");
 //     debounce(event.currentTarget);
 
-//     $(turnDom.zoomToggleIcon)
+//     $(turnDom.zoom_toggle_icon)
 //       .removeClass("fa-search-plus")
 //       .addClass("fa-search-minus");
 
-//     fadeOut(turnDom.cornerControlsOverlay);
+//     fadeOut(turnDom.corner_controls_overlay);
 //   }
 // }
 
 // function zoomOut(event) {
-//   if ($(turnDom.zoomViewport).zoom("value") !== 1) {
-//     $(turnDom.zoomViewport).zoom("zoomOut");
+//   if ($(turnDom.zoom_viewport).zoom("value") !== 1) {
+//     $(turnDom.zoom_viewport).zoom("zoomOut");
 //     debounce(event.currentTarget);
 
-//     $(turnDom.zoomToggleIcon)
+//     $(turnDom.zoom_toggle_icon)
 //       .removeClass("fa-search-minus")
 //       .addClass("fa-search-plus");
 //   }
@@ -338,19 +332,15 @@ function rebindTapZoom() {
 // }
 
 function zoomToggleBtnOnClick(event) {
-  if ($(turnDom.zoomViewport).zoom("value") === 1) {
+  if ($(turnDom.zoom_viewport).zoom("value") === 1) {
     disableTurnControls();
-    $(turnDom.zoomViewport).zoom("zoomIn");
-    $(turnDom.zoomToggleIcon)
-      .removeClass("fa-search-plus")
-      .addClass("fa-search-minus");
+    $(turnDom.zoom_viewport).zoom("zoomIn");
+    $(turnDom.zoom_toggle_icon).removeClass("fa-search-plus").addClass("fa-search-minus");
 
-    fadeOut(turnDom.cornerControlsOverlay);
+    fadeOut(turnDom.corner_controls_overlay);
   } else {
-    $(turnDom.zoomViewport).zoom("zoomOut");
-    $(turnDom.zoomToggleIcon)
-      .removeClass("fa-search-minus")
-      .addClass("fa-search-plus");
+    $(turnDom.zoom_viewport).zoom("zoomOut");
+    $(turnDom.zoom_toggle_icon).removeClass("fa-search-minus").addClass("fa-search-plus");
   }
 
   rebindTapZoom();
@@ -361,22 +351,20 @@ function resizeViewport() {
   const width = $(window).width();
   const height = $(window).height();
 
-  turnDom.zoomViewport.style.position = "absolute";
-  turnDom.zoomViewport.style.left = "0px";
-  turnDom.zoomViewport.style.top = "0px";
+  turnDom.zoom_viewport.style.position = "absolute";
+  turnDom.zoom_viewport.style.left = "0px";
+  turnDom.zoom_viewport.style.top = "0px";
 
   setTurnContainerSizes();
 
-  turnDom.zoomContainer.style.left =
-    0.5 * sizes.container.width + sizes.container.offset.x + "px"; // horizontal center within container
-  turnDom.zoomContainer.style.top =
-    0.5 * sizes.container.height + sizes.container.offset.y + "px"; // vertical center within container
+  turnDom.zoom_container.style.left = 0.5 * sizes.container.width + sizes.container.offset.x + "px"; // horizontal center within container
+  turnDom.zoom_container.style.top = 0.5 * sizes.container.height + sizes.container.offset.y + "px"; // vertical center within container
 
   const options = $(turnDom.book).turn("options");
 
   $(turnDom.book).removeClass("animated");
 
-  $(turnDom.zoomViewport)
+  $(turnDom.zoom_viewport)
     .css({
       width: width,
       height: height,
@@ -393,10 +381,7 @@ function resizeViewport() {
 
     if (bound.width % 2 !== 0) bound.width -= 1;
 
-    if (
-      bound.width != $(turnDom.book).width() ||
-      bound.height != $(turnDom.book).height()
-    ) {
+    if (bound.width != $(turnDom.book).width() || bound.height != $(turnDom.book).height()) {
       $(turnDom.book).turn("size", bound.width, bound.height);
 
       if ($(turnDom.book).turn("page") == 1) $(turnDom.book).turn("peel", "br");
@@ -422,7 +407,7 @@ function resizeViewport() {
 // Helper functions - UI geometry ----------------------------------
 
 function setTurnContainerSizes() {
-  let containerDOMRect = turnDom.turnContainer.getBoundingClientRect();
+  let containerDOMRect = turnDom.turn_container.getBoundingClientRect();
   sizes.container.width = containerDOMRect.width;
   sizes.container.height = containerDOMRect.height;
   sizes.container.offset.x = containerDOMRect.x;
@@ -456,20 +441,20 @@ function getCornerPositions() {
 function positionOverlayCorners() {
   const corners = getCornerPositions();
 
-  const width = turnDom.swipeTopLeft.clientWidth;
-  const height = turnDom.swipeTopLeft.clientHeight;
+  const width = turnDom.swipe_top_left.clientWidth;
+  const height = turnDom.swipe_top_left.clientHeight;
 
-  turnDom.swipeTopLeft.style.left = corners.tl.x - width / 2 + "px";
-  turnDom.swipeTopLeft.style.top = corners.tl.y - height / 2 + "px";
+  turnDom.swipe_top_left.style.left = corners.tl.x - width / 2 + "px";
+  turnDom.swipe_top_left.style.top = corners.tl.y - height / 2 + "px";
 
-  turnDom.swipeTopRight.style.left = corners.tr.x - width / 2 + "px";
-  turnDom.swipeTopRight.style.top = corners.tr.y - height / 2 + "px";
+  turnDom.swipe_top_right.style.left = corners.tr.x - width / 2 + "px";
+  turnDom.swipe_top_right.style.top = corners.tr.y - height / 2 + "px";
 
-  turnDom.swipeBottomLeft.style.left = corners.bl.x - width / 2 + "px";
-  turnDom.swipeBottomLeft.style.top = corners.bl.y - height / 2 + "px";
+  turnDom.swipe_bottom_left.style.left = corners.bl.x - width / 2 + "px";
+  turnDom.swipe_bottom_left.style.top = corners.bl.y - height / 2 + "px";
 
-  turnDom.swipeBottomRight.style.left = corners.br.x - width / 2 + "px";
-  turnDom.swipeBottomRight.style.top = corners.br.y - height / 2 + "px";
+  turnDom.swipe_bottom_right.style.left = corners.br.x - width / 2 + "px";
+  turnDom.swipe_bottom_right.style.top = corners.br.y - height / 2 + "px";
 }
 
 // Calculate the width and height of a square within another square
@@ -480,10 +465,7 @@ function calculateBound(d) {
   if (bound.width > d.boundWidth || bound.height > d.boundHeight) {
     var rel = bound.width / bound.height;
 
-    if (
-      d.boundWidth / rel > d.boundHeight &&
-      d.boundHeight * rel <= d.boundWidth
-    ) {
+    if (d.boundWidth / rel > d.boundHeight && d.boundHeight * rel <= d.boundWidth) {
       bound.width = Math.round(d.boundHeight * rel);
       bound.height = d.boundHeight;
     } else {
@@ -501,25 +483,21 @@ function zoomTo(event) {
   setTimeout(function () {
     rebindTapZoom(); // debounce zoomViewport tap
 
-    if ($(turnDom.zoomViewport).zoom("value") === 1) {
+    if ($(turnDom.zoom_viewport).zoom("value") === 1) {
       disableTurnControls();
-      $(turnDom.zoomViewport).zoom("zoomIn", event); // passing event zooms to location clicked
-      $(turnDom.zoomToggleIcon)
-        .removeClass("fa-search-plus")
-        .addClass("fa-search-minus");
-      fadeOut(turnDom.cornerControlsOverlay);
+      $(turnDom.zoom_viewport).zoom("zoomIn", event); // passing event zooms to location clicked
+      $(turnDom.zoom_toggle_icon).removeClass("fa-search-plus").addClass("fa-search-minus");
+      fadeOut(turnDom.corner_controls_overlay);
     } else {
-      $(turnDom.zoomViewport).zoom("zoomOut");
-      $(turnDom.zoomToggleIcon)
-        .removeClass("fa-search-minus")
-        .addClass("fa-search-plus");
+      $(turnDom.zoom_viewport).zoom("zoomOut");
+      $(turnDom.zoom_toggle_icon).removeClass("fa-search-minus").addClass("fa-search-plus");
     }
   }, 1);
 }
 
 function disableTurnControls() {
-  turnDom.prevBtn.disabled = true;
-  turnDom.nextBtn.disabled = true;
+  turnDom.prev_btn.disabled = true;
+  turnDom.next_btn.disabled = true;
 }
 
 function debounce(btn) {
