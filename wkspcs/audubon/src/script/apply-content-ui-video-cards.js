@@ -9,24 +9,19 @@ function applyVideoCards(data) {
 
   for (let i = 0; i < videoDataArray.length; i++) {
     // console.log(videoDataArray[i]);
-    let newVideoCard = dom.watchMenuVideoCardPrototype.cloneNode();
+    let newVideoCard = dom.nonlocalized.watch_menu.video_cards.card_prototype.cloneNode();
     newVideoCard.id = `video-card-${i}`;
     newVideoCard.classList.remove("hidden");
 
     // console.log(newVideoCard);
 
     if (videoDataArray[i].en) {
-      let newVideoCardEn =
-        dom.localized.prototypes.en.video_card.cloneNode(true);
+      let newVideoCardEn = dom.localized.prototypes.en.video_card.cloneNode(true);
 
       let newVideoBtnEn = newVideoCardEn;
       let newVideoImgEn = newVideoCardEn.querySelector(".en-js-video-ui-img");
-      let newVideoTitleEn = newVideoCardEn.querySelector(
-        ".en-js-video-ui-title"
-      );
-      let newVideoDescriptionEn = newVideoCardEn.querySelector(
-        ".en-js-video-ui-description"
-      );
+      let newVideoTitleEn = newVideoCardEn.querySelector(".en-js-video-ui-title");
+      let newVideoDescriptionEn = newVideoCardEn.querySelector(".en-js-video-ui-description");
 
       newVideoBtnEn.onclick = function () {
         playVideo(videoDataArray[i].en.video_path);
@@ -39,19 +34,14 @@ function applyVideoCards(data) {
     }
 
     if (videoDataArray[i].es) {
-      let newVideoCardEs =
-        dom.localized.prototypes.es.video_card.cloneNode(true);
+      let newVideoCardEs = dom.localized.prototypes.es.video_card.cloneNode(true);
 
       // console.log(newVideoCardEs);
 
       let newVideoBtnEs = newVideoCardEs;
       let newVideoImgEs = newVideoCardEs.querySelector(".es-js-video-ui-img");
-      let newVideoTitleEs = newVideoCardEs.querySelector(
-        ".es-js-video-ui-title"
-      );
-      let newVideoDescriptionEs = newVideoCardEs.querySelector(
-        ".es-js-video-ui-description"
-      );
+      let newVideoTitleEs = newVideoCardEs.querySelector(".es-js-video-ui-title");
+      let newVideoDescriptionEs = newVideoCardEs.querySelector(".es-js-video-ui-description");
 
       newVideoBtnEs.onclick = function () {
         playVideo(videoDataArray[i].es.video_path);
@@ -63,7 +53,7 @@ function applyVideoCards(data) {
       newVideoCard.appendChild(newVideoCardEs);
     }
 
-    dom.watchMenuVideoCardFlexbox.appendChild(newVideoCard);
+    dom.nonlocalized.watch_menu.video_cards.flexbox.appendChild(newVideoCard);
   }
 }
 
@@ -79,9 +69,7 @@ function createVideoDataArray(data) {
   }
 
   for (let i = 0; i < data.es.watch_menu.videos.length; i++) {
-    let matchedEntry = videoDataArray.find(
-      (element) => element.en.id === data.es.watch_menu.videos[i].id
-    );
+    let matchedEntry = videoDataArray.find((element) => element.en.id === data.es.watch_menu.videos[i].id);
     if (matchedEntry) {
       matchedEntry.es = data.es.watch_menu.videos[i];
     } else if (!matchedEntry) {

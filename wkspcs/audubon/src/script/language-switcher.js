@@ -59,11 +59,7 @@ const langToggle = {
     });
   },
 
-  buttons: [
-    dom.mainMenuToggleLangBtn,
-    dom.watchMenuToggleLangButton,
-    dom.nonlocalized.read_view.toggleLangBtn,
-  ],
+  buttons: [dom.mainMenuToggleLangBtn, dom.nonlocalized.watch_menu.toggle_lang_btn, dom.nonlocalized.read_view.toggle_lang_btn],
 };
 
 export { applyLanguage, setLanguage, lang, langToggle };

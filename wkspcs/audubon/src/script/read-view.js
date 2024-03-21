@@ -4,7 +4,7 @@ import { UIViewController } from "./ui-macro-state/ui-view-controller.js";
 import { flipbook } from "./flipbook/flipbook-spreads-only.js";
 
 function readViewInit() {
-  dom.nonlocalized.read_view.backBtn.addEventListener("click", () => {
+  dom.nonlocalized.read_view.back_btn.addEventListener("click", () => {
     UIViewController.setView(views.mainMenu);
 
     // once animation is complete

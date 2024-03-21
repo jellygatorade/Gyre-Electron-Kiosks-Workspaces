@@ -16,23 +16,26 @@ const dom = {
   mainMenuBackBtn: document.getElementById("main-menu-back-button"),
   mainMenuToggleLangBtn: document.getElementById("main-menu-toggle-lang-button"),
 
-  // Watch Menu View
-  watchMenuView: document.getElementById("watch-menu-view"),
-  watchMenuBackButton: document.getElementById("watch-menu-back-button"),
-  watchMenuToggleLangButton: document.getElementById("watch-menu-toggle-lang-button"),
-
-  //// Watch Menu View - Video Cards
-  watchMenuVideoCardFlexbox: document.getElementById("watch-menu-video-card-flexbox"),
-  watchMenuVideoCardPrototype: document.getElementById("video-card-prototype"),
-
   // non-localized UI elements - views, buttons, etc
   nonlocalized: {
     // Fade Between Views Overlay
     fade_between_views_overlay: document.getElementById("fade-between-views-overlay"),
+
     timeout_modal: {},
     attract: {},
     main_menu: {},
-    watch_menu: {},
+
+    // Watch Menu View
+    watch_menu: {
+      view: document.getElementById("watch-menu-view"),
+      back_btn: document.getElementById("watch-menu-back-button"),
+      toggle_lang_btn: document.getElementById("watch-menu-toggle-lang-button"),
+      // Watch Menu View - Video Cards
+      video_cards: {
+        flexbox: document.getElementById("watch-menu-video-card-flexbox"),
+        card_prototype: document.getElementById("video-card-prototype"),
+      },
+    },
 
     // Video Player View
     video_player: {
@@ -49,8 +52,8 @@ const dom = {
     // Read View
     read_view: {
       view: document.getElementById("read-view"),
-      backBtn: document.getElementById("read-view-back-button"),
-      toggleLangBtn: document.getElementById("read-view-toggle-lang-button"),
+      back_btn: document.getElementById("read-view-back-button"),
+      toggle_lang_btn: document.getElementById("read-view-toggle-lang-button"),
 
       // Turn.js
       turn: {
@@ -59,11 +62,7 @@ const dom = {
         afterBook: document.getElementById("after-book"),
 
         book: document.getElementById("book"),
-        // firstPage
-        // firstPageImg
-        // populated in flipbook-spreads-only.js
-        // firstPage: document.getElementsByClassName("page")[2],
-        // firstPageImg: this.book.firstPage.getElementsByTagName("img")[0],
+        // firstPage, firstPageImg - populated in flipbook-spreads-only.js
 
         nextBtn: document.getElementById("next-button"),
         prevBtn: document.getElementById("previous-button"),
