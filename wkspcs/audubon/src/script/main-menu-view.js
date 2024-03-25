@@ -5,15 +5,15 @@ import { idleTimer } from "./idle-timer/idle-timer-static-class.js";
 import { returnToAttractView } from "./attract-view.js";
 
 function mainMenuInit() {
-  dom.mainMenuWatchBtn.addEventListener("click", () => {
+  dom.nonlocalized.main_menu.watch_btn.addEventListener("click", () => {
     UIViewController.setView(views.watchMenu);
   });
 
-  dom.mainMenuReadBtn.addEventListener("click", () => {
+  dom.nonlocalized.main_menu.read_btn.addEventListener("click", () => {
     UIViewController.setView(views.read);
   });
 
-  dom.mainMenuBackBtn.addEventListener("click", () => {
+  dom.nonlocalized.main_menu.back_btn.addEventListener("click", () => {
     returnToAttractView();
   });
 }

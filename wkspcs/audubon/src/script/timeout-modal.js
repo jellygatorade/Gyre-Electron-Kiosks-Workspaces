@@ -9,16 +9,16 @@ function timeoutModalInit() {
   //     UIViewController.setView(views.mainMenu);
   //   });
   idleTimer.onLoadCountdown = function () {
-    dom.timeoutCountdownText.innerText = idleTimer.countdownAmountInSeconds;
-    animationHandler.fadeIn(dom.timeoutModal);
+    dom.nonlocalized.timeout_modal.countdown_text.innerText = idleTimer.countdownAmountInSeconds;
+    animationHandler.fadeIn(dom.nonlocalized.timeout_modal.modal);
   };
 
   idleTimer.onCountdownIteration = function (numberTimeRemaining) {
-    dom.timeoutCountdownText.innerText = numberTimeRemaining;
+    dom.nonlocalized.timeout_modal.countdown_text.innerText = numberTimeRemaining;
   };
 
   idleTimer.onUserInactive = function () {
-    animationHandler.fadeOut(dom.timeoutModal);
+    animationHandler.fadeOut(dom.nonlocalized.timeout_modal.modal);
     returnToAttractView();
 
     // once animation is complete
@@ -27,9 +27,9 @@ function timeoutModalInit() {
     }, 300);
   };
 
-  dom.timeoutModalTapToContinueOverlay.addEventListener("click", (event) => {
+  dom.nonlocalized.timeout_modal.tap_to_continue_overlay.addEventListener("click", (event) => {
     idleTimer.cancel(event);
-    animationHandler.fadeOut(dom.timeoutModal);
+    animationHandler.fadeOut(dom.nonlocalized.timeout_modal.modal);
   });
 }
 

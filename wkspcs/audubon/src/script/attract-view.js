@@ -5,7 +5,7 @@ import { idleTimer } from "./idle-timer/idle-timer-static-class.js";
 
 function returnToAttractView() {
   idleTimer.remove();
-  dom.attractVideo.play();
+  dom.nonlocalized.attract.video.play();
   UIViewController.setView(views.attract);
 }
 
@@ -13,23 +13,23 @@ function removeAttractView() {
   UIViewController.setView(views.mainMenu);
 
   // Pause the attract video
-  dom.attractVideo.pause();
+  dom.nonlocalized.attract.video.pause();
 
   // Remove the attract video
-  // dom.attractVideo.remove();
+  // dom.nonlocalized.attract.video.remove();
 
   // Start the idle timer
   idleTimer.setup();
 }
 
 function attractViewInit() {
-  dom.attractOverlay.addEventListener("click", removeAttractView);
+  dom.nonlocalized.attract.overlay.addEventListener("click", removeAttractView);
 }
 
 // Exported to fetch script because depends on fetching of videopath from content.json
 function createAttractLoop(videopath) {
   //apply the videopath arg to a source element's src tag within the video element
-  dom.attractVideo.insertAdjacentHTML(
+  dom.nonlocalized.attract.video.insertAdjacentHTML(
     "afterbegin",
     '<source id="attract-video-source" src="' +
       videopath +
@@ -37,9 +37,9 @@ function createAttractLoop(videopath) {
   );
 
   // Set video to loop playback, mute audio, and play
-  dom.attractVideo.loop = true;
-  dom.attractVideo.muted = true;
-  dom.attractVideo.play();
+  dom.nonlocalized.attract.video.loop = true;
+  dom.nonlocalized.attract.video.muted = true;
+  dom.nonlocalized.attract.video.play();
 }
 
 export { attractViewInit, createAttractLoop, returnToAttractView };

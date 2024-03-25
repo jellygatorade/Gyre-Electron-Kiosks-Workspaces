@@ -1,29 +1,31 @@
 const dom = {
-  // Timeout Modal
-  timeoutModal: document.getElementById("timeout-modal"),
-  timeoutModalTapToContinueOverlay: document.getElementById("timeout-modal-tap-to-continue-overlay"),
-  timeoutCountdownText: document.getElementById("timeout-countdown-text"),
-
-  // Attract View
-  attractView: document.getElementById("attract-view"),
-  attractVideo: document.getElementById("attract-video"),
-  attractOverlay: document.getElementById("attract-overlay"),
-
-  // Main Menu View
-  mainMenuView: document.getElementById("main-menu-view"),
-  mainMenuWatchBtn: document.getElementById("main-menu-watch-button"),
-  mainMenuReadBtn: document.getElementById("main-menu-read-button"),
-  mainMenuBackBtn: document.getElementById("main-menu-back-button"),
-  mainMenuToggleLangBtn: document.getElementById("main-menu-toggle-lang-button"),
-
   // non-localized UI elements - views, buttons, etc
   nonlocalized: {
     // Fade Between Views Overlay
     fade_between_views_overlay: document.getElementById("fade-between-views-overlay"),
 
-    timeout_modal: {},
-    attract: {},
-    main_menu: {},
+    // Timeout Modal
+    timeout_modal: {
+      modal:  document.getElementById("timeout-modal"),
+      tap_to_continue_overlay: document.getElementById("timeout-modal-tap-to-continue-overlay"),
+      countdown_text: document.getElementById("timeout-countdown-text"),
+    },
+
+    // Attract View
+    attract: {
+      view: document.getElementById("attract-view"),
+      video: document.getElementById("attract-video"),
+      overlay: document.getElementById("attract-overlay"),
+    },
+
+    // Main Menu View
+    main_menu: {
+      view: document.getElementById("main-menu-view"),
+      watch_btn: document.getElementById("main-menu-watch-button"),
+      read_btn: document.getElementById("main-menu-read-button"),
+      back_btn: document.getElementById("main-menu-back-button"),
+      toggle_lang_btn: document.getElementById("main-menu-toggle-lang-button"),
+    },
 
     // Watch Menu View
     watch_menu: {
@@ -127,6 +129,7 @@ const dom = {
         toggle_lang: document.getElementById("en-read-view-toggle-lang"),
       },
     },
+    
     es: {
       timeout_modal: {
         still_viewing: document.getElementById("es-still-viewing"),
