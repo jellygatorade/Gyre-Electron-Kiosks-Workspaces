@@ -6,7 +6,7 @@ const dom = {
 
     // Timeout Modal
     timeout_modal: {
-      modal:  document.getElementById("timeout-modal"),
+      modal: document.getElementById("timeout-modal"),
       tap_to_continue_overlay: document.getElementById("timeout-modal-tap-to-continue-overlay"),
       countdown_text: document.getElementById("timeout-countdown-text"),
     },
@@ -129,7 +129,7 @@ const dom = {
         toggle_lang: document.getElementById("en-read-view-toggle-lang"),
       },
     },
-    
+
     es: {
       timeout_modal: {
         still_viewing: document.getElementById("es-still-viewing"),
