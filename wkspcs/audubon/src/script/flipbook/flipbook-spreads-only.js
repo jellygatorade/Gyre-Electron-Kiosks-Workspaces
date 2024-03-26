@@ -10,7 +10,8 @@ import { dom } from "../dom.js";
 // thin magnifying glass icon
 // use animationHandler over fadeOut/fadeIn ?
 //
-// fix bug where you click on zoom button and then click on book to zoom - basically debounce zooming on the book
+// fix bug where you click on zoom button and then click on book to zoom - basically debounce zooming on the book 
+// ^ (this bug still exists 3/26) - zoom book then button while zooming
 // overlay modal + text + corner controls overlay showing
 // use BEM method to hide prev/next Btn on zoom - https://getbem.com/introduction/
 //
