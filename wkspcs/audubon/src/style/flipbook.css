@@ -123,6 +123,7 @@ body {
   position: absolute;
   width: 50px;
   height: 50px;
+  z-index: 2000001;
   border-radius: 100%;
   border: 2px solid var(--swipe-controls-solid);
   background-color: var(--swipe-controls-transparent);

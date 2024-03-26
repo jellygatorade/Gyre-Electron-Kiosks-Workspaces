@@ -63,6 +63,12 @@ const dom = {
         turn_container: document.getElementById("turn-container"),
         after_book: document.getElementById("after-book"),
 
+        controls_overlay: document.getElementById("controls-overlay"),
+        swipe_top_left: document.getElementById("swipe-tl"),
+        swipe_top_right: document.getElementById("swipe-tr"),
+        swipe_bottom_left: document.getElementById("swipe-bl"),
+        swipe_bottom_right: document.getElementById("swipe-br"),
+
         book: document.getElementById("book"),
         // first_page, first_page_img - populated in flipbook-spreads-only.js
 
@@ -72,12 +78,6 @@ const dom = {
         info_btn: document.getElementById("read-view-info-button"),
         zoom_toggle_btn: document.getElementById("read-view-toggle-zoom-button"),
         zoom_toggle_icon: document.getElementById("read-view-toggle-zoom-icon"),
-
-        corner_controls_overlay: document.getElementById("corner-controls-overlay"),
-        swipe_top_left: document.getElementById("swipe-tl"),
-        swipe_top_right: document.getElementById("swipe-tr"),
-        swipe_bottom_left: document.getElementById("swipe-bl"),
-        swipe_bottom_right: document.getElementById("swipe-br"),
 
         zoom_viewport: document.getElementById("zoom-viewport"),
         zoom_container: document.getElementById("zoom-container"),

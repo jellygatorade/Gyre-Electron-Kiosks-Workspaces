@@ -24,6 +24,7 @@
       href="./style/webkit-scrollbar.css"
     />
     <link rel="stylesheet" type="text/css" href="./style/flipbook.css" />
+    <link rel="stylesheet" type="text/css" href="./style/modal.css" />
   </head>
 
   <body
@@ -354,11 +355,57 @@
     </div>
 
     <!-- Read View (Turn.js)-->
-    <!-- p-16 -->
+    <!-- py-[0.857rem] p-[1.5rem] -->
     <div
       id="read-view"
       class="h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300"
     >
+      <!-- controls overlay -->
+      <div id="controls-overlay" class="controls-overlay inactive">
+        <div id="swipe-tl" class="swipe-overlay"></div>
+        <div id="swipe-tr" class="swipe-overlay"></div>
+        <div id="swipe-bl" class="swipe-overlay"></div>
+        <div id="swipe-br" class="swipe-overlay"></div>
+        <div class="overlay">
+          <div class="flex-column-center">
+            <div class="modal">
+              <div
+                class="w-full h-full flex flex-col flex-nowrap justify-between items-center py-[0.857rem] p-[1.5rem]"
+              >
+                <div
+                  class="h-full w-full overflow-y-auto webkit-scrollbar text-xl text-center leading-loose"
+                >
+                  <p>
+                    <span lang="en" id="en-info-text">en-info-text</span>
+                    <span lang="es" id="es-info-text">es-info-text</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- info modal -->
+      <!-- <div id="info-modal-overlay" class="modal-parent inactive">
+        <div class="overlay">
+          <div class="flex-column-center">
+            <div class="modal">
+              <div
+                class="w-full h-full flex flex-col flex-nowrap justify-between items-center py-[0.857rem] p-[1.5rem]"
+              >
+                <div
+                  class="h-full w-full overflow-y-auto webkit-scrollbar text-xl text-center leading-loose"
+                >
+                  <p>
+                    <span lang="en" id="en-info-text">en-info-text</span>
+                    <span lang="es" id="es-info-text">es-info-text</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
       <div class="h-full flex flex-col justify-between">
         <!-- Header -->
         <div id="before-book" class="grow-0">
@@ -377,13 +424,6 @@
         </div>
         <!-- Book -->
         <div id="turn-container" class="grow">
-          <!-- corner controls overlay -->
-          <div id="corner-controls-overlay" class="controls-overlay inactive">
-            <div id="swipe-tl" class="swipe-overlay"></div>
-            <div id="swipe-tr" class="swipe-overlay"></div>
-            <div id="swipe-bl" class="swipe-overlay"></div>
-            <div id="swipe-br" class="swipe-overlay"></div>
-          </div>
           <div id="zoom-viewport">
             <div id="zoom-container" class="zoom-container">
               <div id="book" class="flipbook animated">

@@ -5,6 +5,7 @@ import { mainMenuInit } from "./main-menu-view.js";
 import { watchMenuInit } from "./watch-menu-view.js";
 import { readViewInit } from "./read-view.js";
 import { idleTimerInit } from "./idle-timer/idle-timer-setup.js";
+import { controlsOverlay } from "./flipbook/controls-overlay.js";
 import { flipbook } from "./flipbook/flipbook-spreads-only.js";
 import {
   applyLanguage,
@@ -21,6 +22,7 @@ watchMenuInit();
 readViewInit();
 idleTimerInit();
 callFetchCreateUI();
+controlsOverlay.init();
 flipbook.init();
 
 // Determine if there was a language previously set

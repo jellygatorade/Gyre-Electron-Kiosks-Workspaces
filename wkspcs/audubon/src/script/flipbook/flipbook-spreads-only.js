@@ -90,9 +90,9 @@ const flipbook = {
 
     // Controls overlay
 
-    turnDom.corner_controls_overlay.style.position = "absolute";
-    turnDom.corner_controls_overlay.style.left = "0px";
-    turnDom.corner_controls_overlay.style.top = "0px";
+    turnDom.controls_overlay.style.position = "absolute";
+    turnDom.controls_overlay.style.left = "0px";
+    turnDom.controls_overlay.style.top = "0px";
   },
 
   initTurn: function () {
@@ -108,7 +108,7 @@ const flipbook = {
     // reset for idle timeout
     $(turnDom.book).turn("page", 2);
     $(turnDom.zoom_viewport).zoom("zoomOut");
-    fadeOut(turnDom.corner_controls_overlay);
+    fadeOut(turnDom.controls_overlay);
   },
 };
 
@@ -148,10 +148,10 @@ function initializeTurnJS() {
   turnDom.info_btn.addEventListener("click", controlsToggleBtnOnClick);
 
   function controlsToggleBtnOnClick() {
-    if (turnDom.corner_controls_overlay.classList.contains("inactive")) {
-      fadeIn(turnDom.corner_controls_overlay);
+    if (turnDom.controls_overlay.classList.contains("inactive")) {
+      fadeIn(turnDom.controls_overlay);
     } else {
-      fadeOut(turnDom.corner_controls_overlay);
+      fadeOut(turnDom.controls_overlay);
     }
   }
 
@@ -308,7 +308,7 @@ function rebindTapZoom() {
 //       .removeClass("fa-search-plus")
 //       .addClass("fa-search-minus");
 
-//     fadeOut(turnDom.corner_controls_overlay);
+//     fadeOut(turnDom.controls_overlay);
 //   }
 // }
 
@@ -337,7 +337,7 @@ function zoomToggleBtnOnClick(event) {
     $(turnDom.zoom_viewport).zoom("zoomIn");
     $(turnDom.zoom_toggle_icon).removeClass("fa-search-plus").addClass("fa-search-minus");
 
-    fadeOut(turnDom.corner_controls_overlay);
+    fadeOut(turnDom.controls_overlay);
   } else {
     $(turnDom.zoom_viewport).zoom("zoomOut");
     $(turnDom.zoom_toggle_icon).removeClass("fa-search-minus").addClass("fa-search-plus");
@@ -487,7 +487,7 @@ function zoomTo(event) {
       disableTurnControls();
       $(turnDom.zoom_viewport).zoom("zoomIn", event); // passing event zooms to location clicked
       $(turnDom.zoom_toggle_icon).removeClass("fa-search-plus").addClass("fa-search-minus");
-      fadeOut(turnDom.corner_controls_overlay);
+      fadeOut(turnDom.controls_overlay);
     } else {
       $(turnDom.zoom_viewport).zoom("zoomOut");
       $(turnDom.zoom_toggle_icon).removeClass("fa-search-minus").addClass("fa-search-plus");
