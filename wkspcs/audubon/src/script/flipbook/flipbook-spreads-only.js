@@ -106,7 +106,7 @@ const flipbook = {
   },
 
   reset: function () {
-    // reset for idle timeout
+    // reset on idle timeout, and on returning to previous view
     $(turnDom.book).turn("page", 2);
     $(turnDom.zoom_viewport).zoom("zoomOut");
     fadeOut(turnDom.controls_overlay);

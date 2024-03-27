@@ -64,6 +64,9 @@ const dom = {
         after_book: document.getElementById("after-book"),
 
         controls_overlay: document.getElementById("controls-overlay"),
+        controls_modal: document.getElementById("controls-modal"),
+        controls_modal_btn: document.getElementById("controls-modal-btn"),
+
         swipe_top_left: document.getElementById("swipe-tl"),
         swipe_top_right: document.getElementById("swipe-tr"),
         swipe_bottom_left: document.getElementById("swipe-bl"),

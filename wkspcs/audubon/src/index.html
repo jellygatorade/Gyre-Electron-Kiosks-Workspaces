@@ -7,22 +7,11 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
     <link rel="stylesheet" type="text/css" href="./style/fade-in.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="./style/tailwind-compiled.css"
-    />
+    <link rel="stylesheet" type="text/css" href="./style/tailwind-compiled.css" />
     <link rel="stylesheet" type="text/css" href="./assets/fa/all.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="./style/input-type-range.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="./style/webkit-scrollbar.css"
-    />
+    <link rel="stylesheet" type="text/css" href="./style/input-type-range.css" />
+    <link rel="stylesheet" type="text/css" href="./style/webkit-scrollbar.css" />
+    <link rel="stylesheet" type="text/css" href="./style/vars.css" />
     <link rel="stylesheet" type="text/css" href="./style/flipbook.css" />
     <link rel="stylesheet" type="text/css" href="./style/modal.css" />
   </head>
@@ -360,21 +349,25 @@
       class="h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300"
     >
       <!-- controls overlay -->
-      <div id="controls-overlay" class="controls-overlay inactive">
-        <div id="swipe-tl" class="swipe-overlay"></div>
-        <div id="swipe-tr" class="swipe-overlay"></div>
-        <div id="swipe-bl" class="swipe-overlay"></div>
-        <div id="swipe-br" class="swipe-overlay"></div>
-        <div class="overlay">
-          <div class="flex-column-center">
-            <div class="modal">
-              <div class="modal-flexbox">
-                <div class="modal-scroll-y webkit-scrollbar text-xl text-center leading-loose">
+      <div id="controls-overlay" class="overlay inactive">
+        <div id="swipe-tl" class="overlay__swipe-marker"></div>
+        <div id="swipe-tr" class="overlay__swipe-marker"></div>
+        <div id="swipe-bl" class="overlay__swipe-marker"></div>
+        <div id="swipe-br" class="overlay__swipe-marker"></div>
+        <div class="overlay__viewport-background">
+          <div class="overlay__flex-column-center">
+            <div id="controls-modal" class="overlay__modal">
+              <div class="overlay__modal-flexbox">
+                <div class="overlay__modal-scroll-box-y webkit-scrollbar">
                   <p>
                     <span lang="en" id="en-info-text">en-info-text</span>
                     <span lang="es" id="es-info-text">es-info-text</span>
                   </p>
                 </div>
+                <button id="controls-modal-btn" class="button font-CaseTextLight text-lg tracking-wide">
+                  <span lang="en" id="en-controls-modal-btn">en-controls-modal-btn</span>
+                  <span lang="es" id="en-controls-modal-btn">es-controls-modal-btn</span>
+                </button>
               </div>
             </div>
           </div>

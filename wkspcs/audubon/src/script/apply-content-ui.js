@@ -23,10 +23,10 @@ function applyContent(data) {
 
   // Attract View
   dom.localized.en.attract.title.innerHTML = data.en.attract.title;
-  dom.localized.en.attract.touch_to_begin.innerHTML = data.en.attract.title;
+  dom.localized.en.attract.touch_to_begin.innerHTML = data.en.attract.touch_to_begin;
 
   dom.localized.es.attract.title.innerHTML = data.es.attract.title;
-  dom.localized.es.attract.touch_to_begin.innerHTML = data.es.attract.title;
+  dom.localized.es.attract.touch_to_begin.innerHTML = data.es.attract.touch_to_begin;
 
   // Main Menu View
   dom.localized.en.main_menu.title.innerHTML = data.en.main_menu.title;

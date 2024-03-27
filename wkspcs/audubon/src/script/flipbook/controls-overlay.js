@@ -8,7 +8,12 @@ const controlsOverlay = {
     },
 
     controlsOverlayOnClick: function(event) {
-        this.fadeOut(dom.nonlocalized.read_view.turn.controls_overlay);
+        if (
+            !dom.nonlocalized.read_view.turn.controls_modal.contains(event.target) || 
+            dom.nonlocalized.read_view.turn.controls_modal_btn.contains(event.target)
+        ) {
+            this.fadeOut(dom.nonlocalized.read_view.turn.controls_overlay);
+        }
     },
 
     fadeOut: function(element) {

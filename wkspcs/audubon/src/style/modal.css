@@ -1,32 +1,58 @@
+.active {
+    opacity: 100;
+    visibility: visible;
+}
+
+.inactive {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
 .overlay {
+    z-index: 2000000;
+    transition: all 0.3s ease-in-out;
+}
+
+.overlay__swipe-marker {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 2000001;
+    border-radius: 100%;
+    border: 2px solid var(--swipe-controls-solid);
+    background-color: var(--swipe-controls-transparent);
+}
+
+.overlay__viewport-background {
     height: 100vh;
     width: 100vw;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 2000000;
-    background-color: rgba(0,0,0,0.75);
+    background-color: var(--black-transparent-75);
 }
 
-.flex-column-center {
+.overlay__flex-column-center {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.modal {
+.overlay__modal {
     max-height: 400px;
     max-width: 700px;
     margin: 0 auto;
-    background-color: rgba(0,0,0,1);
+    background-color: var(--black);
     border-width: 1px;
     border-color: white;
     border-radius: 1rem;
     box-shadow: 0px 0px 3px #000000;
 }
 
-.modal-flexbox {
+.overlay__modal-flexbox {
     width: 100%;
     height: 100%;
     display: flex;
@@ -38,6 +64,28 @@
     padding: 0.875rem 1.5rem;
 }
 
-.modal-scroll-box-y {
+.overlay__modal-scroll-box-y {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    /* padding-right: 1rem; */
+    /* scroll-padding-right: 1rem; */
+}
 
+.button {
+    border-width: 1px;
+    border-color: var(--white);
+    border-radius: 9999px;
+    color: var(--white);
+    background-color: var(--black);
+    padding-top: 0.2rem/* 3.2px */;
+    padding-left: 1rem/* 16px */;
+    padding-right: 1rem/* 16px */;
+    max-height: 2rem/* 32px */;
+    transition: all 300ms ease-in-out;
+}
+
+.button:hover {
+    color: var(--ncma-orange);
+    border-color: var(--ncma-orange);
 }

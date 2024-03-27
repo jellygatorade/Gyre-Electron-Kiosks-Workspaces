@@ -1,45 +1,3 @@
-:root {
-  --white: #ffffff;
-  --ncma-orange: #e0592a;
-  --transparent: rgba(0, 0, 0, 0);
-  --active-gray: rgba(255, 255, 255, 0.75);
-  --disabled-gray: rgba(255, 255, 255, 0.15);
-  --swipe-controls-solid: rgba(255, 0, 0, 1);
-  --swipe-controls-transparent: rgba(255, 0, 0, 0.75);
-}
-
-/*
-html,
-body {
-  background-color: #000000;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-*/
-
-.controls-overlay {
-  position: absolute;
-  z-index: 2000000;
-  transition: all 0.3s ease-in-out;
-}
-
-.active {
-  opacity: 100;
-  visibility: visible;
-}
-
-.inactive {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.controls-margin {
-  padding: 1rem;
-}
-
 /* .zoom-viewport {} */
 
 .zoom-container {
@@ -117,14 +75,4 @@ body {
   height: 100%;
   /* user-select: none;
     margin: 0; */
-}
-
-.swipe-overlay {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  z-index: 2000001;
-  border-radius: 100%;
-  border: 2px solid var(--swipe-controls-solid);
-  background-color: var(--swipe-controls-transparent);
 }
