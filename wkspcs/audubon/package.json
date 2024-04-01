@@ -4,6 +4,7 @@
   "description": "Lorem ipsum dolor sit amet.",
   "main": "./src/main.js",
   "scripts": {
+    "tailwind": "npx tailwindcss -i ./src/style/tailwind-input.css -o ./src/style/tailwind-compiled.css --watch",
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
