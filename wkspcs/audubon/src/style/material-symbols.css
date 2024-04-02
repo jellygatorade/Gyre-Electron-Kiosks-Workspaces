@@ -1,0 +1,27 @@
+/** 
+ * https://fonts.google.com/icons
+ * https://developers.google.com/fonts/docs/material_symbols* 
+ * https://github.com/google/material-design-icons/tree/master/variablefont
+ */
+
+@font-face {
+    font-family: 'Material Symbols Rounded';
+    font-style: normal;
+    /* src: url(https://example.com/material-symbols.woff) format('woff'); */
+    src: url("../../src/assets/font/Material Symbols/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2") format('woff2'); /* relative path is from this css file */
+}
+  
+.material-symbols-rounded {
+    font-family: 'Material Symbols Rounded';
+    font-weight: normal;
+    font-style: normal;
+    /* font-size: 24px;  Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+}
+  
