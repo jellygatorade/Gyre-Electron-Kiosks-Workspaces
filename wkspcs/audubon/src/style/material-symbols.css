@@ -1,7 +1,10 @@
 /** 
  * https://fonts.google.com/icons
- * https://developers.google.com/fonts/docs/material_symbols* 
+ * https://developers.google.com/fonts/docs/material_symbols
  * https://github.com/google/material-design-icons/tree/master/variablefont
+ *
+ * MDN Variable fonts guide
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts/Variable_fonts_guide
  */
 
 @font-face {
@@ -15,6 +18,11 @@
     font-family: 'Material Symbols Rounded';
     font-weight: normal;
     font-style: normal;
+    font-variation-settings:
+        "FILL" 0, /* FILL: 0 for default or 1 for completely filled */
+        "GRAD" 0, /* GRAD:  - -25 low emphasis, 0 default, 200 high emphasis */
+        "opsz" 20, /* opsz: Optical sizes range from 20dp to 48dp */
+        "wght" 300; /* wght: a range of weights between thin (100) and bold (700) */
     /* font-size: 24px;  Preferred icon size */
     display: inline-block;
     line-height: 1;
