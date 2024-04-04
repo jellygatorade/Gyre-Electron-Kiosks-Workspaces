@@ -308,6 +308,7 @@ function rebindTapZoom() {
 //     $(turnDom.zoom_toggle_icon)
 //       .removeClass("fa-search-plus")
 //       .addClass("fa-search-minus");
+//     turnDom.zoom_toggle_material_symbol.innerText = "zoom_out";
 
 //     fadeOut(turnDom.controls_overlay);
 //   }
@@ -321,6 +322,7 @@ function rebindTapZoom() {
 //     $(turnDom.zoom_toggle_icon)
 //       .removeClass("fa-search-minus")
 //       .addClass("fa-search-plus");
+//     turnDom.zoom_toggle_material_symbol.innerText = "zoom_in";
 //   }
 // }
 
@@ -337,11 +339,13 @@ function zoomToggleBtnOnClick(event) {
     disableTurnControls();
     $(turnDom.zoom_viewport).zoom("zoomIn");
     $(turnDom.zoom_toggle_icon).removeClass("fa-search-plus").addClass("fa-search-minus");
+    turnDom.zoom_toggle_material_symbol.innerText = "zoom_out";
 
     fadeOut(turnDom.controls_overlay);
   } else {
     $(turnDom.zoom_viewport).zoom("zoomOut");
     $(turnDom.zoom_toggle_icon).removeClass("fa-search-minus").addClass("fa-search-plus");
+    turnDom.zoom_toggle_material_symbol.innerText = "zoom_in";
   }
 
   rebindTapZoom();
@@ -488,10 +492,13 @@ function zoomTo(event) {
       disableTurnControls();
       $(turnDom.zoom_viewport).zoom("zoomIn", event); // passing event zooms to location clicked
       $(turnDom.zoom_toggle_icon).removeClass("fa-search-plus").addClass("fa-search-minus");
+      turnDom.zoom_toggle_material_symbol.innerText = "zoom_out";
+
       fadeOut(turnDom.controls_overlay);
     } else {
       $(turnDom.zoom_viewport).zoom("zoomOut");
       $(turnDom.zoom_toggle_icon).removeClass("fa-search-minus").addClass("fa-search-plus");
+      turnDom.zoom_toggle_material_symbol.innerText = "zoom_in";
     }
   }, 1);
 }

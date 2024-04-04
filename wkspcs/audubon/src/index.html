@@ -122,9 +122,13 @@
             id="main-menu-watch-button"
             class="w-[624px] h-[472px] border border-white rounded-xl px-[1rem] pt-[0.2rem] font-CaseTextLight text-3xl tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
           >
-            <div class="text-[128px] mb-8">
+            <!-- Font Awesome -->
+            <!-- <div class="text-[128px] mb-8">
               <i class="fas fa-play"></i>
-              <span class="material-symbols-rounded">&#xE88A;</span> <!-- Material symbol -->
+            </div> -->
+            <!-- Material symbols -->
+            <div class="text-[128px] mb-8">
+              <span class="material-symbols-rounded material-symbols-unfilled">live_tv</span>
             </div>
             <span lang="en" id="en-main-menu-watch">en-main-menu-watch</span>
             <span lang="es" id="es-main-menu-watch">es-main-menu-watch</span>
@@ -133,9 +137,14 @@
             id="main-menu-read-button"
             class="w-[624px] h-[472px] border border-white rounded-xl px-[1rem] pt-[0.2rem] font-CaseTextLight text-3xl tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
           > 
-            <div class="text-[128px] mb-8">
-              <!-- <i class="fas fa-book"></i> -->
+            <!-- Font Awesome -->
+            <!-- <div class="text-[128px] mb-8">
+              <i class="fas fa-book"></i>
               <i class="fas fa-search "></i>
+            </div> -->
+            <!-- Material symbols -->
+            <div class="text-[128px] mb-8">
+              <span class="material-symbols-rounded material-symbols-filled">manage_search</span>
             </div>
             <span lang="en" id="en-main-menu-read">en-main-menu-read</span>
             <span lang="es" id="es-main-menu-read">es-main-menu-read</span>
@@ -529,16 +538,24 @@
           </button>
           <button
             id="read-view-info-button"
-            class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+            class="align-bottom border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
           >
             ?
+            <!-- <span class="relative top-[-3px] text-[32px] material-symbols-rounded material-symbols-unfilled">question_mark</span> -->
             <!-- <i class="fas fa-question"></i> -->
           </button>
+          <!-- Font awesome button -->
           <button
             id="read-view-toggle-zoom-button"
             class="[ relative z-[1000100] ] border border-white bg-black bg-opacity-50 box-shadow-black-3px rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
           >
             <i id="read-view-toggle-zoom-icon" class="fas fa-search-plus"></i>
+          </button>
+          <!-- Material symbol button -->
+          <button
+            class="[ relative z-[1000100] ] align-bottom border border-white bg-black bg-opacity-50 box-shadow-black-3px rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+          >
+            <span id="read-view-toggle-zoom-material-symbol" class="relative top-[-3px] text-[32px] material-symbols-rounded material-symbols-unfilled">zoom_in</span>
           </button>
         </div>
       </div>

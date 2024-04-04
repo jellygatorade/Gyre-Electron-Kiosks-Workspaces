@@ -5,9 +5,9 @@ function applyContent(data) {
   // Spanish availability
   // Set language toggle buttons to "display: none;" if not available
   if (!data.es.is_available) {
-    dom.mainMenuToggleLangBtn.classList.add("hidden");
-    dom.watchMenuToggleLangButton.classList.add("hidden");
-    dom.readViewToggleLangButton.classList.add("hidden");
+    dom.nonlocalized.main_menu.toggle_lang_btn.classList.add("hidden");
+    dom.nonlocalized.watch_menu.toggle_lang_btn.classList.add("hidden");
+    dom.nonlocalized.read_view.toggle_lang_btn.classList.add("hidden");
   }
 
   // Timeout modal

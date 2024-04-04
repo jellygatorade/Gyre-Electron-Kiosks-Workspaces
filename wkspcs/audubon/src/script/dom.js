@@ -81,6 +81,7 @@ const dom = {
         info_btn: document.getElementById("read-view-info-button"),
         zoom_toggle_btn: document.getElementById("read-view-toggle-zoom-button"),
         zoom_toggle_icon: document.getElementById("read-view-toggle-zoom-icon"),
+        zoom_toggle_material_symbol: document.getElementById("read-view-toggle-zoom-material-symbol"),
 
         zoom_viewport: document.getElementById("zoom-viewport"),
         zoom_container: document.getElementById("zoom-container"),
