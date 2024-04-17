@@ -10,6 +10,8 @@
 /wkspcs/**/src/script/lib/jquery
 
 !/wkspcs/**/src/assets/content*
+!/wkspcs/**/src/common/assets/content*
+!/wkspcs/**/src/common/assets/awaiting*
 
 # Below is from github/gitignore/Node.gitignore 
 # https://github.com/github/gitignore/blob/main/Node.gitignore

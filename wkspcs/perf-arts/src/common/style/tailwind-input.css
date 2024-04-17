@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Case-Light";
+  src: url("../assets/font/Case/Case-Light.otf"); /* relative path is from tailwind-compiled.css */
+}
+
+@font-face {
+  font-family: "Case-Medium";
+  src: url("../assets/font/Case/Case-Medium.otf"); /* relative path is from tailwind-compiled.css */
+}
+
+@font-face {
+  font-family: "CaseText-Light";
+  src: url("../assets/font/Case Text/CaseText-Light.otf"); /* relative path is from tailwind-compiled.css */
+}
+
+@font-face {
+  font-family: "CaseText-Regular";
+  src: url("../assets/font/Case Text/CaseText-Regular.otf"); /* relative path is from tailwind-compiled.css */
+}
+
+@font-face {
+  font-family: "CaseText-Medium";
+  src: url("../assets/font/Case Text/CaseText-Medium.otf"); /* relative path is from tailwind-compiled.css */
+}
+
+@font-face {
+  font-family: "CaseMicro-Regular";
+  src: url("../assets/font/Case Micro/CaseMicro-Regular.otf"); /* relative path is from tailwind-compiled.css */
+}
+
+@layer components {
+  .text-shadow-black-4px {
+    text-shadow: 0px 0px 4px #000000;
+  }
+
+  .text-shadow-black-3px {
+    text-shadow: 0px 0px 3px #000000;
+  }
+}

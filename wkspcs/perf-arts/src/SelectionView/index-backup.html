@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html class="h-full w-full font-CaseTextRegular text-base">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <link rel="stylesheet" type="text/css" href="../common/style/fade-in.css" />
+    <link rel="stylesheet" href="../common/style/tailwind-compiled.css" />
+    <link rel="stylesheet" type="text/css" href="./style/shimmer.css" />
+    <title>Performing Arts - Selection View</title>
+  </head>
+  <body class="h-full w-full overflow-hidden p-16 bg-black text-white">
+    <!-- Attract View -->
+    <div
+      id="attract-view"
+      class="z-[300] absolute top-0 left-0 h-full w-full bg-black"
+    >
+      <!-- Video player -->
+      <video id="attract-video" class="z-[350] absolute min-h-full"></video>
+      <!-- class="z-[350] absolute top-0 left-0 min-h-full min-w-full" -->
+
+      <!-- Overlay (for touch detection) -->
+      <div id="attract-overlay" class="z-[500] relative h-full w-full">
+        <!-- Touch to begin -->
+        <h1
+          lang="en"
+          id="en-attract-touch-to-begin"
+          class="z-[400] absolute bottom-[60px] left-[60px] font-CaseLight italic text-5xl select-none shimmer"
+        ></h1>
+        <h1
+          lang="es"
+          id="es-attract-touch-to-begin"
+          class="z-[400] absolute bottom-[60px] left-[60px] font-CaseLight italic text-5xl select-none shimmer"
+        ></h1>
+      </div>
+    </div>
+
+    <!-- Home View -->
+    <div id="home-view" class="z-[100] relative top-0 left-0">
+      <!-- Home View Header -->
+      <header>
+        <div class="flex justify-between pb-2">
+          <h1
+            lang="en"
+            id="en-home-view-title"
+            class="font-CaseMedium text-lg"
+          ></h1>
+          <h1
+            lang="es"
+            id="es-home-view-title"
+            class="font-CaseMedium text-lg"
+          ></h1>
+          <button
+            id="toggle-lang-button"
+            class="border border-white rounded-full px-2 max-h-7"
+          >
+            Español
+          </button>
+        </div>
+        <h2 lang="en" id="en-home-view-subheading" class="py-2"></h2>
+        <h2 lang="es" id="es-home-view-subheading" class="py-2"></h2>
+      </header>
+
+      <div id="home-view-flexbox" class="pt-2 flex flex-wrap justify-between">
+        <!-- Video 1 -->
+        <div
+          class="js-video-ui-container [ py-3 max-w-full md:max-w-[47%] xl:max-w-[23%] ]"
+        >
+          <button lang="en" class="en-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="en-js-video-ui-img [ w-full ]">
+                  <div class="en-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="en-js-video-ui-title [ py-1]">Title</h3>
+            <p class="en-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+
+          <button lang="es" class="es-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center align-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="es-js-video-ui-img [ w-full ]">
+                  <div class="es-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="es-js-video-ui-title [ py-1]">Title</h3>
+            <p class="es-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+        </div>
+
+        <!-- Video 2 -->
+        <div
+          class="js-video-ui-container [ py-3 max-w-full md:max-w-[47%] xl:max-w-[23%] ]"
+        >
+          <button lang="en" class="en-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="en-js-video-ui-img [ w-full ]">
+                  <div class="en-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="en-js-video-ui-title [ py-1]">Title</h3>
+            <p class="en-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+
+          <button lang="es" class="es-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center align-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="es-js-video-ui-img [ w-full ]">
+                  <div class="es-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="es-js-video-ui-title [ py-1]">Title</h3>
+            <p class="es-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+        </div>
+
+        <!-- Video 3 -->
+        <div
+          class="js-video-ui-container [ py-3 max-w-full md:max-w-[47%] xl:max-w-[23%] ]"
+        >
+          <button lang="en" class="en-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="en-js-video-ui-img [ w-full ]">
+                  <div class="en-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="en-js-video-ui-title [ py-1]">Title</h3>
+            <p class="en-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+
+          <button lang="es" class="es-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center align-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="es-js-video-ui-img [ w-full ]">
+                  <div class="es-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="es-js-video-ui-title [ py-1]">Title</h3>
+            <p class="es-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+        </div>
+
+        <!-- Video 4 -->
+        <div
+          class="js-video-ui-container [ py-3 max-w-full md:max-w-[47%] xl:max-w-[23%] ]"
+        >
+          <button lang="en" class="en-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="en-js-video-ui-img [ w-full ]">
+                  <div class="en-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="en-js-video-ui-title [ py-1]">Title</h3>
+            <p class="en-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+
+          <button lang="es" class="es-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center align-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="es-js-video-ui-img [ w-full ]">
+                  <div class="es-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="es-js-video-ui-title [ py-1]">Title</h3>
+            <p class="es-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+        </div>
+
+        <!-- Video 5 -->
+        <div
+          class="js-video-ui-container [ py-3 max-w-full md:max-w-[47%] xl:max-w-[23%] ]"
+        >
+          <button lang="en" class="en-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="en-js-video-ui-img [ w-full ]">
+                  <div class="en-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="en-js-video-ui-title [ py-1]">Title</h3>
+            <p class="en-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+
+          <button lang="es" class="es-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center align-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="es-js-video-ui-img [ w-full ]">
+                  <div class="es-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="es-js-video-ui-title [ py-1]">Title</h3>
+            <p class="es-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+        </div>
+
+        <!-- Video 6 -->
+        <div
+          class="js-video-ui-container [ py-3 max-w-full md:max-w-[47%] xl:max-w-[23%] ]"
+        >
+          <button lang="en" class="en-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="en-js-video-ui-img [ w-full ]">
+                  <div class="en-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="en-js-video-ui-title [ py-1]">Title</h3>
+            <p class="en-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+
+          <button lang="es" class="es-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center align-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="es-js-video-ui-img [ w-full ]">
+                  <div class="es-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="es-js-video-ui-title [ py-1]">Title</h3>
+            <p class="es-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+        </div>
+
+        <!-- Video 7 -->
+        <div
+          class="js-video-ui-container [ py-3 max-w-full md:max-w-[47%] xl:max-w-[23%] ]"
+        >
+          <button lang="en" class="en-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="en-js-video-ui-img [ w-full ]">
+                  <div class="en-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="en-js-video-ui-title [ py-1]">Title</h3>
+            <p class="en-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+
+          <button lang="es" class="es-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center align-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="es-js-video-ui-img [ w-full ]">
+                  <div class="es-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="es-js-video-ui-title [ py-1]">Title</h3>
+            <p class="es-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+        </div>
+
+        <!-- Video 8 -->
+        <div
+          class="js-video-ui-container [ py-3 max-w-full md:max-w-[47%] xl:max-w-[23%] ]"
+        >
+          <button lang="en" class="en-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="en-js-video-ui-img [ w-full ]">
+                  <div class="en-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="en-js-video-ui-title [ py-1]">Title</h3>
+            <p class="en-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+
+          <button lang="es" class="es-js-video-ui-btn [ text-left ]">
+            <div class="aspect-video overflow-hidden">
+              <div
+                class="relative top-[50%] translate-y-[-50%] flex flex-row justify-center align-center"
+              >
+                <!-- img src relative path is from index.html -->
+                <img src="" class="es-js-video-ui-img [ w-full ]">
+                  <div class="es-js-video-ui-now-playing [ absolute h-full w-full bg-black/75 transition-all duration-500 opacity-0 invisible ]">
+                    <div class="flex flex-row justify-center h-full">
+                      <div class="flex flex-col justify-center">
+                        <div>Now playing.</div>
+                      </div>
+                    </div>
+                  </div>
+                </img>
+              </div>
+            </div>
+            <h3 class="es-js-video-ui-title [ py-1]">Title</h3>
+            <p class="es-js-video-ui-description [ text-sm ]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </button>
+        </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="../common/script/fade-in.js"></script>
+    <script type="module" src="./script/script.js"></script>
+  </body>
+</html>

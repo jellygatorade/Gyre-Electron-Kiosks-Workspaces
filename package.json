@@ -13,7 +13,8 @@
     "./wkspcs/ll-quilts",
     "./wkspcs/webpage-kiosk",
     "./wkspcs/email",
-    "./wkspcs/env-vars"
+    "./wkspcs/env-vars",
+    "./wkspcs/perf-arts"
   ],
   "author": "Kevin Kane",
   "license": "ISC",

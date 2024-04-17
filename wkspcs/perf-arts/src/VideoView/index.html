@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html class="h-full w-full">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <link rel="stylesheet" type="text/css" href="../common/style/fade-in.css" />
+    <link href="../common/style/tailwind-compiled.css" rel="stylesheet" />
+    <title>Performing Arts - Video View</title>
+  </head>
+  <body class="h-full w-full bg-black text-white">
+    <!-- Video View -->
+    <div id="video-view" class="z-[100] absolute top-0 left-0 h-full w-full">
+      <!-- Instruction Text -->
+      <div
+        id="video-view-instruction-text-parent"
+        class="z-[200] absolute w-full h-full flex flex-col justify-center transition-all duration-500"
+      >
+        <div class="flex flex-row justify-center">
+          <div class="my-8 text-shadow-black-3px">
+            <h1
+              lang="en"
+              id="video-view-en-instruction-text"
+              class="text-6xl font-CaseTextMedium"
+            ></h1>
+            <h1
+              lang="es"
+              id="video-view-es-instruction-text"
+              class="text-6xl font-CaseTextMedium"
+            ></h1>
+          </div>
+        </div>
+      </div>
+      <!-- Video player -->
+      <video
+        id="video-view-player"
+        class="z-[150] absolute min-h-full transition-all duration-500"
+      >
+        <source id="video-view-player-source" src="" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="../common/script/fade-in.js"></script>
+    <script type="module" src="./script/script.js"></script>
+  </body>
+</html>
