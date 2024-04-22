@@ -2,10 +2,7 @@
 <html class="h-full w-full font-CaseTextRegular text-base">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="./style/fade-in.css" />
     <link rel="stylesheet" type="text/css" href="./style/tailwind-compiled.css" />
     <link rel="stylesheet" type="text/css" href="./assets/fa/all.css" />
@@ -17,9 +14,7 @@
     <link rel="stylesheet" type="text/css" href="./style/modal.css" />
   </head>
 
-  <body
-    class="h-full w-full overflow-hidden bg-black text-white font-CaseTextRegular"
-  >
+  <body class="h-full w-full overflow-hidden bg-black text-white font-CaseTextRegular">
     <!-- Fade Between Views Overlay -->
     <div
       id="fade-between-views-overlay"
@@ -27,46 +22,23 @@
     ></div>
 
     <!-- Timeout modal -->
-    <div
-      id="timeout-modal"
-      class="h-full w-full absolute top-0 left-0 z-[5000] invisible opacity-100 pointer-events-none transition-all duration-300"
-    >
-      <div
-        id="timeout-modal-overlay"
-        class="h-full w-full absolute top-0 left-0 bg-black opacity-75 z-[5010]"
-      ></div>
-      <div
-        id="timeout-modal-tap-to-continue-overlay"
-        class="h-full w-full absolute top-0 left-0 timeout-modal-continue-btn z-[5050]"
-      ></div>
+    <div id="timeout-modal" class="h-full w-full absolute top-0 left-0 z-[5000] invisible opacity-100 pointer-events-none transition-all duration-300">
+      <div id="timeout-modal-overlay" class="h-full w-full absolute top-0 left-0 bg-black opacity-75 z-[5010]"></div>
+      <div id="timeout-modal-tap-to-continue-overlay" class="h-full w-full absolute top-0 left-0 timeout-modal-continue-btn z-[5050]"></div>
       <div class="h-full flex flex-row justify-center items-center z-[5020]">
         <div class="h-full flex flex-col justify-center items-center">
-          <div
-            class="relative max-h-[400px] max-w-[700px] opacity-100 z-[5020] bg-black border border-white rounded-2xl box-shadow-black-4px"
-          >
-            <div
-              class="w-full h-full flex flex-col flex-nowrap justify-between items-center py-[0.857rem] p-[1.5rem]"
-            >
-              <div
-                class="h-full w-full overflow-y-auto webkit-scrollbar text-xl text-center leading-loose"
-              >
+          <div class="relative max-h-[400px] max-w-[700px] opacity-100 z-[5020] bg-black border border-white rounded-2xl box-shadow-black-4px">
+            <div class="w-full h-full flex flex-col flex-nowrap justify-between items-center py-[0.857rem] p-[1.5rem]">
+              <div class="h-full w-full overflow-y-auto webkit-scrollbar text-xl text-center leading-loose">
                 <h2>
                   <span lang="en" id="en-still-viewing">en-still-viewing</span>
                   <span lang="es" id="es-still-viewing">es-still-viewing</span>
                 </h2>
                 <h2>
-                  <span lang="en" id="en-touch-to-continue"
-                    >en-touch-to-continue</span
-                  >
-                  <span lang="es" id="es-touch-to-continue"
-                    >es-touch-to-continue</span
-                  >
+                  <span lang="en" id="en-touch-to-continue">en-touch-to-continue</span>
+                  <span lang="es" id="es-touch-to-continue">es-touch-to-continue</span>
                 </h2>
-                <span
-                  id="timeout-countdown-text"
-                  class="text-4xl leading-normal font-CaseTextRegular"
-                  >timeout-countdown-text</span
-                >
+                <span id="timeout-countdown-text" class="text-4xl leading-normal font-CaseTextRegular">timeout-countdown-text</span>
               </div>
             </div>
           </div>
@@ -75,40 +47,28 @@
     </div>
 
     <!-- Attract View -->
-    <div
-      id="attract-view"
-      class="z-[300] absolute top-0 left-0 h-full w-full bg-black invisible opacity-0 pointer-events-none transition-all duration-300"
-    >
+    <div id="attract-view" class="z-[300] absolute top-0 left-0 h-full w-full bg-black invisible opacity-0 pointer-events-none transition-all duration-300">
       <!-- Video player -->
       <video id="attract-video" class="z-[350] absolute min-h-full"></video>
 
       <!-- Overlay (for touch detection) -->
       <div id="attract-overlay" class="z-[500] relative h-full w-full">
         <!-- Touch to begin - to match Sean's Digital Labels -->
-        <div
-          class="absolute bottom-0 left-0 p-[2.25rem] z-[600] text-xl text-shadow-black-3px"
-        >
+        <div class="absolute bottom-0 left-0 p-[2.25rem] z-[600] text-xl text-shadow-black-3px">
           <h1 class="text-6xl font-CaseTextMedium pb-[0.25rem]">
             <span lang="en" id="en-attract-title"> Title </span>
             <span lang="es" id="es-attract-title"> Title </span>
           </h1>
           <h2 class="tracking-[0.25rem]">
-            <span lang="en" id="en-attract-touch-to-begin">
-              Touch to begin
-            </span>
-            <span lang="es" id="es-attract-touch-to-begin">
-              Touch to begin
-            </span>
+            <span lang="en" id="en-attract-touch-to-begin"> Touch to begin </span>
+            <span lang="es" id="es-attract-touch-to-begin"> Touch to begin </span>
           </h2>
         </div>
       </div>
     </div>
 
     <!-- Main Menu View -->
-    <div
-      id="main-menu-view"
-      class="h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300"
-    >
+    <div id="main-menu-view" class="h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300">
       <div class="h-full flex flex-col justify-between">
         <div class="">
           <!-- Title? -->
@@ -136,7 +96,7 @@
           <button
             id="main-menu-read-button"
             class="w-[624px] h-[472px] border border-white rounded-xl px-[1rem] pt-[0.2rem] font-CaseTextLight text-3xl tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
-          > 
+          >
             <!-- Font Awesome -->
             <!-- <div class="text-[128px] mb-8">
               <i class="fas fa-book"></i>
@@ -173,20 +133,14 @@
             class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
             ><i class="fas fa-caret-left"></i>
             <span lang="en" id="en-main-menu-back">en-main-menu-back</span>
-            <span lang="es" id="es-main-menu-back"
-              >es-main-menu-back</span
-            ></button
+            <span lang="es" id="es-main-menu-back">es-main-menu-back</span></button
           >
           <button
             id="main-menu-toggle-lang-button"
             class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
           >
-            <span lang="en" id="en-main-menu-toggle-lang"
-              >en-main-menu-toggle-lang</span
-            >
-            <span lang="es" id="es-main-menu-toggle-lang"
-              >es-main-menu-toggle-lang</span
-            >
+            <span lang="en" id="en-main-menu-toggle-lang">en-main-menu-toggle-lang</span>
+            <span lang="es" id="es-main-menu-toggle-lang">es-main-menu-toggle-lang</span>
           </button>
         </div>
       </div>
@@ -195,142 +149,77 @@
     <!-- Watch Menu View -->
     <div
       id="watch-menu-view"
-      class="flex flex-col h-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300"
+      class="flex flex-col h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300"
     >
       <!-- Watch Menu Header -->
       <div class="grow-0">
         <header>
           <div class="flex justify-between items-center pb-3">
-            <h1
-              lang="en"
-              id="en-watch-menu-title"
-              class="font-CaseTextMedium text-3xl tracking-wide"
-            ></h1>
-            <h1
-              lang="es"
-              id="es-watch-menu-title"
-              class="font-CaseTextMedium text-3xl tracking-wide"
-            ></h1>
-            <div class="flex gap-2">
-              <button
-                id="watch-menu-back-button"
-                class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
-              >
-                <i class="fas fa-caret-left"></i>
-                <span lang="en" id="en-watch-menu-back"
-                  >en-watch-menu-back</span
-                >
-                <span lang="es" id="es-watch-menu-back"
-                  >es-watch-menu-back</span
-                >
-              </button>
-              <button
-                id="watch-menu-toggle-lang-button"
-                class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
-              >
-                <span lang="en" id="en-watch-menu-toggle-lang"
-                  >en-watch-menu-toggle-lang</span
-                >
-                <span lang="es" id="es-watch-menu-toggle-lang"
-                  >es-watch-menu-toggle-lang</span
-                >
-              </button>
-            </div>
+            <h1 lang="en" id="en-watch-menu-title" class="font-CaseTextMedium text-3xl tracking-wide"></h1>
+            <h1 lang="es" id="es-watch-menu-title" class="font-CaseTextMedium text-3xl tracking-wide"></h1>
           </div>
-          <h2
-            lang="en"
-            id="en-watch-menu-subheading"
-            class="py-2 font-CaseTextLight text-lg tracking-wide"
-          ></h2>
-          <h2
-            lang="es"
-            id="es-watch-menu-subheading"
-            class="py-2 font-CaseTextLight text-lg tracking-wide"
-          ></h2>
+          <h2 lang="en" id="en-watch-menu-subheading" class="py-2 font-CaseTextLight text-lg tracking-wide"></h2>
+          <h2 lang="es" id="es-watch-menu-subheading" class="py-2 font-CaseTextLight text-lg tracking-wide"></h2>
         </header>
       </div>
 
+      <!-- Watch Menu - Video Cards Scroll box -->
       <div class="grow overflow-y-auto webkit-scrollbar">
-        <div
-          id="watch-menu-video-card-flexbox"
-          class="pt-2 flex flex-col justify-start items-start"
-        >
+        <div id="watch-menu-video-card-flexbox" class="py-2 flex flex-col justify-start items-start">
           <!-- Video Card Prototype (for cloning) -->
-          <div
-            id="video-card-prototype"
-            class="js-video-ui-container [ hidden max-w-full ]"
-          >
-            <button
-              id="en-video-card-prototype"
-              lang="en"
-              class="en-js-video-ui-btn [ group text-left h-[330px] my-3 ]"
-            >
+          <div id="video-card-prototype" class="js-video-ui-container [ hidden max-w-full ]">
+            <button id="en-video-card-prototype" lang="en" class="en-js-video-ui-btn [ group text-left h-[330px] my-3 ]">
               <div class="flex flex-row justify-start items-start gap-6">
-                <div
-                  class="shrink-0 aspect-video w-[587px] h-[330px] overflow-hidden"
-                >
+                <div class="shrink-0 aspect-video w-[587px] h-[330px] overflow-hidden">
                   <!-- img src relative path is from index.html -->
-                  <img
-                    src=""
-                    class="en-js-video-ui-img [ object-cover h-full w-full ]"
-                  />
+                  <img src="" class="en-js-video-ui-img [ object-cover h-full w-full ]" />
                 </div>
-                <div
-                  class="group-hover:text-orange-ncma transition-all duration-300 pr-6"
-                >
-                  <h3
-                    class="en-js-video-ui-title [ pb-2 font-CaseTextMedium text-2xl tracking-wide ]"
-                  >
-                    Title
-                  </h3>
-                  <p
-                    class="en-js-video-ui-description [ font-CaseTextLight text-lg tracking-wide ]"
-                  >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <div class="group-hover:text-orange-ncma transition-all duration-300 pr-6">
+                  <h3 class="en-js-video-ui-title [ pb-2 font-CaseTextMedium text-2xl tracking-wide ]"> Title </h3>
+                  <p class="en-js-video-ui-description [ font-CaseTextLight text-lg tracking-wide ]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
                 </div>
               </div>
             </button>
 
-            <button
-              id="es-video-card-prototype"
-              lang="es"
-              class="es-js-video-ui-btn [ group text-left h-[330px] my-3 ]"
-            >
+            <button id="es-video-card-prototype" lang="es" class="es-js-video-ui-btn [ group text-left h-[330px] my-3 ]">
               <div class="flex flex-row justify-start items-start gap-6">
-                <div
-                  class="shrink-0 aspect-video w-[587px] h-[330px] overflow-hidden"
-                >
+                <div class="shrink-0 aspect-video w-[587px] h-[330px] overflow-hidden">
                   <!-- img src relative path is from index.html -->
-                  <img
-                    src=""
-                    class="es-js-video-ui-img [ object-cover h-full w-full ]"
-                  />
+                  <img src="" class="es-js-video-ui-img [ object-cover h-full w-full ]" />
                 </div>
-                <div
-                  class="group-hover:text-orange-ncma transition-all duration-300 pr-6"
-                >
-                  <h3
-                    class="es-js-video-ui-title [ pb-2 font-CaseTextMedium text-2xl tracking-wide ]"
-                  >
-                    Title
-                  </h3>
-                  <p
-                    class="es-js-video-ui-description [ font-CaseTextLight text-lg tracking-wide ]"
-                  >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <div class="group-hover:text-orange-ncma transition-all duration-300 pr-6">
+                  <h3 class="es-js-video-ui-title [ pb-2 font-CaseTextMedium text-2xl tracking-wide ]"> Title </h3>
+                  <p class="es-js-video-ui-description [ font-CaseTextLight text-lg tracking-wide ]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
                 </div>
               </div>
             </button>
           </div>
         </div>
+      </div>
+
+      <!-- Watch Menu - Footer -->
+      <div class="flex justify-end gap-2 pt-4">
+        <button
+          id="watch-menu-back-button"
+          class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+        >
+          <i class="fas fa-caret-left"></i>
+          <span lang="en" id="en-watch-menu-back">en-watch-menu-back</span>
+          <span lang="es" id="es-watch-menu-back">es-watch-menu-back</span>
+        </button>
+        <button
+          id="watch-menu-toggle-lang-button"
+          class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
+        >
+          <span lang="en" id="en-watch-menu-toggle-lang">en-watch-menu-toggle-lang</span>
+          <span lang="es" id="es-watch-menu-toggle-lang">es-watch-menu-toggle-lang</span>
+        </button>
       </div>
     </div>
 
@@ -339,10 +228,7 @@
       id="video-player-view"
       class="z-[100] bg-black absolute top-0 left-0 h-full w-full invisible opacity-0 pointer-events-none transition-all duration-300"
     >
-      <div
-        id="video-player-controls"
-        class="z-[290] relative h-full text-white transition-all duration-300 opacity-100 visible"
-      >
+      <div id="video-player-controls" class="z-[290] relative h-full text-white transition-all duration-300 opacity-100 visible">
         <button
           type="button"
           id="video-player-return-home-btn"
@@ -351,38 +237,21 @@
           <span lang="en" id="en-video-player-return-home-btn-txt"></span>
           <span lang="es" id="es-video-player-return-home-btn-txt"></span>
         </button>
-        <div
-          id="video-player-playback-controls"
-          class="absolute bottom-0 w-full flex flex-row justify-center align-center"
-        >
-          <button
-            type="button"
-            id="video-player-play-pause-btn"
-            class="m-[20px] text-shadow-black-3px hover:text-orange-ncma transition-all duration-300"
-          >
-            <i
-              id="video-player-play-pause-btn-icon"
-              class="fas fa-play text-[48px]"
-            >
-            </i>
+        <div id="video-player-playback-controls" class="absolute bottom-0 w-full flex flex-row justify-center align-center">
+          <button type="button" id="video-player-play-pause-btn" class="m-[20px] text-shadow-black-3px hover:text-orange-ncma transition-all duration-300">
+            <i id="video-player-play-pause-btn-icon" class="fas fa-play text-[48px]"> </i>
           </button>
           <input type="range" id="video-player-seek-bar" value="0" step="any" />
         </div>
       </div>
-      <video
-        id="video-player-video"
-        class="z-[250] absolute top-0 left-0 min-h-full min-w-full"
-      >
+      <video id="video-player-video" class="z-[250] absolute top-0 left-0 min-h-full min-w-full">
         <!-- src property to be replaced by js -->
         <source id="videoSource" src="" type="video/mp4" />
       </video>
     </div>
 
     <!-- Read View (Turn.js)-->
-    <div
-      id="read-view"
-      class="h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300"
-    >
+    <div id="read-view" class="h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300">
       <!-- controls overlay -->
       <div id="controls-overlay" class="overlay inactive">
         <div id="swipe-tl" class="overlay__swipe-marker"></div>
@@ -416,12 +285,8 @@
             <span lang="es" id="es-read-view-title">es-read-view-title</span>
           </h1>
           <h2>
-            <span lang="en" id="en-read-view-description"
-              >en-read-view-description</span
-            >
-            <span lang="es" id="es-read-view-description"
-              >es-read-view-description</span
-            >
+            <span lang="en" id="en-read-view-description">en-read-view-description</span>
+            <span lang="es" id="es-read-view-description">es-read-view-description</span>
           </h2>
         </div>
         <!-- Book -->
@@ -443,74 +308,34 @@
                 </div>
                 <!-- Pages -->
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/04b.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/04b.jpg" draggable="false" alt="" />
                 </div>
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/01a.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/01a.jpg" draggable="false" alt="" />
                 </div>
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/01b.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/01b.jpg" draggable="false" alt="" />
                 </div>
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/02a.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/02a.jpg" draggable="false" alt="" />
                 </div>
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/02b.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/02b.jpg" draggable="false" alt="" />
                 </div>
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/03a.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/03a.jpg" draggable="false" alt="" />
                 </div>
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/03b.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/03b.jpg" draggable="false" alt="" />
                 </div>
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/04a.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/04a.jpg" draggable="false" alt="" />
                 </div>
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/04b.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/04b.jpg" draggable="false" alt="" />
                 </div>
                 <div class="page">
-                  <img
-                    src="./assets/img/flipbook/04b.jpg"
-                    draggable="false"
-                    alt=""
-                  />
+                  <img src="./assets/img/flipbook/04b.jpg" draggable="false" alt="" />
                 </div>
               </div>
             </div>
@@ -529,12 +354,8 @@
             id="read-view-toggle-lang-button"
             class="border border-white rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
           >
-            <span lang="en" id="en-read-view-toggle-lang"
-              >en-read-view-toggle-lang</span
-            >
-            <span lang="es" id="es-read-view-toggle-lang"
-              >es-read-view-toggle-lang</span
-            >
+            <span lang="en" id="en-read-view-toggle-lang">en-read-view-toggle-lang</span>
+            <span lang="es" id="es-read-view-toggle-lang">es-read-view-toggle-lang</span>
           </button>
           <button
             id="read-view-info-button"
@@ -555,17 +376,16 @@
           <button
             class="[ relative z-[1000100] ] align-bottom border border-white bg-black bg-opacity-50 box-shadow-black-3px rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
           >
-            <span id="read-view-toggle-zoom-material-symbol" class="relative top-[-3px] text-[32px] material-symbols-rounded material-symbols-unfilled">zoom_in</span>
+            <span id="read-view-toggle-zoom-material-symbol" class="relative top-[-3px] text-[32px] material-symbols-rounded material-symbols-unfilled"
+              >zoom_in</span
+            >
           </button>
         </div>
       </div>
     </div>
 
     <!-- Scripts -->
-    <script
-      type="text/javascript"
-      src="./script/lib/jquery/jquery-1.7.2.min.js"
-    ></script>
+    <script type="text/javascript" src="./script/lib/jquery/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="./script/lib/turnjs4/turn.js"></script>
     <script type="text/javascript" src="./script/lib/turnjs4/zoom.js"></script>
     <script type="module" src="./script/script.js"></script>

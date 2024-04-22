@@ -628,12 +628,12 @@ video {
   top: 0px;
 }
 
-.top-\[40px\] {
-  top: 40px;
-}
-
 .top-\[-3px\] {
   top: -3px;
+}
+
+.top-\[40px\] {
+  top: 40px;
 }
 
 .z-\[1000100\] {
@@ -951,6 +951,10 @@ video {
   padding-top: 0.2rem;
 }
 
+.pt-4 {
+  padding-top: 1rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -999,6 +1003,10 @@ video {
   font-size: 128px;
 }
 
+.text-\[32px\] {
+  font-size: 32px;
+}
+
 .text-\[48px\] {
   font-size: 48px;
 }
@@ -1016,10 +1024,6 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-\[32px\] {
-  font-size: 32px;
 }
 
 .italic {
