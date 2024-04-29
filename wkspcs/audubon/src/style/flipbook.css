@@ -49,6 +49,12 @@
   border: 1px solid var(--disabled-gray);
 }
 
+.flipbook .next-button-invisible,
+.flipbook .previous-button-invisible {
+  color: var(--transparent);
+  border: 1px solid var(--transparent);
+}
+
 .flipbook .next-button {
   right: -22px;
   border-radius: 0 15px 15px 0;

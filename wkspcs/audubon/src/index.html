@@ -70,13 +70,19 @@
     <!-- Main Menu View -->
     <div id="main-menu-view" class="h-full w-full z-[200] absolute top-0 left-0 p-16 invisible opacity-0 pointer-events-none transition-all duration-300">
       <div class="h-full flex flex-col justify-between">
-        <div class="">
-          <!-- Title? -->
-          <h1>
-            <span lang="en" id="en-main-menu-title">en-main-menu-title</span>
-            <span lang="es" id="es-main-menu-title">es-main-menu-title</span>
-          </h1>
+        <!-- Main Menu Header -->
+        <div class="grow-0">
+          <header>
+            <div class="flex justify-between items-center pb-3">
+              <h1 lang="en" id="en-main-menu-title" class="font-CaseTextMedium text-3xl tracking-wide"></h1>
+              <h1 lang="es" id="es-main-menu-title" class="font-CaseTextMedium text-3xl tracking-wide"></h1>
+            </div>
+            <h2 lang="en" id="en-main-menu-subheading" class="pt-2 font-CaseTextLight text-lg tracking-wide"></h2>
+            <h2 lang="es" id="es-main-menu-subheading" class="pt-2 font-CaseTextLight text-lg tracking-wide"></h2>
+          </header>
         </div>
+
+        <!-- Main Menu Buttons -->
         <div class="flex flex-row justify-center gap-8">
           <button
             id="main-menu-watch-button"
@@ -263,14 +269,14 @@
             <div id="controls-modal" class="overlay__modal">
               <div class="overlay__modal-flexbox">
                 <div class="overlay__modal-scroll-box-y webkit-scrollbar">
-                  <p>
-                    <span lang="en" id="en-info-text">en-info-text</span>
-                    <span lang="es" id="es-info-text">es-info-text</span>
+                  <p class="font-CaseTextLight text-lg tracking-wide">
+                    <span lang="en" id="en-info-controls-text">en-info-text</span>
+                    <span lang="es" id="es-info-controls-text">es-info-text</span>
                   </p>
                 </div>
                 <button id="controls-modal-btn" class="button font-CaseTextLight text-lg tracking-wide">
                   <span lang="en" id="en-controls-modal-btn">en-controls-modal-btn</span>
-                  <span lang="es" id="en-controls-modal-btn">es-controls-modal-btn</span>
+                  <span lang="es" id="es-controls-modal-btn">es-controls-modal-btn</span>
                 </button>
               </div>
             </div>
@@ -278,17 +284,18 @@
         </div>
       </div>
       <div class="h-full flex flex-col justify-between">
-        <!-- Header -->
+        <!-- Read View Header -->
         <div id="before-book" class="grow-0">
-          <h1>
-            <span lang="en" id="en-read-view-title">en-read-view-title</span>
-            <span lang="es" id="es-read-view-title">es-read-view-title</span>
-          </h1>
-          <h2>
-            <span lang="en" id="en-read-view-description">en-read-view-description</span>
-            <span lang="es" id="es-read-view-description">es-read-view-description</span>
-          </h2>
+          <header>
+            <div class="flex justify-between items-center pb-3">
+              <h1 lang="en" id="en-read-view-title" class="font-CaseTextMedium text-3xl tracking-wide">en-read-view-title</h1>
+              <h1 lang="es" id="es-read-view-title" class="font-CaseTextMedium text-3xl tracking-wide">es-read-view-title</h1>
+            </div>
+            <h2 lang="en" id="en-read-view-description" class="pt-2 font-CaseTextLight text-lg tracking-wide">en-read-view-description</h2>
+            <h2 lang="es" id="es-read-view-description" class="pt-2 font-CaseTextLight text-lg tracking-wide">es-read-view-description</h2>
+          </header>
         </div>
+
         <!-- Book -->
         <div id="turn-container" class="grow">
           <div id="zoom-viewport">
@@ -341,6 +348,7 @@
             </div>
           </div>
         </div>
+
         <!-- Footer -->
         <div id="after-book" class="grow-0 self-end">
           <button
@@ -366,14 +374,15 @@
             <!-- <i class="fas fa-question"></i> -->
           </button>
           <!-- Font awesome button -->
-          <button
+          <!-- <button
             id="read-view-toggle-zoom-button"
             class="[ relative z-[1000100] ] border border-white bg-black bg-opacity-50 box-shadow-black-3px rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
           >
             <i id="read-view-toggle-zoom-icon" class="fas fa-search-plus"></i>
-          </button>
+          </button> -->
           <!-- Material symbol button -->
           <button
+            id="read-view-toggle-zoom-button"
             class="[ relative z-[1000100] ] align-bottom border border-white bg-black bg-opacity-50 box-shadow-black-3px rounded-full px-[1rem] pt-[0.2rem] max-h-[2rem] font-CaseTextLight text-lg tracking-wide hover:text-orange-ncma hover:border-orange-ncma visible opacity-100 transition-all duration-300"
           >
             <span id="read-view-toggle-zoom-material-symbol" class="relative top-[-3px] text-[32px] material-symbols-rounded material-symbols-unfilled"

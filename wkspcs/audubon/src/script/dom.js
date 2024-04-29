@@ -112,6 +112,7 @@ const dom = {
       },
       main_menu: {
         title: document.getElementById("en-main-menu-title"),
+        subheading: document.getElementById("en-main-menu-subheading"),
         watch: document.getElementById("en-main-menu-watch"),
         read: document.getElementById("en-main-menu-read"),
         back: document.getElementById("en-main-menu-back"),
@@ -129,6 +130,8 @@ const dom = {
       read_view: {
         title: document.getElementById("en-read-view-title"),
         description: document.getElementById("en-read-view-description"),
+        info_controls_text: document.getElementById("en-info-controls-text"),
+        info_controls_ok: document.getElementById("en-controls-modal-btn"),
         back: document.getElementById("en-read-view-back"),
         toggle_lang: document.getElementById("en-read-view-toggle-lang"),
       },
@@ -145,6 +148,7 @@ const dom = {
       },
       main_menu: {
         title: document.getElementById("es-main-menu-title"),
+        subheading: document.getElementById("es-main-menu-subheading"),
         watch: document.getElementById("es-main-menu-watch"),
         read: document.getElementById("es-main-menu-read"),
         back: document.getElementById("es-main-menu-back"),
@@ -162,6 +166,8 @@ const dom = {
       read_view: {
         title: document.getElementById("es-read-view-title"),
         description: document.getElementById("es-read-view-description"),
+        info_controls_text: document.getElementById("es-info-controls-text"),
+        info_controls_ok: document.getElementById("es-controls-modal-btn"),
         back: document.getElementById("es-read-view-back"),
         toggle_lang: document.getElementById("es-read-view-toggle-lang"),
       },

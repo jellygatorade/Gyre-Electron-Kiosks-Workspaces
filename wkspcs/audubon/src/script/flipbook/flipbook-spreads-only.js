@@ -10,7 +10,7 @@ import { dom } from "../dom.js";
 // thin magnifying glass icon
 // use animationHandler over fadeOut/fadeIn ?
 //
-// fix bug where you click on zoom button and then click on book to zoom - basically debounce zooming on the book 
+// fix bug where you click on zoom button and then click on book to zoom - basically debounce zooming on the book
 // ^ (this bug still exists 3/26) - zoom book then button while zooming
 // overlay modal + text + corner controls overlay showing
 // use BEM method to hide prev/next Btn on zoom - https://getbem.com/introduction/
@@ -61,7 +61,7 @@ const flipbook = {
 
     sizes.page.width = turnDom.first_page_img.naturalWidth;
     sizes.page.height = turnDom.first_page_img.naturalHeight;
-    sizes.page.scale = 0.5;
+    sizes.page.scale = 0.47;
 
     sizes.book.width = sizes.page.scale * sizes.page.width * 2;
     sizes.book.height = sizes.page.scale * sizes.page.height;
@@ -102,7 +102,11 @@ const flipbook = {
 
   initZoom: function () {
     initializeZoom();
-    resizeViewport();
+    setTimeout(resizeViewport, 500); // sizes.container.height gains some pixels in here somewhere, logSizes() to see, bug not worth investigating at the moment
+
+    function logSizes() {
+      console.log(sizes.page.height, sizes.book.height, sizes.container.height, sizes.container.offset.y);
+    }
   },
 
   reset: function () {
@@ -259,6 +263,8 @@ function initializeZoom() {
         setTimeout(function () {
           $(turnDom.book).addClass("animated").removeClass("zoom-in");
           $(turnDom.zoom_viewport).removeClass("active-pointer").addClass("inactive-pointer");
+          $(turnDom.prev_btn).removeClass("previous-button-invisible");
+          $(turnDom.next_btn).removeClass("next-button-invisible");
           resizeViewport();
         }, 0);
       },
@@ -301,7 +307,7 @@ function rebindTapZoom() {
 
 // function zoomIn(event) {
 //   if ($(turnDom.zoom_viewport).zoom("value") === 1) {
-//     disableTurnControls();
+//     hideTurnControls();
 //     $(turnDom.zoom_viewport).zoom("zoomIn");
 //     debounce(event.currentTarget);
 
@@ -336,7 +342,7 @@ function rebindTapZoom() {
 
 function zoomToggleBtnOnClick(event) {
   if ($(turnDom.zoom_viewport).zoom("value") === 1) {
-    disableTurnControls();
+    hideTurnControls();
     $(turnDom.zoom_viewport).zoom("zoomIn");
     $(turnDom.zoom_toggle_icon).removeClass("fa-search-plus").addClass("fa-search-minus");
     turnDom.zoom_toggle_material_symbol.innerText = "zoom_out";
@@ -449,17 +455,21 @@ function positionOverlayCorners() {
   const width = turnDom.swipe_top_left.clientWidth;
   const height = turnDom.swipe_top_left.clientHeight;
 
-  turnDom.swipe_top_left.style.left = corners.tl.x - width / 2 + "px";
-  turnDom.swipe_top_left.style.top = corners.tl.y - height / 2 + "px";
+  // For positioning directly on corner
+  // turnDom.swipe_top_left.style.left = corners.tl.x - width / 2 + "px";
+  // turnDom.swipe_top_left.style.top = corners.tl.y - height / 2 + "px";
 
-  turnDom.swipe_top_right.style.left = corners.tr.x - width / 2 + "px";
-  turnDom.swipe_top_right.style.top = corners.tr.y - height / 2 + "px";
+  turnDom.swipe_top_left.style.left = corners.tl.x + "px";
+  turnDom.swipe_top_left.style.top = corners.tl.y + "px";
 
-  turnDom.swipe_bottom_left.style.left = corners.bl.x - width / 2 + "px";
-  turnDom.swipe_bottom_left.style.top = corners.bl.y - height / 2 + "px";
+  turnDom.swipe_top_right.style.left = corners.tr.x - width - 2 + "px";
+  turnDom.swipe_top_right.style.top = corners.tr.y + "px";
 
-  turnDom.swipe_bottom_right.style.left = corners.br.x - width / 2 + "px";
-  turnDom.swipe_bottom_right.style.top = corners.br.y - height / 2 + "px";
+  turnDom.swipe_bottom_left.style.left = corners.bl.x + "px";
+  turnDom.swipe_bottom_left.style.top = corners.bl.y - height - 3 + "px";
+
+  turnDom.swipe_bottom_right.style.left = corners.br.x - width - 2 + "px";
+  turnDom.swipe_bottom_right.style.top = corners.br.y - height - 3 + "px";
 }
 
 // Calculate the width and height of a square within another square
@@ -489,7 +499,7 @@ function zoomTo(event) {
     rebindTapZoom(); // debounce zoomViewport tap
 
     if ($(turnDom.zoom_viewport).zoom("value") === 1) {
-      disableTurnControls();
+      hideTurnControls();
       $(turnDom.zoom_viewport).zoom("zoomIn", event); // passing event zooms to location clicked
       $(turnDom.zoom_toggle_icon).removeClass("fa-search-plus").addClass("fa-search-minus");
       turnDom.zoom_toggle_material_symbol.innerText = "zoom_out";
@@ -503,9 +513,11 @@ function zoomTo(event) {
   }, 1);
 }
 
-function disableTurnControls() {
-  turnDom.prev_btn.disabled = true;
-  turnDom.next_btn.disabled = true;
+function hideTurnControls() {
+  // turnDom.prev_btn.disabled = true;
+  // turnDom.next_btn.disabled = true;
+  $(turnDom.prev_btn).addClass("previous-button-invisible");
+  $(turnDom.next_btn).addClass("next-button-invisible");
 }
 
 function debounce(btn) {

@@ -3,24 +3,26 @@
   "en": {
     "general": {
       "go_back": "Go back",
-      "toggle_lang": "Español"
+      "toggle_lang": "Español",
+      "ok": "Okay"
     },
     "timeout_modal": {
       "still_viewing": "Are you still viewing?",
       "touch_to_continue": "Tap anywhere to continue."
     },
     "attract": {
-      "title": "Reckoning with Audubon",
+      "title": "Watch and Explore",
       "touch_to_begin": "TOUCH TO BEGIN"
     },
     "main_menu": {
-      "title": "Reckoning with Audubon",
+      "title": "Watch and Explore",
+      "subheading": "Select a button to watch videos about Drew Lanham and his reckoning with tough histories or turn the pages of Lanham’s annotated version of <i>The Birds of America</i>.",
       "watch": "Watch",
       "read": "Explore"
     },
     "watch_menu": {
-      "title": "Reckoning with Audubon",
-      "subheading": "Select one of the videos below to discover ornithologist Drew Lanham’s perspective on John James Audubon.",
+      "title": "!¿Reckoning with Audubon?",
+      "subheading": "Select one of the videos below to discover ornithologist Drew Lanham’s perspective on John James Audubon and <i>The Birds of America</i>.",
       "videos": [
         {
           "id": "drew-lanham",
@@ -42,15 +44,17 @@
       "back_to_main": "[Back to main]"
     },
     "read_view": {
-      "title": "Who Is Drew Lanham?",
-      "description": "Meet ornithologist Drew Lanham. Listen as he discusses his love for birds and why they are important to him."
+      "title": "Annotating Art",
+      "description": "Explore five different pages that are written, drawn on, and highlighted by Drew. Lanham has reinterpreted a copy of <i>The Birds of America</i> by writing personal notes on several pages. He calls it “My <i>Feel</i> Guide through <i>The Birds of America</i>.” He uses his artist form to ask questions, write poems, and explore difficult histories directly in relation to <i>The Birds of America</i>.",
+      "info_controls_text": "Use your finger to swipe the pages left and right. You can swipe the corners down or use the <i class='fas fa-caret-left'></i> left or right <i class='fas fa-caret-right'></i> arrows to turn the page.<br> Double tap on the page or use the <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_in</span> and <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_out</span> to zoom in and out and explore Drew’s pages more closely."
     }
   },
   "es": {
-    "is_available": true,
+    "is_available": false,
     "general": {
       "go_back": "!¿Volver?",
-      "toggle_lang": "English"
+      "toggle_lang": "English",
+      "ok": "!!!?"
     },
     "timeout_modal": {
       "still_viewing": "¿Todavía estás viendo?",
@@ -62,6 +66,7 @@
     },
     "main_menu": {
       "title": "!¿Audubon?",
+      "subheading": "!¿Audubon?",
       "watch": "!¿Mirar?",
       "read": "!¿Leer?"
     },
@@ -90,7 +95,8 @@
     },
     "read_view": {
       "title": "!¿Volver al menú principal?",
-      "description": "!Conoce al ornitólogo Drew Lanham. Escuche mientras habla sobre su amor por las aves y por qué son importantes para él."
+      "description": "!Conoce al ornitólogo Drew Lanham. Escuche mientras habla sobre su amor por las aves y por qué son importantes para él.",
+      "info_controls_text": "!Conoce al ornitólogo Drew Lanham."
     }
   }
 }
