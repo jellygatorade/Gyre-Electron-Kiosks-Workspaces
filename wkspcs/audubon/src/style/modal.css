@@ -20,8 +20,8 @@
   height: 50px;
   z-index: 2000001;
   border-radius: 100%;
-  border: 2px solid var(--swipe-controls-solid);
-  background-color: var(--swipe-controls-transparent);
+  border: 2px solid var(--ncma-orange);
+  background-color: var(--ncma-orange-transparent);
 }
 
 .overlay__viewport-background {

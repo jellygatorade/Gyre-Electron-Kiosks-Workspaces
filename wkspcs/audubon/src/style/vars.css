@@ -1,11 +1,12 @@
 :root {
-    --white: rgba(255, 255, 255, 1);;
-    --ncma-orange: rgba(224, 89, 42, 1); /* #e0592a */
-    --black-transparent-75: rgba(0, 0, 0, 0.75);
-    --black: rgba(0, 0, 0, 1);
-    --transparent: rgba(0, 0, 0, 0);
-    --active-gray: rgba(255, 255, 255, 0.75);
-    --disabled-gray: rgba(255, 255, 255, 0.15);
-    --swipe-controls-solid: rgba(255, 0, 0, 1);
-    --swipe-controls-transparent: rgba(255, 0, 0, 0.75);
+  --white: rgba(255, 255, 255, 1);
+  --ncma-orange: rgba(224, 89, 42, 1); /* #e0592a */
+  --ncma-orange-transparent: rgba(224, 89, 42, 0.75); /* #e0592a */
+  --black-transparent-75: rgba(0, 0, 0, 0.75);
+  --black: rgba(0, 0, 0, 1);
+  --transparent: rgba(0, 0, 0, 0);
+  --active-gray: rgba(255, 255, 255, 0.75);
+  --disabled-gray: rgba(255, 255, 255, 0.15);
+  --swipe-controls-solid: rgba(255, 0, 0, 1);
+  --swipe-controls-transparent: rgba(255, 0, 0, 0.75);
 }
