@@ -53,6 +53,7 @@
 .flipbook .previous-button-invisible {
   color: var(--transparent);
   border: 1px solid var(--transparent);
+  visibility: hidden;
 }
 
 .flipbook .next-button {
