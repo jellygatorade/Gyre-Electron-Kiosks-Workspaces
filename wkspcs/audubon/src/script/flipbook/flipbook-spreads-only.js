@@ -514,8 +514,10 @@ function zoomTo(event) {
 }
 
 function hideTurnControls() {
-  // turnDom.prev_btn.disabled = true;
-  // turnDom.next_btn.disabled = true;
+  // It would be ideal to keep controls disabled here but disabled style overrules the invisble style
+  // This could affect accessibility but seems to be fine for now
+  turnDom.prev_btn.disabled = false;
+  turnDom.next_btn.disabled = false;
   $(turnDom.prev_btn).addClass("previous-button-invisible");
   $(turnDom.next_btn).addClass("next-button-invisible");
 }
