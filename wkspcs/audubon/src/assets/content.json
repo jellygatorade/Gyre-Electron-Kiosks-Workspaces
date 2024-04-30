@@ -27,7 +27,7 @@
         {
           "id": "drew-lanham",
           "video_path": "./assets/video/20220622-audubon-drew_lanham-who_is_drew_lanham-01-tc-720p (Original).mp4",
-          "still_path": "./assets/img/WHo is drew -1 .png",
+          "still_path": "./assets/img/who is drew - 1.png",
           "title": "Who Is Drew Lanham?",
           "description": "Meet ornithologist Drew Lanham. Listen as he discusses his love for birds and why they are important to him."
         },
@@ -46,7 +46,7 @@
     "read_view": {
       "title": "Annotating Art",
       "description": "Explore five different pages that are written, drawn on, and highlighted by Drew. Lanham has reinterpreted a copy of <i>The Birds of America</i> by writing personal notes on several pages. He calls it “My <i>Feel</i> Guide through <i>The Birds of America</i>.” He uses his artist form to ask questions, write poems, and explore difficult histories directly in relation to <i>The Birds of America</i>.",
-      "info_controls_text": "Use your finger to swipe the pages left and right. You can swipe the corners down or use the <i class='fas fa-caret-left'></i> left or right <i class='fas fa-caret-right'></i> arrows to turn the page.<br> Double tap on the page or use the <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_in</span> and <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_out</span> to zoom in and out and explore Drew’s pages more closely."
+      "info_controls_text": "Use your finger to swipe the pages left and right. You can swipe the corners down or use the &nbsp;<i class='fas fa-caret-left'></i>&nbsp; left or right &nbsp;<i class='fas fa-caret-right'></i>&nbsp; arrows to turn the page.<br> Double tap on the page or use the <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_in</span> and <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_out</span> to zoom in and out and explore Drew’s pages more closely."
     }
   },
   "es": {
@@ -77,7 +77,7 @@
         {
           "id": "drew-lanham",
           "video_path": "./assets/video/SenegaleseFashion.mp4",
-          "still_path": "./assets/img/WHo is drew -1 .png",
+          "still_path": "./assets/img/who is drew - 1.png",
           "title": "!¿Quién es Drew Lanham?",
           "description": "!Conoce al ornitólogo Drew Lanham. Escuche mientras habla sobre su amor por las aves y por qué son importantes para él."
         },
