@@ -1,0 +1,84 @@
+{
+  "attract_video_path": "./assets/video/attract.mp4",
+  "en": {
+    "attract": {
+      "title": "In the Red",
+      "touch_to_begin": "TOUCH TO BEGIN"
+    },
+    "main": {
+      "title": "In the Red",
+      "subheading": "Select a video to watch and hear conservators, historians, and artists talk about red’s various shades, dyes, and pigments!",
+      "toggle_lang_btn": "Español",
+      "videos": [
+        {
+          "id": "dye-pigment",
+          "video_path": "./assets/video/senora-lynch.mp4",
+          "still_path": "./assets/img/senora-lynch-1.jpg",
+          "title": "Turning a Dye into a Pigment",
+          "description": "Director of Conservation Perry Hurt conducts science experiments in our conservation lab to show the difference between pigments and dyes."
+        },
+        {
+          "id": "toxic-art",
+          "video_path": "./assets/video/anita-fields.mp4",
+          "still_path": "./assets/img/anita-fields-small-test.png",
+          "title": "<span class='italic'>Toxic Art<span>",
+          "description": "Watch the beginning of the short film <span class='italic'>Toxic Art</span>. The film highlights artist John Sabraw and how he uses Acid Mine Drainage to create pigments and paint.<br><br>You can watch the full film on Riversarelife.com or Youtube."
+        },
+        {
+          "id": "pollution-paint",
+          "video_path": "./assets/video/kelly-church.mp4",
+          "still_path": "./assets/img/kelly-church-1.jpg",
+          "title": "Pollution into Paint",
+          "description": "Hear from John Sabraw on how pollution is used to make paint. Learn how resulting profits are used to clean up rivers and streams in Ohio."
+        },
+        {
+          "id": "pxrf-analysis",
+          "video_path": "./assets/video/kelly-church.mp4",
+          "still_path": "./assets/img/kelly-church-1.jpg",
+          "title": "Science and Art: PXRF Analysis",
+          "description": "Watch as NCMA conservation technician Marianne performs a portable X-ray fluorescence spectroscopy (PXRF) analysis on one of our most popular paintings. This type of machine identifies inorganic material."
+        },
+        {
+          "id": "hyperspectral-analysis",
+          "video_path": "./assets/video/kelly-church.mp4",
+          "still_path": "./assets/img/kelly-church-1.jpg",
+          "title": "Science and Art: Hyperspectral Analysis",
+          "description": "NCMA conservation technician Marianne discusses and shows examples of hyperspectral analysis (HSA) on a work of art in the gallery. An HSA can help identify organic materials."
+        },
+        {
+          "id": "what-is-conservation",
+          "video_path": "./assets/video/kelly-church.mp4",
+          "still_path": "./assets/img/kelly-church-1.jpg",
+          "title": "What is conservation?",
+          "description": "This gallery offers behind-the-scenes stories of art conservation—including preservation, restoration, and research of artists’ materials and techniques. In this video you will visit our conservation studio."
+        },
+        {
+          "id": "cochineal-red",
+          "video_path": "./assets/video/kelly-church.mp4",
+          "still_path": "./assets/img/kelly-church-1.jpg",
+          "title": "Cochineal Red",
+          "description": "A cochineal is like a beetle! It is a small animal, a plant parasite, and one of the few domesticated insects used as a natural dye. The beautiful color created is considered one of the most intense reds, almost like blood. Listen as we learn more about how artisans and artists created colors from Director of Conservation Perry Hurt."
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "[Back to main]"
+    }
+  },
+  "es": {
+    "is_available": false,
+    "attract": {
+      "title": "!¿Place of Being: Artist Spotlight?",
+      "touch_to_begin": "!TOCA PARA COMENZAR"
+    },
+    "main": {
+      "title": "!¿Place of Being: Artist Spotlight?",
+      "subheading": "!¿Lorem ipsum dolor sit amet.?",
+      "toggle_lang_btn": "English",
+      "videos": []
+    },
+    "video_player": {
+      "back_to_main": "UNOFFICIAL - [Volver al menú principal]"
+    }
+  }
+}
