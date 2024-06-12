@@ -11,51 +11,44 @@
       "toggle_lang_btn": "Español",
       "videos": [
         {
-          "id": "1",
-          "video_path": "./assets/video/welcome.mp4",
-          "still_path": "./assets/img/welcome-1.jpg",
-          "title": "Turning a Dye into a Pigment",
-          "description": "Director of Conservation Perry Hurt conducts science experiments in our conservation lab to show the difference between pigments and dyes."
-        },
-        {
           "id": "2",
-          "video_path": "./assets/video/lea-lane-MESDA.mp4",
-          "still_path": "./assets/img/lea-lane-MESDA-2.jpg",
+          "video_path": "./assets/video/toxic-art.mp4",
+          "still_path": "./assets/img/welcome-1.jpg",
           "title": "<span class='italic'>Toxic Art<span>",
           "description": "Watch the beginning of the short film <span class='italic'>Toxic Art</span>. The film highlights artist John Sabraw and how he uses Acid Mine Drainage to create pigments and paint.<br><br>You can watch the full film on Riversarelife.com or Youtube."
         },
         {
           "id": "3",
-          "video_path": "./assets/video/julia-ridley-smith.mp4",
-          "still_path": "./assets/img/julia-ridley-smith-2.jpg",
+          "video_path": "./assets/video/pollution-into-paint.mp4",
+          "still_path": "./assets/img/pollution-into-paint.jpg",
           "title": "Pollution into Paint",
           "description": "Hear from John Sabraw on how pollution is used to make paint. Learn how resulting profits are used to clean up rivers and streams in Ohio."
         },
         {
           "id": "4",
-          "video_path": "./assets/video/aliyah-bonnette.mp4",
-          "still_path": "./assets/img/aliyah-bonnette-1.jpg",
+          "video_path": "./assets/video/pxrf-analysis.mp4",
+          "still_path": "./assets/img/pxrf-analysis.jpg",
           "title": "Science and Art: PXRF Analysis",
           "description": "Watch as NCMA conservation technician Marianne performs a portable X-ray fluorescence spectroscopy (PXRF) analysis on one of our most popular paintings. This type of machine identifies inorganic material."
         },
         {
           "id": "5",
-          "video_path": "./assets/video/patrizia-ferreira.mp4",
-          "still_path": "./assets/img/patrizia-ferreira.jpg",
+          "video_path": "./assets/video/hyperspectral-analysis.mp4",
+          "still_path": "./assets/img/hyperspectral-analysis.jpg",
           "title": "Science and Art: Hyperspectral Analysis",
           "description": "NCMA conservation technician Marianne discusses and shows examples of hyperspectral analysis (HSA) on a work of art in the gallery. An HSA can help identify organic materials."
         },
         {
           "id": "6",
-          "video_path": "./assets/video/michelle-wilkie.mp4",
-          "still_path": "./assets/img/michelle-wilkie.jpg",
+          "video_path": "./assets/video/what-is-conservation.mp4",
+          "still_path": "./assets/img/welcome-1.jpg",
           "title": "What is conservation?",
           "description": "This gallery offers behind-the-scenes stories of art conservation—including preservation, restoration, and research of artists’ materials and techniques. In this video you will visit our conservation studio."
         },
         {
           "id": "7",
-          "video_path": "./assets/video/michelle-wilkie.mp4",
-          "still_path": "./assets/img/michelle-wilkie.jpg",
+          "video_path": "./assets/video/cochineal-red.mp4",
+          "still_path": "./assets/img/cochineal-red.png",
           "title": "Cochineal Red",
           "description": "A cochineal is like a beetle! It is a small animal, a plant parasite, and one of the few domesticated insects used as a natural dye. The beautiful color created is considered one of the most intense reds, almost like blood. Listen as we learn more about how artisans and artists created colors from Director of Conservation Perry Hurt."
         }

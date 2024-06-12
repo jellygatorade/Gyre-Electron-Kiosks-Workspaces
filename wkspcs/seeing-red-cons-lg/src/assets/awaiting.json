@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1a",
+    "video_path": "./assets/video/welcome.mp4",
+    "still_path": "./assets/img/welcome-1.jpg",
+    "title": "Turning a Dye into a Pigment - 1",
+    "description": "Director of Conservation Perry Hurt conducts science experiments in our conservation lab to show the difference between pigments and dyes."
+  },
+  {
+    "id": "1b",
+    "video_path": "./assets/video/welcome.mp4",
+    "still_path": "./assets/img/welcome-1.jpg",
+    "title": "Turning a Dye into a Pigment  - 2",
+    "description": "Director of Conservation Perry Hurt conducts science experiments in our conservation lab to show the difference between pigments and dyes."
+  }
+]
