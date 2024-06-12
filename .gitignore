@@ -10,6 +10,7 @@
 /wkspcs/**/src/script/lib/jquery
 
 !/wkspcs/**/src/assets/content*
+!/wkspcs/**/src/assets/awaiting*
 !/wkspcs/**/src/common/assets/content*
 !/wkspcs/**/src/common/assets/awaiting*
 
