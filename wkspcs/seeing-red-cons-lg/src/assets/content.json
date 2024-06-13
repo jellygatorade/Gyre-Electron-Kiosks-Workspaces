@@ -13,7 +13,7 @@
         {
           "id": "2",
           "video_path": "./assets/video/toxic-art.mp4",
-          "still_path": "./assets/img/welcome-1.jpg",
+          "still_path": "./assets/img/toxic-art.jpg",
           "title": "<span class='italic'>Toxic Art<span>",
           "description": "Watch the beginning of the short film <span class='italic'>Toxic Art</span>. The film highlights artist John Sabraw and how he uses Acid Mine Drainage to create pigments and paint.<br><br>You can watch the full film on Riversarelife.com or Youtube."
         },
@@ -41,7 +41,7 @@
         {
           "id": "6",
           "video_path": "./assets/video/what-is-conservation.mp4",
-          "still_path": "./assets/img/welcome-1.jpg",
+          "still_path": "./assets/img/what-is-conservation.jpg",
           "title": "What is conservation?",
           "description": "This gallery offers behind-the-scenes stories of art conservation—including preservation, restoration, and research of artists’ materials and techniques. In this video you will visit our conservation studio."
         },
