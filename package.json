@@ -14,7 +14,8 @@
     "./wkspcs/webpage-kiosk",
     "./wkspcs/email",
     "./wkspcs/env-vars",
-    "./wkspcs/perf-arts"
+    "./wkspcs/perf-arts",
+    "./wkspcs/seeing-red-cons-lg"
   ],
   "author": "Kevin Kane",
   "license": "ISC",
