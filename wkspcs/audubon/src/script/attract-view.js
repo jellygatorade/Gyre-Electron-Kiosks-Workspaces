@@ -10,7 +10,7 @@ function returnToAttractView() {
 }
 
 function removeAttractView() {
-  UIViewController.setView(views.mainMenu);
+  UIViewController.setView(views.read);
 
   // Pause the attract video
   dom.nonlocalized.attract.video.pause();
@@ -29,12 +29,7 @@ function attractViewInit() {
 // Exported to fetch script because depends on fetching of videopath from content.json
 function createAttractLoop(videopath) {
   //apply the videopath arg to a source element's src tag within the video element
-  dom.nonlocalized.attract.video.insertAdjacentHTML(
-    "afterbegin",
-    '<source id="attract-video-source" src="' +
-      videopath +
-      '" type="video/mp4">'
-  );
+  dom.nonlocalized.attract.video.insertAdjacentHTML("afterbegin", '<source id="attract-video-source" src="' + videopath + '" type="video/mp4">');
 
   // Set video to loop playback, mute audio, and play
   dom.nonlocalized.attract.video.loop = true;
