@@ -8,9 +8,14 @@
   </head>
   <body>
     <!-- This file is unused by the external kiosk main.js -->
+    <h1>Hello world</h1>
   </body>
 
   <script>
-    console.log("local index.html loaded");
+    // console.log("local index.html loaded");
+    console.log(`Node version is ${window.electron.versions.node()}`);
+    console.log(`Chrome version is ${window.electron.versions.chrome()}`);
+    console.log(`Electron version is ${window.electron.versions.electron()}`);
+    console.log(`window.electron.isKiosk is ${window?.electron?.isKiosk}`);
   </script>
 </html>
