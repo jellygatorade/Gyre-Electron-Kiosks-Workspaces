@@ -61,7 +61,7 @@ const flipbook = {
 
     sizes.page.width = turnDom.first_page_img.naturalWidth;
     sizes.page.height = turnDom.first_page_img.naturalHeight;
-    sizes.page.scale = 0.35;
+    sizes.page.scale = 0.28;
 
     sizes.book.width = sizes.page.scale * sizes.page.width * 2;
     sizes.book.height = sizes.page.scale * sizes.page.height;
