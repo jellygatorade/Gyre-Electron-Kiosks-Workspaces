@@ -11,7 +11,7 @@
       "touch_to_continue": "Tap anywhere to continue."
     },
     "attract": {
-      "title": "Watch and Explore",
+      "title": "Browse More Audubon Birds",
       "touch_to_begin": "TOUCH TO BEGIN"
     },
     "main_menu": {
@@ -44,9 +44,9 @@
       "back_to_main": "[Back to main]"
     },
     "read_view": {
-      "title": "Annotating Art",
-      "description": "Explore five different pages that are written, drawn on, and highlighted by Drew. Lanham has reinterpreted a copy of <i>The Birds of America</i> by writing personal notes on several pages. He calls it “My <i>Feel</i> Guide through <i>The Birds of America</i>.” He uses his artist form to ask questions, write poems, and explore difficult histories directly in relation to <i>The Birds of America</i>.",
-      "info_controls_text": "Use your finger to swipe the pages left and right. You can swipe the corners down or use the &nbsp;<i class='fas fa-caret-left'></i>&nbsp; left or right &nbsp;<i class='fas fa-caret-right'></i>&nbsp; arrows to turn the page.<br> Double tap on the page or use the <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_in</span> and <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_out</span> to zoom in and out and explore Drew’s pages more closely."
+      "title": "Browse More Audubon Birds",
+      "description": "Use your finger to flip through five different pages of <i>The Birds of America</i>.",
+      "info_controls_text": "Use your finger to swipe the pages left and right. You can swipe the corners down or use the &nbsp;<i class='fas fa-caret-left'></i>&nbsp; left or right &nbsp;<i class='fas fa-caret-right'></i>&nbsp; arrows to turn the page.<br> Double tap on the page or use the <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_in</span> and <span class='text-[32px] material-symbols-rounded material-symbols-unfilled' style='position:relative; top:9px;' >zoom_out</span> to zoom in and out on the pages."
     }
   },
   "es": {
