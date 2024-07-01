@@ -14,6 +14,10 @@ function readViewInit() {
       flipbook.reset();
     }, 300);
   });
+
+  if (!window.useAttract) {
+    dom.nonlocalized.read_view.back_btn.classList.add("hidden"); // HIDE THE GO BACK BUTTON
+  }
 }
 
 export { readViewInit };

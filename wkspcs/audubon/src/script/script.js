@@ -7,20 +7,17 @@ import { readViewInit } from "./read-view.js";
 import { idleTimerInit } from "./idle-timer/idle-timer-setup.js";
 import { controlsOverlay } from "./flipbook/controls-overlay.js";
 import { flipbook } from "./flipbook/flipbook-spreads-only.js";
-import {
-  applyLanguage,
-  setLanguage,
-  lang,
-  langToggle,
-} from "./language-switcher.js";
+import { applyLanguage, setLanguage, lang, langToggle } from "./language-switcher.js";
 import { views } from "./initialize-views.js";
 
+window.useAttract = false; // NO ATTRACT STATE
+
+idleTimerInit();
 timeoutModalInit();
 attractViewInit();
 mainMenuInit();
 watchMenuInit();
 readViewInit();
-idleTimerInit();
 callFetchCreateUI();
 controlsOverlay.init();
 flipbook.init();

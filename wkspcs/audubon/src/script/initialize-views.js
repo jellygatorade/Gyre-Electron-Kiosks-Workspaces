@@ -1,6 +1,7 @@
 import { UIViewController } from "./ui-macro-state/ui-view-controller.js";
 import { view } from "./ui-macro-state/view.js";
 import { dom } from "./dom.js";
+import { idleTimer } from "./idle-timer/idle-timer-static-class.js";
 
 const views = {
   attract: null,
@@ -16,7 +17,12 @@ const views = {
     this.videoPlayer = new view(dom.nonlocalized.video_player.view);
     this.read = new view(dom.nonlocalized.read_view.view);
 
-    UIViewController.setView(views.attract);
+    if (window.useAttract) {
+      UIViewController.setView(views.attract);
+    } else {
+      UIViewController.setView(views.read); // INITIALIZE TO READ VIEW
+      idleTimer.setup();
+    }
   },
 };
 

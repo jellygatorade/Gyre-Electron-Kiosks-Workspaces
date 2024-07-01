@@ -111,9 +111,14 @@ const flipbook = {
 
   reset: function () {
     // reset on idle timeout, and on returning to previous view
-    $(turnDom.book).turn("page", 2);
     $(turnDom.zoom_viewport).zoom("zoomOut");
     fadeOut(turnDom.controls_overlay);
+
+    turnDom.zoom_toggle_material_symbol.innerText = "zoom_in";
+
+    setTimeout(() => {
+      $(turnDom.book).turn("page", 2);
+    }, animDuration + 50);
   },
 };
 

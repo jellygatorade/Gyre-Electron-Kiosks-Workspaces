@@ -5,9 +5,8 @@ import { returnToAttractView } from "./attract-view.js";
 import { flipbook } from "./flipbook/flipbook-spreads-only.js";
 
 function timeoutModalInit() {
-  //   dom.readViewBackButton.addEventListener("click", () => {
-  //     UIViewController.setView(views.mainMenu);
-  //   });
+  console.log(idleTimer.idleTimeoutInSeconds);
+
   idleTimer.onLoadCountdown = function () {
     dom.nonlocalized.timeout_modal.countdown_text.innerText = idleTimer.countdownAmountInSeconds;
     animationHandler.fadeIn(dom.nonlocalized.timeout_modal.modal);
@@ -17,20 +16,33 @@ function timeoutModalInit() {
     dom.nonlocalized.timeout_modal.countdown_text.innerText = numberTimeRemaining;
   };
 
-  idleTimer.onUserInactive = function () {
-    animationHandler.fadeOut(dom.nonlocalized.timeout_modal.modal);
-    returnToAttractView();
-
-    // once animation is complete
-    setTimeout(() => {
-      flipbook.reset();
-    }, 300);
-  };
-
   dom.nonlocalized.timeout_modal.tap_to_continue_overlay.addEventListener("click", (event) => {
     idleTimer.cancel(event);
     animationHandler.fadeOut(dom.nonlocalized.timeout_modal.modal);
   });
+
+  // onUserInactive action
+  if (window.useAttract) {
+    idleTimer.onUserInactive = function () {
+      animationHandler.fadeOut(dom.nonlocalized.timeout_modal.modal);
+      returnToAttractView();
+
+      // once animation is complete
+      setTimeout(() => {
+        flipbook.reset();
+      }, 300);
+    };
+  } else {
+    idleTimer.onUserInactive = function () {
+      animationHandler.fadeOut(dom.nonlocalized.timeout_modal.modal);
+
+      // once animation is complete
+      setTimeout(() => {
+        flipbook.reset();
+        idleTimer.setup();
+      }, 300);
+    };
+  }
 }
 
 export { timeoutModalInit };
