@@ -11,7 +11,7 @@ import { applyLanguage, setLanguage, lang, langToggle } from "./language-switche
 import { views } from "./initialize-views.js";
 
 // Configure for no attract state
-window.useAttract = false;
+window.useAttract = true;
 
 idleTimerInit();
 timeoutModalInit();
