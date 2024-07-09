@@ -5,11 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../common/style/fade-in.css" />
-    <title>Config Page</title>
+    <title>Kiosk configuration</title>
   </head>
   <body>
     <script type="text/javascript" src="../common/script/fade-in.js"></script>
-    <h1>CONFIG PAGE</h1>
+    <!-- -->
+    <h1>Kiosk configuration</h1>
+    <!-- -->
+    <section class="" id="config-form">
+      <form class="">
+        <div class="">
+          <label for="form-input-kiosk-web-url">
+            API Base URL
+            <p class=""> In the form of "http://..." or "https://..." </p>
+          </label>
+          <input id="form-input-kiosk-web-url" name="kiosk-web-url" type="text" class="" />
+        </div>
+
+        <div class="">
+          <button type="submit" class=""> Submit </button>
+        </div>
+
+        <div class="">
+          <button type="button" class=""> Reset defaults </button>
+        </div>
+      </form>
+    </section>
   </body>
 
   <script>
@@ -19,4 +40,6 @@
     console.log(`Electron version is ${window.electron.versions.electron()}`);
     console.log(`window.electron.isKiosk is ${window?.electron?.isKiosk}`);
   </script>
+
+  <script type="module" src="./script.js"></script>
 </html>

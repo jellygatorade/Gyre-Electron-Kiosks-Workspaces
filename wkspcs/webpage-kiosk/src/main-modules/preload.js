@@ -1,4 +1,4 @@
-const { contextBridge } = require("electron");
+const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electron", {
   versions: {
@@ -6,5 +6,12 @@ contextBridge.exposeInMainWorld("electron", {
     chrome: () => process.versions.chrome,
     electron: () => process.versions.electron,
   },
+
   isKiosk: true,
+
+  appConfig: {
+    // update: (formJSON) => ipcRenderer.send("update-app-config-store-data", formJSON),
+    request: () => ipcRenderer.invoke("request-app-config-store-data"), // async
+    // resetDefaults: () => ipcRenderer.invoke("reset-app-config-defaults"),
+  },
 });
