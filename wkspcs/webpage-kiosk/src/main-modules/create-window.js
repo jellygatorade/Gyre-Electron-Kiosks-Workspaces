@@ -1,6 +1,7 @@
 const { app, BrowserWindow, Menu, globalShortcut } = require("electron");
 const path = require("path");
 
+const { configJSONStore } = require("./json-store/config-store.js");
 const config = require("../config.js");
 
 let window;
@@ -48,12 +49,13 @@ function create() {
   // load a local file --- window.loadFile(path.join(__dirname, "/index.html")
   // load a remote web address --- window.loadURL(config.KIOSK_WEBPAGE_URL)
   window.loadURL(config.LOCAL_LOADING_PAGE);
+  // window.loadURL(configJSONStore.kiosk_webpage_url);
   window.pageState = "loading";
 
   // Register ctrl (or command) + 1 key combo to switch html docs
   globalShortcut.register("CommandOrControl+1", function () {
     if (window.pageState !== "prod_webpage") {
-      window.loadURL(config.KIOSK_WEBPAGE_URL);
+      window.loadURL(configJSONStore.get("kiosk_webpage_url"));
       window.pageState = "prod_webpage";
     }
   });

@@ -10,8 +10,9 @@ contextBridge.exposeInMainWorld("electron", {
   isKiosk: true,
 
   appConfig: {
-    // update: (formJSON) => ipcRenderer.send("update-app-config-store-data", formJSON),
-    request: () => ipcRenderer.invoke("request-app-config-store-data"), // async
+    update: (formJSON) => ipcRenderer.send("update-app-config-store-data", formJSON),
+    request: () => ipcRenderer.invoke("get-app-config-store-data"), // async
+    getDefaults: () => ipcRenderer.invoke("get-app-config-form-defaults"), // async
     // resetDefaults: () => ipcRenderer.invoke("reset-app-config-defaults"),
   },
 });

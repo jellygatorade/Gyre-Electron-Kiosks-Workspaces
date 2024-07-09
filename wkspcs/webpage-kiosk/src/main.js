@@ -7,9 +7,6 @@ require("./main-modules/handle-config.js");
 const appWindow = require("./main-modules/create-window.js");
 
 function onAppReady() {
-  // IPC and Store class setup for label config
-  require("./main-modules/json-store/config-store.js");
-
   appWindow.create(); // creates electron.BrowserWindow and global keyboard shortcuts
 
   // require modules that depend on appWindow here

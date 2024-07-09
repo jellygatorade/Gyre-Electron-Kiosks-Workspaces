@@ -1,17 +1,16 @@
 const ipcMain = require("electron").ipcMain;
 const Store = require("./store.js");
 
-ipcMain.on("update-app-config-store-data", function (event, arg) {
-  configJSONStore.set("configForm", arg);
+ipcMain.on("update-app-config-store-data", function (event, formJSON) {
+  configJSONStore.set("kiosk_webpage_url", formJSON?.kiosk_webpage_url);
 
   // Send reply back to sender
-  // This is used to ensure recurringFetch is initated after labelConfig gets updated
-  event.reply("label-config-updated");
+  // To ensure is-reachable is using the new address
+  // event.reply("label-config-updated");
 });
 
-ipcMain.handle("request-app-config-store-data", async (event) => {
-  // .get() method only works for keys underneath "save_data"
-  // so get() each key
+ipcMain.handle("get-app-config-store-data", async (event) => {
+  // .get() method only works for keys underneath "save_data", so get() each key
   const config = {
     kiosk_webpage_url: configJSONStore.get("kiosk_webpage_url"),
   };
@@ -21,12 +20,12 @@ ipcMain.handle("request-app-config-store-data", async (event) => {
 
 // Add an IPC channel that will pass the label config defaults
 // This is used by a function that resets the application to default state
-// ipcMain.handle("getConfigFormDefaults", function (event, arg) {
-//   return configFormDefaults;
-// });
+ipcMain.handle("get-app-config-form-defaults", async (event) => {
+  return configFormDefaults;
+});
 
 const configFormDefaults = {
-  kiosk_webpage_url: "Lorem ipsum kiosk webpage url",
+  kiosk_webpage_url: "https://nuxt-gyre-styles.pages.dev",
 };
 
 // Initialize instance of Store class that will handle storage and retrieval of JSON application data
