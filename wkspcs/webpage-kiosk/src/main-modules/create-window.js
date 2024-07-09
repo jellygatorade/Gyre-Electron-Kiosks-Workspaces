@@ -24,16 +24,14 @@ function create() {
   // No application (top bar) menu
   Menu.setApplicationMenu(null);
 
-  /*********************************************
-   * Refer to an external URL for kiosking here
-   *********************************************/
-  // INSTEAD of loading the index.html of the app -> window.loadFile(path.join(__dirname, "/index.html"));
-  // Call the .loadURL() method to load a remote web address
-  window.loadURL(config.KIOSK_WEBPAGE_URL);
-  //   window.loadURL(path.join(__dirname, "..", "/index.html")); // local page
+  // Register "Control+0" combo to relaunch the application.
+  globalShortcut.register("CommandOrControl+0", () => {
+    app.relaunch();
+    app.exit(0);
+  });
 
   // Register standard "Control+Shift+I" combo to toggle the DevTools on selection window
-  globalShortcut.register("Control+Shift+I", () => {
+  globalShortcut.register("CommandOrControl+Shift+I", () => {
     window.webContents.toggleDevTools();
   });
 
@@ -45,6 +43,35 @@ function create() {
   // Register escape key to quit the app
   globalShortcut.register("ESC", function () {
     app.quit();
+  });
+
+  // load a local file --- window.loadFile(path.join(__dirname, "/index.html")
+  // load a remote web address --- window.loadURL(config.KIOSK_WEBPAGE_URL)
+  window.loadURL(config.LOCAL_LOADING_PAGE);
+  window.pageState = "loading";
+
+  // Register ctrl (or command) + 1 key combo to switch html docs
+  globalShortcut.register("CommandOrControl+1", function () {
+    if (window.pageState !== "prod_webpage") {
+      window.loadURL(config.KIOSK_WEBPAGE_URL);
+      window.pageState = "prod_webpage";
+    }
+  });
+
+  // Register ctrl (or command) + 2 key combo to switch html docs
+  globalShortcut.register("CommandOrControl+2", function () {
+    if (window.pageState !== "config") {
+      window.loadURL(config.LOCAL_CONFIG_PAGE);
+      window.pageState = "config";
+    }
+  });
+
+  // Register ctrl (or command) + 3 key combo to switch html docs
+  globalShortcut.register("CommandOrControl+3", function () {
+    if (window.pageState !== "loading") {
+      window.loadURL(config.LOCAL_LOADING_PAGE);
+      window.pageState = "loading";
+    }
   });
 }
 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../common/style/fade-in.css" />
+    <title>Config Page</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="../common/script/fade-in.js"></script>
+    <h1>CONFIG PAGE</h1>
+  </body>
+
+  <script>
+    // console.log("local index.html loaded");
+    console.log(`Node version is ${window.electron.versions.node()}`);
+    console.log(`Chrome version is ${window.electron.versions.chrome()}`);
+    console.log(`Electron version is ${window.electron.versions.electron()}`);
+    console.log(`window.electron.isKiosk is ${window?.electron?.isKiosk}`);
+  </script>
+</html>
