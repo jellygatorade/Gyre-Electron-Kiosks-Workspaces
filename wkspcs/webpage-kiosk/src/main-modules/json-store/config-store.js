@@ -21,7 +21,7 @@ ipcMain.on("update-app-config-store-data", function (event, formJSON) {
 
   // Send reply back to sender
   // To ensure is-reachable is using the new address
-  // event.reply("label-config-updated");
+  // event.reply("app-config-updated");
 });
 
 ipcMain.handle("get-app-config-store-data", async (event) => {

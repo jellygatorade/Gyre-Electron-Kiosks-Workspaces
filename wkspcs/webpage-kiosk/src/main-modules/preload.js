@@ -1,5 +1,14 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
+/**
+ * Receives an event.reply back from the main process after it
+ * has handled an invocation of "update-app-config-store-data"
+ * Used to invoke "recurringFetch" after labelConfig gets updated
+ */
+// ipcRenderer.on("app-config-updated", function (event, res) {
+//   ipcRenderer.invoke("some-thing");
+// });
+
 contextBridge.exposeInMainWorld("electron", {
   versions: {
     node: () => process.versions.node,
