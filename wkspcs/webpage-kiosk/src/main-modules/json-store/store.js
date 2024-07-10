@@ -10,7 +10,7 @@ class Store {
     // Storing user data in the operating system’s designated location for user’s app data is the idiomatic way for native app’s to persist user data because:
     // 1) when we auto-update the app, our source files may get moved or delete, and
     // 2) changing or adding to an app’s internal files will invalidate the code signature
-    const userDataPath = (electron.app || electron.remote.app).getPath("userData");
+    const userDataPath = getUserDataPath();
     // We'll use the `file_name` property to set the file name and path.join to bring it all together as a string
     this.path = path.join(userDataPath, opts.file_name + ".json");
 
@@ -20,7 +20,11 @@ class Store {
 
   // This will just return the property on the `data` object
   get(key) {
-    return this.data[key];
+    if (key) {
+      return this.data[key];
+    } else {
+      return this.data;
+    }
   }
 
   // ...and this will set it
