@@ -1,3 +1,6 @@
+// load a local file --- window.loadFile(path.join(__dirname, "/index.html")
+// load a remote web address --- window.loadURL(config.KIOSK_WEBPAGE_URL)
+
 class Navigator {
   static state = null;
 

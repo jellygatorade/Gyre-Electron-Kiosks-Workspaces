@@ -48,11 +48,7 @@ function create() {
     app.quit();
   });
 
-  // load a local file --- window.loadFile(path.join(__dirname, "/index.html")
-  // load a remote web address --- window.loadURL(config.KIOSK_WEBPAGE_URL)
   window.loadURL(config.LOCAL_LOADING_PAGE);
-  // window.loadURL(configJSONStore.kiosk_webpage_url);
-  // window.pageState = "loading";
 
   // Register ctrl (or command) + 1 key combo to switch html docs
   globalShortcut.register("CommandOrControl+1", function () {
