@@ -5,17 +5,15 @@ const { configJSONStore } = require("./json-store/config-store.js");
 const config = require("../config.js");
 
 const Navigator = require("./navigator.js");
+const NetworkTester = require("./network-tester/network-tester.js");
 
 let window;
 
 function create() {
-  // Create the window
   window = new BrowserWindow({
     x: 50,
     y: 50,
     fullscreen: true,
-    // width: 800,
-    // height: 600,
     webPreferences: {
       nodeIntegration: false, // is default value after Electron v5
       contextIsolation: true, // protect against prototype pollution
@@ -24,45 +22,64 @@ function create() {
     },
   });
 
-  // No application (top bar) menu
-  Menu.setApplicationMenu(null);
+  Menu.setApplicationMenu(null); // no application (top bar) menu
 
-  // Register "Control+0" combo to relaunch the application.
+  Navigator.win = window;
+
+  window.loadURL(config.LOCAL_LOADING_PAGE);
+
+  // Shortcuts ------------------------------------------------
+
+  // relaunch application
   globalShortcut.register("CommandOrControl+0", () => {
     app.relaunch();
     app.exit(0);
   });
 
-  // Register standard "Control+Shift+I" combo to toggle the DevTools on selection window
+  // toggle DevTools
   globalShortcut.register("CommandOrControl+Shift+I", () => {
     window.webContents.toggleDevTools();
   });
 
-  // Register standard "Control+R" combo to reload the page.
+  // reload page
   globalShortcut.register("CommandOrControl+R", () => {
     window.webContents.reload();
   });
 
-  // Register escape key to quit the app
+  // quit
   globalShortcut.register("ESC", function () {
     app.quit();
   });
 
-  window.loadURL(config.LOCAL_LOADING_PAGE);
-
-  // Register ctrl (or command) + 1 key combo to switch html docs
+  // navigate
   globalShortcut.register("CommandOrControl+1", function () {
-    Navigator.goTo({ win: window, uri: configJSONStore.get("kiosk_webpage_url") });
+    Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_url") });
   });
 
-  // Register ctrl (or command) + 2 key combo to switch html docs
+  // navigate
   globalShortcut.register("CommandOrControl+2", function () {
-    Navigator.goTo({ win: window, uri: config.LOCAL_CONFIG_PAGE });
+    Navigator.goTo({ uri: config.LOCAL_CONFIG_PAGE });
   });
 
-  // Register ctrl (or command) + 3 key combo to switch html docs
+  // navigate
   globalShortcut.register("CommandOrControl+3", function () {
-    Navigator.goTo({ win: window, uri: config.LOCAL_LOADING_PAGE });
+    Navigator.goTo({ uri: config.LOCAL_LOADING_PAGE });
+  });
+
+  // Events ---------------------------------------------------
+
+  window.webContents.addListener("did-finish-load", () => {
+    // if window location is the web kiosk, or the loading page, run the connection tester
+    // if on the config page stop the tester
+
+    const uri = window.webContents.getURL();
+    const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
+
+    if (isWeb || uri.includes("loading")) {
+      NetworkTester.start();
+    } else {
+      NetworkTester.stop();
+    }
   });
 }
 

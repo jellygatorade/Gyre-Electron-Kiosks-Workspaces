@@ -1,5 +1,3 @@
-// Tell main process to stop is-reachable process
-
 // DOM --------------------------------------------------------
 
 const configForm = document.getElementById("config-form");
