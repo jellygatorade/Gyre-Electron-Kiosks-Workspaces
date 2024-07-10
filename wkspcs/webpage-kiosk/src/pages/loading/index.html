@@ -5,11 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../common/style/fade-in.css" />
+    <link rel="stylesheet" type="text/css" href="../common/style/loading-animation.css" />
     <title>Loading Page</title>
   </head>
   <body>
     <script type="text/javascript" src="../common/script/fade-in.js"></script>
     <h1>LOADING PAGE</h1>
+
+    <!-- Needs editing -->
+
+    <!-- Init loading overlay -->
+    <div id="init-loading-overlay" class="absolute top-0 left-0 h-full w-full z-[90000] bg-black visible opacity-100 transition-all duration-300">
+      <div class="w-full h-full flex flex-row justify-center">
+        <div class="h-full flex flex-col justify-center">
+          <div class="mx-auto my-[0.3rem]">
+            <span class="loading-animation"></span>
+          </div>
+          <div class="mx-auto my-[0.3rem]">
+            <span>Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Init error overlay -->
+    <div id="init-error-overlay" class="absolute top-0 left-0 h-full w-full z-[90000] bg-black invisible opacity-0 transition-all duration-300">
+      <div class="w-full h-full flex flex-row justify-center">
+        <div class="h-full flex flex-col justify-center">
+          <div class="mx-auto my-[0.3rem]">
+            <span>No content stored. Ensure label configuration is complete and try querying for content.</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 
   <script>
