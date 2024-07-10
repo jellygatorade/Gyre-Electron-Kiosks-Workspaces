@@ -24,7 +24,7 @@ function create() {
 
   Menu.setApplicationMenu(null); // no application (top bar) menu
 
-  Navigator.win = window;
+  Navigator.win = window; // inject window depedency
 
   window.loadURL(config.LOCAL_LOADING_PAGE);
 
@@ -69,8 +69,8 @@ function create() {
   // Events ---------------------------------------------------
 
   window.webContents.addListener("did-finish-load", () => {
-    // if window location is the web kiosk, or the loading page, run the connection tester
-    // if on the config page stop the tester
+    // Use NetworkTester on web kiosk or the loading page
+    // Stop NetworkTester on config page
 
     const uri = window.webContents.getURL();
     const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
