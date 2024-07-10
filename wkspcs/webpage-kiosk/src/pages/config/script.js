@@ -1,3 +1,7 @@
+// Tell main process to stop is-reachable process
+
+// DOM --------------------------------------------------------
+
 const configForm = document.getElementById("config-form");
 const formInputKioskWebURL = document.getElementById("form-input-kiosk-web-url");
 const resetFormDefaultsBtn = document.getElementById("reset-form-defaults-btn");
