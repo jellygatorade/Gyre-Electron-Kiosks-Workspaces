@@ -2,7 +2,6 @@ const { app, BrowserWindow, Menu, globalShortcut } = require("electron");
 const path = require("path");
 
 const { configJSONStore } = require("./json-store/config-store.js");
-const config = require("../config.js");
 
 const Navigator = require("./navigator.js");
 const NetworkTester = require("./network-tester/network-tester.js");
@@ -26,7 +25,7 @@ function create() {
 
   Navigator.win = window; // inject window depedency
 
-  window.loadURL(config.LOCAL_LOADING_PAGE);
+  window.loadURL(configJSONStore.get("local_loading_page"));
 
   // Shortcuts ------------------------------------------------
 
@@ -58,12 +57,12 @@ function create() {
 
   // navigate
   globalShortcut.register("CommandOrControl+2", function () {
-    Navigator.goTo({ uri: config.LOCAL_CONFIG_PAGE });
+    Navigator.goTo({ uri: configJSONStore.get("local_config_page") });
   });
 
   // navigate
   globalShortcut.register("CommandOrControl+3", function () {
-    Navigator.goTo({ uri: config.LOCAL_LOADING_PAGE });
+    Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
   });
 
   // Events ---------------------------------------------------
