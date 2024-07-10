@@ -4,6 +4,8 @@ const path = require("path");
 const { configJSONStore } = require("./json-store/config-store.js");
 const config = require("../config.js");
 
+const Navigator = require("./navigator.js");
+
 let window;
 
 function create() {
@@ -50,30 +52,21 @@ function create() {
   // load a remote web address --- window.loadURL(config.KIOSK_WEBPAGE_URL)
   window.loadURL(config.LOCAL_LOADING_PAGE);
   // window.loadURL(configJSONStore.kiosk_webpage_url);
-  window.pageState = "loading";
+  // window.pageState = "loading";
 
   // Register ctrl (or command) + 1 key combo to switch html docs
   globalShortcut.register("CommandOrControl+1", function () {
-    if (window.pageState !== "prod_webpage") {
-      window.loadURL(configJSONStore.get("kiosk_webpage_url"));
-      window.pageState = "prod_webpage";
-    }
+    Navigator.goTo({ win: window, uri: configJSONStore.get("kiosk_webpage_url") });
   });
 
   // Register ctrl (or command) + 2 key combo to switch html docs
   globalShortcut.register("CommandOrControl+2", function () {
-    if (window.pageState !== "config") {
-      window.loadURL(config.LOCAL_CONFIG_PAGE);
-      window.pageState = "config";
-    }
+    Navigator.goTo({ win: window, uri: config.LOCAL_CONFIG_PAGE });
   });
 
   // Register ctrl (or command) + 3 key combo to switch html docs
   globalShortcut.register("CommandOrControl+3", function () {
-    if (window.pageState !== "loading") {
-      window.loadURL(config.LOCAL_LOADING_PAGE);
-      window.pageState = "loading";
-    }
+    Navigator.goTo({ win: window, uri: config.LOCAL_LOADING_PAGE });
   });
 }
 
