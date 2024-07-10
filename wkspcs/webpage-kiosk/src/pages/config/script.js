@@ -14,29 +14,46 @@ function populateForm(config) {
 
 // Submit Form ------------------------------------------------
 
-// Handles processing and storage of form data
 function submitForm(event) {
   event?.preventDefault();
 
   // Retrieve data from the form
   const data = new FormData(configForm);
-  let formJSON = Object.fromEntries(data.entries());
-  console.log(formJSON);
+  let userFormJSON = Object.fromEntries(data.entries());
+  console.log(userFormJSON);
 
-  // Process the from data here if need
-
-  // Populate results in DOM
-  // domVars.configFormResults.innerText = JSON.stringify(formJSON, null, 2);
+  let validFormJSON = validate(userFormJSON);
 
   // Commit the form input data to local disk storage via main process
-  window.electron.appConfig.update(formJSON);
-
-  // Process below is moved entirely to preload.js
-  // IPC channel "labelConfigUpdated" receives a reply back from the Main process has handled the call to "updateLabelConfigStoreData"
-  // This ensures recurringFetch is initated after labelConfig gets updated
+  if (validFormJSON) {
+    window.electron.appConfig.update(validFormJSON);
+  }
 }
 
 configForm.addEventListener("submit", submitForm);
+
+// Validate Form ----------------------------------------------
+
+function validate(userFormJSON) {
+  let validFormJSON = {};
+
+  // try, catch per input
+  try {
+    const formURL = new URL(userFormJSON?.kiosk_webpage_url);
+    validFormJSON.kiosk_webpage_url = formURL.href;
+    formInputKioskWebURL.style.color = "";
+  } catch (error) {
+    console.error(error);
+    formInputKioskWebURL.style.color = "red";
+    validFormJSON = null;
+  }
+
+  return validFormJSON;
+}
+
+formInputKioskWebURL.addEventListener("input", () => {
+  formInputKioskWebURL.style.color = "";
+});
 
 // Reset Form Defaults ----------------------------------------
 
