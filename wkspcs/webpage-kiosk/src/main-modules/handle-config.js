@@ -29,8 +29,6 @@ function prepareProd() {
 
 function prepareDev() {
   console.log("initializing for development");
-  console.log(path.join(__dirname, ".."));
-  console.log(path.join(__dirname, "json-store "));
 
   // Enable live reload
   require("electron-reload")(
@@ -40,7 +38,7 @@ function prepareDev() {
     {
       // Provide path to electron package folder from this directory
       electron: require(path.join(__dirname, "..", "..", "..", "..", "node_modules/electron")),
-      // forceHardReset: true, // enables hard reset for every file change and not only the main file
+      forceHardReset: false, // enables hard reset for every file change and not only the main file
     }
   );
 }
