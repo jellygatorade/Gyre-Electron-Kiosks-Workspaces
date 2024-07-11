@@ -5,42 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../common/style/fade-in.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="../common/style/tailwind-compiled.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../common/style/tailwind-compiled.css" />
     <title>Kiosk configuration</title>
   </head>
-  <body>
-    <script type="text/javascript" src="../common/script/fade-in.js"></script>
-    <!-- -->
-    <h1>Kiosk configuration</h1>
-    <!-- -->
-    <section class="">
-      <form id="config-form" class="">
-        <div class="">
-          <label for="form-input-kiosk-web-url">
-            API Base URL
-            <p class=""> In the form of "http://..." or "https://..." </p>
-          </label>
-          <input id="form-input-kiosk-web-url" name="kiosk_webpage_url" type="text" class="" />
-        </div>
 
-        <div class="">
-          <button type="submit" class=""> Submit </button>
+  <body class="bg-black text-white font-CaseTextLight tracking-wide">
+    <div class="w-full flex flex-row justify-center">
+      <div class="w-[500px] m-8 flex flex-col justify-center items-start">
+        <!-- -->
+        <div class="mb-8">
+          <h1 class="font-CaseTextRegular text-xl">Configuration</h1>
         </div>
+        <!-- -->
+        <form id="config-form" class="w-full">
+          <div class="mb-8">
+            <label for="form-input-kiosk-web-url" class="">
+              <h2 class="mb-0.5">Kiosk Webpage URL</h2>
+              <p class="text-neutral-300 text-xs leading-5 mb-1"> In the form of "http://..." or "https://..." </p>
+            </label>
+            <input id="form-input-kiosk-web-url" name="kiosk_webpage_url" type="text" class="w-full text-black" />
+          </div>
 
-        <div class="">
-          <button type="button" class="" id="reset-form-defaults-btn"> Reset defaults </button>
-        </div>
-      </form>
-    </section>
+          <div class="mb-8 gap-3 flex flex-row justify-end">
+            <button type="submit" class="tw-button"> Submit </button>
+            <button type="button" class="tw-button" id="reset-form-defaults-btn"> Reset defaults </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 
-  <script>
-    // console.log("local index.html loaded");
-    console.log(`Node version is ${window.electron.versions.node()}`);
-    console.log(`Chrome version is ${window.electron.versions.chrome()}`);
-    console.log(`Electron version is ${window.electron.versions.electron()}`);
-    console.log(`window.electron.isKiosk is ${window?.electron?.isKiosk}`);
-  </script>
-
+  <script type="text/javascript" src="../common/script/fade-in.js"></script>
   <script type="module" src="./script.js"></script>
 </html>
