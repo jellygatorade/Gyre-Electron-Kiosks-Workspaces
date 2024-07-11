@@ -14,7 +14,7 @@
 
 @layer components {
   .tw-button {
-    @apply border border-white rounded-full pt-2.5 pb-2 px-6 tracking-wider hover:border-ncma_orange-500 hover:text-ncma_orange-500 focus:outline focus:outline-1 focus:outline-ncma_orange-500 transition-all duration-300;
+    @apply border border-white rounded-full pt-2.5 pb-2 px-6 tracking-wider whitespace-pre hover:border-ncma_orange-500 hover:text-ncma_orange-500 focus:outline focus:outline-1 focus:outline-ncma_orange-500 transition-all duration-300;
   }
 
   .text-shadow-black-4px {
