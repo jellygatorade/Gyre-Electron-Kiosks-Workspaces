@@ -5,7 +5,7 @@ From https://cssloaders.github.io/
 .loading-animation {
   width: 48px;
   height: 48px;
-  border: 2px solid #000000;
+  border: 2px solid #ffffff;
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;

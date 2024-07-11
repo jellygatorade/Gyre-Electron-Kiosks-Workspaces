@@ -67,19 +67,19 @@ function create() {
 
   // Events ---------------------------------------------------
 
-  window.webContents.addListener("did-finish-load", () => {
-    // Use NetworkTester on web kiosk or the loading page
-    // Stop NetworkTester on config page
+  // window.webContents.addListener("did-finish-load", () => {
+  //   // Use NetworkTester on web kiosk or the loading page
+  //   // Stop NetworkTester on config page
 
-    const uri = window.webContents.getURL();
-    const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
+  //   const uri = window.webContents.getURL();
+  //   const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
 
-    if (isWeb || uri.includes("loading")) {
-      NetworkTester.start();
-    } else {
-      NetworkTester.stop();
-    }
-  });
+  //   if (isWeb || uri.includes("loading")) {
+  //     NetworkTester.start();
+  //   } else {
+  //     NetworkTester.stop();
+  //   }
+  // });
 }
 
 function get() {

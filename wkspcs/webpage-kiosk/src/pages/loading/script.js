@@ -1,4 +1,8 @@
 console.log("hello loading");
+console.log(`Node version is ${window.electron.versions.node()}`);
+console.log(`Chrome version is ${window.electron.versions.chrome()}`);
+console.log(`Electron version is ${window.electron.versions.electron()}`);
+console.log(`window.electron.isKiosk is ${window?.electron?.isKiosk}`);
 
 // Tell main process to start is-reachable process
 
