@@ -14,7 +14,7 @@ async function testConnection() {
   }
 }
 
-const testConnectionTask = new intervalTask(testConnection, 5000);
+const testConnectionTask = new intervalTask(testConnection, 1000 * configJSONStore.get("test_connection_interval"));
 
 class NetworkTester {
   static start() {

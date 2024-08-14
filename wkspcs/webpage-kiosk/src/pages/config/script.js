@@ -3,6 +3,8 @@
 const configForm = document.getElementById("config-form");
 const formInputKioskWebURL = document.getElementById("form-input-kiosk-web-url");
 const formInputTestConnection = document.getElementById("form-input-test-connection");
+const formInputTestConnectionInterval = document.getElementById("form-input-test-connection-interval");
+const formListItemTestConnectionInterval = document.getElementById("form-list-item-test-connection-interval");
 const resetFormDefaultsBtn = document.getElementById("reset-form-defaults-btn");
 
 // Populate Form ----------------------------------------------
@@ -14,6 +16,7 @@ populateForm(appConfig);
 function populateForm(config) {
   formInputKioskWebURL.value = config.kiosk_webpage_url;
   formInputTestConnection.checked = config.test_connection;
+  formInputTestConnectionInterval.value = config.test_connection_interval;
 }
 
 // Submit Form ------------------------------------------------
@@ -43,7 +46,8 @@ configForm.addEventListener("submit", submitForm);
 function validate(userFormJSON) {
   let validFormJSON = {};
 
-  // try, catch per input
+  // validate per input
+
   try {
     const formURL = new URL(userFormJSON?.kiosk_webpage_url);
     validFormJSON.kiosk_webpage_url = formURL.href;
@@ -55,10 +59,22 @@ function validate(userFormJSON) {
   }
 
   // no validation needed for checkbox, true/false only
-  if (userFormJSON.test_connection) {
+  if (userFormJSON?.test_connection) {
     validFormJSON.test_connection = true;
   } else {
     validFormJSON.test_connection = false;
+  }
+
+  if (isNumeric(userFormJSON?.test_connection_interval) && parseInt(userFormJSON?.test_connection_interval)) {
+    validFormJSON.test_connection_interval = parseInt(userFormJSON?.test_connection_interval);
+    formInputTestConnectionInterval.style.color = "";
+  } else {
+    formInputTestConnectionInterval.style.color = "red";
+    validFormJSON = null;
+  }
+
+  function isNumeric(num) {
+    return !isNaN(num);
   }
 
   return validFormJSON;
@@ -77,3 +93,22 @@ async function resetFormDefaults() {
 }
 
 resetFormDefaultsBtn.addEventListener("click", resetFormDefaults);
+
+// Show frequency input conditionally -------------------------
+
+addEventListener("change", onChange_formInputTestConnection);
+
+function onChange_formInputTestConnection() {
+  if (formInputTestConnection.checked) {
+    formListItemTestConnectionInterval.style.display = "block";
+  } else {
+    formListItemTestConnectionInterval.style.display = "none";
+
+    // reset to default value if no value
+    if (!formInputTestConnectionInterval.value) {
+      formInputTestConnectionInterval.value = appConfig.test_connection_interval;
+    }
+  }
+}
+
+onChange_formInputTestConnection(); // initial
