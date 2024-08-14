@@ -1,8 +1,11 @@
 const isReachable = require("is-reachable");
+const ipcMain = require("electron").ipcMain;
 
 const Navigator = require("../navigator.js");
 const { intervalTask, intervalTaskRunner } = require("./interval-task-runner.js");
 const { configJSONStore } = require("../json-store/config-store.js");
+
+// Setup Task -------------------------------------------------
 
 async function testConnection() {
   const connection = await isReachable(configJSONStore.get("kiosk_webpage_url"));
@@ -14,7 +17,20 @@ async function testConnection() {
   }
 }
 
-const testConnectionTask = new intervalTask(testConnection, 1000 * configJSONStore.get("test_connection_interval"));
+let testConnectionTask;
+
+function setConnectionTask() {
+  testConnectionTask = new intervalTask(testConnection, 1000 * configJSONStore.get("test_connection_interval"));
+}
+
+setConnectionTask();
+
+// Clear old and re-initiate intervalTask upon new app config
+ipcMain.handle("reset-test-connection-task", (event) => {
+  setConnectionTask();
+});
+
+// Network Tester ---------------------------------------------
 
 class NetworkTester {
   static start() {

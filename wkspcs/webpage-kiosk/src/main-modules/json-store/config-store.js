@@ -29,6 +29,10 @@ ipcMain.on("update-app-config-store-data", function (event, formJSON) {
   // Defaults
   configJSONStore.set("local_loading_page", defaults.local_loading_page);
   configJSONStore.set("local_config_page", defaults.local_config_page);
+
+  // Send reply back to sender
+  // This is used to ensure intervalTask is updated to reflect a new "test_connection_interval" value
+  event.reply("app-config-updated");
 });
 
 ipcMain.handle("get-app-config-store-data", async (event) => {
