@@ -2,6 +2,7 @@
 
 const configForm = document.getElementById("config-form");
 const formInputKioskWebURL = document.getElementById("form-input-kiosk-web-url");
+const formInputTestConnection = document.getElementById("form-input-test-connection");
 const resetFormDefaultsBtn = document.getElementById("reset-form-defaults-btn");
 
 // Populate Form ----------------------------------------------
@@ -12,6 +13,7 @@ populateForm(appConfig);
 
 function populateForm(config) {
   formInputKioskWebURL.value = config.kiosk_webpage_url;
+  formInputTestConnection.checked = config.test_connection;
 }
 
 // Submit Form ------------------------------------------------
@@ -25,6 +27,8 @@ function submitForm(event) {
   console.log(userFormJSON);
 
   let validFormJSON = validate(userFormJSON);
+
+  console.log(validFormJSON);
 
   // Commit the form input data to local disk storage via main process
   if (validFormJSON) {
@@ -48,6 +52,13 @@ function validate(userFormJSON) {
     console.error(error);
     formInputKioskWebURL.style.color = "red";
     validFormJSON = null;
+  }
+
+  // no validation needed for checkbox, true/false only
+  if (userFormJSON.test_connection) {
+    validFormJSON.test_connection = true;
+  } else {
+    validFormJSON.test_connection = false;
   }
 
   return validFormJSON;

@@ -14,14 +14,16 @@ async function testConnection() {
   }
 }
 
-const testConnectionTask = new intervalTask(testConnection, 1000);
+const testConnectionTask = new intervalTask(testConnection, 5000);
 
 class NetworkTester {
   static start() {
-    intervalTaskRunner.start({ task: testConnectionTask, now: false });
+    console.log(`(Starting network tests to ${configJSONStore.get("kiosk_webpage_url")} at interval of ${testConnectionTask.intervalTime}ms)`);
+    intervalTaskRunner.start({ task: testConnectionTask, immediately: true });
   }
 
   static stop() {
+    console.log(`(Stopping network tests to ${configJSONStore.get("kiosk_webpage_url")})`);
     intervalTaskRunner.stop({ task: testConnectionTask });
   }
 }

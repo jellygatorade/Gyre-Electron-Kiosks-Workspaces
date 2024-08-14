@@ -25,8 +25,6 @@ function create() {
 
   Navigator.win = window; // inject window depedency
 
-  window.loadURL(configJSONStore.get("local_loading_page"));
-
   // Shortcuts ------------------------------------------------
 
   // relaunch application
@@ -67,19 +65,31 @@ function create() {
 
   // Events ---------------------------------------------------
 
-  // window.webContents.addListener("did-finish-load", () => {
-  //   // Use NetworkTester on web kiosk or the loading page
-  //   // Stop NetworkTester on config page
+  window.webContents.addListener("did-finish-load", () => {
+    if (configJSONStore.get("test_connection")) {
+      // Use NetworkTester on web kiosk or the loading page
+      // Stop NetworkTester on config page
 
-  //   const uri = window.webContents.getURL();
-  //   const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
+      const uri = window.webContents.getURL();
+      const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
 
-  //   if (isWeb || uri.includes("loading")) {
-  //     NetworkTester.start();
-  //   } else {
-  //     NetworkTester.stop();
-  //   }
-  // });
+      if (isWeb || uri.includes("loading")) {
+        NetworkTester.start();
+      } else {
+        NetworkTester.stop();
+      }
+    } else {
+      console.log(`(Not initializing network tests per user configuration)`);
+    }
+  });
+
+  // Load the initial uri -------------------------------------
+
+  if (configJSONStore.get("test_connection")) {
+    window.loadURL(configJSONStore.get("local_loading_page"));
+  } else {
+    window.loadURL(configJSONStore.get("kiosk_webpage_url"));
+  }
 }
 
 function get() {

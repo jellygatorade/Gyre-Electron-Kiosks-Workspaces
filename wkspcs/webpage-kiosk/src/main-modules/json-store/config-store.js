@@ -8,6 +8,7 @@ const defaults = {
   kiosk_webpage_url: "https://nuxt-gyre-styles.pages.dev",
   local_loading_page: path.join(__dirname, "..", "..", "/pages/loading/index.html"),
   local_config_page: path.join(__dirname, "..", "..", "/pages/config/index.html"),
+  test_connection: true,
 };
 
 const configJSONStore = new Store.store({
@@ -21,6 +22,7 @@ const configJSONStore = new Store.store({
 ipcMain.on("update-app-config-store-data", function (event, formJSON) {
   // Form data
   configJSONStore.set("kiosk_webpage_url", formJSON?.kiosk_webpage_url);
+  configJSONStore.set("test_connection", formJSON?.test_connection);
 
   // Defaults
   configJSONStore.set("local_loading_page", defaults.local_loading_page);
