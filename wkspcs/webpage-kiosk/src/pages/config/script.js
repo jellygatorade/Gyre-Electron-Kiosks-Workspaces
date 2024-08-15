@@ -89,6 +89,7 @@ formInputKioskWebURL.addEventListener("input", () => {
 async function resetFormDefaults() {
   const defaults = await window.electron.appConfig.getDefaults();
   populateForm(defaults);
+  onChange_formInputTestConnection();
   submitForm();
 }
 
@@ -99,6 +100,7 @@ resetFormDefaultsBtn.addEventListener("click", resetFormDefaults);
 addEventListener("change", onChange_formInputTestConnection);
 
 function onChange_formInputTestConnection() {
+  console.log("change");
   if (formInputTestConnection.checked) {
     formListItemTestConnectionInterval.style.display = "block";
   } else {

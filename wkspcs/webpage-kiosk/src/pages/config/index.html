@@ -36,7 +36,8 @@
                   <input id="form-input-test-connection" name="test_connection" type="checkbox" class="rounded-sm scale-150" value="true" />
                 </div>
                 <p class="text-neutral-300 text-xs leading-5 mb-1"
-                  >Periodically check for network connectivity to the above URL and return to loading page if connection drops</p
+                  >Periodically check for network connectivity to the above URL and return to loading page if connection drops. App will display the production
+                  page When connection is detected.</p
                 >
               </li>
 
@@ -66,18 +67,22 @@
           </div>
 
           <table class="w-full">
-            <tbody class="text-neutral-300 mb-0.5">
+            <tbody class="text-neutral-300">
               <tr>
-                <th scope="row" class="text-left pr-2">Ctrl + 1</th>
-                <td class="text-right pl-2">Production page (the URL above)</td>
+                <th scope="row" class="text-left mr-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Esc</span></th>
+                <td class="text-right pl-2 pb-2"> Quit application </td>
               </tr>
               <tr>
-                <th scope="row" class="text-left pr-2">Ctrl + 2</th>
-                <td class="text-right pl-2">Configuration page (this page)</td>
+                <th scope="row" class="text-left mr-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Ctrl + 1</span></th>
+                <td class="text-right pl-2 pb-2">Production page (the URL above)</td>
               </tr>
               <tr>
-                <th scope="row" class="text-left pr-2">Ctrl + 3</th>
-                <td class="text-right pl-2">Loading page</td>
+                <th scope="row" class="text-left mr-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Ctrl + 2</span></th>
+                <td class="text-right pl-2 pb-2">Configuration page (this page)</td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-left mr-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Ctrl + 3</span></th>
+                <td class="text-right pl-2 pb-2">Loading page</td>
               </tr>
             </tbody>
           </table>
