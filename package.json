@@ -15,7 +15,8 @@
     "./wkspcs/email",
     "./wkspcs/env-vars",
     "./wkspcs/perf-arts",
-    "./wkspcs/seeing-red-cons-lg"
+    "./wkspcs/seeing-red-cons-lg",
+    "./wkspcs/venice"
   ],
   "author": "Kevin Kane",
   "license": "ISC",
