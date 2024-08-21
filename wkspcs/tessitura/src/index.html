@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Hello World!</h1>
+      We are using Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, and Electron <span id="electron-version"></span>.
+    </header>
+
+    <div class="controls bg-floralwhite">
+      <h2 class="form-header">General</h2>
+
+      <div class="form-item">
+        <button id="ping-btn">Ping</button>
+      </div>
+    </div>
+
+    <div class="controls bg-aliceblue">
+      <form id="get-constituents-form">
+        <h2 class="form-header">Get constituents</h2>
+
+        <div class="form-item">
+          <label for="constituent_ids">Constituent IDs:</label>
+          <input type="text" name="constituent_ids" />
+          <span>(comma separated list, e.g. "20,22")</span>
+        </div>
+
+        <div class="form-item">
+          <button id="get-constituents-btn" type="submit">Get constituents</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="controls bg-ghostwhite">
+      <form id="get-constituents-electronic-addresses-form">
+        <h2 class="form-header">Get electronic addresses</h2>
+
+        <div class="form-item">
+          <label for="constituent_ids">Constituent IDs:</label>
+          <input type="text" name="constituent_ids" />
+          <span>(comma separated list, e.g. "20,22")</span>
+        </div>
+
+        <div class="form-item">
+          <button id="get-electronic-addresses-btn" type="submit">Get electronic addresses</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="controls bg-ghostwhite">
+      <form id="get-constituents-contact-permissions-form">
+        <h2 class="form-header">Get contact permissions</h2>
+
+        <div class="form-item">
+          <label for="constituent_ids">Constituent IDs:</label>
+          <input type="text" name="constituent_ids" />
+          <span>(accepts one id only, e.g. "20")</span>
+        </div>
+
+        <div class="form-item">
+          <button id="get-contact-permissions-btn" type="submit">Get contact permissions</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="controls bg-whitesmoke">
+      <form id="search-constituents-by-email-form">
+        <h2 class="form-header">Search for constituent by email</h2>
+
+        <div class="form-item">
+          <label for="email">Email address:</label>
+          <input type="text" name="email" />
+        </div>
+
+        <div class="form-item">
+          <button id="search-constituents-by-email-btn" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="controls bg-honeydew">
+      <form id="update-constituents-by-email-form">
+        <h2 class="form-header">To do: Create/update a constituent</h2>
+
+        <!-- <div class="form-item">
+          <label for="email">Email address:</label>
+          <input type="text" name="email" />
+        </div> -->
+        <p>What is required here?</p>
+        <p>Fname, Lname, email?</p>
+        <p>What is the process? Search by email first, if exists, update Fname/Lname or no? If not exists, create new constituent?</p>
+
+        <div class="form-item">
+          <button id="update-constituents-by-email-btn" type="submit" disabled>Update</button>
+        </div>
+      </form>
+    </div>
+  </body>
+
+  <script type="module" src="./script/script.js"></script>
+</html>

@@ -16,7 +16,8 @@
     "./wkspcs/env-vars",
     "./wkspcs/perf-arts",
     "./wkspcs/seeing-red-cons-lg",
-    "./wkspcs/venice"
+    "./wkspcs/venice",
+    "./wkspcs/tessitura"
   ],
   "author": "Kevin Kane",
   "license": "ISC",
