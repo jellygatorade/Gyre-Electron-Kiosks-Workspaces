@@ -1,8 +1,5 @@
 const ipcMain = require("electron").ipcMain;
-const fsPromises = require("node:fs/promises");
 const path = require("node:path");
-const { customAlphabet } = require("nanoid");
-const crypto = require("crypto");
 
 // Get reference to window
 const win = require("./create-window.js").get();
@@ -84,51 +81,6 @@ function handleError(error) {
   console.log(error);
   win.webContents.send("Tessitura-response", `Tessitura error: ${error}`);
 }
-
-function getMD5string(string) {
-  const hash = crypto
-    .createHash("md5")
-    .update(string) // email string
-    .digest("hex");
-
-  return hash;
-}
-
-async function readFile(path) {
-  const file_buffer = await fsPromises.readFile(path);
-  const contents_in_base64 = file_buffer.toString("base64"); // encode file contents into base64
-
-  return contents_in_base64;
-}
-
-function getFormattedDate() {
-  // Create a date object from a date string
-  const date = new Date();
-
-  // Get year, month, and day part from the date
-  const year = date.toLocaleString("default", { year: "numeric" });
-  const month = date.toLocaleString("default", { month: "2-digit" });
-  const day = date.toLocaleString("default", { day: "2-digit" });
-
-  // Generate yyyy_mm_dd date string
-  const formattedDate = year + "_" + month + "_" + day;
-  return formattedDate;
-}
-
-function isWithinLastMinutes(timestamp, minutes) {
-  const parsed_timestamp = Date.parse(timestamp);
-  const minutes_ago = Date.parse(new Date(Date.now() - 1000 * 60 * minutes));
-
-  let date_diff = minutes_ago - parsed_timestamp;
-
-  if (date_diff > 0) {
-    return false; // greater than x minutes ago
-  } else {
-    return true; // within x minutes ago
-  }
-}
-
-const nanoid = customAlphabet("1234567890abcdef", 6); // returns a function that returns 6 char randomized alphanumeric string
 
 // ---------------------------------------------------
 // ipc listeners -------------------------------------
