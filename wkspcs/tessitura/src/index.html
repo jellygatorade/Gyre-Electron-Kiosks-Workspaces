@@ -85,6 +85,26 @@
       </form>
     </div>
 
+    <div class="controls bg-whitesmoke">
+      <form id="search-constituents-by-name-form">
+        <h2 class="form-header">Search for constituent by name</h2>
+
+        <div class="form-item">
+          <label for="email">First name:</label>
+          <input type="text" name="fname" />
+        </div>
+
+        <div class="form-item">
+          <label for="email">Last name:</label>
+          <input type="text" name="lname" />
+        </div>
+
+        <div class="form-item">
+          <button id="search-constituents-by-name-btn" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+
     <div class="controls bg-honeydew">
       <form id="update-constituents-by-email-form">
         <h2 class="form-header">To do: Create/update a constituent</h2>
@@ -95,7 +115,18 @@
         </div> -->
         <p>What is required here?</p>
         <p>Fname, Lname, email?</p>
-        <p>What is the process? Search by email first, if exists, update Fname/Lname or no? If not exists, create new constituent?</p>
+        <p>What is the process?</p>
+        <ol>
+          <li>Validate email string</li>
+          <li
+            >Search for constituent by email, using exact string (&op=Equals), if exists - check contact permission? (type: email general, email solicitation,
+            list exchange?) then skip to finally</li
+          >
+          <li>If email not exists, add new constituent? or search by name? (searching by name gets complicated with duplicates)</li>
+        </ol>
+        <ul>
+          <li>Finally, start process for triggering an email to the constituent/address</li>
+        </ul>
 
         <div class="form-item">
           <button id="update-constituents-by-email-btn" type="submit" disabled>Update</button>

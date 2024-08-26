@@ -68,7 +68,13 @@ async function getContactPermissions(ids_string) {
 }
 
 async function searchConstituentsByEmail(email_string) {
+  // note uses search type advanced
   await getTessitura(`CRM/Constituents/Search`, `?type=advanced&atype=Email&op=Like&value=${email_string}`);
+}
+
+async function searchConstituentsByName(fname_string, lname_string) {
+  // note uses search type basic
+  await getTessitura(`CRM/Constituents/Search`, `?type=basic&fn=${fname_string}&ln=${lname_string}`);
 }
 
 // ---------------------------------------------------
@@ -104,4 +110,8 @@ ipcMain.handle("Tessitura-getContactPermissions", async (event, id_string) => {
 
 ipcMain.handle("Tessitura-searchConstituentsByEmail", async (event, email_string) => {
   await searchConstituentsByEmail(email_string);
+});
+
+ipcMain.handle("Tessitura-searchConstituentsByName", async (event, fname_string, lname_string) => {
+  await searchConstituentsByName(fname_string, lname_string);
 });

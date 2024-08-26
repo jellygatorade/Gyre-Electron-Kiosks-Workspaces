@@ -38,6 +38,14 @@ function searchConstituentsByEmailBtnOnClick(event) {
   window.electron.tessitura.searchConstituentsByEmail(formJSON.email);
 }
 
+function searchConstituentsByNameBtnOnClick(event) {
+  event.preventDefault();
+  const formJSON = getFormJson(event);
+  formJSON.fname = formJSON.fname.replace(/\s+/g, ""); // remove all white space from string
+  formJSON.lname = formJSON.lname.replace(/\s+/g, ""); // remove all white space from string
+  window.electron.tessitura.searchConstituentsByName(formJSON.fname, formJSON.lname);
+}
+
 // helper functions ----------------------------------
 
 function logElectronInterfaces() {
@@ -66,6 +74,7 @@ const tessituraRenderer = {
     const getElectronicAddressesBtn = document.getElementById("get-electronic-addresses-btn");
     const getContactPermissionsBtn = document.getElementById("get-contact-permissions-btn");
     const searchConstituentsByEmailBtn = document.getElementById("search-constituents-by-email-btn");
+    const searchConstituentsByNameBtn = document.getElementById("search-constituents-by-name-btn");
 
     // add listeners ----------------------------------
 
@@ -74,6 +83,7 @@ const tessituraRenderer = {
     getElectronicAddressesBtn.addEventListener("click", getElectronicAddressesBtnOnClick);
     getContactPermissionsBtn.addEventListener("click", getContactPermissionsBtnOnClick);
     searchConstituentsByEmailBtn.addEventListener("click", searchConstituentsByEmailBtnOnClick);
+    searchConstituentsByNameBtn.addEventListener("click", searchConstituentsByNameBtnOnClick);
 
     // listeners for main process ---------------------
 

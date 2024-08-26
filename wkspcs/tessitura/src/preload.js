@@ -20,6 +20,7 @@ contextBridge.exposeInMainWorld("electron", {
     getElectronicAddresses: (ids_string) => ipcRenderer.invoke("Tessitura-getElectronicAddresses", ids_string),
     getContactPermissions: (id_string) => ipcRenderer.invoke("Tessitura-getContactPermissions", id_string),
     searchConstituentsByEmail: (email_string) => ipcRenderer.invoke("Tessitura-searchConstituentsByEmail", email_string),
+    searchConstituentsByName: (fname_string, lname_string) => ipcRenderer.invoke("Tessitura-searchConstituentsByName", fname_string, lname_string),
     /**
      * Accept a callback function to be run when main process sends win.webContents.send("tessituraResponse")
      *    ipcRenderer - src/mailchimp.js
