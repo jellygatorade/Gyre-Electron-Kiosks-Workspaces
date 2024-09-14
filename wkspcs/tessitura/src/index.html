@@ -117,15 +117,21 @@
         <p>Fname, Lname, email?</p>
         <p>What is the process?</p>
         <ol>
+          <li>How to handle not marketing / marketing to 18 years or older only?</li>
           <li>Validate email string</li>
           <li
-            >Search for constituent by email, using exact string (&op=Equals), if exists - check contact permission? (type: email general, email solicitation,
-            list exchange?) then skip to finally</li
+            >Search for weblogin, using exact string (?emailAddress=x@y.com) and primary login type (&loginTypeId=1), if exists - go to finally (dispatch the
+            email)</li
           >
-          <li>If email not exists, add new constituent? or search by name? (searching by name gets complicated with duplicates)</li>
+          <li
+            >Search for weblogin, using exact string (?emailAddress=x@y.com) and guest login type (&loginTypeId=2 - verify this ID), if exists (add primary
+            weblogin or not depending on Amber's assessment of v16 behavior), then go to finally</li
+          >
+          <li>How to deal with contact permission? (type: email general, email solicitation, list exchange?) then skip to finally</li>
+          <li>If weblogin not exists, add new constituent using fname, lname, then create both primary and guest weblogins using the email address</li>
         </ol>
         <ul>
-          <li>Finally, start process for triggering an email to the constituent/address</li>
+          <li>Finally, start process for triggering an email to the weblogin address</li>
         </ul>
 
         <div class="form-item">
