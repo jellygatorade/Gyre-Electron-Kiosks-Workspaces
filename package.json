@@ -11,6 +11,7 @@
     "./wkspcs/ttsam-multi",
     "./wkspcs/ttsam-virgil-ortiz",
     "./wkspcs/ll-quilts",
+    "./wkspcs/jp-leadership",
     "./wkspcs/webpage-kiosk",
     "./wkspcs/email",
     "./wkspcs/env-vars",
