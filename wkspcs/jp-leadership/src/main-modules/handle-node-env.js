@@ -27,8 +27,6 @@ if (
 
 function prepareProd() {
   console.log("initializing for production");
-
-  app.commandLine.appendSwitch("touch-events");
 }
 
 function prepareDev() {
@@ -39,13 +37,6 @@ function prepareDev() {
   require("electron-reload")(__dirname, {
     // Note that the path to electron may vary according to the main file
     // Here we go up several levels to find the electron package folder
-    electron: require(path.join(
-      __dirname,
-      "..",
-      "..",
-      "..",
-      "..",
-      "node_modules/electron"
-    )),
+    electron: require(path.join(__dirname, "..", "..", "..", "..", "node_modules/electron")),
   });
 }
