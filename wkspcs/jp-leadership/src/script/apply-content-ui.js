@@ -17,19 +17,17 @@ function applyContent(data) {
 
   // Home View
   domVars.enHomeViewTitle.innerHTML = data.en.main.title;
-  // domVars.enHomeViewSubheading.innerHTML = data.en.main.subheading;
+  domVars.enHomeViewSubheading.innerHTML = data.en.main.subheading;
 
   domVars.esHomeViewTitle.innerHTML = data.es.main.title;
-  // domVars.esHomeViewSubheading.innerHTML = data.es.main.subheading;
+  domVars.esHomeViewSubheading.innerHTML = data.es.main.subheading;
 
   //// Home View - Video Cards
   applyVideoCards(data);
 
   // Video View
-  domVars.enVideoPlayerReturnHomeBtnTxt.innerHTML =
-    data.en.video_player.back_to_main;
-  domVars.esVideoPlayerReturnHomeBtnTxt.innerHTML =
-    data.es.video_player.back_to_main;
+  domVars.enVideoPlayerReturnHomeBtnTxt.innerHTML = data.en.video_player.back_to_main;
+  domVars.esVideoPlayerReturnHomeBtnTxt.innerHTML = data.es.video_player.back_to_main;
 }
 
 export { applyContent };
