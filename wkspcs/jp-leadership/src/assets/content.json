@@ -12,73 +12,45 @@
       "videos": [
         {
           "id": "dr-paul-baker",
-          "video_path": "./assets/video/senora-lynch.mp4",
-          "still_path": "./assets/img/senora-lynch-1.jpg",
+          "video_path": "./assets/video/dr-paul-baker.mp4",
+          "still_path": "./assets/img/dr-paul-baker.jpg",
           "title": "Dr. Paul Baker",
           "description": "Meet Paul, executive director at the Contemporary Art Museum Raleigh. Learn how history, church, and family motivate him to be a leader."
         },
         {
-          "id": "carly-p-jones",
-          "video_path": "./assets/video/anita-fields.mp4",
-          "still_path": "./assets/img/anita-fields-small-test.png",
-          "title": "Carly P. Jones",
-          "description": "Meet Carly, CEO at Artspace in Raleigh. Learn how her family helped influence her to become the leader she is today."
-        },
-        {
-          "id": "dr-tamara-brothers",
-          "video_path": "./assets/video/kelly-church.mp4",
-          "still_path": "./assets/img/kelly-church-1.jpg",
-          "title": "Dr. Tamara Brothers",
-          "description": "Meet Tamara, director of program outreach and engagement at the NC Department of Natural and Cultural Resources. Listen to her words of wisdom to future leaders."
-        },
-        {
           "id": "ali-ingersoll",
-          "video_path": "./assets/video/kelly-church.mp4",
-          "still_path": "./assets/img/kelly-church-1.jpg",
+          "video_path": "./assets/video/ali-ingersoll.mp4",
+          "still_path": "./assets/img/ali-ingersoll.jpg",
           "title": "Ali Ingersoll",
           "description": "Meet Ali, corporate disability consultant, social impact strategist, and energizer bunny. Hear more about her story and how her dad empowered her to lead others."
         },
         {
           "id": "victoria-stremel",
-          "video_path": "./assets/video/kelly-church.mp4",
-          "still_path": "./assets/img/kelly-church-1.jpg",
+          "video_path": "./assets/video/victoria-stremel.mp4",
+          "still_path": "./assets/img/victoria-stremel.jpg",
           "title": "Victoria Stremel",
           "description": "Meet Vicci, a tour guide at the NCMA and former architect. She leads tours in American Sign Language every month. Learn how her parents inspired her as a child."
         },
         {
           "id": "dexter-wade",
-          "video_path": "./assets/video/kelly-church.mp4",
-          "still_path": "./assets/img/kelly-church-1.jpg",
+          "video_path": "./assets/video/dexter-wade.mp4",
+          "still_path": "./assets/img/dexter-wade.jpg",
           "title": "Dexter Wade",
           "description": "Meet Dex, a security guard at the NCMA. Listen as he discusses the importance of safety in leadership. See if you can spot him in the galleries."
         },
         {
           "id": "sanje-james",
-          "video_path": "./assets/video/kelly-church.mp4",
-          "still_path": "./assets/img/kelly-church-1.jpg",
+          "video_path": "./assets/video/sanje-james.mp4",
+          "still_path": "./assets/img/sanje-james.jpg",
           "title": "Sanjé James",
           "description": "Meet Sanjé, who works with Carly Jones at Artspace. As one of the youngest leaders featured in this exhibition, she gives advice to future leaders."
         },
         {
           "id": "mickalene-thomas",
-          "video_path": "./assets/video/kelly-church.mp4",
-          "still_path": "./assets/img/kelly-church-1.jpg",
+          "video_path": "./assets/video/mickalene-thomas.mp4",
+          "still_path": "./assets/img/mickalene-thomas.jpg",
           "title": "Mickalene Thomas",
           "description": "Meet Mickalene, an artist JP met in New York last year. Learn more about her leadership style and artwork."
-        },
-        {
-          "id": "derrick-adams",
-          "video_path": "./assets/video/kelly-church.mp4",
-          "still_path": "./assets/img/kelly-church-1.jpg",
-          "title": "Derrick Adams",
-          "description": "Meet Derrick, an artist who inspires JP on a regular basis. Watch to learn more about him and his artwork."
-        },
-        {
-          "id": "j-cole",
-          "video_path": "./assets/video/kelly-church.mp4",
-          "still_path": "./assets/img/kelly-church-1.jpg",
-          "title": "J. Cole",
-          "description": "Meet J. Cole, an American rapper and record producer from North Carolina. He inspires people around the world to be creative."
         }
       ]
     },
