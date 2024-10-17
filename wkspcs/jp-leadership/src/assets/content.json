@@ -18,6 +18,13 @@
           "description": "Meet Paul, executive director at the Contemporary Art Museum Raleigh. Learn how history, church, and family motivate him to be a leader."
         },
         {
+          "id": "carly-p-jones",
+          "video_path": "./assets/video/carly-p-jones.mp4",
+          "still_path": "./assets/img/carly-p-jones.jpg",
+          "title": "Carly P. Jones",
+          "description": "Meet Carly, CEO at Artspace in Raleigh. Learn how her family helped influence her to become the leader she is today."
+        },
+        {
           "id": "ali-ingersoll",
           "video_path": "./assets/video/ali-ingersoll.mp4",
           "still_path": "./assets/img/ali-ingersoll.jpg",
