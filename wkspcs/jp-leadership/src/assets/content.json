@@ -11,6 +11,13 @@
       "toggle_lang_btn": "Español",
       "videos": [
         {
+          "id": "jp",
+          "video_path": "./assets/video/jp-jermaine-powell.mp4",
+          "still_path": "./assets/img/jp-jermaine-powell.jpg",
+          "title": "JP Jermaine Powell",
+          "description": "Listen to artist JP Jermaine Powell as he discusses his process for selecting the leaders featured in the gallery. He chose those that inspire him and we hope they inspire you."
+        },
+        {
           "id": "dr-paul-baker",
           "video_path": "./assets/video/dr-paul-baker.mp4",
           "still_path": "./assets/img/dr-paul-baker.jpg",
@@ -23,6 +30,13 @@
           "still_path": "./assets/img/carly-p-jones.jpg",
           "title": "Carly P. Jones",
           "description": "Meet Carly, CEO at Artspace in Raleigh. Learn how her family helped influence her to become the leader she is today."
+        },
+        {
+          "id": "dr-tamara-brothers",
+          "video_path": "./assets/video/dr-tamara-brothers.mp4",
+          "still_path": "./assets/img/dr-tamara-brothers.jpg",
+          "title": "Dr. Tamara Brothers",
+          "description": "Meet Tamara, director of program outreach and engagement at the NC Department of Natural and Cultural Resources. Listen to her words of wisdom to future leaders."
         },
         {
           "id": "ali-ingersoll",

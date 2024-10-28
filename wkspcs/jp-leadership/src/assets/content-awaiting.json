@@ -1,13 +1,6 @@
 {
   "videos": [
     {
-      "id": "dr-tamara-brothers",
-      "video_path": "./assets/video/kelly-church.mp4",
-      "still_path": "./assets/img/kelly-church-1.jpg",
-      "title": "Dr. Tamara Brothers",
-      "description": "Meet Tamara, director of program outreach and engagement at the NC Department of Natural and Cultural Resources. Listen to her words of wisdom to future leaders."
-    },
-    {
       "id": "derrick-adams",
       "video_path": "./assets/video/kelly-church.mp4",
       "still_path": "./assets/img/kelly-church-1.jpg",
