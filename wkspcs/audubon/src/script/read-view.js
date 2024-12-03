@@ -6,8 +6,8 @@ import { returnToAttractView } from "./attract-view.js";
 
 function readViewInit() {
   dom.nonlocalized.read_view.back_btn.addEventListener("click", () => {
-    // UIViewController.setView(views.mainMenu);
-    returnToAttractView();
+    UIViewController.setView(views.mainMenu);
+    // returnToAttractView();
 
     // once animation is complete
     setTimeout(() => {

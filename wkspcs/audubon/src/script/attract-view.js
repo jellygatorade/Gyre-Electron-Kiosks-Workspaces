@@ -10,7 +10,7 @@ function returnToAttractView() {
 }
 
 function removeAttractView() {
-  UIViewController.setView(views.read);
+  UIViewController.setView(views.mainMenu);
 
   // Pause the attract video
   dom.nonlocalized.attract.video.pause();
