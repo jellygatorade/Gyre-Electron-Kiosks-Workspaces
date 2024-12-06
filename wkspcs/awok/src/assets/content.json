@@ -1,0 +1,70 @@
+{
+  "attract_video_path": "./assets/video/attract.mp4",
+  "en": {
+    "attract": {
+      "title": "The Africa We Ought to Know",
+      "touch_to_begin": "TOUCH TO BEGIN"
+    },
+    "main": {
+      "title": "The Africa We Ought to Know",
+      "subheading": "Select from any of the videos below to learn more about places and people in Africa.",
+      "toggle_lang_btn": "Español",
+      "videos": [
+        {
+          "id": "the-rise-and-fall-of-empires-in-africa",
+          "video_path": "./assets/video/attract.mp4",
+          "still_path": "./assets/img/dr-paul-baker.jpg",
+          "title": "The Rise and Fall of Empires in Africa",
+          "description": "Watch how empires and artworks have shaped the African continent for thousands of years."
+        },
+        {
+          "id": "materials-that-move-networks-of-trade-in-africa",
+          "video_path": "./assets/video/attract.mp4",
+          "still_path": "./assets/img/dexter-wade.jpg",
+          "title": "Materials That Move: Networks of Trade in Africa",
+          "description": "Learn about the vast trade routes in Africa. Trade routes allowed for significant cultural exchanges from within and outside the continent."
+        },
+        {
+          "id": "ivory-transnational-trade",
+          "video_path": "./assets/video/attract.mp4",
+          "still_path": "./assets/img/mickalene-thomas.jpg",
+          "title": "Ivory: Transnational Trade",
+          "description": "Ivory has been seen as a luxury good since ancient times in Africa. Learn about the history of ivory trading and the trafficking that still occurs."
+        },
+        {
+          "id": "gold-conquest-and-human-trafficking",
+          "video_path": "./assets/video/attract.mp4",
+          "still_path": "./assets/img/dr-paul-baker.jpg",
+          "title": "Gold, Conquest, and Human Trafficking",
+          "description": "Gold has been an important worldwide luxury good for millennia. Empires conquered others for access to gold ore regions. Learn about how gold influenced trade and human trafficking."
+        },
+        {
+          "id": "kingdom-of-kush",
+          "video_path": "./assets/video/attract.mp4",
+          "still_path": "./assets/img/mickalene-thomas.jpg",
+          "title": "Kingdom of Kush",
+          "description": "The Kingdom of Kush was a strong and powerful nation with three distinct periods in history. Learn more about these periods and the artwork from that time."
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "[Back to main]"
+    }
+  },
+  "es": {
+    "is_available": false,
+    "attract": {
+      "title": "!¿Place of Being: Artist Spotlight?",
+      "touch_to_begin": "!TOCA PARA COMENZAR"
+    },
+    "main": {
+      "title": "!¿Place of Being: Artist Spotlight?",
+      "subheading": "!¿Lorem ipsum dolor sit amet.?",
+      "toggle_lang_btn": "English",
+      "videos": []
+    },
+    "video_player": {
+      "back_to_main": "UNOFFICIAL - [Volver al menú principal]"
+    }
+  }
+}
