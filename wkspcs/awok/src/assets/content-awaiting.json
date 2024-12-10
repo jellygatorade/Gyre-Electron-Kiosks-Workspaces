@@ -1,3 +1,11 @@
 {
-  "videos": []
+  "videos": [
+    {
+      "id": "kingdom-of-kush",
+      "video_path": "./assets/video/attract.mp4",
+      "still_path": "./assets/img/mickalene-thomas.jpg",
+      "title": "Kingdom of Kush",
+      "description": "The Kingdom of Kush was a strong and powerful nation with three distinct periods in history. Learn more about these periods and the artwork from that time."
+    }
+  ]
 }
