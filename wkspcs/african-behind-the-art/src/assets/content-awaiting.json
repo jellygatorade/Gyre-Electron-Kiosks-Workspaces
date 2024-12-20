@@ -1,0 +1,60 @@
+{
+  "videos": [
+    {
+      "id": "african-cuisine",
+      "video_path": "./assets/video/the-rise-and-fall-of-empires-in-africa.mp4",
+      "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+      "title": "African Cuisine: Food Activism in NC",
+      "description": "Food activist Njathi Kabui argues for why food should be an integral part of the museum experience."
+    },
+    {
+      "id": "palm-sangria",
+      "video_path": "./assets/video/the-rise-and-fall-of-empires-in-africa.mp4",
+      "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+      "title": "Palm Sangria Inspired by <i>Lines That Link Humanity</i>",
+      "description": "Mixologist Ernest Gantz creates a drink inspired by <i>Lines That Link Humanity</i> and Ghanan culture."
+    },
+    {
+      "id": "magdalene-odundo",
+      "video_path": "./assets/video/the-rise-and-fall-of-empires-in-africa.mp4",
+      "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+      "title": "Get to Know Ceramic Artist Magdalene Odundo (UK, Kenya)",
+      "description": "Odundo talks about how her travels have encouraged her to make art and learn about cultures."
+    },
+    {
+      "id": "ledelle-moe",
+      "video_path": "./assets/video/the-rise-and-fall-of-empires-in-africa.mp4",
+      "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+      "title": "Get to Know Sculptor Ledelle Moe (South Africa)",
+      "description": "Moe discusses the challenges she has faced as an artist."
+    },
+    {
+      "id": "lamidi-fakeye",
+      "video_path": "./assets/video/the-rise-and-fall-of-empires-in-africa.mp4",
+      "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+      "title": "Get to Know Carver Lamidi Fakeye (Nigeria)",
+      "description": "Learn about how Fakeye's artwork is a bridge between the past, present, and future."
+    },
+    {
+      "id": "found-materials-in-kenya",
+      "video_path": "./assets/video/the-rise-and-fall-of-empires-in-africa.mp4",
+      "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+      "title": "Found Materials in Kenya",
+      "description": "Visual artist Cyrus Kiburu talks about found materials in his work. This video is part of the series <i>Afripedia</i>."
+    },
+    {
+      "id": "dancing-in-nairobi",
+      "video_path": "./assets/video/the-rise-and-fall-of-empires-in-africa.mp4",
+      "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+      "title": "Dancing in Nairobi",
+      "description": "Listen to the voice of Anto Neosoul as they bring dance to the streets of Kenya. This video is part of the series <i>Afripedia</i>."
+    },
+    {
+      "id": "self-expression-photography",
+      "video_path": "./assets/video/the-rise-and-fall-of-empires-in-africa.mp4",
+      "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+      "title": "Self-expression Using Photography",
+      "description": "Watch as Delphine Diallo uses photography to express herself. This video is part of the series <i>Afripedia</i>."
+    }
+  ]
+}
