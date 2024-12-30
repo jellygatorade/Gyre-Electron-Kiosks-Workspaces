@@ -13,79 +13,90 @@
         {
           "id": "portrait-photography-in-senegal",
           "video_path": "./assets/video/portrait-photography-in-senegal.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+          "still_path": "./assets/img/portrait-photography-in-senegal.png",
           "title": "Portrait Photography in Senegal",
-          "description": "Watch Omar Victor Diop re-create famous Hollywood portraits. This video is part of the series <i>Afripedia</i>."
+          "description": "Watch Omar Victor Diop re-create famous Hollywood portraits.",
+          "attribution": "This video is part of the series <i>Afripedia</i>."
         },
         {
           "id": "afrofuturism-in-north-carolina",
           "video_path": "./assets/video/afrofuturism-in-north-carolina.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+          "still_path": "./assets/img/afrofuturism-in-north-carolina.png",
           "title": "Afrofuturism in North Carolina: Meet the Artists",
-          "description": "Learn about what Afrofuturism is and meet local Afrofuturists."
+          "description": "Learn about what Afrofuturism is and meet local Afrofuturists.",
+          "attribution": ""
         },
         {
           "id": "connect-to-collectors",
           "video_path": "./assets/video/connect-to-collectors.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+          "still_path": "./assets/img/connect-to-collectors.png",
           "title": "Connect to Collectors Reggie and Celeste Hodges (Durham, NC)",
-          "description": "Find out more about art collectors Reggie and Celeste Hodges and their life together."
+          "description": "Find out more about art collectors Reggie and Celeste Hodges and their life together.",
+          "attribution": ""
         },
         {
           "id": "women-and-sowei-masks",
           "video_path": "./assets/video/women-and-sowei-masks.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+          "still_path": "./assets/img/women-and-sowei-masks.png",
           "title": "Women and <i>Sowei</i> Masks",
-          "description": "Find out about sowei masks and their relation to women."
+          "description": "Find out about <i>sowei</i> masks and their relation to women.",
+          "attribution": ""
         },
         {
           "id": "acquiring-a-sowei-mask",
           "video_path": "./assets/video/acquiring-a-sowei-mask.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+          "still_path": "./assets/img/acquiring-a-sowei-mask.png",
           "title": "Acquiring a <i>Sowei</i> Mask",
-          "description": "Learn how Reggie and Celeste Hodges came by a sowei mask."
+          "description": "Learn how Reggie and Celeste Hodges came by a <i>sowei</i> mask.",
+          "attribution": ""
         },
         {
           "id": "reading-a-sowei-mask",
           "video_path": "./assets/video/reading-a-sowei-mask.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+          "still_path": "./assets/img/reading-a-sowei-mask.png",
           "title": "“Reading” a <i>Sowei</i> Mask",
-          "description": "Discover how to “read” a <i>sowei</i> mask and its different characteristics."
+          "description": "Discover how to “read” a <i>sowei</i> mask and its different characteristics.",
+          "attribution": ""
         },
         {
           "id": "south-african-status-axe",
           "video_path": "./assets/video/south-african-status-axe.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+          "still_path": "./assets/img/south-african-status-axe.png",
           "title": "A South African Status Axe",
-          "description": "Listen to Elizabeth Perrill as she talks about the importance of the South African status axe."
+          "description": "Listen to Elizabeth Perrill as she talks about the importance of the South African status axe.",
+          "attribution": ""
         },
         {
           "id": "anatsui-nomadic-aesthetic",
           "video_path": "./assets/video/anatsui-nomadic-aesthetic.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
-          "title": "Anatsui at Work: The Nomadic Aesthetic— Freedom to Move (Palazzo Fortuny). Susan Vogel. Courtesy Icarus Films.",
-          "description": "Watch El Anatsui at work and how he creates movement in his art."
+          "still_path": "./assets/img/anatsui-nomadic-aesthetic.png",
+          "title": "Anatsui at Work: The Nomadic Aesthetic— Freedom to Move (Palazzo Fortuny)",
+          "description": "Watch El Anatsui at work and how he creates movement in his art.",
+          "attribution": "Susan Vogel. Courtesy Icarus Films."
         },
         {
           "id": "anatsui-materials",
           "video_path": "./assets/video/anatsui-materials.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
-          "title": "Anatsui at Work: Materials—From the Environment. Susan Vogel. Courtesy Icarus Films.",
-          "description": "Learn about how El Anatsui discovers his materials for his works of art."
+          "still_path": "./assets/img/anatsui-materials.png",
+          "title": "Anatsui at Work: Materials—From the Environment",
+          "description": "Learn about how El Anatsui discovers his materials for his works of art.",
+          "attribution": "Susan Vogel. Courtesy Icarus Films."
         },
         {
           "id": "cultural-re-creation",
           "video_path": "./assets/video/cultural-re-creation.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+          "still_path": "./assets/img/cultural-re-creation.png",
           "title": "Cultural Re-creation",
-          "description": "Writer Missla Libsekal explores cultural evolution while considering Western perceptions of Africa. This video is part of the series <i>Afripedia</i>."
+          "description": "Writer Missla Libsekal explores cultural evolution while considering Western perceptions of Africa.",
+          "attribution": "This video is part of the series <i>Afripedia</i>."
         },
         {
           "id": "performance-art-in-ghana",
           "video_path": "./assets/video/performance-art-in-ghana.mp4",
-          "still_path": "./assets/img/the-rise-and-fall-of-empires-in-africa.png",
+          "still_path": "./assets/img/performance-art-in-ghana.png",
           "title": "Performance Art in Ghana",
-          "description": "Learn about visual artist Serge Attukwei Clottey and how his art speaks to current environmental issues. This video is part of the series <i>Afripedia</i>."
+          "description": "Learn about visual artist Serge Attukwei Clottey and how his art speaks to current environmental issues.",
+          "attribution": "This video is part of the series <i>Afripedia</i>."
         }
       ]
     },

@@ -20,12 +20,9 @@ function applyVideoCards(data) {
 
       let newVideoBtnEn = newVideoCardEn;
       let newVideoImgEn = newVideoCardEn.querySelector(".en-js-video-ui-img");
-      let newVideoTitleEn = newVideoCardEn.querySelector(
-        ".en-js-video-ui-title"
-      );
-      let newVideoDescriptionEn = newVideoCardEn.querySelector(
-        ".en-js-video-ui-description"
-      );
+      let newVideoTitleEn = newVideoCardEn.querySelector(".en-js-video-ui-title");
+      let newVideoDescriptionEn = newVideoCardEn.querySelector(".en-js-video-ui-description");
+      let newVideoAttributionEn = newVideoCardEn.querySelector(".en-js-video-ui-attribution");
 
       newVideoBtnEn.onclick = function () {
         playVideo(videoDataArray[i].en.video_path);
@@ -33,6 +30,7 @@ function applyVideoCards(data) {
       newVideoImgEn.src = videoDataArray[i].en.still_path;
       newVideoTitleEn.innerHTML = videoDataArray[i].en.title;
       newVideoDescriptionEn.innerHTML = videoDataArray[i].en.description;
+      newVideoAttributionEn.innerHTML = videoDataArray[i].en.attribution;
 
       newVideoCard.appendChild(newVideoCardEn);
     }
@@ -44,12 +42,9 @@ function applyVideoCards(data) {
 
       let newVideoBtnEs = newVideoCardEs;
       let newVideoImgEs = newVideoCardEs.querySelector(".es-js-video-ui-img");
-      let newVideoTitleEs = newVideoCardEs.querySelector(
-        ".es-js-video-ui-title"
-      );
-      let newVideoDescriptionEs = newVideoCardEs.querySelector(
-        ".es-js-video-ui-description"
-      );
+      let newVideoTitleEs = newVideoCardEs.querySelector(".es-js-video-ui-title");
+      let newVideoDescriptionEs = newVideoCardEs.querySelector(".es-js-video-ui-description");
+      let newVideoAttributionEs = newVideoCardEn.querySelector(".es-js-video-ui-attribution");
 
       newVideoBtnEs.onclick = function () {
         playVideo(videoDataArray[i].es.video_path);
@@ -57,6 +52,7 @@ function applyVideoCards(data) {
       newVideoImgEs.src = videoDataArray[i].es.still_path;
       newVideoTitleEs.innerHTML = videoDataArray[i].es.title;
       newVideoDescriptionEs.innerHTML = videoDataArray[i].es.description;
+      newVideoAttributionEs.innerHTML = videoDataArray[i].es.attribution;
 
       newVideoCard.appendChild(newVideoCardEs);
     }
@@ -77,9 +73,7 @@ function createVideoDataArray(data) {
   }
 
   for (let i = 0; i < data.es.main.videos.length; i++) {
-    let matchedEntry = videoDataArray.find(
-      (element) => element?.en?.id === data.es.main.videos[i].id
-    );
+    let matchedEntry = videoDataArray.find((element) => element?.en?.id === data.es.main.videos[i].id);
     if (matchedEntry) {
       matchedEntry.es = data.es.main.videos[i];
     } else if (!matchedEntry) {
