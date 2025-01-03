@@ -1,5 +1,5 @@
 {
-  "attract_video_path": "./assets/video/attract-2.mp4",
+  "attract_video_path": "./assets/video/attract.mp4",
   "en": {
     "attract": {
       "title": "The Africa We Ought to Know",
@@ -37,6 +37,13 @@
           "still_path": "./assets/img/gold-conquest-and-human-trafficking.png",
           "title": "Gold, Conquest, and Human Trafficking",
           "description": "Gold has been an important worldwide luxury good for millennia. Empires conquered others for access to gold ore regions. Learn about how gold influenced trade and human trafficking."
+        },
+        {
+          "id": "kingdom-of-kush",
+          "video_path": "./assets/video/kingdom-of-kush.mp4",
+          "still_path": "./assets/img/kingdom-of-kush.png",
+          "title": "Kingdom of Kush",
+          "description": "The Kingdom of Kush was a strong and powerful nation with three distinct periods in history. Learn more about these periods and the artwork from that time."
         }
       ]
     },
