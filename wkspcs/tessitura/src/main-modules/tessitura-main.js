@@ -24,6 +24,7 @@ async function getTessitura(endpoint, querystring) {
   const headers = new Headers();
 
   headers.append("Authorization", "Basic " + Buffer.from(tessitura_api.username + ":" + tessitura_api.password).toString("base64"));
+  headers.append("Accept", "application/json");
 
   const requestOptions = {
     method: "GET",
