@@ -6,9 +6,9 @@ let win;
 function create() {
   // Create the browser window.
   win = new BrowserWindow({
-    // width: 800,
-    // height: 600,
-    fullscreen: true,
+    width: 800,
+    height: 600,
+    // fullscreen: true,
     webPreferences: {
       preload: path.join(__dirname, "..", "preload.js"),
     },
