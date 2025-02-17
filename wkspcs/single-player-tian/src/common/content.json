@@ -1,0 +1,13 @@
+{
+  "attract_video_path": "./common/assets/video/tian-attract.mp4",
+  "main_video_path": "./common/assets/video/tian-double-consciousness-blue.mp4",
+  "en": {
+    "attract": {
+      "title": "Double Consciousness",
+      "touch_to_begin": "TOUCH TO BEGIN"
+    },
+    "main_video": {
+      "return_home": "[Back to home]"
+    }
+  }
+}
