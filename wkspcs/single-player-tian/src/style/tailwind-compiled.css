@@ -618,6 +618,10 @@ video {
   margin: 20px;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
 }
@@ -660,16 +664,43 @@ video {
   padding: 2.25rem;
 }
 
-.pb-\[0\.25rem\] {
-  padding-bottom: 0.25rem;
+.p-10 {
+  padding: 2.5rem;
 }
 
-.pb-\[0\.5rem\] {
-  padding-bottom: 0.5rem;
+.p-4 {
+  padding: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.p-12 {
+  padding: 3rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pb-\[0\.75rem\] {
   padding-bottom: 0.75rem;
+}
+
+.pb-16 {
+  padding-bottom: 4rem;
 }
 
 .font-CaseTextLight {
@@ -689,13 +720,13 @@ video {
   line-height: 1;
 }
 
+.text-\[48px\] {
+  font-size: 48px;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-\[48px\] {
-  font-size: 48px;
 }
 
 .italic {

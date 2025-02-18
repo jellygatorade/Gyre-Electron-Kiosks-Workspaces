@@ -8,6 +8,7 @@ window.addEventListener("load", () => {
   domVars.attractView = document.getElementById("attract-view");
   domVars.attractVideoPlayer = document.getElementById("attract-video");
   domVars.attractOverlay = document.getElementById("attract-overlay");
+  domVars.attractAccentBg = document.getElementById("attract-accent-bg");
   domVars.attractTitle = document.getElementById("attract-title");
   domVars.attractTouchToBegin = document.getElementById("attract-touch-to-begin");
 

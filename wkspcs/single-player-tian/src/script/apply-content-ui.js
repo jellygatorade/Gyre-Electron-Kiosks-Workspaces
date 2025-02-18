@@ -2,6 +2,7 @@ import { domVars } from "./dom.js";
 
 function applyContent(data) {
   // Attract View
+  domVars.attractAccentBg.style.backgroundColor = data.accent_color;
   domVars.attractTitle.innerHTML = data.en.attract.title;
   domVars.attractTouchToBegin.innerHTML = data.en.attract.touch_to_begin;
 
