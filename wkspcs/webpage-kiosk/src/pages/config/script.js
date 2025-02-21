@@ -2,6 +2,7 @@
 
 const configForm = document.getElementById("config-form");
 const formInputKioskWebURL = document.getElementById("form-input-kiosk-web-url");
+const formInputBrowserZoomFactor = document.getElementById("form-input-browser-zoom-factor");
 const formInputTestConnection = document.getElementById("form-input-test-connection");
 const formInputTestConnectionInterval = document.getElementById("form-input-test-connection-interval");
 const formListItemTestConnectionInterval = document.getElementById("form-list-item-test-connection-interval");
@@ -14,9 +15,19 @@ const appConfig = await window.electron.appConfig.request();
 populateForm(appConfig);
 
 function populateForm(config) {
+  console.log(config);
   formInputKioskWebURL.value = config.kiosk_webpage_url;
+  formInputBrowserZoomFactor.value = config.browser_zoom_factor;
   formInputTestConnection.checked = config.test_connection;
   formInputTestConnectionInterval.value = config.test_connection_interval;
+}
+
+// Listen for config updates made in main process -------------
+
+window.electron.appConfig.onNewZoomFactor(onNewZoomFactor);
+
+function onNewZoomFactor(zoom_factor) {
+  formInputBrowserZoomFactor.value = zoom_factor;
 }
 
 // Submit Form ------------------------------------------------
@@ -55,7 +66,15 @@ function validate(userFormJSON) {
   } catch (error) {
     console.error(error);
     formInputKioskWebURL.style.color = "red";
-    validFormJSON = null;
+    return null;
+  }
+
+  if (isNumeric(userFormJSON?.browser_zoom_factor) && parseFloat(userFormJSON?.browser_zoom_factor)) {
+    validFormJSON.browser_zoom_factor = parseFloat(userFormJSON?.browser_zoom_factor);
+    formInputBrowserZoomFactor.style.color = "";
+  } else {
+    formInputBrowserZoomFactor.style.color = "red";
+    return null;
   }
 
   // no validation needed for checkbox, true/false only
@@ -70,7 +89,7 @@ function validate(userFormJSON) {
     formInputTestConnectionInterval.style.color = "";
   } else {
     formInputTestConnectionInterval.style.color = "red";
-    validFormJSON = null;
+    return null;
   }
 
   function isNumeric(num) {

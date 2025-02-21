@@ -43,6 +43,21 @@ function create() {
     window.webContents.reload();
   });
 
+  // ignore cache refresh
+  globalShortcut.register("CommandOrControl+Shift+R", () => {
+    window.webContents.reloadIgnoringCache();
+  });
+
+  // scale up
+  globalShortcut.register("CommandOrControl+=", () => {
+    window.webContents.send("increase-zoom-factor");
+  });
+
+  // scale down
+  globalShortcut.register("CommandOrControl+-", () => {
+    window.webContents.send("decrease-zoom-factor");
+  });
+
   // quit
   globalShortcut.register("ESC", function () {
     app.quit();
@@ -81,6 +96,10 @@ function create() {
     } else {
       console.log(`(Not initializing network tests per user configuration)`);
     }
+  });
+
+  window.webContents.addListener("dom-ready", () => {
+    window.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factor"));
   });
 
   // Load the initial uri -------------------------------------

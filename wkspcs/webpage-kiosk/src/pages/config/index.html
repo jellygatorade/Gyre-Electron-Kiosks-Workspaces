@@ -30,6 +30,26 @@
 
               <li class="mb-4">
                 <div class="mb-0.5 flex flex-row justify-between">
+                  <label for="form-input-browser-zoom-factor" class="">
+                    <h2 class="mb-0.5">Browser zoom factor</h2>
+                    <p class="text-neutral-300 text-xs leading-5 mb-1">Set viewport scale factor. Valid range from 0.5 to 3.0</p>
+                  </label>
+                  <div>
+                    <input
+                      id="form-input-browser-zoom-factor"
+                      name="browser_zoom_factor"
+                      type="number"
+                      min="0.5"
+                      max="3"
+                      step="0.01"
+                      class="w-24 text-black p-1 rounded-sm"
+                    />
+                  </div>
+                </div>
+              </li>
+
+              <li class="mb-4">
+                <div class="mb-0.5 flex flex-row justify-between">
                   <label for="form-input-test-connection" class="">
                     <h2 class="">Test network connection?</h2>
                   </label>
