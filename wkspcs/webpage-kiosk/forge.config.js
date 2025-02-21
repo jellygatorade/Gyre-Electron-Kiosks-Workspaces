@@ -20,7 +20,7 @@ module.exports = {
      */
     // asar: false,
     asar: { unpack: "*" },
-    icon: "./src/common/assets/icons/ncma-icon", // no file extension required
+    icon: "./src/common/assets/icons/ncma-icon-orange-white", // no file extension required
     overwrite: true,
   },
   rebuildConfig: {},
