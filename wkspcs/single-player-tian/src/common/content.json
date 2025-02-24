@@ -6,9 +6,6 @@
     "attract": {
       "title": "Double Consciousness",
       "touch_to_begin": "TOUCH TO BEGIN"
-    },
-    "main_video": {
-      "return_home": "[Back to home]"
     }
   }
 }

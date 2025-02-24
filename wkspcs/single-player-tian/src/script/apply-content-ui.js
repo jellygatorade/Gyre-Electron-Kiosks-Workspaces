@@ -10,7 +10,6 @@ function applyContent(data) {
 
   // Main Video Player
   domVars.mainVideoPlayer.src = data.main_video_path;
-  domVars.returnHomeBtn.innerHTML = data.en.main_video.return_home;
 }
 
 export { applyContent };
