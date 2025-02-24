@@ -5,7 +5,7 @@ const Store = require("./store.js");
 // Store setup ------------------------------------------------
 
 const defaults = {
-  kiosk_webpage_url: "https://nuxt-gyre-styles.pages.dev",
+  kiosk_webpage_url: "https://ncma-kiosks.pages.dev/",
   local_loading_page: path.join(__dirname, "..", "..", "/pages/loading/index.html"),
   local_config_page: path.join(__dirname, "..", "..", "/pages/config/index.html"),
   browser_zoom_factor: 1.0,
