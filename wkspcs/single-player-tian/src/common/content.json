@@ -1,6 +1,6 @@
 {
   "attract_video_path": "./common/assets/video/tian-attract.mp4",
-  "main_video_path": "./common/assets/video/tian-double-consciousness-blue.mp4",
+  "main_video_path": "./common/assets/video/tian-double-consciousness-blue-captioned.mp4",
   "accent_color": "#243446",
   "en": {
     "attract": {
