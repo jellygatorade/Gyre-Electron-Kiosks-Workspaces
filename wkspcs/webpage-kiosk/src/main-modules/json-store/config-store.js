@@ -5,6 +5,7 @@ const Store = require("./store.js");
 // Store setup ------------------------------------------------
 
 const defaults = {
+  quantity_displays: 1,
   kiosk_webpage_url: "https://ncma-kiosks.pages.dev/",
   local_loading_page: path.join(__dirname, "..", "..", "/pages/loading/index.html"),
   local_config_page: path.join(__dirname, "..", "..", "/pages/config/index.html"),
@@ -23,6 +24,7 @@ const configJSONStore = new Store.store({
 
 ipcMain.on("update-app-config-store-data", function (_event, formJSON) {
   // Form data
+  configJSONStore.set("quantity_displays", formJSON?.quantity_displays);
   configJSONStore.set("kiosk_webpage_url", formJSON?.kiosk_webpage_url);
   configJSONStore.set("browser_zoom_factor", formJSON?.browser_zoom_factor);
   configJSONStore.set("test_connection", formJSON?.test_connection);
@@ -35,6 +37,10 @@ ipcMain.on("update-app-config-store-data", function (_event, formJSON) {
   // Send reply back to sender
   // This is used to ensure intervalTask is updated to reflect a new "test_connection_interval" value
   _event.reply("app-config-updated");
+
+  // ADD ON_APP_CONFIG_UPDATED() function
+  // update_displays - create windows or destroy unecessary windows
+  // circular dependency between config-store.js and create-window.js ?
 });
 
 ipcMain.on("update-app-config-zoom-factor", function (_event, zoom_factor) {

@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, globalShortcut } = require("electron");
+const { app, BrowserWindow, Menu, globalShortcut, screen, ipcMain } = require("electron");
 const path = require("path");
 
 const { configJSONStore } = require("./json-store/config-store.js");
@@ -6,26 +6,15 @@ const { configJSONStore } = require("./json-store/config-store.js");
 const Navigator = require("./navigator.js");
 const NetworkTester = require("./network-tester/network-tester.js");
 
-let window;
+let windows = [];
+let uri_loaded_counter = 0;
 
-function create() {
-  window = new BrowserWindow({
-    x: 50,
-    y: 50,
-    fullscreen: true,
-    webPreferences: {
-      nodeIntegration: false, // is default value after Electron v5
-      contextIsolation: true, // protect against prototype pollution
-      enableRemoteModule: false, // turn off remote
-      preload: path.join(__dirname, "preload.js"),
-    },
-  });
-
+function init() {
   Menu.setApplicationMenu(null); // no application (top bar) menu
 
-  Navigator.win = window; // inject window depedency
+  Navigator.windows = windows; // inject window depedency
 
-  // Shortcuts ------------------------------------------------
+  // Shortcuts - App ----------------------------------------------------------
 
   // relaunch application
   globalShortcut.register("CommandOrControl+0", () => {
@@ -33,35 +22,38 @@ function create() {
     app.exit(0);
   });
 
-  // toggle DevTools
-  globalShortcut.register("CommandOrControl+Shift+I", () => {
-    window.webContents.toggleDevTools();
-  });
-
-  // reload page
-  globalShortcut.register("CommandOrControl+R", () => {
-    window.webContents.reload();
-  });
-
-  // ignore cache refresh
-  globalShortcut.register("CommandOrControl+Shift+R", () => {
-    window.webContents.reloadIgnoringCache();
-  });
-
-  // scale up
-  globalShortcut.register("CommandOrControl+=", () => {
-    window.webContents.send("increase-zoom-factor");
-  });
-
-  // scale down
-  globalShortcut.register("CommandOrControl+-", () => {
-    window.webContents.send("decrease-zoom-factor");
-  });
-
   // quit
   globalShortcut.register("ESC", function () {
     app.quit();
   });
+
+  // Shortcuts - Windows ------------------------------------------------------
+
+  // toggle DevTools
+  globalShortcut.register("CommandOrControl+Shift+I", () => {
+    BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
+  });
+
+  // reload page
+  globalShortcut.register("CommandOrControl+R", () => {
+    BrowserWindow.getFocusedWindow().reload();
+  });
+
+  // ignore cache refresh
+  globalShortcut.register("CommandOrControl+Shift+R", () => {
+    // console.log(BrowserWindow.getFocusedWindow());
+    BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
+  });
+
+  // // scale up
+  // globalShortcut.register("CommandOrControl+=", () => {
+  //   window.webContents.send("increase-zoom-factor");
+  // });
+
+  // // scale down
+  // globalShortcut.register("CommandOrControl+-", () => {
+  //   window.webContents.send("decrease-zoom-factor");
+  // });
 
   // navigate
   globalShortcut.register("CommandOrControl+1", function () {
@@ -77,18 +69,104 @@ function create() {
   globalShortcut.register("CommandOrControl+3", function () {
     Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
   });
+}
+
+ipcMain.handle("recreate-windows", (event) => {
+  console.log(`recreate-windows handled in create-window.js`);
+  create();
+  windows.forEach((win) => win.loadURL(configJSONStore.get("local_config_page")));
+});
+
+function create() {
+  const OS_displays = screen.getAllDisplays();
+  const app_config_quantity_displays = parseInt(configJSONStore.get("quantity_displays"));
+
+  // if more windows are open than requested per app_config
+  // this is never true on initialization
+  while (windows.length > app_config_quantity_displays) {
+    windows[windows.length - 1].destroy();
+  }
+
+  // loop from windows.length (existing windows) to app_config_quantity_displays (total needed)
+  for (let i = windows.length; i < app_config_quantity_displays; i++) {
+    const new_window = new BrowserWindow({
+      // if external display is available, create the second window in fullscreen mode on the second display
+      // if external display is not available, create a windowed version on the first display
+      x: OS_displays?.[i]?.bounds?.x || 50,
+      y: OS_displays?.[i]?.bounds?.y || 50,
+      fullscreen: i > 0 ? OS_displays.length > i : true, // first display always fullscreen, rest are dependent on if other OS_displays exist
+      webPreferences: {
+        nodeIntegration: false, // is default value after Electron v5
+        contextIsolation: true, // protect against prototype pollution
+        enableRemoteModule: false, // turn off remote
+        preload: path.join(__dirname, "preload.js"),
+      },
+    });
+
+    // console.log(`the new window id is: ${new_window.id}`);
+
+    // remove from windows array when closed
+    new_window.on("closed", () => {
+      console.log("closed a window");
+      const index = windows.indexOf(new_window);
+      if (index > -1) {
+        windows.splice(index, 1);
+      }
+    });
+
+    // ...
+    new_window.webContents.addListener("did-finish-load", () => {
+      uri_loaded_counter++;
+      if (uri_loaded_counter === windows.length) {
+        uri_loaded_counter = 0;
+        startNetworkTester();
+      }
+    });
+
+    // ...
+    new_window.webContents.addListener("dom-ready", () => {
+      new_window.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factor"));
+    });
+
+    windows.push(new_window);
+  }
 
   // Events ---------------------------------------------------
 
-  window.webContents.addListener("did-finish-load", () => {
+  // counter = 0
+  // one each 'did-finish-load'
+  // increment counter
+  // if counter == windows.length
+  // then initialise the NetworkTester
+  // and reset counter to 0
+
+  // ADD IN FOR LOOP SO THAT LISTENER ONLY GETS ADDED ON WINDOW INITIALZIATION
+
+  // windows.forEach((win) =>
+  //   win.webContents.addListener("did-finish-load", () => {
+  //     uri_loaded_counter++;
+  //     if (uri_loaded_counter === windows.length) {
+  //       uri_loaded_counter = 0;
+  //       startNetworkTester();
+  //     }
+  //   })
+  // );
+
+  function startNetworkTester() {
     if (configJSONStore.get("test_connection")) {
       // Use NetworkTester on web kiosk or the loading page
       // Stop NetworkTester on config page
 
-      const uri = window.webContents.getURL();
-      const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
+      const URIs = [];
+      windows.forEach((win) => URIs.push(win.webContents.getURL()));
 
-      if (isWeb || uri.includes("loading")) {
+      let NetworkTester_isNeeded = false;
+      URIs.forEach((uri) => {
+        const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
+        NetworkTester_isNeeded = isWeb || uri.includes("loading");
+      });
+
+      if (NetworkTester_isNeeded) {
         NetworkTester.start();
       } else {
         NetworkTester.stop();
@@ -96,23 +174,52 @@ function create() {
     } else {
       console.log(`(Not initializing network tests per user configuration)`);
     }
-  });
+  }
 
-  window.webContents.addListener("dom-ready", () => {
-    window.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factor"));
-  });
+  // windows[0].webContents.addListener("did-finish-load", () => {
+  //   if (configJSONStore.get("test_connection")) {
+  //     // Use NetworkTester on web kiosk or the loading page
+  //     // Stop NetworkTester on config page
 
-  // Load the initial uri -------------------------------------
+  //     const uri = windows[0].webContents.getURL();
+  //     const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
 
+  //     if (isWeb || uri.includes("loading")) {
+  //       NetworkTester.start();
+  //     } else {
+  //       NetworkTester.stop();
+  //     }
+  //   } else {
+  //     console.log(`(Not initializing network tests per user configuration)`);
+  //   }
+  // });
+
+  // just add this to all BrowserWindows for now?
+
+  // ADD IN FOR LOOP SO THAT LISTENER ONLY GETS ADDED ON WINDOW INITIALZIATION
+
+  // windows.forEach((win) =>
+  //   win.webContents.addListener("dom-ready", () => {
+  //     win.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factor"));
+  //   })
+  // );
+
+  // windows[0].webContents.addListener("dom-ready", () => {
+  //   windows[0].webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factor"));
+  // });
+}
+
+// Load the initial uri -------------------------------------
+function loadURIs() {
   if (configJSONStore.get("test_connection")) {
-    window.loadURL(configJSONStore.get("local_loading_page"));
+    windows.forEach((win) => win.loadURL(configJSONStore.get("local_loading_page")));
   } else {
-    window.loadURL(configJSONStore.get("kiosk_webpage_url"));
+    windows.forEach((win) => win.loadURL(configJSONStore.get("kiosk_webpage_url")));
   }
 }
 
 function get() {
-  return window;
+  return windows;
 }
 
-module.exports = { create, get };
+module.exports = { init, create, loadURIs, get };

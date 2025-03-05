@@ -21,6 +21,26 @@
           <form id="config-form" class="w-full">
             <ul class="mb-8">
               <li class="mb-4">
+                <div class="mb-0.5 flex flex-row justify-between">
+                  <label for="form-input-quantity-displays" class="">
+                    <h2 class="mb-0.5">How many displays?</h2>
+                    <p class="text-neutral-300 text-xs leading-5 mb-1">Set the number of displays, integers only.</p>
+                  </label>
+                  <div>
+                    <input
+                      id="form-input-quantity-displays"
+                      name="quantity_displays"
+                      type="number"
+                      min="1"
+                      max="3"
+                      step="1"
+                      class="w-24 text-black p-1 rounded-sm"
+                    />
+                  </div>
+                </div>
+              </li>
+
+              <li class="mb-4">
                 <label for="form-input-kiosk-web-url" class="">
                   <h2 class="mb-0.5">Kiosk Webpage URL</h2>
                   <p class="text-neutral-300 text-xs leading-5 mb-1">In the form of "http://..." or "https://..."</p>

@@ -1,6 +1,7 @@
 // DOM --------------------------------------------------------
 
 const configForm = document.getElementById("config-form");
+const formInputQuantityDisplays = document.getElementById("form-input-quantity-displays");
 const formInputKioskWebURL = document.getElementById("form-input-kiosk-web-url");
 const formInputBrowserZoomFactor = document.getElementById("form-input-browser-zoom-factor");
 const formInputTestConnection = document.getElementById("form-input-test-connection");
@@ -16,6 +17,7 @@ populateForm(appConfig);
 
 function populateForm(config) {
   console.log(config);
+  formInputQuantityDisplays.value = config.quantity_displays;
   formInputKioskWebURL.value = config.kiosk_webpage_url;
   formInputBrowserZoomFactor.value = config.browser_zoom_factor;
   formInputTestConnection.checked = config.test_connection;
@@ -58,6 +60,14 @@ function validate(userFormJSON) {
   let validFormJSON = {};
 
   // validate per input
+
+  if (isNumeric(userFormJSON?.quantity_displays) && parseInt(userFormJSON?.quantity_displays)) {
+    validFormJSON.quantity_displays = parseInt(userFormJSON?.quantity_displays);
+    formInputQuantityDisplays.style.color = "";
+  } else {
+    formInputQuantityDisplays.style.color = "red";
+    return null;
+  }
 
   try {
     const formURL = new URL(userFormJSON?.kiosk_webpage_url);
@@ -113,6 +123,10 @@ async function resetFormDefaults() {
 }
 
 resetFormDefaultsBtn.addEventListener("click", resetFormDefaults);
+
+// KioskWebURL + browser-zoom-factor input conditionally --------------------------------
+
+// ...
 
 // Show frequency input conditionally -------------------------
 

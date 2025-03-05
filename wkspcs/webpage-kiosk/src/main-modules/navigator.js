@@ -2,7 +2,7 @@
 // load a remote web address --- window.loadURL(config.KIOSK_WEBPAGE_URL)
 
 class Navigator {
-  static win = null;
+  static windows = null;
   static state = null;
 
   static goTo({ uri }) {
@@ -10,7 +10,9 @@ class Navigator {
     const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
 
     if (this.state !== uri) {
-      isWeb ? this.win.loadURL(uri) : this.win.loadFile(uri);
+      // console.log(this.windows);
+      // isWeb ? this.windows.loadURL(uri) : this.windows.loadFile(uri);
+      isWeb ? this.windows.forEach((win) => win.loadURL(uri)) : this.windows.forEach((win) => win.loadFile(uri));
       this.state = uri;
     }
   }

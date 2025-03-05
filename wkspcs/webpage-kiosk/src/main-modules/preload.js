@@ -8,6 +8,7 @@ const { contextBridge, ipcRenderer, webFrame } = require("electron");
  */
 ipcRenderer.on("app-config-updated", function (_event, res) {
   ipcRenderer.invoke("reset-test-connection-task");
+  ipcRenderer.invoke("recreate-windows");
 });
 
 // Zoom factor ------------------------------------------------
