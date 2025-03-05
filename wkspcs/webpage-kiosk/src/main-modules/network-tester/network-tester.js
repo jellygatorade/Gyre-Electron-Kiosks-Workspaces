@@ -27,7 +27,6 @@ setConnectionTask();
 
 // Clear old and re-initiate intervalTask upon new app config
 ipcMain.handle("reset-test-connection-task", (event) => {
-  console.log(`reset-test-connection-task handled in network-tester.js`);
   setConnectionTask();
 });
 

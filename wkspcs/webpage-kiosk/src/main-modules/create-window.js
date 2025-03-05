@@ -6,7 +6,9 @@ const { configJSONStore } = require("./json-store/config-store.js");
 const Navigator = require("./navigator.js");
 const NetworkTester = require("./network-tester/network-tester.js");
 
+// let recreate = false;
 let windows = [];
+let new_windows_on_recreate = [];
 let uri_loaded_counter = 0;
 
 function init() {
@@ -71,13 +73,17 @@ function init() {
   });
 }
 
+// IS IPC THE BEST WAY TO HANDLE THIS?
 ipcMain.handle("recreate-windows", (event) => {
-  console.log(`recreate-windows handled in create-window.js`);
-  create();
-  windows.forEach((win) => win.loadURL(configJSONStore.get("local_config_page")));
+  recreate = true; // set flag to signify this is not the first call to creation ... could be passed as function param instead
+  create({ initial_creation: false });
+
+  // Set newly created windows to config page
+  new_windows_on_recreate.forEach((win) => win.loadURL(configJSONStore.get("local_config_page")));
+  new_windows_on_recreate.length = 0; // clear the list of recently created windows
 });
 
-function create() {
+function create({ initial_creation }) {
   const OS_displays = screen.getAllDisplays();
   const app_config_quantity_displays = parseInt(configJSONStore.get("quantity_displays"));
 
@@ -103,18 +109,17 @@ function create() {
       },
     });
 
-    // console.log(`the new window id is: ${new_window.id}`);
-
     // remove from windows array when closed
     new_window.on("closed", () => {
-      console.log("closed a window");
+      console.log(`(Closing a window, window id: ${new_window.id})`);
       const index = windows.indexOf(new_window);
       if (index > -1) {
         windows.splice(index, 1);
       }
     });
 
-    // ...
+    // ... TO BE REVISITED
+    // (start network tester when all windows 'did-finish-load')
     new_window.webContents.addListener("did-finish-load", () => {
       uri_loaded_counter++;
       if (uri_loaded_counter === windows.length) {
@@ -123,12 +128,13 @@ function create() {
       }
     });
 
-    // ...
+    // ... TO BE REVISITED
     new_window.webContents.addListener("dom-ready", () => {
       new_window.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factor"));
     });
 
     windows.push(new_window);
+    if (!initial_creation) new_windows_on_recreate.push(new_window); // if not the first time
   }
 
   // Events ---------------------------------------------------

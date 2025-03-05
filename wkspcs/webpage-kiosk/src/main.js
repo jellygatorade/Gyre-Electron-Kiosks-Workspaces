@@ -8,7 +8,7 @@ const appWindows = require("./main-modules/create-window.js");
 
 function onAppReady() {
   appWindows.init(); // creates global keyboard shortcuts
-  appWindows.create(); // creates electron.BrowserWindow(s)
+  appWindows.create({ initial_creation: true }); // creates electron.BrowserWindow(s)
   appWindows.loadURIs(); //
 
   // require modules that depend on appWindow here
