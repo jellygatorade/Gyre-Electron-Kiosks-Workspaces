@@ -1,7 +1,9 @@
 // 3/6 to do
 // - use app defaults to populate new display urls (const defaults = await window.electron.appConfig.getDefaults();)
-// - receive and respond to zoom factors in preload.js
+// - make form invalid form input (bad url) apparent
 // - live update zoom factors in this form
+// - per window zoom factor
+// - Display 1/2/3 headings on display options
 
 // DOM ------------------------------------------------------------------------------------------------------
 
