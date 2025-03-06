@@ -1,8 +1,9 @@
 // 3/6 to do
 // - use app defaults to populate new display urls (const defaults = await window.electron.appConfig.getDefaults();)
 // - make form invalid form input (bad url) apparent
-// - live update zoom factors in this form
-// - per window zoom factor
+// x - live update zoom factors in this form
+// x - per window zoom factor
+// - re-org create-window script (moved an ipcMain handler there, idk various other things)
 // - Display 1/2/3 headings on display options
 
 // DOM ------------------------------------------------------------------------------------------------------
@@ -62,9 +63,9 @@ function populateBrowserZoomFactors(config) {
 
 window.electron.appConfig.onNewZoomFactor(onNewZoomFactor);
 
-function onNewZoomFactor(zoom_factor) {
-  // formInputBrowserZoomFactor.value = zoom_factor;
-  console.log(zoom_factor);
+function onNewZoomFactor(zoom_factor, window_index) {
+  const input = document.getElementById(`form-input-browser-zoom-factor-DISPLAY${window_index}`);
+  input.value = zoom_factor;
 }
 
 // Submit Form ----------------------------------------------------------------------------------------------

@@ -2,6 +2,8 @@ const path = require("path");
 const ipcMain = require("electron").ipcMain;
 const Store = require("./store.js");
 
+// const getWindows = require("../create-window.js").get;
+
 // Store setup ------------------------------------------------
 
 const defaults = {
@@ -45,19 +47,26 @@ ipcMain.on("update-app-config-store-data", function (_event, formJSON) {
   // circular dependency between config-store.js and create-window.js ?
 });
 
-ipcMain.on("update-app-config-zoom-factor", function (_event, zoom_factor) {
-  console.log(`(Changed zoom factor: ${zoom_factor})`);
+// MOVED TO CREATE-WINDOW FOR ACCESS TO THE WINDOWS ARRAY
+// ipcMain.on("update-app-config-zoom-factor", function (_event, zoom_factor, window_index) {
+//   console.log(`(Changed zoom factor for windows[${window_index}]: ${zoom_factor})`);
 
-  const quantity_displays = configJSONStore.get("quantity_displays");
-  let browser_zoom_factors = [];
+//   // const quantity_displays = configJSONStore.get("quantity_displays");
+//   const browser_zoom_factors = configJSONStore.get("browser_zoom_factors");
+//   // let browser_zoom_factors = [];
 
-  for (let i = 0; i < quantity_displays; i++) {
-    browser_zoom_factors.push(zoom_factor);
-  }
+//   // for (let i = 0; i < quantity_displays; i++) {
+//   //   browser_zoom_factors.push(zoom_factor);
+//   // }
+//   browser_zoom_factors[window_index] = zoom_factor;
 
-  configJSONStore.set("browser_zoom_factors", browser_zoom_factors);
-  _event.reply("new-zoom-factor", zoom_factor); // send back to renderer for changing value in form
-});
+//   configJSONStore.set("browser_zoom_factors", browser_zoom_factors);
+//   // _event.reply("new-zoom-factor", zoom_factor, window_index); // send back to renderer for changing value in form
+
+//   // // TESTING
+//   // const windows = getWindows();
+//   // windows[0].webContents.send("new-zoom-factor", zoom_factor, window_index);
+// });
 
 ipcMain.handle("get-app-config-store-data", async (_event) => {
   const config = configJSONStore.get();

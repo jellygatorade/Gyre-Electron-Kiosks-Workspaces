@@ -50,13 +50,21 @@ function init() {
   // scale up
   globalShortcut.register("CommandOrControl+=", () => {
     // window.webContents.send("increase-zoom-factor");
-    windows.forEach((win) => win.webContents.send("increase-zoom-factor"));
+    // windows.forEach((win) => win.webContents.send("increase-zoom-factor"));
+    const focused_window = BrowserWindow.getFocusedWindow();
+    const window_index = windows.indexOf(focused_window);
+    // console.log(`create-window: ${window_index}`);
+    focused_window.webContents.send("increase-zoom-factor", window_index);
   });
 
   // scale down
   globalShortcut.register("CommandOrControl+-", () => {
     // window.webContents.send("decrease-zoom-factor");
-    windows.forEach((win) => win.webContents.send("decrease-zoom-factor"));
+    // windows.forEach((win) => win.webContents.send("decrease-zoom-factor"));
+    const focused_window = BrowserWindow.getFocusedWindow();
+    const window_index = windows.indexOf(focused_window);
+    // console.log(`create-window: ${window_index}`);
+    focused_window.webContents.send("decrease-zoom-factor", window_index);
   });
 
   // navigate
@@ -75,6 +83,19 @@ function init() {
     Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
   });
 }
+
+// ipcMain handlers -----------------------------------------------------------
+
+// TESTING MOVING THIS HERE FROM CONFIG-STORE
+ipcMain.on("update-app-config-zoom-factor", function (_event, zoom_factor, window_index) {
+  console.log(`(Changed zoom factor for windows[${window_index}]: ${zoom_factor})`);
+
+  const browser_zoom_factors = configJSONStore.get("browser_zoom_factors");
+  browser_zoom_factors[window_index] = zoom_factor;
+
+  configJSONStore.set("browser_zoom_factors", browser_zoom_factors);
+  windows[0].webContents.send("new-zoom-factor", zoom_factor, window_index); // send to primary window renderer for changing value in form
+});
 
 // IS IPC THE BEST WAY TO HANDLE THIS?
 ipcMain.handle("recreate-windows", (event) => {
@@ -131,9 +152,9 @@ function create({ initial_creation }) {
       }
     });
 
-    // ... TO BE REVISITED
+    // ... TO BE REVISITED - make sure i is the correct index for browser zoom factors
     new_window.webContents.addListener("dom-ready", () => {
-      new_window.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factor"));
+      new_window.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factors")[i] || 1);
     });
 
     windows.push(new_window);

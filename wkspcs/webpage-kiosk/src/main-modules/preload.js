@@ -13,24 +13,26 @@ ipcRenderer.on("app-config-updated", function (_event, res) {
 
 // Zoom factor ------------------------------------------------
 
-ipcRenderer.on("init-zoom-factor", function (_event, scale) {
-  webFrame.setZoomFactor(scale);
+ipcRenderer.on("init-zoom-factor", function (_event, zoom_factor) {
+  webFrame.setZoomFactor(zoom_factor);
 });
 
-ipcRenderer.on("increase-zoom-factor", (_event) => {
+ipcRenderer.on("increase-zoom-factor", (_event, window_index) => {
+  // console.log(`preload: ${window_index}`);
   let zoom = webFrame.getZoomFactor();
   zoom = zoom + 0.1;
   zoom = round(zoom, 1); // round to nearest tenth
   webFrame.setZoomFactor(zoom);
-  ipcRenderer.send("update-app-config-zoom-factor", zoom);
+  ipcRenderer.send("update-app-config-zoom-factor", zoom, window_index);
 });
 
-ipcRenderer.on("decrease-zoom-factor", (_event) => {
+ipcRenderer.on("decrease-zoom-factor", (_event, window_index) => {
+  // console.log(`preload: ${window_index}`);
   let zoom = webFrame.getZoomFactor();
   zoom = zoom - 0.1;
   zoom = round(zoom, 1); // round to nearest tenth
   webFrame.setZoomFactor(zoom);
-  ipcRenderer.send("update-app-config-zoom-factor", zoom);
+  ipcRenderer.send("update-app-config-zoom-factor", zoom, window_index);
 });
 
 // Expose window props ----------------------------------------
@@ -59,8 +61,8 @@ contextBridge.exposeInMainWorld("electron", {
      *    ipcRenderer - src/pages/config/script.js
      */
     onNewZoomFactor: (callback) =>
-      ipcRenderer.on("new-zoom-factor", (_event, value) => {
-        callback(value);
+      ipcRenderer.on("new-zoom-factor", (_event, zoom_factor, window_index) => {
+        callback(zoom_factor, window_index);
       }),
   },
 });
