@@ -47,15 +47,17 @@ function init() {
     BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
   });
 
-  // // scale up
-  // globalShortcut.register("CommandOrControl+=", () => {
-  //   window.webContents.send("increase-zoom-factor");
-  // });
+  // scale up
+  globalShortcut.register("CommandOrControl+=", () => {
+    // window.webContents.send("increase-zoom-factor");
+    windows.forEach((win) => win.webContents.send("increase-zoom-factor"));
+  });
 
-  // // scale down
-  // globalShortcut.register("CommandOrControl+-", () => {
-  //   window.webContents.send("decrease-zoom-factor");
-  // });
+  // scale down
+  globalShortcut.register("CommandOrControl+-", () => {
+    // window.webContents.send("decrease-zoom-factor");
+    windows.forEach((win) => win.webContents.send("decrease-zoom-factor"));
+  });
 
   // navigate
   globalShortcut.register("CommandOrControl+1", function () {

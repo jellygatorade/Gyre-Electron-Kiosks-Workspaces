@@ -47,7 +47,15 @@ ipcMain.on("update-app-config-store-data", function (_event, formJSON) {
 
 ipcMain.on("update-app-config-zoom-factor", function (_event, zoom_factor) {
   console.log(`(Changed zoom factor: ${zoom_factor})`);
-  configJSONStore.set("browser_zoom_factor", zoom_factor);
+
+  const quantity_displays = configJSONStore.get("quantity_displays");
+  let browser_zoom_factors = [];
+
+  for (let i = 0; i < quantity_displays; i++) {
+    browser_zoom_factors.push(zoom_factor);
+  }
+
+  configJSONStore.set("browser_zoom_factors", browser_zoom_factors);
   _event.reply("new-zoom-factor", zoom_factor); // send back to renderer for changing value in form
 });
 

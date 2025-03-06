@@ -1,10 +1,15 @@
-// DOM --------------------------------------------------------
+// 3/6 to do
+// - use app defaults to populate new display urls (const defaults = await window.electron.appConfig.getDefaults();)
+// - receive and respond to zoom factors in preload.js
+// - live update zoom factors in this form
+
+// DOM ------------------------------------------------------------------------------------------------------
 
 const configForm = document.getElementById("config-form");
 
 const displayInputsContainer = document.getElementById("display-inputs-container");
 const optionsDISPLAYX = document.getElementById("options-DISPLAYX");
-const display_options_x = optionsDISPLAYX.cloneNode(true);
+const display_options_x = optionsDISPLAYX.cloneNode(true); // change name to options_display_x_template
 
 const formInputQuantityDisplays = document.getElementById("form-input-quantity-displays");
 const formInputKioskWebURL = document.getElementById("form-input-kiosk-web-url");
@@ -14,7 +19,7 @@ const formInputTestConnectionInterval = document.getElementById("form-input-test
 const formListItemTestConnectionInterval = document.getElementById("form-list-item-test-connection-interval");
 const resetFormDefaultsBtn = document.getElementById("reset-form-defaults-btn");
 
-// Initialize Form --------------------------------------------
+// Initialize Form ------------------------------------------------------------------------------------------
 
 // Request the stored data from main.js containing either default or previous input
 const appConfig = await window.electron.appConfig.request();
@@ -23,7 +28,7 @@ populateForm(appConfig);
 onChange_formInputQuantityDisplays(); // creates
 onChange_formInputTestConnection();
 
-// Populate Form ----------------------------------------------
+// Populate Form --------------------------------------------------------------------------------------------
 
 function populateForm(config) {
   console.log(config);
@@ -51,7 +56,7 @@ function populateBrowserZoomFactors(config) {
   }
 }
 
-// Listen for config updates made in main process -------------
+// Listen for config updates made in main process -----------------------------------------------------------
 
 window.electron.appConfig.onNewZoomFactor(onNewZoomFactor);
 
@@ -60,7 +65,7 @@ function onNewZoomFactor(zoom_factor) {
   console.log(zoom_factor);
 }
 
-// Submit Form ------------------------------------------------
+// Submit Form ----------------------------------------------------------------------------------------------
 
 function submitForm(event) {
   event?.preventDefault();
@@ -81,7 +86,7 @@ function submitForm(event) {
 
 configForm.addEventListener("submit", submitForm);
 
-// Validate Form ----------------------------------------------
+// Validate Form --------------------------------------------------------------------------------------------
 
 function validate(userFormJSON) {
   let validFormJSON = {};
@@ -146,7 +151,7 @@ function validate(userFormJSON) {
   return validFormJSON;
 }
 
-// Reset Form Defaults ----------------------------------------
+// Reset Form Defaults --------------------------------------------------------------------------------------
 
 async function resetFormDefaults() {
   const defaults = await window.electron.appConfig.getDefaults();
@@ -157,7 +162,7 @@ async function resetFormDefaults() {
 
 resetFormDefaultsBtn.addEventListener("click", resetFormDefaults);
 
-// KioskWebURL + browser-zoom-factor input conditionally --------------------------------
+// Change # of kiosk-web-url + browser-zoom-factor inputs with quantity-displays ----------------------------
 
 formInputQuantityDisplays.addEventListener("change", onChange_formInputQuantityDisplays);
 
@@ -197,7 +202,7 @@ function createDisplayInputFields(iteration) {
   return new_display_options;
 }
 
-// Show frequency input conditionally -------------------------
+// Show frequency input conditionally -----------------------------------------------------------------------
 
 formInputTestConnection.addEventListener("change", onChange_formInputTestConnection);
 
@@ -214,7 +219,7 @@ function onChange_formInputTestConnection() {
   }
 }
 
-// Utilities --------------------------------------------------
+// Utilities ------------------------------------------------------------------------------------------------
 
 function getFormJSON() {
   const data = new FormData(configForm);
