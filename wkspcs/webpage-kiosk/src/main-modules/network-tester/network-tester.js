@@ -8,10 +8,10 @@ const { configJSONStore } = require("../json-store/config-store.js");
 // Setup Task -------------------------------------------------
 
 async function testConnection() {
-  const connection = await isReachable(configJSONStore.get("kiosk_webpage_url"));
+  const connection = await isReachable(configJSONStore.get("kiosk_webpage_urls")[0]);
 
   if (connection) {
-    Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_url") });
+    Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
   } else {
     Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
   }

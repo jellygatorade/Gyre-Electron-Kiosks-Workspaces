@@ -20,7 +20,7 @@ const resetFormDefaultsBtn = document.getElementById("reset-form-defaults-btn");
 const appConfig = await window.electron.appConfig.request();
 populateForm(appConfig);
 
-onChange_formInputQuantityDisplays();
+onChange_formInputQuantityDisplays(); // creates
 onChange_formInputTestConnection();
 
 // Populate Form ----------------------------------------------
@@ -30,8 +30,25 @@ function populateForm(config) {
   formInputQuantityDisplays.value = config.quantity_displays;
   // formInputKioskWebURL.value = config.kiosk_webpage_url;
   // formInputBrowserZoomFactor.value = config.browser_zoom_factor;
+  // onChange_formInputQuantityDisplays();
+  // onChange_formInputTestConnection();
   formInputTestConnection.checked = config.test_connection;
   formInputTestConnectionInterval.value = config.test_connection_interval;
+}
+
+function populateKioskWebURLs(config) {
+  for (let i = 0; i < config.quantity_displays; i++) {
+    const url_input = document.getElementById(`form-input-kiosk-web-url-DISPLAY${i}`);
+    console.log(url_input);
+    url_input.value = config.kiosk_webpage_urls[i] || "unconfigured";
+  }
+}
+
+function populateBrowserZoomFactors(config) {
+  for (let i = 0; i < config.quantity_displays; i++) {
+    const zoom_input = document.getElementById(`form-input-browser-zoom-factor-DISPLAY${i}`);
+    zoom_input.value = config.browser_zoom_factors[i] || 1;
+  }
 }
 
 // Listen for config updates made in main process -------------
@@ -39,7 +56,8 @@ function populateForm(config) {
 window.electron.appConfig.onNewZoomFactor(onNewZoomFactor);
 
 function onNewZoomFactor(zoom_factor) {
-  formInputBrowserZoomFactor.value = zoom_factor;
+  // formInputBrowserZoomFactor.value = zoom_factor;
+  console.log(zoom_factor);
 }
 
 // Submit Form ------------------------------------------------
@@ -166,6 +184,9 @@ function createDisplayInputFields(iteration) {
   url_input.addEventListener("input", () => {
     url_input.style.color = "";
   });
+
+  url_input.value = appConfig.kiosk_webpage_urls[iteration] || "default"; // POPULATE USING APPCONFIG FOR NOW
+  zoom_input.value = appConfig.browser_zoom_factors[iteration] || 1; // POPULATE USING APPCONFIG FOR NOW
 
   replaceStringInAttributes(new_display_options, `DISPLAYX`, `DISPLAY${iteration}`);
   replaceStringInAttributes(url_label, `DISPLAYX`, `DISPLAY${iteration}`);

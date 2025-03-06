@@ -59,7 +59,8 @@ function init() {
 
   // navigate
   globalShortcut.register("CommandOrControl+1", function () {
-    Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_url") });
+    // console.log(configJSONStore.get("kiosk_webpage_urls")[0]);
+    Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
   });
 
   // navigate

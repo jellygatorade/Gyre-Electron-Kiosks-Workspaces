@@ -6,11 +6,11 @@ const Store = require("./store.js");
 
 const defaults = {
   quantity_displays: 1,
-  kiosk_webpage_url: "https://ncma-kiosks.pages.dev/",
+  kiosk_webpage_urls: ["https://ncma-kiosks.pages.dev/"],
   local_loading_page: path.join(__dirname, "..", "..", "/pages/loading/index.html"),
   local_config_page: path.join(__dirname, "..", "..", "/pages/config/index.html"),
   // local_config_page_secondary: path.join(__dirname, "..", "..", "/pages/config/index-secondary.html"), // secondary displays get a placeholder page when the kiosk is in config state
-  browser_zoom_factor: 1.0,
+  browser_zoom_factors: [1.0],
   test_connection: true,
   test_connection_interval: 60,
 };
@@ -26,8 +26,8 @@ const configJSONStore = new Store.store({
 ipcMain.on("update-app-config-store-data", function (_event, formJSON) {
   // Form data
   configJSONStore.set("quantity_displays", formJSON?.quantity_displays);
-  configJSONStore.set("kiosk_webpage_url", formJSON?.kiosk_webpage_url);
-  configJSONStore.set("browser_zoom_factor", formJSON?.browser_zoom_factor);
+  configJSONStore.set("kiosk_webpage_urls", formJSON?.kiosk_webpage_urls);
+  configJSONStore.set("browser_zoom_factors", formJSON?.browser_zoom_factors);
   configJSONStore.set("test_connection", formJSON?.test_connection);
   configJSONStore.set("test_connection_interval", formJSON?.test_connection_interval);
 
