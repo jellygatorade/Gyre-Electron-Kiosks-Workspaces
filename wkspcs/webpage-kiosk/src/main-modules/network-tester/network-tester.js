@@ -11,9 +11,11 @@ async function testConnection() {
   const connection = await isReachable(configJSONStore.get("kiosk_webpage_urls")[0]);
 
   if (connection) {
-    Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
+    // Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
+    Navigator.setState({ state: Navigator.states.live });
   } else {
-    Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
+    // Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
+    Navigator.setState({ state: Navigator.states.loading });
   }
 }
 

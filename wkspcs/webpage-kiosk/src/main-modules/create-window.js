@@ -69,18 +69,20 @@ function init() {
 
   // navigate
   globalShortcut.register("CommandOrControl+1", function () {
-    // console.log(configJSONStore.get("kiosk_webpage_urls")[0]);
-    Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
+    // Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
+    Navigator.setState({ state: Navigator.states.live });
   });
 
   // navigate
   globalShortcut.register("CommandOrControl+2", function () {
-    Navigator.goTo({ uri: configJSONStore.get("local_config_page") });
+    // Navigator.goTo({ uri: configJSONStore.get("local_config_page") });
+    Navigator.setState({ state: Navigator.states.config });
   });
 
   // navigate
   globalShortcut.register("CommandOrControl+3", function () {
-    Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
+    // Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
+    Navigator.setState({ state: Navigator.states.loading });
   });
 }
 

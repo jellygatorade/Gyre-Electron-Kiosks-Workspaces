@@ -23,6 +23,39 @@ class Navigator {
     loading: 3,
   });
 
+  static setState({ state }) {
+    const isWeb = function (uri) {
+      return uri.startsWith("http://") || uri.startsWith("https://");
+    };
+
+    switch (state) {
+      case this.states.live:
+        const uris = configJSONStore.get("kiosk_webpage_urls");
+        this.windows.forEach((win, index) => {
+          const this_win_uri = uris[index];
+          isWeb(this_win_uri) ? win.loadURL(this_win_uri) : win.loadFile(this_win_uri);
+        });
+        break;
+
+      case this.states.config:
+        const config_uri = configJSONStore.get("local_config_page");
+        this.windows.forEach((win, index) => {
+          isWeb(config_uri) ? win.loadURL(config_uri) : win.loadFile(config_uri);
+        });
+        break;
+
+      case this.states.loading:
+        const loading_uri = configJSONStore.get("local_loading_page");
+        this.windows.forEach((win, index) => {
+          isWeb(loading_uri) ? win.loadURL(loading_uri) : win.loadFile(loading_uri);
+        });
+        break;
+
+      default:
+        console.log(`(Requested state not found in Navigator.states)`);
+    }
+  }
+
   static goTo({ uri }) {
     uri = uri.trim().toLowerCase();
     const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
