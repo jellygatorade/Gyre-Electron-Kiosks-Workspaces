@@ -1,6 +1,6 @@
 // 3/6 to do
 // - use app defaults to populate new display urls (const defaults = await window.electron.appConfig.getDefaults();)
-// - make form invalid form input (bad url) apparent
+// x - make form invalid form input (bad url) apparent
 // x - live update zoom factors in this form
 // x - per window zoom factor
 // - re-org create-window script (moved an ipcMain handler there, idk various other things)
@@ -96,42 +96,54 @@ function validate(userFormJSON) {
 
   // validate per input
 
+  // quantity displays
   if (isNumeric(userFormJSON?.quantity_displays) && parseInt(userFormJSON?.quantity_displays)) {
     validFormJSON.quantity_displays = parseInt(userFormJSON?.quantity_displays);
+    formInputQuantityDisplays.style.backgroundColor = "";
     formInputQuantityDisplays.style.color = "";
   } else {
-    formInputQuantityDisplays.style.color = "red";
+    formInputQuantityDisplays.style.backgroundColor = "pink";
+    formInputQuantityDisplays.style.color = "crimson";
     return null;
   }
 
+  // web page urls
   validFormJSON.kiosk_webpage_urls = [];
   const url_key_template = "kiosk_webpage_url_DISPLAY\\d+";
   const matching_url_keys = getKeysByTemplate(userFormJSON, url_key_template);
   for (let i = 0; i < matching_url_keys.length; i++) {
+    const input = document.getElementById(`form-input-kiosk-web-url-DISPLAY${i}`);
     try {
       const formURL = new URL(userFormJSON?.[matching_url_keys[i]]);
       validFormJSON.kiosk_webpage_urls.push(formURL.href);
-      // formInputKioskWebURL.style.color = "";
+      input.style.backgroundColor = "";
+      input.style.color = "";
     } catch (error) {
       console.error(error);
-      // formInputKioskWebURL.style.color = "red";
+      input.style.backgroundColor = "pink";
+      input.style.color = "crimson";
       return null;
     }
   }
 
+  // zoom factors
   validFormJSON.browser_zoom_factors = [];
   const zoom_key_template = "browser_zoom_factor_DISPLAY\\d+";
   const matching_zoom_keys = getKeysByTemplate(userFormJSON, zoom_key_template);
   for (let i = 0; i < matching_zoom_keys.length; i++) {
+    const input = document.getElementById(`form-input-browser-zoom-factor-DISPLAY${i}`);
     if (isNumeric(userFormJSON?.[matching_zoom_keys[i]]) && parseFloat(userFormJSON?.[matching_zoom_keys[i]])) {
       validFormJSON.browser_zoom_factors.push(parseFloat(userFormJSON?.[matching_zoom_keys[i]]));
-      // formInputBrowserZoomFactor.style.color = "";
+      input.style.backgroundColor = "";
+      input.style.color = "";
     } else {
-      // formInputBrowserZoomFactor.style.color = "red";
+      input.style.backgroundColor = "pink";
+      input.style.color = "crimson";
       return null;
     }
   }
 
+  // test connection
   // no validation needed for checkbox, true/false only
   if (userFormJSON?.test_connection) {
     validFormJSON.test_connection = true;
@@ -139,11 +151,14 @@ function validate(userFormJSON) {
     validFormJSON.test_connection = false;
   }
 
+  // test connection interval
   if (isNumeric(userFormJSON?.test_connection_interval) && parseInt(userFormJSON?.test_connection_interval)) {
     validFormJSON.test_connection_interval = parseInt(userFormJSON?.test_connection_interval);
+    formInputTestConnectionInterval.style.backgroundColor = "";
     formInputTestConnectionInterval.style.color = "";
   } else {
-    formInputTestConnectionInterval.style.color = "red";
+    formInputTestConnectionInterval.style.backgroundColor = "pink";
+    formInputTestConnectionInterval.style.color = "crimson";
     return null;
   }
 

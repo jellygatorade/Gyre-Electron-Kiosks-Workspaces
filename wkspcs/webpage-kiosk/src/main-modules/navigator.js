@@ -1,6 +1,8 @@
 // load a local file         --- window.loadFile(path.join(__dirname, "/index.html")
 // load a remote web address --- window.loadURL(config.KIOSK_WEBPAGE_URL)
 
+const { configJSONStore } = require("./json-store/config-store.js");
+
 // 3/6 planning
 // instead of Navigator accepting a URI, the Navigator accepts a state (1/2/3, or live, config, loading)
 // 1 - live
@@ -14,6 +16,12 @@
 class Navigator {
   static windows = null;
   static state = null;
+
+  static states = Object.freeze({
+    live: 1,
+    config: 2,
+    loading: 3,
+  });
 
   static goTo({ uri }) {
     uri = uri.trim().toLowerCase();
