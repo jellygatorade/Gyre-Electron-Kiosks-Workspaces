@@ -54,10 +54,11 @@ contextBridge.exposeInMainWorld("electron", {
     //
     /**
      * Accepts a callback function to be run when main process sends
-     * win.webContents.send("new-zoom-factor", zoom_factor);
+     * win.webContents.send("new-zoom-factor", zoom_factor, window_index);
      * or
-     * event.reply("new-zoom-factor", zoom_factor);
-     *    ipcMain - src/main-modules/json-store/config-store.js
+     * event.reply("new-zoom-factor", zoom_factor, window_index);
+     *
+     *    ipcMain - src/main-modules/create-window.js
      *    ipcRenderer - src/pages/config/script.js
      */
     onNewZoomFactor: (callback) =>
