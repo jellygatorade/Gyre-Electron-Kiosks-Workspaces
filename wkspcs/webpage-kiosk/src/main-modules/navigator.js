@@ -30,6 +30,7 @@ class Navigator {
 
     switch (state) {
       case this.states.live:
+        // each window gets the URL assigned to it in app config
         const uris = configJSONStore.get("kiosk_webpage_urls");
         this.windows.forEach((win, index) => {
           const this_win_uri = uris[index];
@@ -38,6 +39,8 @@ class Navigator {
         break;
 
       case this.states.config:
+        // first window gets config page
+        // to do - the rest get config secondary page
         const config_uri = configJSONStore.get("local_config_page");
         this.windows.forEach((win, index) => {
           isWeb(config_uri) ? win.loadURL(config_uri) : win.loadFile(config_uri);
@@ -45,6 +48,7 @@ class Navigator {
         break;
 
       case this.states.loading:
+        // all windows get the loading page
         const loading_uri = configJSONStore.get("local_loading_page");
         this.windows.forEach((win, index) => {
           isWeb(loading_uri) ? win.loadURL(loading_uri) : win.loadFile(loading_uri);
@@ -56,19 +60,19 @@ class Navigator {
     }
   }
 
-  static goTo({ uri }) {
-    uri = uri.trim().toLowerCase();
-    const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
+  // static goTo({ uri }) {
+  //   uri = uri.trim().toLowerCase();
+  //   const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
 
-    if (this.state !== uri) {
-      // console.log(this.windows);
-      // isWeb ? this.windows.loadURL(uri) : this.windows.loadFile(uri);
-      console.log(uri);
-      console.log(isWeb);
-      isWeb ? this.windows.forEach((win) => win.loadURL(uri)) : this.windows.forEach((win) => win.loadFile(uri));
-      this.state = uri;
-    }
-  }
+  //   if (this.state !== uri) {
+  //     // console.log(this.windows);
+  //     // isWeb ? this.windows.loadURL(uri) : this.windows.loadFile(uri);
+  //     console.log(uri);
+  //     console.log(isWeb);
+  //     isWeb ? this.windows.forEach((win) => win.loadURL(uri)) : this.windows.forEach((win) => win.loadFile(uri));
+  //     this.state = uri;
+  //   }
+  // }
 }
 
 module.exports = Navigator;
