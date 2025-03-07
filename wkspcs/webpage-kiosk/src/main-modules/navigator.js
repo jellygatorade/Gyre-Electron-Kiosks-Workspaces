@@ -3,15 +3,10 @@
 
 const { configJSONStore } = require("./json-store/config-store.js");
 
-// 3/6 planning
-// instead of Navigator accepting a URI, the Navigator accepts a state (1/2/3, or live, config, loading)
-// 1 - live
-//   - each window gets the URL ([]configJSONStore.get("kiosk_webpage_urls")) as assigned to it in app config
-// 2 - config
-//   - first window gets config page (configJSONStore.get("local_config_page"))
-//   - the rest get config secondary page
-// 3 - loading
-//   - all windows get the loading page (configJSONStore.get("local_loading_page"))
+// to do
+// uri = uri.trim().toLowerCase();
+// if (this.state !== state) ...
+// NetworkTester needs to test all uris?
 
 class Navigator {
   static windows = null;
@@ -39,10 +34,12 @@ class Navigator {
         break;
 
       case this.states.config:
-        // first window gets config page
-        // to do - the rest get config secondary page
-        const config_uri = configJSONStore.get("local_config_page");
+        // first window gets config page, the rest get config secondary page
+        const primary_config_uri = configJSONStore.get("local_config_page");
+        const secondary_config_uri = configJSONStore.get("local_config_page_secondary");
         this.windows.forEach((win, index) => {
+          let config_uri;
+          index === 0 ? (config_uri = primary_config_uri) : (config_uri = secondary_config_uri);
           isWeb(config_uri) ? win.loadURL(config_uri) : win.loadFile(config_uri);
         });
         break;

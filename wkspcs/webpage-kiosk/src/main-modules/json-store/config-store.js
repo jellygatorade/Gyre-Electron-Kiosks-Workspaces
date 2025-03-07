@@ -11,7 +11,7 @@ const defaults = {
   kiosk_webpage_urls: ["https://ncma-kiosks.pages.dev/"],
   local_loading_page: path.join(__dirname, "..", "..", "/pages/loading/index.html"),
   local_config_page: path.join(__dirname, "..", "..", "/pages/config/index.html"),
-  // local_config_page_secondary: path.join(__dirname, "..", "..", "/pages/config/index-secondary.html"), // secondary displays get a placeholder page when the kiosk is in config state
+  local_config_page_secondary: path.join(__dirname, "..", "..", "/pages/config/index-secondary.html"), // secondary displays get a placeholder page when the kiosk is in config state
   browser_zoom_factors: [1.0],
   test_connection: true,
   test_connection_interval: 60,
@@ -36,7 +36,7 @@ ipcMain.on("update-app-config-store-data", function (_event, formJSON) {
   // Defaults
   configJSONStore.set("local_loading_page", defaults.local_loading_page);
   configJSONStore.set("local_config_page", defaults.local_config_page);
-  // configJSONStore.set("local_config_page_secondary", defaults.local_config_page_secondary);
+  configJSONStore.set("local_config_page_secondary", defaults.local_config_page_secondary);
 
   // Send reply back to sender
   // This is used to ensure intervalTask is updated to reflect a new "test_connection_interval" value

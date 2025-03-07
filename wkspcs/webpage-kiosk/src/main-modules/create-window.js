@@ -105,7 +105,7 @@ ipcMain.handle("recreate-windows", (event) => {
   create({ initial_creation: false });
 
   // Set newly created windows to config page
-  new_windows_on_recreate.forEach((win) => win.loadURL(configJSONStore.get("local_config_page")));
+  new_windows_on_recreate.forEach((win) => win.loadURL(configJSONStore.get("local_config_page_secondary")));
   new_windows_on_recreate.length = 0; // clear the list of recently created windows
 });
 
