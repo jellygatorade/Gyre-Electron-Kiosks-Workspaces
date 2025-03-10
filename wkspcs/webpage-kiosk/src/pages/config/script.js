@@ -1,5 +1,5 @@
 // 3/6 to do
-// - use app defaults to populate new display urls (const defaults = await window.electron.appConfig.getDefaults();)
+// x - use app defaults to populate new display urls (const defaults = await window.electron.appConfig.getDefaults();)
 // x - make form invalid form input (bad url) apparent
 // x - live update zoom factors in this form
 // x - per window zoom factor
@@ -25,23 +25,24 @@ const resetFormDefaultsBtn = document.getElementById("reset-form-defaults-btn");
 // Initialize Form ------------------------------------------------------------------------------------------
 
 // Request the stored data from main.js containing either default or previous input
+const appConfig_defaults = await window.electron.appConfig.getDefaults();
 const appConfig = await window.electron.appConfig.request();
+
 populateForm(appConfig);
 
-onChange_formInputQuantityDisplays(); // creates
-onChange_formInputTestConnection();
+// onChange_formInputQuantityDisplays(); // initialize display quantity and associated web urls + zoom factors
+// onChange_formInputTestConnection(); // initialize test connection field + frequency
 
 // Populate Form --------------------------------------------------------------------------------------------
 
 function populateForm(config) {
   console.log(config);
   formInputQuantityDisplays.value = config.quantity_displays;
-  // formInputKioskWebURL.value = config.kiosk_webpage_url;
-  // formInputBrowserZoomFactor.value = config.browser_zoom_factor;
-  // onChange_formInputQuantityDisplays();
-  // onChange_formInputTestConnection();
   formInputTestConnection.checked = config.test_connection;
   formInputTestConnectionInterval.value = config.test_connection_interval;
+
+  onChange_formInputQuantityDisplays(); // initialize display quantity and associated web urls + zoom factors
+  onChange_formInputTestConnection(); // initialize test connection field + frequency
 }
 
 function populateKioskWebURLs(config) {
@@ -172,9 +173,7 @@ function validate(userFormJSON) {
 // Reset Form Defaults --------------------------------------------------------------------------------------
 
 async function resetFormDefaults() {
-  const defaults = await window.electron.appConfig.getDefaults();
-  populateForm(defaults);
-  onChange_formInputTestConnection();
+  populateForm(appConfig_defaults);
   submitForm();
 }
 
@@ -191,12 +190,15 @@ function onChange_formInputQuantityDisplays() {
   const display_inputs_needed = parseInt(userFormJSON.quantity_displays);
 
   for (let i = 0; i < display_inputs_needed; i++) {
-    displayInputsContainer.appendChild(createDisplayInputFields(i));
+    displayInputsContainer.appendChild(createDisplayInputFields({ iteration: i }));
     // add existing values from appConfig here
   }
 }
 
-function createDisplayInputFields(iteration) {
+// PASS CONFIG IN HERE? SEEMS MESSY TO PASS CONFIG THROUGH populateForm(config) -> onChange_formInputQuantityDisplays(config) -> createDisplayInputFields(config)
+// Seems better to do populateForm(config) -> intialize_formInputQuantityDisplays(config) -> createDisplayInputFields(config)
+// Having a hard time seeing what needs to be untangled right now...
+function createDisplayInputFields({ iteration }) {
   const new_display_options = display_options_x.cloneNode(true);
 
   const url_label = new_display_options.querySelector("label[for='form-input-kiosk-web-url-DISPLAYX']");
@@ -208,8 +210,8 @@ function createDisplayInputFields(iteration) {
     url_input.style.color = "";
   });
 
-  url_input.value = appConfig.kiosk_webpage_urls[iteration] || "default"; // POPULATE USING APPCONFIG FOR NOW
-  zoom_input.value = appConfig.browser_zoom_factors[iteration] || 1; // POPULATE USING APPCONFIG FOR NOW
+  url_input.value = appConfig.kiosk_webpage_urls[iteration] || appConfig_defaults.kiosk_webpage_urls[0]; // fall back to default if new display instance
+  zoom_input.value = appConfig.browser_zoom_factors[iteration] || appConfig_defaults.browser_zoom_factors[0]; // fall back to default if new display instance
 
   replaceStringInAttributes(new_display_options, `DISPLAYX`, `DISPLAY${iteration}`);
   replaceStringInAttributes(url_label, `DISPLAYX`, `DISPLAY${iteration}`);
