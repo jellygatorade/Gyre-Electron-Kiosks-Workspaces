@@ -30,19 +30,12 @@ const appConfig = await window.electron.appConfig.request();
 
 populateForm(appConfig);
 
-// onChange_formInputQuantityDisplays(); // initialize display quantity and associated web urls + zoom factors
-// onChange_formInputTestConnection(); // initialize test connection field + frequency
-
 // Populate Form --------------------------------------------------------------------------------------------
 
 function populateForm(config) {
   console.log(config);
-  formInputQuantityDisplays.value = config.quantity_displays;
-  formInputTestConnection.checked = config.test_connection;
-  formInputTestConnectionInterval.value = config.test_connection_interval;
-
-  onChange_formInputQuantityDisplays(); // initialize display quantity and associated web urls + zoom factors
-  onChange_formInputTestConnection(); // initialize test connection field + frequency
+  initialize_formInputQuantityDisplays(config);
+  initialize_formInputTestConnection(config);
 }
 
 function populateKioskWebURLs(config) {
@@ -179,7 +172,22 @@ async function resetFormDefaults() {
 
 resetFormDefaultsBtn.addEventListener("click", resetFormDefaults);
 
-// Change # of kiosk-web-url + browser-zoom-factor inputs with quantity-displays ----------------------------
+// Initialize kiosk-web-url & browser-zoom-factor inputs ----------------------------------------------------
+
+function initialize_formInputQuantityDisplays(config) {
+  formInputQuantityDisplays.value = config.quantity_displays;
+
+  removeAllChildNodes(displayInputsContainer);
+
+  const display_inputs_needed = parseInt(config.quantity_displays);
+
+  for (let i = 0; i < display_inputs_needed; i++) {
+    // add existing values from passed config
+    displayInputsContainer.appendChild(createDisplayInputFields({ iteration: i, config: config }));
+  }
+}
+
+// Update kiosk-web-url & browser-zoom-factor inputs with quantity-displays ---------------------------------
 
 formInputQuantityDisplays.addEventListener("change", onChange_formInputQuantityDisplays);
 
@@ -190,15 +198,15 @@ function onChange_formInputQuantityDisplays() {
   const display_inputs_needed = parseInt(userFormJSON.quantity_displays);
 
   for (let i = 0; i < display_inputs_needed; i++) {
-    displayInputsContainer.appendChild(createDisplayInputFields({ iteration: i }));
     // add existing values from appConfig here
+    displayInputsContainer.appendChild(createDisplayInputFields({ iteration: i, config: null }));
   }
 }
 
 // PASS CONFIG IN HERE? SEEMS MESSY TO PASS CONFIG THROUGH populateForm(config) -> onChange_formInputQuantityDisplays(config) -> createDisplayInputFields(config)
 // Seems better to do populateForm(config) -> intialize_formInputQuantityDisplays(config) -> createDisplayInputFields(config)
 // Having a hard time seeing what needs to be untangled right now...
-function createDisplayInputFields({ iteration }) {
+function createDisplayInputFields({ iteration, config }) {
   const new_display_options = display_options_x.cloneNode(true);
 
   const url_label = new_display_options.querySelector("label[for='form-input-kiosk-web-url-DISPLAYX']");
@@ -210,8 +218,13 @@ function createDisplayInputFields({ iteration }) {
     url_input.style.color = "";
   });
 
-  url_input.value = appConfig.kiosk_webpage_urls[iteration] || appConfig_defaults.kiosk_webpage_urls[0]; // fall back to default if new display instance
-  zoom_input.value = appConfig.browser_zoom_factors[iteration] || appConfig_defaults.browser_zoom_factors[0]; // fall back to default if new display instance
+  if (config) {
+    url_input.value = config.kiosk_webpage_urls[iteration];
+    zoom_input.value = config.browser_zoom_factors[iteration];
+  } else {
+    url_input.value = appConfig.kiosk_webpage_urls[iteration] || appConfig_defaults.kiosk_webpage_urls[0]; // fall back to default if new display instance
+    zoom_input.value = appConfig.browser_zoom_factors[iteration] || appConfig_defaults.browser_zoom_factors[0]; // fall back to default if new display instance
+  }
 
   replaceStringInAttributes(new_display_options, `DISPLAYX`, `DISPLAY${iteration}`);
   replaceStringInAttributes(url_label, `DISPLAYX`, `DISPLAY${iteration}`);
@@ -222,7 +235,15 @@ function createDisplayInputFields({ iteration }) {
   return new_display_options;
 }
 
-// Show frequency input conditionally -----------------------------------------------------------------------
+// Initialize test connection inputs ------------------------------------------------------------------------
+
+function initialize_formInputTestConnection(config) {
+  formInputTestConnection.checked = config.test_connection;
+  formInputTestConnectionInterval.value = config.test_connection_interval;
+  onChange_formInputTestConnection();
+}
+
+// Show test connection frequency input conditionally -------------------------------------------------------
 
 formInputTestConnection.addEventListener("change", onChange_formInputTestConnection);
 
