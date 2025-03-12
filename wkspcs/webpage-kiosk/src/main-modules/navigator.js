@@ -4,7 +4,6 @@
 const { configJSONStore } = require("./json-store/config-store.js");
 
 // to do
-// uri = uri.trim().toLowerCase();
 // if (this.state !== state) ...
 // NetworkTester needs to test all uris?
 
@@ -26,17 +25,24 @@ class Navigator {
     switch (state) {
       case this.states.live:
         // each window gets the URL assigned to it in app config
-        const uris = configJSONStore.get("kiosk_webpage_urls");
+
+        let uris = configJSONStore.get("kiosk_webpage_urls");
+        uris = uris.map((uri) => uri.trim().toLowerCase());
+
         this.windows.forEach((win, index) => {
-          const this_win_uri = uris[index];
+          let this_win_uri = uris[index];
           isWeb(this_win_uri) ? win.loadURL(this_win_uri) : win.loadFile(this_win_uri);
         });
         break;
 
       case this.states.config:
         // first window gets config page, the rest get config secondary page
-        const primary_config_uri = configJSONStore.get("local_config_page");
-        const secondary_config_uri = configJSONStore.get("local_config_page_secondary");
+
+        let primary_config_uri = configJSONStore.get("local_config_page");
+        let secondary_config_uri = configJSONStore.get("local_config_page_secondary");
+        primary_config_uri = primary_config_uri.trim().toLowerCase();
+        secondary_config_uri = secondary_config_uri.trim().toLowerCase();
+
         this.windows.forEach((win, index) => {
           let config_uri;
           index === 0 ? (config_uri = primary_config_uri) : (config_uri = secondary_config_uri);
@@ -46,7 +52,10 @@ class Navigator {
 
       case this.states.loading:
         // all windows get the loading page
-        const loading_uri = configJSONStore.get("local_loading_page");
+
+        let loading_uri = configJSONStore.get("local_loading_page");
+        loading_uri = loading_uri.trim().toLowerCase();
+
         this.windows.forEach((win, index) => {
           isWeb(loading_uri) ? win.loadURL(loading_uri) : win.loadFile(loading_uri);
         });
