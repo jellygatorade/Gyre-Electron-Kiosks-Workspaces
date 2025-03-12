@@ -18,6 +18,10 @@ class Navigator {
   });
 
   static setState({ state }) {
+    if (this.state === state) {
+      return; // prevent re-navigate if already in requested state
+    }
+
     const isWeb = function (uri) {
       return uri.startsWith("http://") || uri.startsWith("https://");
     };
@@ -33,6 +37,8 @@ class Navigator {
           let this_win_uri = uris[index];
           isWeb(this_win_uri) ? win.loadURL(this_win_uri) : win.loadFile(this_win_uri);
         });
+
+        this.state = state;
         break;
 
       case this.states.config:
@@ -48,6 +54,8 @@ class Navigator {
           index === 0 ? (config_uri = primary_config_uri) : (config_uri = secondary_config_uri);
           isWeb(config_uri) ? win.loadURL(config_uri) : win.loadFile(config_uri);
         });
+
+        this.state = state;
         break;
 
       case this.states.loading:
@@ -59,10 +67,13 @@ class Navigator {
         this.windows.forEach((win, index) => {
           isWeb(loading_uri) ? win.loadURL(loading_uri) : win.loadFile(loading_uri);
         });
+
+        this.state = state;
         break;
 
       default:
-        console.log(`(Requested state not found in Navigator.states)`);
+        console.log(`(Requested state not found in Navigator.states. Setting state to undefined.)`);
+        this.state = undefined;
     }
   }
 
