@@ -13,7 +13,7 @@ class intervalTaskRunner {
 
   static start({ task, immediately }) {
     if (task.intervalId) {
-      console.warn("task is already running", task);
+      console.warn(`(Requested task is already running: ${task.func.name})`);
       return;
     }
 
@@ -27,7 +27,7 @@ class intervalTaskRunner {
 
   static stop({ task }) {
     if (!task.intervalId) {
-      console.warn("task is not running", task);
+      console.warn(`(Requested task is not running: ${task.func.name})`);
       return;
     }
 

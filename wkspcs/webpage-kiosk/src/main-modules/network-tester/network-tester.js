@@ -5,19 +5,43 @@ const Navigator = require("../navigator.js");
 const { intervalTask, intervalTaskRunner } = require("./interval-task-runner.js");
 const { configJSONStore } = require("../json-store/config-store.js");
 
+// to do
+// NetworkTester needs to test all uris?
+
 // Setup Task -------------------------------------------------
 
 async function testConnection() {
-  const connection = await isReachable(configJSONStore.get("kiosk_webpage_urls")[0]);
+  let uris = configJSONStore.get("kiosk_webpage_urls");
+  uris = uris.map((uri) => uri.trim().toLowerCase());
+
+  let promises = [];
+
+  uris.forEach((uri) => promises.push(isReachable(uri)));
+
+  let results = await Promise.all(promises);
+  // console.log(`Results of isReachable are: ${results}`);
+
+  const allTrue = (arr) => arr.every((item) => item === true);
+  let connection = allTrue(results);
 
   if (connection) {
-    // Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
     Navigator.setState({ state: Navigator.states.live });
   } else {
-    // Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
     Navigator.setState({ state: Navigator.states.loading });
   }
 }
+
+// async function testConnection() {
+//   const connection = await isReachable(configJSONStore.get("kiosk_webpage_urls")[0]);
+
+//   if (connection) {
+//     // Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
+//     Navigator.setState({ state: Navigator.states.live });
+//   } else {
+//     // Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
+//     Navigator.setState({ state: Navigator.states.loading });
+//   }
+// }
 
 let testConnectionTask;
 
@@ -36,12 +60,14 @@ ipcMain.handle("reset-test-connection-task", (event) => {
 
 class NetworkTester {
   static start() {
-    console.log(`(Starting network tests to ${configJSONStore.get("kiosk_webpage_url")} at interval of ${testConnectionTask.intervalTime}ms)`);
+    let uris = configJSONStore.get("kiosk_webpage_urls");
+    console.log(`(Starting network tests. Interval: ${testConnectionTask.intervalTime}ms, URIs: ${uris})`);
     intervalTaskRunner.start({ task: testConnectionTask, immediately: true });
   }
 
   static stop() {
-    console.log(`(Stopping network tests to ${configJSONStore.get("kiosk_webpage_url")})`);
+    let uris = configJSONStore.get("kiosk_webpage_urls");
+    console.log(`(Stopping network tests to ${uris})`);
     intervalTaskRunner.stop({ task: testConnectionTask });
   }
 }

@@ -3,10 +3,6 @@
 
 const { configJSONStore } = require("./json-store/config-store.js");
 
-// to do
-// if (this.state !== state) ...
-// NetworkTester needs to test all uris?
-
 class Navigator {
   static windows = null;
   static state = null;
