@@ -195,7 +195,7 @@ function create({ initial_creation }) {
       let NetworkTester_isNeeded = false;
       URIs.forEach((uri) => {
         const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
-        NetworkTester_isNeeded = isWeb || uri.includes("loading");
+        NetworkTester_isNeeded = isWeb || uri.includes("loading"); // use NetworkTester on webpages or the loading page
       });
 
       if (NetworkTester_isNeeded) {
