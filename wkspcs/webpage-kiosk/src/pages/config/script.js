@@ -222,6 +222,7 @@ function createDisplayInputFields({ iteration, config }) {
   }
 
   replaceStringInAttributes(new_display_options, `DISPLAYX`, `DISPLAY${iteration}`);
+  replaceStringInAttributes(span_label, `DISPLAYX`, `DISPLAY${iteration}`);
   replaceStringInAttributes(url_label, `DISPLAYX`, `DISPLAY${iteration}`);
   replaceStringInAttributes(url_input, `DISPLAYX`, `DISPLAY${iteration}`);
   replaceStringInAttributes(zoom_label, `DISPLAYX`, `DISPLAY${iteration}`);
