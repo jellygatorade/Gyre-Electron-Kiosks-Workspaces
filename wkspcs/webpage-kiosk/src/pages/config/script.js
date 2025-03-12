@@ -1,11 +1,3 @@
-// 3/6 to do
-// x - use app defaults to populate new display urls (const defaults = await window.electron.appConfig.getDefaults();)
-// x - make form invalid form input (bad url) apparent
-// x - live update zoom factors in this form
-// x - per window zoom factor
-// - re-org create-window script (moved an ipcMain handler there, idk various other things)
-// - Display 1/2/3 headings on display options
-
 // DOM ------------------------------------------------------------------------------------------------------
 
 const configForm = document.getElementById("config-form");
@@ -209,10 +201,13 @@ function onChange_formInputQuantityDisplays() {
 function createDisplayInputFields({ iteration, config }) {
   const new_display_options = display_options_x.cloneNode(true);
 
+  const span_label = new_display_options.querySelector("span[id='span-label-DISPLAYX']");
   const url_label = new_display_options.querySelector("label[for='form-input-kiosk-web-url-DISPLAYX']");
   const url_input = new_display_options.querySelector("input[id='form-input-kiosk-web-url-DISPLAYX']");
   const zoom_label = new_display_options.querySelector("label[for='form-input-browser-zoom-factor-DISPLAYX']");
   const zoom_input = new_display_options.querySelector("input[id='form-input-browser-zoom-factor-DISPLAYX']");
+
+  span_label.innerText = `Display ${iteration + 1}`;
 
   url_input.addEventListener("input", () => {
     url_input.style.color = "";

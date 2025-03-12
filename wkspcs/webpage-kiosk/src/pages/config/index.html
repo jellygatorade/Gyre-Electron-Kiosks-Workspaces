@@ -11,16 +11,16 @@
 
   <body class="bg-black text-white font-CaseTextLight tracking-wide">
     <div class="w-full flex flex-row justify-center">
-      <div class="w-[500px] m-8 mt-32 flex flex-col justify-center items-start">
+      <div class="w-[640px] m-8 my-32 flex flex-col justify-center items-start">
         <!-- -->
-        <div class="mb-8">
+        <div class="mb-8 px-2">
           <h1 class="font-CaseTextRegular text-xl">Configuration</h1>
         </div>
         <!-- -->
         <section class="mb-16">
           <form id="config-form" class="w-full">
             <ul class="mb-8">
-              <li class="mb-4">
+              <li class="mb-4 px-2">
                 <div class="mb-0.5 flex flex-row justify-between">
                   <label for="form-input-quantity-displays" class="">
                     <h2 class="mb-0.5">How many displays?</h2>
@@ -41,17 +41,18 @@
               </li>
 
               <div id="display-inputs-container">
-                <div id="options-DISPLAYX">
-                  <li class="mb-4">
+                <div id="options-DISPLAYX" class="bg-neutral-900 border border-neutral-700 py-2 mb-4 rounded-md">
+                  <li class="mb-4 px-2">
                     <label for="form-input-kiosk-web-url-DISPLAYX" class="">
+                      <p class="mb-4"><span id="span-label-DISPLAYX" class="text-ncma_orange-200 py-1"></span></p>
                       <h2 class="mb-0.5">Kiosk Webpage URL</h2>
                       <p class="text-neutral-300 text-xs leading-5 mb-1">In the form of "http://..." or "https://..."</p>
                     </label>
                     <input id="form-input-kiosk-web-url-DISPLAYX" name="kiosk_webpage_url_DISPLAYX" type="text" class="w-full text-black p-1 rounded-sm" />
                   </li>
 
-                  <li class="mb-4">
-                    <div class="mb-0.5 flex flex-row justify-between">
+                  <li class="px-2">
+                    <div class="flex flex-row justify-between">
                       <label for="form-input-browser-zoom-factor-DISPLAYX" class="">
                         <h2 class="mb-0.5">Browser zoom factor</h2>
                         <p class="text-neutral-300 text-xs leading-5 mb-1">Set viewport scale factor. Valid range from 0.5 to 3.0</p>
@@ -72,7 +73,7 @@
                 </div>
               </div>
 
-              <li class="mb-4">
+              <li class="mb-4 px-2">
                 <div class="mb-0.5 flex flex-row justify-between">
                   <label for="form-input-test-connection" class="">
                     <h2 class="">Test network connection?</h2>
@@ -85,7 +86,7 @@
                 >
               </li>
 
-              <li class="mb-4" id="form-list-item-test-connection-interval">
+              <li class="mb-4 px-2" id="form-list-item-test-connection-interval">
                 <div class="mb-0.5 flex flex-row justify-between">
                   <label for="form-input-test-connection-interval" class="">
                     <h2 class="mb-0.5">How frequently?</h2>
@@ -98,7 +99,7 @@
               </li>
             </ul>
 
-            <div class="my-8 gap-3 flex flex-row justify-end">
+            <div class="my-8 px-2 gap-3 flex flex-row justify-end">
               <button type="submit" class="tw-button">Submit</button>
               <button type="button" class="tw-button" id="reset-form-defaults-btn">Reset defaults</button>
             </div>
@@ -106,27 +107,50 @@
         </section>
 
         <section class="w-full">
-          <div class="mb-4">
-            <h1 class="text-xl text-neutral-300">Keyboard navigation</h1>
+          <div class="mb-4 px-2">
+            <h1 class="text-xl text-neutral-300">Keyboard shortcuts</h1>
           </div>
 
           <table class="w-full">
             <tbody class="text-neutral-300">
               <tr>
-                <th scope="row" class="text-left mr-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Esc</span></th>
-                <td class="text-right pl-2 pb-2"> Quit application </td>
+                <th scope="row" class="text-left mr-2 px-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Esc</span></th>
+                <td class="text-right pl-2 pb-2">Quit application</td>
               </tr>
               <tr>
-                <th scope="row" class="text-left mr-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Ctrl + 1</span></th>
+                <th scope="row" class="text-left mr-2 px-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Ctrl + 0</span></th>
+                <td class="text-right pl-2 pb-2">Restart application</td>
+              </tr>
+              <tr class="text-ncma_blue-100">
+                <th scope="row" class="text-left mr-2 px-2 pb-2"><span class="p-1 border border-ncma_blue-100 rounded-sm">Ctrl + 1</span></th>
                 <td class="text-right pl-2 pb-2">Production page (the URL(s) above)</td>
               </tr>
-              <tr>
-                <th scope="row" class="text-left mr-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Ctrl + 2</span></th>
+              <tr class="text-ncma_blue-100">
+                <th scope="row" class="text-left mr-2 px-2 pb-2"><span class="p-1 border border-ncma_blue-100 rounded-sm">Ctrl + 2</span></th>
                 <td class="text-right pl-2 pb-2">Configuration page (this page)</td>
               </tr>
-              <tr>
-                <th scope="row" class="text-left mr-2 pb-2"><span class="p-1 border border-neutral-300 rounded-sm">Ctrl + 3</span></th>
+              <tr class="text-ncma_blue-100">
+                <th scope="row" class="text-left mr-2 px-2 pb-2"><span class="p-1 border border-ncma_blue-100 rounded-sm">Ctrl + 3</span></th>
                 <td class="text-right pl-2 pb-2">Loading page</td>
+              </tr>
+              <tr class="text-ncma_orange-200">
+                <th scope="row" class="text-left mr-2 px-2 pb-2"
+                  ><span class="p-1 border border-ncma_orange-200 rounded-sm">Ctrl + =</span> /
+                  <span class="p-1 border border-ncma_orange-200 rounded-sm">Ctrl + -</span></th
+                >
+                <td class="text-right pl-2 pb-2">Increase / decrease zoom factor of the active window</td>
+              </tr>
+              <tr class="text-ncma_orange-200">
+                <th scope="row" class="text-left mr-2 px-2 pb-2"><span class="p-1 border border-ncma_orange-200 rounded-sm">Ctrl + R</span></th>
+                <td class="text-right pl-2 pb-2">Reload the active window</td>
+              </tr>
+              <tr class="text-ncma_orange-200">
+                <th scope="row" class="text-left mr-2 px-2 pb-2"><span class="p-1 border border-ncma_orange-200 rounded-sm">Ctrl + Shift + R</span></th>
+                <td class="text-right pl-2 pb-2">Reload the active window, ignoring window cache</td>
+              </tr>
+              <tr class="text-ncma_orange-200">
+                <th scope="row" class="text-left mr-2 px-2 pb-2"><span class="p-1 border border-ncma_orange-200 rounded-sm">Ctrl + Shift + I</span></th>
+                <td class="text-right pl-2 pb-2">Toggle Chromium dev tools for active window</td>
               </tr>
             </tbody>
           </table>
