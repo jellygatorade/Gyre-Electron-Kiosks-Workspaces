@@ -4,14 +4,14 @@ const { app, BrowserWindow } = require("electron");
 // Handle ENV requirements
 require("./main-modules/handle-config.js");
 
-const appWindows = require("./main-modules/create-window.js");
+const app_windows = require("./main-modules/browser-windows.js");
 
 function onAppReady() {
-  appWindows.init(); // creates global keyboard shortcuts
-  appWindows.create({ initial_creation: true }); // creates electron.BrowserWindow(s)
-  appWindows.loadURIs(); //
+  app_windows.init(); // creates global keyboard shortcuts
+  app_windows.create({ initial_creation: true }); // creates electron.BrowserWindow(s)
+  app_windows.loadURIs(); // loads the initial uris
 
-  // require modules that depend on appWindow here
+  // require any modules that depend on app_windows here
 }
 
 // This method will be called when Electron has finished
@@ -24,7 +24,9 @@ app.whenReady().then(() => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) {
-      appWindow.create();
+      app_windows.init(); // creates global keyboard shortcuts
+      app_windows.create({ initial_creation: true }); // creates electron.BrowserWindow(s)
+      app_windows.loadURIs(); // loads the initial uris
     }
   });
 });

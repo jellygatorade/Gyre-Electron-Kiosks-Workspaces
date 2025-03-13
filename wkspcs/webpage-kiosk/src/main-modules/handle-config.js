@@ -22,13 +22,13 @@ if (
 }
 
 function prepareProd() {
-  console.log("initializing for production");
+  console.log("(Initializing for production.)");
 
   // whatever for production
 }
 
 function prepareDev() {
-  console.log("initializing for development");
+  console.log("(Initializing for development.)");
 
   // Enable live reload
   require("electron-reload")(

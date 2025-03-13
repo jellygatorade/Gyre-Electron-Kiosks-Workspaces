@@ -5,9 +5,6 @@ const Navigator = require("../navigator.js");
 const { intervalTask, intervalTaskRunner } = require("./interval-task-runner.js");
 const { configJSONStore } = require("../json-store/config-store.js");
 
-// to do
-// NetworkTester needs to test all uris?
-
 // Setup Task -------------------------------------------------
 
 async function testConnection() {
@@ -30,18 +27,6 @@ async function testConnection() {
     Navigator.setState({ state: Navigator.states.loading });
   }
 }
-
-// async function testConnection() {
-//   const connection = await isReachable(configJSONStore.get("kiosk_webpage_urls")[0]);
-
-//   if (connection) {
-//     // Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
-//     Navigator.setState({ state: Navigator.states.live });
-//   } else {
-//     // Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
-//     Navigator.setState({ state: Navigator.states.loading });
-//   }
-// }
 
 let testConnectionTask;
 

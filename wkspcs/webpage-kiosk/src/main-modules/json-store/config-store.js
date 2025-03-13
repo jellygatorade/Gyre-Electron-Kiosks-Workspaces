@@ -2,8 +2,6 @@ const path = require("path");
 const ipcMain = require("electron").ipcMain;
 const Store = require("./store.js");
 
-// const getWindows = require("../create-window.js").get;
-
 // Store setup ------------------------------------------------
 
 const defaults = {
@@ -38,35 +36,15 @@ ipcMain.on("update-app-config-store-data", function (_event, formJSON) {
   configJSONStore.set("local_config_page", defaults.local_config_page);
   configJSONStore.set("local_config_page_secondary", defaults.local_config_page_secondary);
 
-  // Send reply back to sender
-  // This is used to ensure intervalTask is updated to reflect a new "test_connection_interval" value
+  // Send reply back to sender, this
+  // Ensures intervalTask is updated to reflect a new "test_connection_interval" value
+  // And prompts a message on channel "recreate-windows" that is handled in browser-windows.js
+  // ... It seems silly that I've handled changing the requested browser windows this way
+  // ... since we're already handling the new config in the main process here
+  // ... but it prevents dealing with a circular dependency
+  // ... (importing browser-windows.js methods here, while browser-windows needs to import configJSONStore from this module)
   _event.reply("app-config-updated");
-
-  // ADD ON_APP_CONFIG_UPDATED() function
-  // update_displays - create windows or destroy unecessary windows
-  // circular dependency between config-store.js and create-window.js ?
 });
-
-// MOVED TO CREATE-WINDOW FOR ACCESS TO THE WINDOWS ARRAY
-// ipcMain.on("update-app-config-zoom-factor", function (_event, zoom_factor, window_index) {
-//   console.log(`(Changed zoom factor for windows[${window_index}]: ${zoom_factor})`);
-
-//   // const quantity_displays = configJSONStore.get("quantity_displays");
-//   const browser_zoom_factors = configJSONStore.get("browser_zoom_factors");
-//   // let browser_zoom_factors = [];
-
-//   // for (let i = 0; i < quantity_displays; i++) {
-//   //   browser_zoom_factors.push(zoom_factor);
-//   // }
-//   browser_zoom_factors[window_index] = zoom_factor;
-
-//   configJSONStore.set("browser_zoom_factors", browser_zoom_factors);
-//   // _event.reply("new-zoom-factor", zoom_factor, window_index); // send back to renderer for changing value in form
-
-//   // // TESTING
-//   // const windows = getWindows();
-//   // windows[0].webContents.send("new-zoom-factor", zoom_factor, window_index);
-// });
 
 ipcMain.handle("get-app-config-store-data", async (_event) => {
   const config = configJSONStore.get();

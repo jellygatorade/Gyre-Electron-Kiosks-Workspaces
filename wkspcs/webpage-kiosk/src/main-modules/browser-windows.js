@@ -2,14 +2,14 @@ const { app, BrowserWindow, Menu, globalShortcut, screen, ipcMain } = require("e
 const path = require("path");
 
 const { configJSONStore } = require("./json-store/config-store.js");
-
 const Navigator = require("./navigator.js");
 const NetworkTester = require("./network-tester/network-tester.js");
 
-// let recreate = false;
 let windows = [];
 let new_windows_on_recreate = [];
 let uri_loaded_counter = 0;
+
+// Core methods (init, create, loadURIs, get) ---------------------------------
 
 function init() {
   Menu.setApplicationMenu(null); // no application (top bar) menu
@@ -43,77 +43,44 @@ function init() {
 
   // ignore cache refresh
   globalShortcut.register("CommandOrControl+Shift+R", () => {
-    // console.log(BrowserWindow.getFocusedWindow());
     BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
   });
 
   // scale up
   globalShortcut.register("CommandOrControl+=", () => {
-    // window.webContents.send("increase-zoom-factor");
-    // windows.forEach((win) => win.webContents.send("increase-zoom-factor"));
     const focused_window = BrowserWindow.getFocusedWindow();
     const window_index = windows.indexOf(focused_window);
-    // console.log(`create-window: ${window_index}`);
     focused_window.webContents.send("increase-zoom-factor", window_index);
   });
 
   // scale down
   globalShortcut.register("CommandOrControl+-", () => {
-    // window.webContents.send("decrease-zoom-factor");
-    // windows.forEach((win) => win.webContents.send("decrease-zoom-factor"));
     const focused_window = BrowserWindow.getFocusedWindow();
     const window_index = windows.indexOf(focused_window);
-    // console.log(`create-window: ${window_index}`);
     focused_window.webContents.send("decrease-zoom-factor", window_index);
   });
 
   // navigate
   globalShortcut.register("CommandOrControl+1", function () {
-    // Navigator.goTo({ uri: configJSONStore.get("kiosk_webpage_urls")[0] });
     Navigator.setState({ state: Navigator.states.live });
   });
 
   // navigate
   globalShortcut.register("CommandOrControl+2", function () {
-    // Navigator.goTo({ uri: configJSONStore.get("local_config_page") });
     Navigator.setState({ state: Navigator.states.config });
   });
 
   // navigate
   globalShortcut.register("CommandOrControl+3", function () {
-    // Navigator.goTo({ uri: configJSONStore.get("local_loading_page") });
     Navigator.setState({ state: Navigator.states.loading });
   });
 }
-
-// ipcMain handlers -----------------------------------------------------------
-
-// TESTING MOVING THIS HERE FROM CONFIG-STORE
-ipcMain.on("update-app-config-zoom-factor", function (_event, zoom_factor, window_index) {
-  console.log(`(Changed zoom factor for windows[${window_index}]: ${zoom_factor})`);
-
-  const browser_zoom_factors = configJSONStore.get("browser_zoom_factors");
-  browser_zoom_factors[window_index] = zoom_factor;
-
-  configJSONStore.set("browser_zoom_factors", browser_zoom_factors);
-  windows[0].webContents.send("new-zoom-factor", zoom_factor, window_index); // send to primary window renderer for changing value in form
-});
-
-// IS IPC THE BEST WAY TO HANDLE THIS?
-ipcMain.handle("recreate-windows", (event) => {
-  recreate = true; // set flag to signify this is not the first call to creation ... could be passed as function param instead
-  create({ initial_creation: false });
-
-  // Set newly created windows to config page
-  new_windows_on_recreate.forEach((win) => win.loadURL(configJSONStore.get("local_config_page_secondary")));
-  new_windows_on_recreate.length = 0; // clear the list of recently created windows
-});
 
 function create({ initial_creation }) {
   const OS_displays = screen.getAllDisplays();
   const app_config_quantity_displays = parseInt(configJSONStore.get("quantity_displays"));
 
-  // if more windows are open than requested per app_config
+  // close windows if more open than requested per app_config
   // this is never true on initialization
   while (windows.length > app_config_quantity_displays) {
     windows[windows.length - 1].destroy();
@@ -144,8 +111,7 @@ function create({ initial_creation }) {
       }
     });
 
-    // ... TO BE REVISITED
-    // (start network tester when all windows 'did-finish-load')
+    // start network tester when all windows 'did-finish-load'
     new_window.webContents.addListener("did-finish-load", () => {
       uri_loaded_counter++;
       if (uri_loaded_counter === windows.length) {
@@ -154,35 +120,16 @@ function create({ initial_creation }) {
       }
     });
 
-    // ... TO BE REVISITED - make sure i is the correct index for browser zoom factors
+    // pass config zoom factor to each new browser window when 'dom-ready'
     new_window.webContents.addListener("dom-ready", () => {
-      new_window.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factors")[i] || 1);
+      new_window.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factors")[i] || 1); // use stored preference or default to 1
     });
 
     windows.push(new_window);
-    if (!initial_creation) new_windows_on_recreate.push(new_window); // if not the first time
+    if (!initial_creation) new_windows_on_recreate.push(new_window); // if not the first time - this array could easily be returned instead of being defined globally
   }
 
-  // Events ---------------------------------------------------
-
-  // counter = 0
-  // one each 'did-finish-load'
-  // increment counter
-  // if counter == windows.length
-  // then initialise the NetworkTester
-  // and reset counter to 0
-
-  // ADD IN FOR LOOP SO THAT LISTENER ONLY GETS ADDED ON WINDOW INITIALZIATION
-
-  // windows.forEach((win) =>
-  //   win.webContents.addListener("did-finish-load", () => {
-  //     uri_loaded_counter++;
-  //     if (uri_loaded_counter === windows.length) {
-  //       uri_loaded_counter = 0;
-  //       startNetworkTester();
-  //     }
-  //   })
-  // );
+  // Event handlers -------------------------------------------
 
   function startNetworkTester() {
     if (configJSONStore.get("test_connection")) {
@@ -207,42 +154,10 @@ function create({ initial_creation }) {
       console.log(`(Not initializing network tests per user configuration)`);
     }
   }
-
-  // windows[0].webContents.addListener("did-finish-load", () => {
-  //   if (configJSONStore.get("test_connection")) {
-  //     // Use NetworkTester on web kiosk or the loading page
-  //     // Stop NetworkTester on config page
-
-  //     const uri = windows[0].webContents.getURL();
-  //     const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
-
-  //     if (isWeb || uri.includes("loading")) {
-  //       NetworkTester.start();
-  //     } else {
-  //       NetworkTester.stop();
-  //     }
-  //   } else {
-  //     console.log(`(Not initializing network tests per user configuration)`);
-  //   }
-  // });
-
-  // just add this to all BrowserWindows for now?
-
-  // ADD IN FOR LOOP SO THAT LISTENER ONLY GETS ADDED ON WINDOW INITIALZIATION
-
-  // windows.forEach((win) =>
-  //   win.webContents.addListener("dom-ready", () => {
-  //     win.webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factor"));
-  //   })
-  // );
-
-  // windows[0].webContents.addListener("dom-ready", () => {
-  //   windows[0].webContents.send("init-zoom-factor", configJSONStore.get("browser_zoom_factor"));
-  // });
 }
 
-// Load the initial uri -------------------------------------
 function loadURIs() {
+  // load the initial uri (called in main.js)
   if (configJSONStore.get("test_connection")) {
     windows.forEach((win) => win.loadURL(configJSONStore.get("local_loading_page")));
   } else {
@@ -253,5 +168,34 @@ function loadURIs() {
 function get() {
   return windows;
 }
+
+// ipcMain handlers -----------------------------------------------------------
+
+// new zoom factor
+ipcMain.on("update-app-config-zoom-factor", function (_event, zoom_factor, window_index) {
+  console.log(`(Changed zoom factor for windows[${window_index}]: ${zoom_factor})`);
+
+  const browser_zoom_factors = configJSONStore.get("browser_zoom_factors");
+  browser_zoom_factors[window_index] = zoom_factor;
+
+  configJSONStore.set("browser_zoom_factors", browser_zoom_factors);
+  windows[0].webContents.send("new-zoom-factor", zoom_factor, window_index); // send to primary window renderer for changing value in form
+});
+
+// IPC ping pong communication is how new change in window quantity is handled (for now)
+// ipcMain handles "update-app-config-store-data" in config-store.js
+// Then, ipcMain sends a reply to the ipcRenderer "app-config-updated"
+// Upon which ipcRenderer invokes "recreate-windows" (along with "reset-test-connection-task")
+// ... This prevents dealing with a circular dependency in main process
+// ... See dev note about "app-config-updated" in config-store.js
+ipcMain.handle("recreate-windows", (event) => {
+  create({ initial_creation: false });
+
+  // Set newly created windows to config page
+  new_windows_on_recreate.forEach((win) => win.loadURL(configJSONStore.get("local_config_page_secondary")));
+  new_windows_on_recreate.length = 0; // clear the list of recently created windows
+});
+
+// Exports --------------------------------------------------------------------
 
 module.exports = { init, create, loadURIs, get };

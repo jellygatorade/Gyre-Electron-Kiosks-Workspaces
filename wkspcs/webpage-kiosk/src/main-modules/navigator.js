@@ -72,20 +72,6 @@ class Navigator {
         this.state = undefined;
     }
   }
-
-  // static goTo({ uri }) {
-  //   uri = uri.trim().toLowerCase();
-  //   const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
-
-  //   if (this.state !== uri) {
-  //     // console.log(this.windows);
-  //     // isWeb ? this.windows.loadURL(uri) : this.windows.loadFile(uri);
-  //     console.log(uri);
-  //     console.log(isWeb);
-  //     isWeb ? this.windows.forEach((win) => win.loadURL(uri)) : this.windows.forEach((win) => win.loadFile(uri));
-  //     this.state = uri;
-  //   }
-  // }
 }
 
 module.exports = Navigator;
