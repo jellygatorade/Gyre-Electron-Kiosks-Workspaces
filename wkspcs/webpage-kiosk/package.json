@@ -1,7 +1,7 @@
 {
   "name": "webpage-kiosk",
-  "version": "1.0.0",
-  "description": "A simple kiosk setup for displaying a single web URL within electron environment",
+  "version": "1.1.0",
+  "description": "A kiosk application that supports running one or more URIs on one or more displays in an electron environment.",
   "main": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
