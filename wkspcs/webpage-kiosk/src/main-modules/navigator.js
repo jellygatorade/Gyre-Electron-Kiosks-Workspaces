@@ -22,6 +22,11 @@ class Navigator {
       return uri.startsWith("http://") || uri.startsWith("https://");
     };
 
+    // Returns a Promise that resolves after "ms" Milliseconds
+    // Await the promise like ->
+    // await timer(3000);
+    const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+
     switch (state) {
       case this.states.live:
         // each window gets the URL assigned to it in app config
@@ -29,10 +34,22 @@ class Navigator {
         let uris = configJSONStore.get("kiosk_webpage_urls");
         uris = uris.map((uri) => uri.trim().toLowerCase());
 
-        this.windows.forEach((win, index) => {
-          let this_win_uri = uris[index];
-          isWeb(this_win_uri) ? win.loadURL(this_win_uri) : win.loadFile(this_win_uri);
-        });
+        // this.windows.forEach((win, index) => {
+        //   let this_win_uri = uris[index];
+        //   isWeb(this_win_uri) ? win.loadURL(this_win_uri) : win.loadFile(this_win_uri);
+        // });
+
+        let windows = this.windows;
+        async function loadURIs() {
+          // We need to wrap the loop into an async function for this to work
+          for (let i = 0; i < windows.length; i++) {
+            let this_win_uri = uris[i];
+            isWeb(this_win_uri) ? windows[i].loadURL(this_win_uri) : windows[i].loadFile(this_win_uri);
+            await timer(1000); // then the created Promise can be awaited
+          }
+        }
+
+        loadURIs();
 
         this.state = state;
         break;
