@@ -39,13 +39,14 @@ class Navigator {
         //   isWeb(this_win_uri) ? win.loadURL(this_win_uri) : win.loadFile(this_win_uri);
         // });
 
+        // Load URLs with 1000ms delay between each
+        // Implemented as a fix for Nuxt server 500 error
         let windows = this.windows;
         async function loadURIs() {
-          // We need to wrap the loop into an async function for this to work
           for (let i = 0; i < windows.length; i++) {
             let this_win_uri = uris[i];
             isWeb(this_win_uri) ? windows[i].loadURL(this_win_uri) : windows[i].loadFile(this_win_uri);
-            await timer(1000); // then the created Promise can be awaited
+            await timer(1000); // wait 1000ms before next iteration
           }
         }
 

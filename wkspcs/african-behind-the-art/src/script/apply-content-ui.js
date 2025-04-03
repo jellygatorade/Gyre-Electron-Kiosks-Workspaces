@@ -26,8 +26,6 @@ function applyContent(data) {
   applyVideoCards(data);
 
   // Video View
-  domVars.enVideoPlayerReturnHomeBtnTxt.innerHTML = data.en.video_player.back_to_main;
-  domVars.esVideoPlayerReturnHomeBtnTxt.innerHTML = data.es.video_player.back_to_main;
 }
 
 export { applyContent };
