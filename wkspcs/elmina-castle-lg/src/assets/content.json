@@ -1,0 +1,72 @@
+{
+  "attract_video_path": "./assets/video/attract.mp4",
+  "en": {
+    "attract": {
+      "title": "<i>Elmina Castle</i>",
+      "touch_to_begin": "TOUCH TO BEGIN"
+    },
+    "main": {
+      "title": "<i>Elmina Castle</i>",
+      "subheading": "Select a video to learn more about <i>Elmina Castle</i>.",
+      "description": "This UNESCO World Heritage Site, located in Elmina, Ghana, was a trading settlement and key stop on the route of the transatlantic slave trade. The artwork in the center of the room is a replica of the castle created by Ghanaian artist Joseph Tetteh-Ashong (aka Paa Joe).",
+      "toggle_lang_btn": "Español",
+      "videos": [
+        {
+          "id": "1",
+          "video_path": "./assets/video/attract.mp4",
+          "still_path": "./assets/img/welcome-1.jpg",
+          "title": "What is Elmina Castle?",
+          "description": "In this video Alex Afful, an Elmina Castle tour guide, and Edmund Abaka, associate professor at the University of Miami, explain the possible origin of the name Elmina and the castle’s significance as a slave-trading headquarters. Video provided by CNN."
+        },
+        {
+          "id": "2",
+          "video_path": "./assets/video/attract.mp4",
+          "still_path": "./assets/img/welcome-1.jpg",
+          "title": "Inside Elmina Castle",
+          "description": "Hear from Alex Afful, a tour guide at Elmina Castle, as he recounts the treatment and conditions enslaved people endured within the castle. Video provided by CNN."
+        },
+        {
+          "id": "3",
+          "video_path": "./assets/video/attract.mp4",
+          "still_path": "./assets/img/welcome-1.jpg",
+          "title": "The Door of No Return",
+          "description": "The door is a physical reminder of the millions of enslaved people who were forced to leave Africa, never to return. If you turn toward Paa Joe’s <i>Elmina Castle</i>, you can view his interpretation of “the door of no return.” Video provided by CNN."
+        },
+        {
+          "id": "4",
+          "video_path": "./assets/video/attract.mp4",
+          "still_path": "./assets/img/welcome-1.jpg",
+          "title": "Conservation and Restoration of Elmina Castle",
+          "description": "Listen to curators, conservations, and artist Paa Joe as they discuss how to protect this large work of art and the history it represents."
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "[Back to main]"
+    }
+  },
+  "es": {
+    "is_available": false,
+    "attract": {
+      "title": "¿?",
+      "touch_to_begin": "TOCA PARA COMENZAR"
+    },
+    "main": {
+      "title": "¿?",
+      "subheading": "¿?",
+      "toggle_lang_btn": "English",
+      "videos": [
+        {
+          "id": "¿?",
+          "video_path": "¿?",
+          "still_path": "¿?",
+          "title": "¿?",
+          "description": "¿?"
+        }
+      ]
+    },
+    "video_player": {
+      "back_to_main": "![Volver]"
+    }
+  }
+}
