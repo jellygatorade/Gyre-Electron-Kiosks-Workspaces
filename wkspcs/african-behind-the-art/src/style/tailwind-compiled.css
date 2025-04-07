@@ -623,6 +623,10 @@ video {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .inline {
   display: inline;
 }
@@ -768,6 +772,16 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -790,6 +804,14 @@ video {
 
 .pt-\[0\.2rem\] {
   padding-top: 0.2rem;
+}
+
+.pb-16 {
+  padding-bottom: 4rem;
+}
+
+.pb-\[0\.75rem\] {
+  padding-bottom: 0.75rem;
 }
 
 .text-left {
@@ -845,10 +867,6 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.italic {
-  font-style: italic;
 }
 
 .tracking-\[0\.25rem\] {

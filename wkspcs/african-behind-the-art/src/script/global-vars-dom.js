@@ -6,11 +6,10 @@ const attractView = document.getElementById("attract-view");
 const attractVideo = document.getElementById("attract-video");
 const attractOverlay = document.getElementById("attract-overlay");
 
+const attractAccentBg = document.getElementById("attract-accent-bg");
 const enAttractTitle = document.getElementById("en-attract-title");
 const esAttractTitle = document.getElementById("es-attract-title");
-
 const enAttractTouchToBegin = document.getElementById("en-attract-touch-to-begin");
-
 const esAttractTouchToBegin = document.getElementById("es-attract-touch-to-begin");
 
 // Home View
@@ -49,6 +48,7 @@ export {
   attractView,
   attractVideo,
   attractOverlay,
+  attractAccentBg,
   enAttractTitle,
   esAttractTitle,
   enAttractTouchToBegin,

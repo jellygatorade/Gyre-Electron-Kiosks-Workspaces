@@ -1,5 +1,6 @@
 {
   "attract_video_path": "./assets/video/attract.mp4",
+  "accent_color": "#000000",
   "en": {
     "attract": {
       "title": "<i>Elmina Castle</i>",

@@ -9,9 +9,9 @@ function applyContent(data) {
   }
 
   // Attract View
+  domVars.attractAccentBg.style.backgroundColor = data.accent_color;
   domVars.enAttractTitle.innerHTML = data.en.attract.title;
   domVars.esAttractTitle.innerHTML = data.es.attract.title;
-
   domVars.enAttractTouchToBegin.innerHTML = data.en.attract.touch_to_begin;
   domVars.esAttractTouchToBegin.innerHTML = data.es.attract.touch_to_begin;
 
