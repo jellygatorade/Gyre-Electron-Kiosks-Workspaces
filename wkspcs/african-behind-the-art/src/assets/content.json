@@ -92,11 +92,35 @@
           "attribution": "This video is part of the series <i>Afripedia</i>."
         },
         {
+          "id": "found-materials-in-kenya",
+          "video_path": "./assets/video/found-materials-in-kenya.mp4",
+          "still_path": "./assets/img/performance-art-in-ghana.png",
+          "title": "Found Materials in Kenya",
+          "description": "Visual artist Cyrus Kiburu talks about found materials in his work.",
+          "attribution": "This video is part of the series <i>Afripedia</i>."
+        },
+        {
           "id": "performance-art-in-ghana",
           "video_path": "./assets/video/performance-art-in-ghana.mp4",
           "still_path": "./assets/img/performance-art-in-ghana.png",
           "title": "Performance Art in Ghana",
           "description": "Learn about visual artist Serge Attukwei Clottey and how his art speaks to current environmental issues.",
+          "attribution": "This video is part of the series <i>Afripedia</i>."
+        },
+        {
+          "id": "dancing-in-nairobi",
+          "video_path": "./assets/video/dancing-in-nairobi.mp4",
+          "still_path": "./assets/img/performance-art-in-ghana.png",
+          "title": "Dancing in Nairobi",
+          "description": "Listen to the voice of Anto Neosoul as they bring dance to the streets of Kenya.",
+          "attribution": "This video is part of the series <i>Afripedia</i>."
+        },
+        {
+          "id": "self-expression-photography",
+          "video_path": "./assets/video/self-expression-using-photography.mp4",
+          "still_path": "./assets/img/performance-art-in-ghana.png",
+          "title": "Self-expression Using Photography",
+          "description": "Watch as Delphine Diallo uses photography to express herself.",
           "attribution": "This video is part of the series <i>Afripedia</i>."
         }
       ]
