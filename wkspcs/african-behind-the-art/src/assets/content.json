@@ -94,7 +94,7 @@
         {
           "id": "found-materials-in-kenya",
           "video_path": "./assets/video/found-materials-in-kenya.mp4",
-          "still_path": "./assets/img/performance-art-in-ghana.png",
+          "still_path": "./assets/img/found-materials-in-kenya.png",
           "title": "Found Materials in Kenya",
           "description": "Visual artist Cyrus Kiburu talks about found materials in his work.",
           "attribution": "This video is part of the series <i>Afripedia</i>."
@@ -110,15 +110,15 @@
         {
           "id": "dancing-in-nairobi",
           "video_path": "./assets/video/dancing-in-nairobi.mp4",
-          "still_path": "./assets/img/performance-art-in-ghana.png",
+          "still_path": "./assets/img/dancing-in-nairobi.png",
           "title": "Dancing in Nairobi",
           "description": "Listen to the voice of Anto Neosoul as they bring dance to the streets of Kenya.",
           "attribution": "This video is part of the series <i>Afripedia</i>."
         },
         {
-          "id": "self-expression-photography",
+          "id": "self-expression-using-photography",
           "video_path": "./assets/video/self-expression-using-photography.mp4",
-          "still_path": "./assets/img/performance-art-in-ghana.png",
+          "still_path": "./assets/img/self-expression-using-photography.png",
           "title": "Self-expression Using Photography",
           "description": "Watch as Delphine Diallo uses photography to express herself.",
           "attribution": "This video is part of the series <i>Afripedia</i>."
