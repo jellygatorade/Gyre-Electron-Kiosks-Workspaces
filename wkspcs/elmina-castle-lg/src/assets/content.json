@@ -13,32 +13,25 @@
       "toggle_lang_btn": "Español",
       "videos": [
         {
-          "id": "1",
-          "video_path": "./assets/video/attract.mp4",
-          "still_path": "./assets/img/welcome-1.jpg",
+          "id": "what-is-elmina",
+          "video_path": "./assets/video/what-is-elmina.mp4",
+          "still_path": "./assets/img/what-is-elmina.png",
           "title": "What is Elmina Castle?",
           "description": "In this video Alex Afful, an Elmina Castle tour guide, and Edmund Abaka, associate professor at the University of Miami, explain the possible origin of the name Elmina and the castle’s significance as a slave-trading headquarters. Video provided by CNN."
         },
         {
-          "id": "2",
-          "video_path": "./assets/video/attract.mp4",
-          "still_path": "./assets/img/welcome-1.jpg",
+          "id": "inside-elmina",
+          "video_path": "./assets/video/inside-elmina.mp4",
+          "still_path": "./assets/img/inside-elmina.png",
           "title": "Inside Elmina Castle",
           "description": "Hear from Alex Afful, a tour guide at Elmina Castle, as he recounts the treatment and conditions enslaved people endured within the castle. Video provided by CNN."
         },
         {
-          "id": "3",
-          "video_path": "./assets/video/attract.mp4",
-          "still_path": "./assets/img/welcome-1.jpg",
+          "id": "the-door-of-no-return",
+          "video_path": "./assets/video/the-door-of-no-return.mp4",
+          "still_path": "./assets/img/the-door-of-no-return.png",
           "title": "The Door of No Return",
           "description": "The door is a physical reminder of the millions of enslaved people who were forced to leave Africa, never to return. If you turn toward Paa Joe’s <i>Elmina Castle</i>, you can view his interpretation of “the door of no return.” Video provided by CNN."
-        },
-        {
-          "id": "4",
-          "video_path": "./assets/video/attract.mp4",
-          "still_path": "./assets/img/welcome-1.jpg",
-          "title": "Conservation and Restoration of Elmina Castle",
-          "description": "Listen to curators, conservations, and artist Paa Joe as they discuss how to protect this large work of art and the history it represents."
         }
       ]
     },

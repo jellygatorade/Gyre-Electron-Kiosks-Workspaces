@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "4",
+    "video_path": "./assets/video/attract.mp4",
+    "still_path": "./assets/img/welcome-1.jpg",
+    "title": "Conservation and Restoration of Elmina Castle",
+    "description": "Listen to curators, conservations, and artist Paa Joe as they discuss how to protect this large work of art and the history it represents."
+  }
+]
