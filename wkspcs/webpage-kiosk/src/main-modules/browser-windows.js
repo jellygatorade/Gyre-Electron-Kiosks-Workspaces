@@ -159,10 +159,8 @@ function create({ initial_creation }) {
 function loadURIs() {
   // load the initial uri (called in main.js)
   if (configJSONStore.get("test_connection")) {
-    // windows.forEach((win) => win.loadURL(configJSONStore.get("local_loading_page")));
     Navigator.setState({ state: Navigator.states.loading });
   } else {
-    // windows.forEach((win) => win.loadURL(configJSONStore.get("kiosk_webpage_url")));
     Navigator.setState({ state: Navigator.states.live });
   }
 }
