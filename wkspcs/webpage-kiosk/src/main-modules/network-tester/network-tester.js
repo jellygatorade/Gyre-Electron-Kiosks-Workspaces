@@ -7,24 +7,34 @@ const { configJSONStore } = require("../json-store/config-store.js");
 
 // Setup Task -------------------------------------------------
 
+let attempts = 0;
+
 async function testConnection() {
   let uris = configJSONStore.get("kiosk_webpage_urls");
   uris = uris.map((uri) => uri.trim().toLowerCase());
 
+  attempts = attempts + 1; // increment counter
   let promises = [];
 
-  uris.forEach((uri) => promises.push(isReachable(uri)));
+  uris.forEach((uri) => promises.push(isReachable(uri, { timeout: 5000 })));
 
   let results = await Promise.all(promises);
-  // console.log(`Results of isReachable are: ${results}`);
+  // console.log(`testConnection, Attempt: ${attempts}, Results of isReachable are: ${results}`);
 
   const allTrue = (arr) => arr.every((item) => item === true);
   let connection = allTrue(results);
 
   if (connection) {
+    // console.log(`Connection successful!`);
     Navigator.setState({ state: Navigator.states.live });
+    attempts = 0; // reset counter
+  } else if (attempts < 5) {
+    // console.log(`Timed out, trying again in 5s`);
+    setTimeout(testConnection, 5000); // try again in 5s
   } else {
+    // console.log(`Connection unavailable.`);
     Navigator.setState({ state: Navigator.states.loading });
+    attempts = 0; // reset counter
   }
 }
 

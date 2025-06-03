@@ -55,7 +55,7 @@
                     <div class="flex flex-row justify-between">
                       <label for="form-input-browser-zoom-factor-DISPLAYX" class="">
                         <h2 class="mb-0.5">Browser zoom factor</h2>
-                        <p class="text-neutral-300 text-xs leading-5 mb-1">Set viewport scale factor. Valid range from 0.5 to 3.0</p>
+                        <p class="text-neutral-300 text-xs leading-5 mb-1">Set viewport scale factor. Valid range from 0.5 to 3.0.</p>
                       </label>
                       <div>
                         <input
@@ -82,7 +82,7 @@
                 </div>
                 <p class="text-neutral-300 text-xs leading-5 mb-1"
                   >Periodically check for network connectivity to the above URL and return to loading page if connection drops. App will display the production
-                  page When connection is detected.</p
+                  page when connection is detected.</p
                 >
               </li>
 
@@ -90,10 +90,24 @@
                 <div class="mb-0.5 flex flex-row justify-between">
                   <label for="form-input-test-connection-interval" class="">
                     <h2 class="mb-0.5">How frequently?</h2>
-                    <p class="text-neutral-300 text-xs leading-5 mb-1">Interval to run connection tests in seconds</p>
+                    <p class="text-neutral-300 text-xs leading-5 mb-1"
+                      >Interval to run connection tests in seconds. Integers only, valid range from 60 to 600 (1 min to 10 min).</p
+                    >
                   </label>
                   <div>
-                    <input id="form-input-test-connection-interval" name="test_connection_interval" type="number" class="w-24 text-black p-1 rounded-sm" />
+                    <!-- 
+                      Minimum interval 60s because currently 50s are needed to run the entire set of connection tests 
+                      5s isReachable timeout + 5s setTimeout each iteration of testConnection
+                    -->
+                    <input
+                      id="form-input-test-connection-interval"
+                      name="test_connection_interval"
+                      type="number"
+                      min="60"
+                      max="600"
+                      step="1"
+                      class="w-24 text-black p-1 rounded-sm"
+                    />
                   </div>
                 </div>
               </li>
