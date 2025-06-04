@@ -48,6 +48,8 @@ contextBridge.exposeInMainWorld("electron", {
 
   setKioskState: (state) => ipcRenderer.invoke("set-kiosk-state", state), // state expects "live", "config", or "loading"
 
+  clearCache: () => ipcRenderer.invoke("clear-cache"), // clears cache in each browser window
+
   appConfig: {
     update: (formJSON) => ipcRenderer.send("update-app-config-store-data", formJSON),
     request: () => ipcRenderer.invoke("get-app-config-store-data"), // async

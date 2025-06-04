@@ -188,12 +188,19 @@ ipcMain.on("update-app-config-zoom-factor", function (_event, zoom_factor, windo
 // Upon which ipcRenderer invokes "recreate-windows" (along with "reset-test-connection-task")
 // ... This prevents dealing with a circular dependency in main process
 // ... See dev note about "app-config-updated" in config-store.js
-ipcMain.handle("recreate-windows", (event) => {
+ipcMain.handle("recreate-windows", (_event) => {
   create({ initial_creation: false });
 
   // Set newly created windows to config page
   new_windows_on_recreate.forEach((win) => win.loadURL(configJSONStore.get("local_config_page_secondary")));
   new_windows_on_recreate.length = 0; // clear the list of recently created windows
+});
+
+ipcMain.handle("clear-cache", (_event) => {
+  windows.forEach(async (win, index) => {
+    console.log(`(Clearing cache of window id: ${win.id})`);
+    await win.webContents.session.clearCache();
+  });
 });
 
 // Exports --------------------------------------------------------------------
