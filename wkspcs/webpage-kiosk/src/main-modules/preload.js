@@ -46,6 +46,8 @@ contextBridge.exposeInMainWorld("electron", {
 
   isKiosk: true,
 
+  setKioskState: (state) => ipcRenderer.invoke("set-kiosk-state", state), // state expects "live", "config", or "loading"
+
   appConfig: {
     update: (formJSON) => ipcRenderer.send("update-app-config-store-data", formJSON),
     request: () => ipcRenderer.invoke("get-app-config-store-data"), // async

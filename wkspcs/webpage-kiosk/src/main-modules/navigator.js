@@ -1,6 +1,7 @@
 // load a local file         --- window.loadFile(path.join(__dirname, "/index.html")
 // load a remote web address --- window.loadURL(config.KIOSK_WEBPAGE_URL)
 
+const { ipcMain } = require("electron");
 const { configJSONStore } = require("./json-store/config-store.js");
 
 class Navigator {
@@ -91,5 +92,13 @@ class Navigator {
     }
   }
 }
+
+// IPC --------------------------------------------------------
+
+ipcMain.handle("set-kiosk-state", function (_event, state) {
+  Navigator.setState({ state: Navigator.states[state] }); // state expects "live", "config", or "loading"
+});
+
+// Exports ----------------------------------------------------
 
 module.exports = Navigator;
