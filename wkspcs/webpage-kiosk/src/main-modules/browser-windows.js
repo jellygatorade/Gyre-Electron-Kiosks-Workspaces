@@ -131,6 +131,16 @@ function create({ initial_creation }) {
 
   // Event handlers -------------------------------------------
 
+  // 6/5/25 - MOVE THIS FUNCTION to run at the end of Navigator class state change
+  // Change conditions to
+  //
+  // NetworkTester_isNeeded when
+  // (configJSONStore.get("test_connection") && Navigator.state === Navigator.states.live && at least one uri isWeb) ... idk the behavior of isReachable and local uri
+  // (Navigator.state === Navigator.states.loading)
+  //
+  // !NetworkTester_isNeeded when
+  // (Navigator.state === Navigator.states.config)
+  //
   function startNetworkTester() {
     if (configJSONStore.get("test_connection")) {
       // Use NetworkTester on web kiosk or the loading page
@@ -143,6 +153,7 @@ function create({ initial_creation }) {
       URIs.forEach((uri) => {
         const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
         NetworkTester_isNeeded = isWeb || uri.includes("loading"); // use NetworkTester on webpages or the loading page
+        // 6/5/25 - NEED BREAK IF NetworkTester_isNeeded === TRUE
       });
 
       if (NetworkTester_isNeeded) {
