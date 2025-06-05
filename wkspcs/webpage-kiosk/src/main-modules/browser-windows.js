@@ -196,6 +196,7 @@ ipcMain.handle("recreate-windows", (_event) => {
   new_windows_on_recreate.length = 0; // clear the list of recently created windows
 });
 
+// clears cache in each browser window
 ipcMain.handle("clear-cache", (_event) => {
   windows.forEach(async (win, index) => {
     console.log(`(Clearing cache of window id: ${win.id})`);
