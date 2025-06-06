@@ -7,6 +7,7 @@ const { configJSONStore } = require("./json-store/config-store.js");
 class Navigator {
   static windows = null;
   static state = null;
+  static toggleNetworkTester = null;
 
   static states = Object.freeze({
     live: 1,
@@ -89,6 +90,10 @@ class Navigator {
       default:
         console.log(`(Requested state not found in Navigator.states. Setting state to undefined.)`);
         this.state = undefined;
+    }
+
+    if (this.toggleNetworkTester) {
+      this.toggleNetworkTester();
     }
   }
 }

@@ -112,13 +112,13 @@ function create({ initial_creation }) {
     });
 
     // start network tester when all windows 'did-finish-load'
-    new_window.webContents.addListener("did-finish-load", () => {
-      uri_loaded_counter++;
-      if (uri_loaded_counter === windows.length) {
-        uri_loaded_counter = 0;
-        startNetworkTester();
-      }
-    });
+    // new_window.webContents.addListener("did-finish-load", () => {
+    //   uri_loaded_counter++;
+    //   if (uri_loaded_counter === windows.length) {
+    //     uri_loaded_counter = 0;
+    //     startNetworkTester();
+    //   }
+    // });
 
     // pass config zoom factor to each new browser window when 'dom-ready'
     new_window.webContents.addListener("dom-ready", () => {
@@ -128,44 +128,54 @@ function create({ initial_creation }) {
     windows.push(new_window);
     if (!initial_creation) new_windows_on_recreate.push(new_window); // if not the first time - this array could easily be returned instead of being defined globally
   }
-
-  // Event handlers -------------------------------------------
-
-  // 6/5/25 - MOVE THIS FUNCTION to run at the end of Navigator class state change
-  // Change conditions to
-  //
-  // NetworkTester_isNeeded when
-  // (configJSONStore.get("test_connection") && Navigator.state === Navigator.states.live && at least one uri isWeb) ... idk the behavior of isReachable and local uri
-  // (Navigator.state === Navigator.states.loading)
-  //
-  // !NetworkTester_isNeeded when
-  // (Navigator.state === Navigator.states.config)
-  //
-  function startNetworkTester() {
-    if (configJSONStore.get("test_connection")) {
-      // Use NetworkTester on web kiosk or the loading page
-      // Stop NetworkTester on config page
-
-      const URIs = [];
-      windows.forEach((win) => URIs.push(win.webContents.getURL()));
-
-      let NetworkTester_isNeeded = false;
-      URIs.forEach((uri) => {
-        const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
-        NetworkTester_isNeeded = isWeb || uri.includes("loading"); // use NetworkTester on webpages or the loading page
-        // 6/5/25 - NEED BREAK IF NetworkTester_isNeeded === TRUE
-      });
-
-      if (NetworkTester_isNeeded) {
-        NetworkTester.start();
-      } else {
-        NetworkTester.stop();
-      }
-    } else {
-      console.log(`(Not initializing network tests per user configuration)`);
-    }
-  }
 }
+
+// Event handlers -------------------------------------------
+
+// 6/5/25 - MOVE THIS FUNCTION to run at the end of Navigator class state change
+// Change conditions to
+//
+// NetworkTester_isNeeded when
+// (configJSONStore.get("test_connection") && Navigator.state === Navigator.states.live && at least one uri isWeb) ... idk the behavior of isReachable and local uri
+// (Navigator.state === Navigator.states.loading)
+//
+// !NetworkTester_isNeeded when
+// (Navigator.state === Navigator.states.config)
+//
+// so,
+// switch (Navigator.state) {
+// case Navigator.states.live: if (configJSONStore.get("test_connection") && at least one uri isWeb) NetworkTester_isNeeded
+// case Navigator.states.config: NetworkTester is not needed
+// case Navigator.states.loading: NetworkTester_isNeeded
+// default:
+// }
+//
+//
+//   function startNetworkTester() {
+//     if (configJSONStore.get("test_connection")) {
+//       // Use NetworkTester on web kiosk or the loading page
+//       // Stop NetworkTester on config page
+
+//       const URIs = [];
+//       windows.forEach((win) => URIs.push(win.webContents.getURL()));
+
+//       let NetworkTester_isNeeded = false;
+//       URIs.forEach((uri) => {
+//         const isWeb = uri.startsWith("http://") || uri.startsWith("https://");
+//         NetworkTester_isNeeded = isWeb || uri.includes("loading"); // use NetworkTester on webpages or the loading page
+//         // 6/5/25 - NEED BREAK IF NetworkTester_isNeeded === TRUE
+//       });
+
+//       if (NetworkTester_isNeeded) {
+//         NetworkTester.start();
+//       } else {
+//         NetworkTester.stop();
+//       }
+//     } else {
+//       console.log(`(Not initializing network tests per user configuration)`);
+//     }
+//   }
+// }
 
 function loadURIs() {
   // load the initial uri (called in main.js)
