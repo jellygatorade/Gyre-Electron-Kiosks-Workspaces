@@ -10,6 +10,7 @@
     "./wkspcs/elmina-castle-lg",
     "./wkspcs/email",
     "./wkspcs/env-vars",
+    "./wkspcs/giotto",
     "./wkspcs/jp-leadership",
     "./wkspcs/ll-quilts",
     "./wkspcs/masquerade",

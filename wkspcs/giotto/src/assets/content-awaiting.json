@@ -1,0 +1,22 @@
+[
+  {
+    "id": "3 (currently unlicensed)",
+    "video_path": "./assets/video/masquerade/3-lo-gbe.mp4",
+    "still_path": "./assets/img/masquerade/3-lo-gbe.jpg",
+    "title": "<i>Little White Masquerade (Lo Gbe)</i>",
+    "location": "Sya District, Bobo-Dioulasso, Burkina Faso",
+    "date": "2021",
+    "credit": "© 2023 Ali Zouré (videographer), courtesy of Dr. Lisa Homann, University of North Carolina at Charlotte",
+    "description": "The third masquerade is performed by adults and children on moonlit Saturday nights in the city of Bobo-Dioulasso, Burkina Faso. Throughout the night they spin, twirl, and dart about to honor the most elderly and distinguished of individuals who endeavor to improve their communities."
+  },
+  {
+    "id": "5 (not yet cut)",
+    "video_path": "./assets/video/masquerade/video.mp4",
+    "still_path": "./assets/img/masquerade/still.jpg",
+    "title": "<i>Gongoli Masquerade Performances</i>",
+    "location": "Aberdeen (near Freetown) and Kenema District, Sierra Leone",
+    "date": "2009–2010",
+    "credit": "© 2023 Paul Basu, www.sierraleoneheritage.org",
+    "description": "The fifth masquerade is a comical mask known as gongoli. An example is on view in this gallery. Gongoli is a beloved character of Mende origin (Sierra Leone). Always the buffoon, he is performed as drunken and bumbling, to the delight of any children witnessing his antics. Gongoli also routinely performs at funerals to lighten the seriousness of the mood."
+  }
+]
