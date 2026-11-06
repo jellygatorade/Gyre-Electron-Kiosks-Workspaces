@@ -1,5 +1,5 @@
 {
-  "attract_video_path": "./assets/video/orsanmichele-video.mp4",
+  "attract_video_path": "./assets/video/attract.mp4",
   "en": {
     "attract": {
       "title": "Step Inside Medieval Florence",
@@ -7,23 +7,23 @@
     },
     "main": {
       "title": "Step Inside Medieval Florence",
-      "subheading": "Select a video to travel back in time to Florence, Italy, and discover where two paintings in the NCMA's collection were originally displayed. Explore digital recreations of the churches where these works were made to be seen more than 600 years ago.",
-      "credit": "Digital reconstructions by Dave Pfaff and George Bent, Washington and Lee University.",
+      "subheading": "<p style='padding-bottom: 0.5rem;'>Select a video to travel back in time to fourtheen-century Florence, Italy, and discover where two paintings in the NCMA's collection were originally displayed.</p><p>Explore digital re-creations of the churches for which these works were made more than 600 years ago.</p>",
+      "credit": "Digital reconstructions by and George Bent and Dave Pfaff, Washington and Lee University",
       "toggle_lang_btn": "Español",
       "videos": [
         {
           "id": "1",
-          "video_path": "./assets/video/orsanmichele-video.mp4",
-          "still_path": "./assets/img/orsanmichele-still.jpg",
-          "title": "Inside Orsanmichele",
-          "description": "Step inside a digital recreation of Orsanmichele in Florence, Italy, to see where Matteo di Pacino's panel for the Guild of Doctors and Apothecaries  once hung. Discover how paintings like this one were part of everyday religious life."
-        },
-        {
-          "id": "2",
           "video_path": "./assets/video/santa-croce-video.mp4",
           "still_path": "./assets/img/santa-croce-still.jpg",
           "title": "Inside Santa Croce",
-          "description": "Step inside a digital recreation of the Church of Santa Croce in Florence, Italy, to see where Giotto’s <i>Peruzzi Altarpiece</i> once stood. Discover how the painting was originally displayed in the Peruzzi Chapel alongside other works of art."
+          "description": "<p style='padding-bottom: 0.5rem;'>Step inside a digital re-creation of the church of Santa Croce in Florence, Italy, to see where Giotto’s Raleigh altarpiece once stood.</p><p>Discover how the painting was originally displayed in the Peruzzi Chapel alongside other works of art.</p>"
+        },
+        {
+          "id": "2",
+          "video_path": "./assets/video/orsanmichele-video.mp4",
+          "still_path": "./assets/img/orsanmichele-still.jpg",
+          "title": "Inside Orsanmichele",
+          "description": "<p style='padding-bottom: 0.5rem;'>Step inside a digital re-creation of Orsanmichele in Florence, Italy, to see where Matteo di Pacino’s panel for the Guild of Doctors and Apothecaries once hung.</p><p>Discover how paintings like this one were part of everyday religious life.</p>"
         }
       ]
     },
